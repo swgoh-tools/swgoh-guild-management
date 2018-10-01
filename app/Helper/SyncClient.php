@@ -5,8 +5,14 @@ namespace App\Helper;
 class SyncClient {
 
     protected $lockfile = 'sync.lock';
-    protected $datadir = 'data/';
-    protected $authdir = 'auth/';
+    protected $datadir = '/app/public/data/';
+    protected $authdir = '/app/auth/';
+
+    public function __construct()
+    {
+        $this->datadir = storage_path() . $this->datadir;
+        $this->authdir = storage_path() . $this->authdir;
+    }
 
     public static function getStatus() {
         return [];
@@ -45,8 +51,18 @@ class SyncClient {
             $sync_status['h-abilities'] = $this->syncHelpAbilities();
 
             $sync_status['s'] = substr($this->getAccessToken(), 0, 7);
+
+            \Cache::forever('sync_status', $sync_status);
+
         } catch (Exception $e) {
             $sync_status['error'] = get_class($e);
+            $sync_last_status = \Cache::get('sync_status');
+            if (is_array($sync_last_status)) {
+                $sync_merge = array_merge($sync_last_status, $sync_status);
+            } else {
+                $sync_merge = $sync_status;
+            }
+            \Cache::forever('sync_status', $sync_merge);
         } finally {
             unlink($this->lockfile);
         }

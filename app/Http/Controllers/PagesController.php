@@ -10,7 +10,7 @@ class PagesController extends Controller
     public function home(Request $request)
     {
         $sync_status = [];
-        if ($request->sync) {
+        if ($request->get('sync')) {
             $client = new SyncClient();
             $sync_status = $client->sync();
         }
@@ -41,7 +41,11 @@ class PagesController extends Controller
             $sync_status = $client->sync();
         }
 
-        return view('guild.roster', ['sync_status' => $sync_status, 'units' => $units]);
+        return view('guild.roster-2col', [
+            'title' => 'Gesamtliste',
+            'sync_status' => $sync_status, 
+            'units' => $units
+            ]);
     }
 
     public function squadspost() {
@@ -74,7 +78,7 @@ class PagesController extends Controller
         }
 
         $sync_status = [];
-        if ($request->sync) {
+        if ($request->has('sync')) {
             $client = new SyncClient();
             $sync_status = $client->sync();
         }
@@ -119,7 +123,7 @@ class PagesController extends Controller
         }
 
         return view('guild.squads', [
-            'sync_status' => $sync_status, 
+            'sync_status' => \Cache::get('sync_status', []), 
             'units' => $units, 
             'result' => $result, 
             'caption' => $caption, 

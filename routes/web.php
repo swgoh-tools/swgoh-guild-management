@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('/g/', function (Request $request) {
@@ -23,3 +24,7 @@ Route::get('/g/squads/', 'PagesController@squads')->name('guild.squads');
 Route::post('/g/squads/', 'PagesController@squads');
 Route::get('/g/{id}/roster/', 'PagesController@roster');
 Route::get('/g/{id}/squads/', 'PagesController@squads');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -91,12 +91,26 @@
             ?>
 @endisset
                 <form class="form-inline my-2 my-lg-0" action="" method="post">
+                    @csrf
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="sync">Sync</button>
                 </form>
                 <!--<form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>-->
+          @if (Route::has('login'))
+                <div class="navbar-nav">
+                    @auth
+                        <a class="nav-link" href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+
+                        @if (Request::has('register'))
+                            <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
             </div>
         </nav>
     </header>
