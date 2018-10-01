@@ -1,6 +1,7 @@
 
 window._ = require('lodash');
 window.Popper = require('popper.js').default;
+import InstantSearch from 'vue-instantsearch';
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -13,6 +14,30 @@ try {
 
     require('bootstrap');
 } catch (e) {}
+
+/**
+ * Vue is a modern JavaScript library for building interactive web interfaces
+ * using reactive data binding and reusable components. Vue's API is clean
+ * and simple, leaving you to focus on building your next great project.
+ */
+
+window.Vue = require('vue');
+
+Vue.use(InstantSearch);
+
+let authorizations = require('./authorizations');
+
+Vue.prototype.authorize = function (...params) {
+    if (! window.App.signedIn) return false;
+
+    if (typeof params[0] === 'string') {
+        return authorizations[params[0]](params[1]);
+    }
+
+    return params[0](window.App.user);
+};
+
+Vue.prototype.signedIn = window.App.signedIn;
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -54,3 +79,8 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+window.events = new Vue();
+
+window.flash = function (message, level = 'success') {
+    window.events.$emit('flash', { message, level });
+};

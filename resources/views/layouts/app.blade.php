@@ -1,18 +1,33 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ config('app.locale') }}">
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url('/css/docs.min.css') }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/trix.css') }}" rel="stylesheet">
+    <script type="text/javascript" src="{{ asset('js/trix.js') }}"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.11.1/trix.css"> -->
 
-    <title>Macht Wächter</title>
+    <!-- Scripts -->
+    <script>
+        window.App = {!! json_encode([
+            'csrfToken' => csrf_token(),
+            'user' => Auth::user(),
+            'signedIn' => Auth::check()
+        ]) !!};
+    </script>
+
+    <title>{{ config('app.name', 'Macht Wächter') }}</title>
     <style>
         html {
         font-size: 0.7rem;
@@ -27,10 +42,21 @@
     #toonTabs .nav-link {
         padding: 0rem 0.5rem;
     }
+        body { padding-bottom: 100px; }
+        .level { display: flex; align-items: center; }
+        .level-item { margin-right: 1em; }
+        .flex { flex: 1; }
+        .mr-1 { margin-right: 1em; }
+        .ml-a { margin-left: auto; }
+        [v-cloak] { display: none; }
+        .ais-highlight > em { background: yellow; font-style: normal; }
     </style>
+    @yield('head')
 </head>
 
 <body>
+<div id="app">
+    @include ('layouts.nav')
     <header>
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand disabled" href="">Macht Wächter</a>
@@ -138,6 +164,8 @@
             </span>
         </nav>
     </footer>
+    <flash message="{{ session('flash') }}"></flash>
+</div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -167,6 +195,8 @@
             })
         });
     </script>
+<script src="{{ asset('js/app.js') }}"></script>
+@yield('scripts')
 </body>
 
 </html>
