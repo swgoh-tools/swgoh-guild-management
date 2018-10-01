@@ -7,6 +7,7 @@
 @section('content')
     <thread-view :thread="{{ $thread }}" inline-template>
         <div class="container">
+        @include ('threads._menu')
             <div class="row">
                 <div class="col-md-8" v-cloak>
                     @include ('threads._question')
@@ -15,8 +16,8 @@
                 </div>
 
                 <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
+                    <div class="card">
+                        <div class="card-body">
                             <p>
                                 This thread was published {{ $thread->created_at->diffForHumans() }} by
                                 <a href="#">{{ $thread->creator->name }}</a>, and currently

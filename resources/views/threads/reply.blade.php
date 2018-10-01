@@ -1,6 +1,6 @@
 <reply :attributes="{{ $reply }}" inline-template v-cloak>
-    <div id="reply-{{ $reply->id }}" class="panel panel-default">
-        <div class="panel-heading">
+    <div id="reply-{{ $reply->id }}" class="card">
+        <div class="card-header">
             <div class="level">
                 <h5 class="flex">
                     <a href="{{ route('profile', $reply->owner) }}">
@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="panel-body">
+        <div class="card-body">
             <div v-if="editing">
                 <div class="form-group">
                     <textarea class="form-control" v-model="body"></textarea>
@@ -30,7 +30,7 @@
         </div>
 
         @can ('update', $reply)
-            <div class="panel-footer level">
+            <div class="card-footer level">
                 <button class="btn btn-xs mr-1" @click="editing = true">Edit</button>
                 <button class="btn btn-xs btn-danger mr-1" @click="destroy">Delete</button>
             </div>

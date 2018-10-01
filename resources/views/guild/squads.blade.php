@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-
+<?php
+    $bsize = '-sm'; // btn-sm, btn-md, btn-lg
+?>
 <div class="container-fluid">
     <main>
-        <h1>{{ $caption }}</h1>
+        <h1 class="h3">{{ $caption }}</h1>
         <form class="form-inline" action="" method="post">
             @csrf
             @foreach ($select_list as $id => $name)
@@ -23,9 +25,9 @@
             <button type="submit" class="btn btn-primary mb-2">Submit</button>
         </form>
 
-        <p class="lead text-center">Farbliche Markierungen nur zur groben Einordnung.
+        <p class="text-center">Farbliche Markierungen nur zur groben Einordnung.
             Anzahl der vorhandenen Toons, Ausrüstungsstufe, Level und Sterne werden berücksichtigt.</p>
-        <p class="lead text-center">Reihenfolge der Angabe bei den Toons: Macht, Ausrüstungsstufe, Level, Sterne, Zetas</p>
+        <p class="text-center">Reihenfolge der Angabe bei den Toons: Macht, Ausrüstungsstufe, Level, Sterne, Zetas</p>
         <table class="table table-sm table-hover squad-table">
             <caption>{{ $caption }}</caption>
             <thead>
@@ -63,14 +65,13 @@
                     {{-- <button type="button" class="btn btn-light">Light</button> --}}
                     {{-- <button type="button" class="btn btn-dark">Dark</button> --}}
                     {{-- <button type="button" class="btn btn-link">Link</button> --}}
-                    {{ $bsize = '' }}{{-- btn-sm, btn-md, btn-lg --}}
                     <td class="{{ getStatus('table-', [85, 7, 12], [$unit['level'], $unit['starLevel'], $unit['gearLevel']]) }}">
-                        <button type="button" class="btn$bsize btn-dark">{!! pad($unit['gp'], 5) !!}</button>
-                        <button type="button" class="btn$bsize {{ getStatus('btn-', 12, $unit['gearLevel']) }}">{!!
+                        <button type="button" class="btn{{ $bsize }} btn-dark">{!! pad($unit['gp'], 5) !!}</button>
+                        <button type="button" class="btn{{ $bsize }} {{ getStatus('btn-', 12, $unit['gearLevel']) }}">{!!
                             pad($unit['gearLevel'], 2) !!}</button>
-                        <button type="button" class="btn$bsize {{ getStatus('btn-', 85, $unit['level']) }}">{!!
+                        <button type="button" class="btn{{ $bsize }} {{ getStatus('btn-', 85, $unit['level']) }}">{!!
                             pad($unit['level'], 2) !!}</button>
-                        <button type="button" class="btn$bsize {{ getStatus('btn-', 7, $unit['starLevel']) }}">{!!
+                        <button type="button" class="btn{{ $bsize }} {{ getStatus('btn-', 7, $unit['starLevel']) }}">{!!
                             pad($unit['starLevel'], 1) !!}</button>
                         @switch (count($unit['zetas']))
                         @case(0)

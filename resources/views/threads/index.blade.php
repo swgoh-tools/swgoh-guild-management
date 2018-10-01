@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        @include ('threads._menu')
         <div class="row">
             <div class="col-md-8">
                 @include ('threads._list')
@@ -10,12 +11,12 @@
             </div>
 
             <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div class="card">
+                    <div class="card-header">
                         Search
                     </div>
 
-                    <div class="panel-body">
+                    <div class="card-body">
                         <form method="GET" action="{{ route('threads.search') }}">
                             <div class="form-group">
                                 <input type="text" placeholder="Search for something..." name="q" class="form-control">
@@ -29,12 +30,12 @@
                 </div>
 
                 @if (count($trending))
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="card">
+                        <div class="card-header">
                             Trending Threads
                         </div>
 
-                        <div class="panel-body">
+                        <div class="card-body">
                             <ul class="list-group">
                                 @foreach ($trending as $thread)
                                     <li class="list-group-item">

@@ -1,5 +1,5 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
+<div class="card">
+    <div class="card-header">
         <div class="level">
             <span class="flex">
                 {{ $heading }}
@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    <div class="panel-body">
+    <div class="card-body">
         {{ $body }}
     </div>
 </div>
