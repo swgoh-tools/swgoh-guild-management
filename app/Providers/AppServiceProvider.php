@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Channel;
+use App\Guild;
+use App\Page;
 use Illuminate\Support\ServiceProvider;
 use App\Helper\SyncClient;
 
@@ -30,6 +32,16 @@ class AppServiceProvider extends ServiceProvider
             
             $channels = Channel::all();
             $view->with('channels', $channels);
+        });
+
+        \View::composer('*', function ($view) {
+            $pages = Page::all();
+            $view->with('pages', $pages);
+        });
+
+        \View::composer('*', function ($view) {
+            $guild = Guild::find(1);
+            $view->with('guild', $guild);
         });
 
         \Validator::extend('spamfree', 'App\Rules\SpamFree@passes');

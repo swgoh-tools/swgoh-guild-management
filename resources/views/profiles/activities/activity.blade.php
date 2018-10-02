@@ -8,7 +8,7 @@
     </div>
 
     <div class="card-body">
-        {{ $body }}
+        {!! $body !!}
     </div>
 </div>
 

@@ -4,10 +4,11 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Reply extends Model
 {
-    use Favoritable, RecordsActivity;
+    use Favoritable, RecordsActivity, SoftDeletes;
 
     /**
      * Don't auto-apply mass assignment protection.

@@ -2,16 +2,14 @@
 
 namespace App;
 
-use App\Events\ThreadReceivedNewReply;
-use App\Filters\ThreadFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
-class Thread extends Model
+class Memo extends Model
 {
-    use RecordsActivity, Searchable, SoftDeletes;
+    use Favoritable, RecordsActivity, Searchable, SoftDeletes;
 
     /**
      * Don't auto-apply mass assignment protection.
@@ -25,14 +23,14 @@ class Thread extends Model
      *
      * @var array
      */
-    protected $with = ['creator', 'channel'];
+    protected $with = ['creator', 'guild'];
 
     /**
      * The accessors to append to the model's array form.
      *
      * @var array
      */
-    protected $appends = ['isSubscribedTo'];
+    // protected $appends = ['isSubscribedTo'];
 
     /**
      * The attributes that should be cast to native types.
@@ -50,27 +48,27 @@ class Thread extends Model
     {
         parent::boot();
 
-        static::deleting(function ($thread) {
-            $thread->replies->each->delete();
+        static::deleting(function ($memo) {
+            $memo->replies->each->delete();
         });
 
-        static::created(function ($thread) {
-            $thread->update(['slug' => $thread->title]);
+        static::created(function ($memo) {
+            $memo->update(['slug' => $memo->title]);
         });
     }
 
     /**
-     * Get a string path for the thread.
+     * Get a string path for the memo.
      *
      * @return string
      */
     public function path()
     {
-        return route('threads') . "/{$this->channel->slug}/{$this->slug}";
+        return route('memos') . "/{$this->guild->slug}/{$this->slug}";
     }
 
     /**
-     * A thread belongs to a creator.
+     * A memo belongs to a creator.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -80,17 +78,27 @@ class Thread extends Model
     }
 
     /**
-     * A thread is assigned a channel.
+     * A memo belongs to a user who changed it.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function channel()
+    public function editor()
     {
-        return $this->belongsTo(Channel::class);
+        return $this->belongsTo(User::class, 'user_id_current');
     }
 
     /**
-     * A thread may have many replies.
+     * A memo is assigned a page.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function page()
+    {
+        return $this->belongsTo(Page::class);
+    }
+
+    /**
+     * A memo may have many replies.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -100,7 +108,7 @@ class Thread extends Model
     }
 
     /**
-     * Add a reply to the thread.
+     * Add a reply to the memo.
      *
      * @param  array $reply
      * @return Model
@@ -109,81 +117,20 @@ class Thread extends Model
     {
         $reply = $this->replies()->create($reply);
 
-        event(new ThreadReceivedNewReply($reply));
+        // event(new ThreadReceivedNewReply($reply));
 
         return $reply;
     }
 
     /**
-     * Apply all relevant thread filters.
-     *
-     * @param  Builder       $query
-     * @param  ThreadFilters $filters
-     * @return Builder
-     */
-    public function scopeFilter($query, ThreadFilters $filters)
-    {
-        return $filters->apply($query);
-    }
-
-    /**
-     * Subscribe a user to the current thread.
-     *
-     * @param  int|null $userId
-     * @return $this
-     */
-    public function subscribe($userId = null)
-    {
-        $this->subscriptions()->create([
-            'user_id' => $userId ?: auth()->id()
-        ]);
-
-        return $this;
-    }
-
-    /**
-     * Unsubscribe a user from the current thread.
-     *
-     * @param int|null $userId
-     */
-    public function unsubscribe($userId = null)
-    {
-        $this->subscriptions()
-            ->where('user_id', $userId ?: auth()->id())
-            ->delete();
-    }
-
-    /**
-     * A thread can have many subscriptions.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function subscriptions()
-    {
-        return $this->hasMany(ThreadSubscription::class);
-    }
-
-    /**
-     * Determine if the current user is subscribed to the thread.
-     *
-     * @return boolean
-     */
-    public function getIsSubscribedToAttribute()
-    {
-        return $this->subscriptions()
-            ->where('user_id', auth()->id())
-            ->exists();
-    }
-
-    /**
-     * Determine if the thread has been updated since the user last read it.
+     * Determine if the memo has been updated since the user last read it.
      *
      * @param  User $user
      * @return bool
      */
     public function hasUpdatesFor($user)
     {
-        $key = $user->visitedThreadCacheKey($this);
+        $key = $user->visitedMemoCacheKey($this);
 
         return $this->updated_at > cache($key);
     }

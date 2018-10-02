@@ -23,6 +23,7 @@ Vue.component('avatar-form', require('./components/AvatarForm.vue'));
 Vue.component('wysiwyg', require('./components/Wysiwyg.vue'));
 
 Vue.component('thread-view', require('./pages/Thread.vue'));
+Vue.component('memo-edit', require('./pages/Memo.vue'));
 
 const app = new Vue({
     el: '#app'

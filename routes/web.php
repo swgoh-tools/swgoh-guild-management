@@ -15,25 +15,13 @@ Route::get('/', 'PagesController@home')->name('home');
 Route::get('/welcome', function () {
     return view('welcome');
 });
-Route::get('/g/', function (Request $request) {
-    return view('guild.info');
-})->name('guild.home');
-Route::get('/g/info', function (Request $request) {
-    return view('guild.info');
-})->name('guild.info');
-Route::get('/g/roster/', 'PagesController@roster')->name('guild.roster');
-Route::get('/g/squads/', 'PagesController@squads')->name('guild.squads');
-Route::post('/g/squads/', 'PagesController@squads');
-Route::get('/g/{id}/roster/', 'PagesController@roster');
-Route::get('/g/{id}/squads/', 'PagesController@squads');
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('threads', 'ThreadsController@index')->name('threads');
 Route::post('threads', 'ThreadsController@store')->middleware('auth'); //->middleware('must-be-confirmed');
-Route::get('threads/create', 'ThreadsController@create');
+Route::get('threads/create', 'ThreadsController@create')->name('threads.create');
 Route::get('threads/search', 'SearchController@show')->name('threads.search');
 Route::get('threads/{channel}/{thread}', 'ThreadsController@show');
 Route::patch('threads/{channel}/{thread}', 'ThreadsController@update');
@@ -64,3 +52,41 @@ Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->na
 
 Route::get('api/users', 'Api\UsersController@index');
 Route::post('api/users/{user}/avatar', 'Api\UserAvatarController@store')->middleware('auth')->name('avatar');
+
+Route::prefix('g')->group(function () {
+    Route::get('/', function (Request $request) {
+        return view('guild.info');
+    })->name('guild.home');
+    Route::get('{guild}', 'PagesController@show');
+    Route::get('{guild}/roster', 'PagesController@roster')->name('guild.roster');
+    Route::get('{guild}/squads', 'PagesController@squads')->name('guild.squads');
+    Route::post('{guild}/squads', 'PagesController@squads');
+    Route::get('{guild}/info', function (Request $request) {
+        return view('guild.info');
+    })->name('guild.info');
+
+    Route::get('{guild}/{page}', 'PagesController@show');
+    
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('users', function () {
+        // Matches The "/admin/users" URL
+    });
+    Route::post('guilds', 'PagesController@storeGuild')->name('guilds')->middleware('admin');
+    Route::get('guilds/create', 'PagesController@createGuild')->name('guilds.create')->middleware('admin');
+    Route::post('pages', 'PagesController@store')->name('pages')->middleware('admin'); //->middleware('must-be-confirmed');
+    Route::get('pages/create', 'PagesController@create')->name('pages.create')->middleware('admin');
+});
+
+
+    Route::post('api/upload', 'Api\UploadController@store')->middleware('auth')->name('upload');
+    Route::get('memos', 'MemosController@index')->name('memos');
+    Route::post('memos', 'MemosController@store')->middleware('auth'); //->middleware('must-be-confirmed');
+    Route::get('memos/create', 'MemosController@create')->name('memos.create');
+    // Route::get('memos/search', 'SearchController@show')->name('memos.search');
+    Route::get('memos/{channel}/{thread}', 'MemosController@show');
+    Route::patch('memos/{channel}/{thread}', 'MemosController@update');
+    Route::delete('memos/{channel}/{thread}', 'MemosController@destroy');
+    Route::get('memos/{channel}', 'MemosController@index');
+    

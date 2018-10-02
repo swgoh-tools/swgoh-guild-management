@@ -23,8 +23,8 @@ $cyan: #6cb2eb;
 $laravel-border-color: darken($body-bg, 10%);
 $list-group-border: $laravel-border-color;
 $navbar-default-border: $laravel-border-color;
-$panel-default-border: $laravel-border-color;
-$panel-inner-border: $laravel-border-color;
+$card-default-border: $laravel-border-color;
+$card-inner-border: $laravel-border-color;
 
 // Brands
 $brand-primary: #3097D1;
@@ -52,4 +52,4 @@ $input-border-focus: lighten($brand-primary, 25%);
 $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
-$panel-default-heading-bg: #fff;
+$card-default-heading-bg: #fff;

@@ -33,6 +33,7 @@
                                 <ais-input placeholder="Find a thread..." :autofocus="true" class="form-control"></ais-input>
                             </ais-search-box>
                         </div>
+                        <img class="bg-secondary" src="{{ asset('/svg/search-by-algolia.svg') }}" alt="search-by-algolia">
                     </div>
 
                     <div class="card">
@@ -65,7 +66,6 @@
                         </div>
                     @endif
                 </div>
-                <img src="{{ asset('/search-by-algolia-dark-background-9ad382d7.svg') }}" alt="search-by-algolia">
             </ais-index>
         </div>
     </div>

@@ -5,11 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -101,7 +102,7 @@ class User extends Authenticatable
      */
     public function isAdmin()
     {
-        return in_array($this->name, ['JohnDoe', 'JaneDoe']);
+        return in_array($this->id, [1, 'JohnDoe', 'JaneDoe']);
     }
 
     /**
@@ -137,5 +138,16 @@ class User extends Authenticatable
     public function visitedThreadCacheKey($thread)
     {
         return sprintf("users.%s.visits.%s", $this->id, $thread->id);
+    }
+
+    /**
+     * Get the cache key for when a user reads a thread.
+     *
+     * @param  Memo $memo
+     * @return string
+     */
+    public function visitedMemoCacheKey($memo)
+    {
+        return sprintf("users.%s.visits.%s", $this->id, $memo->id);
     }
 }

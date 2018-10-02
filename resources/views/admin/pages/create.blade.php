@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section ('head')
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
 @endsection
 
 @section('content')
@@ -9,20 +9,20 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="card">
-                    <div class="card-header">Create a New Thread</div>
+                    <div class="card-header">Create a New Page</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('threads') }}">
+                        <form method="POST" action="{{ route('pages') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group">
-                                <label for="channel_id">Choose a Channel:</label>
-                                <select name="channel_id" id="channel_id" class="form-control" required>
+                                <label for="guild_id">Choose a Guild:</label>
+                                <select name="guild_id" id="guild_id" class="form-control" required>
                                     <option value="">Choose One...</option>
 
-                                    @foreach ($channels as $channel)
-                                        <option value="{{ $channel->id }}" {{ old('channel_id') == $channel->id ? 'selected' : '' }}>
-                                            {{ $channel->name }}
+                                    @foreach ($guilds as $guild)
+                                        <option value="{{ $guild->id }}" {{ old('guild_id') == $guild->id ? 'selected' : '' }}>
+                                            {{ $guild->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -34,16 +34,11 @@
                                        value="{{ old('title') }}" required>
                             </div>
 
-                            <div class="form-group">
-                                <!-- <label for="body">Body:</label> -->
-                                <wysiwyg name="body"></wysiwyg>
-                                <!-- <input id="body" value="Editor content goes here" type="hidden" name="body"> -->
-  <!-- <trix-editor input="body"></trix-editor> -->
-                            </div>
-
-                            <div class="form-group">
-                                <!-- <div class="g-recaptcha" data-sitekey="6LeXrDUUAAAAAFco7ShbMrJx0fh-ZrLxK9Amd-zP"></div> -->
-                            </div>
+                            <!-- <div class="form-group">
+                                <label for="slug">Slug:</label>
+                                <input type="text" class="form-control" id="slug" name="slug"
+                                       value="{{ old('slug') }}" required>
+                            </div> -->
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Publish</button>

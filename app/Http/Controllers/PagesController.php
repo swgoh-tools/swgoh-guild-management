@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helper\SyncClient;
+use App\Page;
+use App\Guild;
+use App\User;
 
 class PagesController extends Controller
 {
@@ -16,6 +19,144 @@ class PagesController extends Controller
         }
 
         return view('home', ['sync_status' => $sync_status]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Page  $page
+     * @param  \App\Guild  $guild
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Guild $guild, Page $page) //, Guild $guild)
+    {
+        // if (auth()->check()) {
+        //     auth()->user()->read($page);
+        // }
+
+        // $trending->push($page);
+
+        // $page->increment('visits');
+
+        return view('pages.show', compact('page'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $guilds = Guild::all();
+
+        return view('admin.pages.create', compact('guilds'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Rules\Recaptcha $recaptcha
+     * @return \Illuminate\Http\Response
+     */
+    public function store()
+    {
+        request()->validate([
+            'title' => 'required|spamfree',
+            'guild_id' => 'required|exists:guilds,id',
+        ]);
+
+        $page = Page::create([
+            'user_id' => auth()->id(),
+            'guild_id' => request('guild_id'),
+            'title' => request('title'),
+        ]);
+
+        if (request()->wantsJson()) {
+            return response($page, 201);
+        }
+
+        return redirect($page->path())
+            ->with('flash', 'Your page has been published!');
+    }
+
+    /**
+     * Update the given page.
+     *
+     * @param string $channel
+     * @param Thread $page
+     */
+    public function update(Page $page)
+    {
+        $this->authorize('update', $page);
+
+        $page->update(request()->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]));
+
+        return $page;
+    }
+
+    /**
+     * Delete the given page.
+     *
+     * @param        $channel
+     * @param Thread $page
+     * @return mixed
+     */
+    public function destroy(Page $page)
+    {
+        $this->authorize('update', $page);
+
+        $page->delete();
+
+        if (request()->wantsJson()) {
+            return response([], 204);
+        }
+
+        return redirect('/pages');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createGuild()
+    {
+        $users = User::all();
+
+        return view('admin.guilds.create', compact('users'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Rules\Recaptcha $recaptcha
+     * @return \Illuminate\Http\Response
+     */
+    public function storeGuild()
+    {
+        request()->validate([
+            'name' => 'required|spamfree',
+            'code' => 'integer',
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        $guild = Guild::create([
+            // 'user_id' => auth()->id(),
+            'user_id' => request('user_id'),
+            'name' => request('name'),
+            'code' => request('code'),
+        ]);
+
+        if (request()->wantsJson()) {
+            return response($guild, 201);
+        }
+
+        return redirect($guild->path())
+            ->with('flash', 'Your guild has been published!');
     }
 
     public function roster(Request $request)

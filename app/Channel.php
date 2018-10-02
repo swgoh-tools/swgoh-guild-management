@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Channel extends Model
 {
+    use SoftDeletes;
+    
     /**
      * Get the route key name for Laravel.
      *

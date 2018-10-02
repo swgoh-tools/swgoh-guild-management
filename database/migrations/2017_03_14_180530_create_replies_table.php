@@ -19,6 +19,7 @@ class CreateRepliesTable extends Migration
             $table->integer('user_id');
             $table->text('body');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
