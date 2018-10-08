@@ -53,7 +53,7 @@
 <style>
     .alert-flash {
         position: fixed;
-        right: 25px;
-        bottom: 25px;
+        right: 1rem;
+        top: 4rem;
     }
 </style>

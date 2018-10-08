@@ -6,11 +6,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes;
+    use HasRoles, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +23,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'avatar_path'
+        'email_verified_at',
+        'avatar_path',
+        'confirmed',
+        'confirmation_token'
     ];
 
     /**
@@ -52,6 +57,11 @@ class User extends Authenticatable
     public function getRouteKeyName()
     {
         return 'name';
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 
     /**
@@ -106,6 +116,19 @@ class User extends Authenticatable
     }
 
     /**
+     * Determine if the user is an administrator.
+     *
+     * @return bool
+     */
+    public function isOfficer()
+    {
+        if ($this->isAdmin()) {
+            return true;
+        }
+        return in_array($this->id, [1, 'JohnDoe', 'JaneDoe']);
+    }
+
+    /**
      * Record that the user has read the given thread.
      *
      * @param Thread $thread
@@ -126,8 +149,23 @@ class User extends Authenticatable
      */
     public function getAvatarPathAttribute($avatar)
     {
-        return asset($avatar ?: 'images/avatars/default.png');
+        if ($avatar && Storage::disk('avatars')->exists($avatar)) {
+            return Storage::disk('avatars')->url($avatar);
+        }
+        return asset('images/avatars/default.png');
     }
+
+    /**
+     * Set the path to the user's avatar.
+     *
+     * @param  string $avatar
+     * @return string
+     */
+    // public function setAvatarPathAttribute($avatar)
+    // {
+    //     $id = explode('/', $avatar);
+    //     return array_pop($id);
+    // }
 
     /**
      * Get the cache key for when a user reads a thread.

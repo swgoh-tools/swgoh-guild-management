@@ -17,8 +17,8 @@ class MemoPolicy
      * @param  \App\Memo $memo
      * @return mixed
      */
-    public function update(User $user, Memo $memo)
-    {
-        // return $memo->user_id == $user->id;
-    }
+    // public function update(User $user, Memo $memo)
+    // {
+    //     // return $memo->user_id == $user->id;
+    // }
 }

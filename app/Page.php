@@ -90,6 +90,21 @@ class Page extends Model
     }
 
     /**
+     * Add a memo to the thread.
+     *
+     * @param  array $memo
+     * @return Model
+     */
+    public function addMemo($memo)
+    {
+        $memo = $this->memos()->create($memo);
+
+        // event(new ThreadReceivedNewMemo($memo));
+
+        return $memo;
+    }
+
+    /**
      * Set the proper slug attribute.
      *
      * @param string $value

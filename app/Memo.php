@@ -9,8 +9,16 @@ use Laravel\Scout\Searchable;
 
 class Memo extends Model
 {
-    use Favoritable, RecordsActivity, Searchable, SoftDeletes;
+    use Favoritable, Lockable, RecordsActivity, Revisionable, Searchable, SoftDeletes;
 
+    // protected $revisionEnabled = true;
+    // protected $revisionCleanup = true; //Remove old revisions (works only when used with $historyLimit)
+    // protected $historyLimit = 500; //Maintain a maximum of 500 changes at any point of time, while cleaning up old revisions.
+    protected $keepRevisionOf = array(
+        'title',
+        'body',
+        'page_id'
+    );
     /**
      * Don't auto-apply mass assignment protection.
      *
@@ -23,7 +31,7 @@ class Memo extends Model
      *
      * @var array
      */
-    protected $with = ['creator', 'guild'];
+    protected $with = ['creator:id,name', 'page', 'editor:id,name', 'lock'];
 
     /**
      * The accessors to append to the model's array form.
@@ -48,9 +56,9 @@ class Memo extends Model
     {
         parent::boot();
 
-        static::deleting(function ($memo) {
-            $memo->replies->each->delete();
-        });
+        // static::deleting(function ($memo) {
+        //     $memo->replies->each->delete();
+        // });
 
         static::created(function ($memo) {
             $memo->update(['slug' => $memo->title]);
@@ -64,7 +72,8 @@ class Memo extends Model
      */
     public function path()
     {
-        return route('memos') . "/{$this->guild->slug}/{$this->slug}";
+        // return route('memos') . "/{$this->guild->slug}/{$this->slug}";
+        return "{$this->page->path()}/{$this->slug}";
     }
 
     /**
@@ -97,30 +106,30 @@ class Memo extends Model
         return $this->belongsTo(Page::class);
     }
 
-    /**
-     * A memo may have many replies.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function replies()
-    {
-        return $this->hasMany(Reply::class);
-    }
+    // /**
+    //  * A memo may have many replies.
+    //  *
+    //  * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    //  */
+    // public function replies()
+    // {
+    //     return $this->hasMany(Reply::class);
+    // }
 
-    /**
-     * Add a reply to the memo.
-     *
-     * @param  array $reply
-     * @return Model
-     */
-    public function addReply($reply)
-    {
-        $reply = $this->replies()->create($reply);
+    // /**
+    //  * Add a reply to the memo.
+    //  *
+    //  * @param  array $reply
+    //  * @return Model
+    //  */
+    // public function addReply($reply)
+    // {
+    //     $reply = $this->replies()->create($reply);
 
-        // event(new ThreadReceivedNewReply($reply));
+    //     // event(new ThreadReceivedNewReply($reply));
 
-        return $reply;
-    }
+    //     return $reply;
+    // }
 
     /**
      * Determine if the memo has been updated since the user last read it.
@@ -142,7 +151,7 @@ class Memo extends Model
      */
     public function getRouteKeyName()
     {
-        return 'slug';
+        return 'id';
     }
 
     /**
@@ -155,6 +164,20 @@ class Memo extends Model
     {
         return \Purify::clean($body);
     }
+
+    // /**
+    //  * Access the body attribute.
+    //  *
+    //  * @param  string $body
+    //  * @return string
+    //  */
+    // public function setBodyAttribute($body)
+    // {
+    //     if ($body <> $this->attributes['body']) {
+
+    //     }
+    //     $this->attributes['body'] = $body;
+    // }
 
     /**
      * Set the proper slug attribute.

@@ -55,6 +55,27 @@ return [
             'visibility' => 'public',
         ],
 
+        'avatars' => [
+            'driver' => 'local',
+            'root' => storage_path('app/avatars'),
+            'url' => env('APP_URL').'/f/a',
+            'visibility' => 'public',
+        ],
+
+        'pages' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/p'),
+            'url' => env('APP_URL').'/storage/p',
+            'visibility' => 'public',
+        ],
+
+        'threads' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/t'),
+            'url' => env('APP_URL').'/storage/t',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

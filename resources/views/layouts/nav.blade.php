@@ -15,6 +15,11 @@
                 <a class="nav-link" href="{{ $page->path() }}">{{ $page->title }}</a>
             </li>
             @endforeach
+            @can('edit pages')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pages.create') }}"><i class="fa fa-plus"></i></a>
+                    </li>
+            @endcan
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('guild.squads', $guild) }}">Teamsuche</a>
             </li>
@@ -101,6 +106,8 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('guilds.create') }}">New Guild</a>
                         <a class="dropdown-item" href="{{ route('pages.create') }}">New Page</a>
+                        <a class="dropdown-item" href="{{ route('memos.create') }}">New Memo</a>
+                        <a class="dropdown-item" href="{{ route('files.upload') }}">Upload File</a>
                         @endif
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

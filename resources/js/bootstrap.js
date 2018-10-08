@@ -39,6 +39,11 @@ Vue.prototype.authorize = function (...params) {
 
 Vue.prototype.signedIn = window.App.signedIn;
 
+//credit to @Bill Criswell for this filter
+Vue.filter('truncate', function (text, stop, clamp) {
+    return text.slice(0, stop) + (stop < text.length ? clamp || '...' : '');
+})
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

@@ -1,15 +1,18 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/**
+ * |--------------------------------------------------------------------------
+ * | Web Routes
+ * |--------------------------------------------------------------------------
+ * |
+ * | Here is where you can register web routes for your application. These
+ * | routes are loaded by the RouteServiceProvider within a group which
+ * | contains the "web" middleware group. Now create something great!
+ * |
+ */
+
+use Illuminate\Support\Facades\Storage;
+
 
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('/welcome', function () {
@@ -66,7 +69,16 @@ Route::prefix('g')->group(function () {
     })->name('guild.info');
 
     Route::get('{guild}/{page}', 'PagesController@show');
+    Route::get('{guild}/{page}/edit', 'PagesController@showEdit');
+    Route::post('{guild}/{page}/edit', 'MemosController@store');
+    Route::get('{guild}/{page}/edit/memos', 'MemosController@index');
     
+    Route::get('{guild}/{page}/memos', 'MemosController@index');
+    Route::post('{guild}/{page}/memos', 'MemosController@store')->middleware('auth'); //->middleware('must-be-confirmed');
+    Route::put('{guild}/{page}/memos/{memo}', 'MemosController@update')->middleware('auth');
+    Route::delete('{guild}/{page}/memos/{memo}', 'MemosController@destroy')->middleware('auth');
+    Route::post('{guild}/{page}/memos/{memo}/lock', 'MemosController@getLock')->name('memos.lock.store')->middleware('auth');
+    Route::delete('{guild}/{page}/memos/{memo}/lock', 'MemosController@releaseLock')->name('memos.lock.destroy')->middleware('auth');
 });
 
 Route::prefix('admin')->group(function () {
@@ -75,18 +87,45 @@ Route::prefix('admin')->group(function () {
     });
     Route::post('guilds', 'PagesController@storeGuild')->name('guilds')->middleware('admin');
     Route::get('guilds/create', 'PagesController@createGuild')->name('guilds.create')->middleware('admin');
-    Route::post('pages', 'PagesController@store')->name('pages')->middleware('admin'); //->middleware('must-be-confirmed');
-    Route::get('pages/create', 'PagesController@create')->name('pages.create')->middleware('admin');
+    Route::post('pages', 'PagesController@store')->name('pages')->middleware(['permission:edit pages']); //->middleware('must-be-confirmed');
+    Route::get('pages/create', 'PagesController@create')->name('pages.create')->middleware(['permission:edit pages']);
+    Route::post('memos', 'MemosController@storeAdmin')->name('memos')->middleware('admin'); //->middleware('must-be-confirmed');
+    Route::get('memos', 'MemosController@index');
+    Route::get('memos/create', 'MemosController@create')->name('memos.create');
+    Route::get('memos/{memo}', 'MemosController@show');
+    Route::put('memos/{memo}', 'MemosController@update');
+    // Route::post('memos/{memo}', 'MemosController@update');
+    // Route::patch('memos/{memo}', 'MemosController@update');
+    Route::delete('memos/{memo}', 'MemosController@destroy')->middleware('auth');
+    Route::post('files', 'Api\UploadController@storeAdmin')->name('files')->middleware('admin'); //->middleware('must-be-confirmed');
+    Route::get('files/upload', 'Api\UploadController@create')->name('files.upload');
+    Route::post('channels', 'PagesController@storeChannel')->name('channels')->middleware('admin'); //->middleware('must-be-confirmed');
+    Route::get('channels/create', 'PagesController@createChannel')->name('channels.create');
 });
 
-
     Route::post('api/upload', 'Api\UploadController@store')->middleware('auth')->name('upload');
-    Route::get('memos', 'MemosController@index')->name('memos');
-    Route::post('memos', 'MemosController@store')->middleware('auth'); //->middleware('must-be-confirmed');
-    Route::get('memos/create', 'MemosController@create')->name('memos.create');
     // Route::get('memos/search', 'SearchController@show')->name('memos.search');
-    Route::get('memos/{channel}/{thread}', 'MemosController@show');
-    Route::patch('memos/{channel}/{thread}', 'MemosController@update');
-    Route::delete('memos/{channel}/{thread}', 'MemosController@destroy');
-    Route::get('memos/{channel}', 'MemosController@index');
-    
+
+Route::prefix('f')->group(function () {
+    Route::get('a/{filename}', function (String $filename, Request $request) {
+        // return Storage::disk('avatars')->get($filename);
+        return response()->download(Storage::disk('avatars')->path($filename));
+        //$exists = Storage::disk('s3')->exists('file.jpg');
+        //$url = Storage::url('file1.jpg');
+    })->name('files.avatars');
+});
+Route::get('api/test', 'Api\UserAvatarController@test');
+
+Route::group(
+    [
+        'prefix' => 'permissions',
+        // 'name' => 'permissions.',
+        'namespace' => 'Permissions',
+        'middleware' => ['auth']
+    ],
+    function () {
+        Route::resource('users', 'UserController', ['as' => 'permissions']);
+        Route::resource('roles', 'RoleController', ['as' => 'permissions']);
+        Route::resource('posts', 'PostController', ['as' => 'permissions']);
+    }
+);

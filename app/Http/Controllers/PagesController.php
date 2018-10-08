@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helper\SyncClient;
+use App\Channel;
 use App\Page;
 use App\Guild;
 use App\User;
@@ -39,6 +40,26 @@ class PagesController extends Controller
         // $page->increment('visits');
 
         return view('pages.show', compact('page'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Page  $page
+     * @param  \App\Guild  $guild
+     * @return \Illuminate\Http\Response
+     */
+    public function showEdit(Guild $guild, Page $page) //, Guild $guild)
+    {
+        // if (auth()->check()) {
+        //     auth()->user()->read($page);
+        // }
+
+        // $trending->push($page);
+
+        // $page->increment('visits');
+
+        return view('pages.edit', compact('page'));
     }
 
     /**
@@ -157,6 +178,41 @@ class PagesController extends Controller
 
         return redirect($guild->path())
             ->with('flash', 'Your guild has been published!');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createChannel()
+    {
+        return view('admin.channels.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Rules\Recaptcha $recaptcha
+     * @return \Illuminate\Http\Response
+     */
+    public function storeChannel()
+    {
+        request()->validate([
+            'title' => 'required|spamfree',
+        ]);
+
+        $channel = Channel::create([
+            'title' => request('title'),
+        ]);
+
+        if (request()->wantsJson()) {
+            return response($channel, 201);
+        }
+
+        return redirect()
+            ->back()
+            ->with('flash', 'Your channel has been published!');
     }
 
     public function roster(Request $request)

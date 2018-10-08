@@ -10,6 +10,13 @@ class Channel extends Model
     use SoftDeletes;
     
     /**
+     * Don't auto-apply mass assignment protection.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+    /**
      * Get the route key name for Laravel.
      *
      * @return string
