@@ -1,4 +1,7 @@
 {
     "on": "am",
-    "Edit": "Bearbeiten"
+    "Edit": "Bearbeiten",
+    "Edit Page": "Seite bearbeiten",
+    "Delete": "Löschen",
+    "Delete Page": "Seite löschen"
 }

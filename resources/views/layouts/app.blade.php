@@ -12,7 +12,7 @@
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.3/css/fork-awesome.min.css" integrity="sha256-ZhApazu+kejqTYhMF+1DzNKjIzP7KXu6AzyXcC1gMus=" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url('/css/docs.min.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url('/css/docs.min.css') }}"> -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- <link href="{{ asset('css/trix.css') }}" rel="stylesheet"> -->
@@ -34,80 +34,6 @@
         font-size: 0.7rem;
       } */
 
-        td {
-            font-family: monospace;
-        }
-
-        .table-sm {
-            font-size: 0.7rem;
-        }
-
-        .table-sm .btn-sm {
-            padding: 0.25rem 0.1rem;
-            font-size: 0.7rem;
-            line-height: 1.0;
-            border-radius: 0.2rem;
-        }
-
-        /* .form-control {
-            font-size: 0.7rem;
-        } */
-
-        header,
-        footer {
-            min-height: 4rem;
-        }
-
-        /* main, .bd-content {
-            top: 4rem;
-            position: relative;
-        } */
-
-        .bd-sidebar, .bd-toc {
-            top: 0rem;
-        }
-
-        #toonTabs .nav-link {
-            padding: 0rem 0.5rem;
-        }
-
-        body {
-            padding-bottom: 100px;
-        }
-
-        /* .level {
-            display: flex;
-            align-items: center;
-        } */
-
-        /* .level-item {
-            margin-right: 1em;
-        } */
-
-        /* .flex {
-            flex: 1;
-        } */
-
-        .mr-1 {
-            margin-right: 1em;
-        }
-
-        .ml-a {
-            margin-left: auto;
-        }
-
-        /* [v-cloak] {
-            display: none;
-        } */
-
-        .ais-highlight>em {
-            background: yellow;
-            font-style: normal;
-        }
-        div.ais-index {
-            display: flex;
-            width: 100%;
-        }
     </style>
     @yield('head')
 </head>

@@ -17,6 +17,7 @@ class CreatePagesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('guild_id');
+            $table->integer('position')->nullable();
             $table->string('title', 50);
             $table->string('slug', 50)->nullable();
             $table->timestamps();

@@ -31,7 +31,7 @@ class Memo extends Model
      *
      * @var array
      */
-    protected $with = ['creator:id,name', 'page', 'editor:id,name', 'lock'];
+    protected $with = ['creator:id,name', 'page:id,title', 'editor:id,name', 'lock'];
 
     /**
      * The accessors to append to the model's array form.
@@ -72,8 +72,9 @@ class Memo extends Model
      */
     public function path()
     {
+        return route('memos') . "/{$this->slug}";
         // return route('memos') . "/{$this->guild->slug}/{$this->slug}";
-        return "{$this->page->path()}/{$this->slug}";
+        // return "{$this->page->path()}/{$this->slug}";
     }
 
     /**
@@ -161,6 +162,17 @@ class Memo extends Model
      * @return string
      */
     public function getBodyAttribute($body)
+    {
+        return \Purify::clean($body);
+    }
+
+    /**
+     * Access the body attribute.
+     *
+     * @param  string $body
+     * @return string
+     */
+    public function getTitleAttribute($body)
     {
         return \Purify::clean($body);
     }

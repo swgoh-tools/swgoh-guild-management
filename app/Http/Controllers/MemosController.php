@@ -26,7 +26,7 @@ class MemosController extends Controller
     public function index($guildId, Page $page)
     {
         // return $page->memos()->paginate(20);
-        $memos = $page->memos()->get();
+        $memos = $page->memos()->orderBy('position', 'asc')->get();
         return $memos;
         return response()->json(['data' => $memos], 200);
         // return $page->memos()->toArray();
@@ -95,10 +95,10 @@ class MemosController extends Controller
      */
     public function update(Guild $guild = null, Page $page = null, Memo $memo)
     {
+        // dd(request());
         $this->authorize('edit memos', auth()->user());
         // $this->authorize('update', $memo);
         // die('test');
-        // dd(request());
         $memo->update(request()->validate([
                 'body' => 'required|spamfree',
                 'title' => 'required|spamfree',
@@ -112,6 +112,84 @@ class MemosController extends Controller
     
         return back()
             ->with('flash', 'Eintrag aktualisiert!');
+    }
+
+    /**
+     * Update an existing memo.
+     *
+     * @param Memo $memo
+     */
+    public function relocate(Guild $guild = null, Page $page = null, Memo $memo)
+    {
+        // dd(request());
+        $this->authorize('edit memos', auth()->user());
+        // $this->authorize('update', $memo);
+        // die('test');
+        request()->validate([
+                'before_id' => 'exists:memos,id|nullable',
+                'page_id' => 'exists:pages,id|required'
+        ]);
+        if ($memo->id == request('before_id')) {
+            return response(['Old and new Memo are the same!'], 450);
+        }
+        $new_page = Page::find(request('page_id'));
+        if (! $new_page) {
+            return response(['New Page not found'], 450);
+        }
+        $other_memo = Memo::find(request('before_id'));
+        if ($other_memo && $other_memo->page_id <> $new_page->id) {
+            return response(['Page and Memo (before) do not match!'], 450);
+        }
+        if ($memo->page_id <> $new_page->id) {
+            $memo->page()->associate($new_page);
+            $memo->save();
+        }
+        $max_position = $new_page->memos()->max('position');
+
+        if (! $other_memo) {
+
+            $memo->update(['position' => (is_int($max_position) ? $max_position + 1 : null)]);
+            return response(['Memo relocated to end of ' . $new_page->title], 200);
+        }
+        if ($other_memo->position >= 1) {
+            //exclude current memo
+            $new_neighbors = $new_page->memos()->where([
+                ['id', '<>', $memo->id],
+                ['position', '>=', $other_memo->position]]
+            )->orderBy('position', 'asc')->get();
+            $position = $other_memo->position;
+        } else {
+            //full cleanup on position needed
+            $new_neighbors = $new_page->memos()->where('id', '<>', $memo->id)->orderBy('position', 'asc')->get();
+            $position = 0;
+        }
+
+        $reloc_done = false;
+        foreach ($new_neighbors as $current_memo) {
+            if (! $reloc_done && $current_memo->id == $other_memo->id) {
+                //this is our new position
+                $memo->update(['position' => $position + 1]);
+                $position += 1;
+                $reloc_done = true;
+            }
+            if ($current_memo->position >= $position) {
+                if ($reloc_done) {
+                    //following memos are in order, nothing to do for the rest
+                    break;
+                }
+                $position = $current_memo->position;
+            } else {
+                $current_memo->update(['position' => $position + 1]);
+                $position += 1;
+            }
+        }
+
+        if ($reloc_done) {
+            return response(['Relocation Successfull'], 201);
+        }
+
+            return response(['Something went wrong!'], 501);
+    
     }
 
     /**

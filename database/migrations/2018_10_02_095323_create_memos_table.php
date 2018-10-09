@@ -19,6 +19,7 @@ class CreateMemosTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('user_id_current')->nullable();
             $table->unsignedInteger('page_id');
+            $table->integer('position')->nullable();
             $table->unsignedInteger('replies_count')->default(0);
             $table->unsignedInteger('visits')->default(0);
             $table->string('title');

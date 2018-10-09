@@ -71,7 +71,7 @@ trait Revisionable
      */
     public function revisions()
     {
-        return $this->morphMany(Revision::class, 'subject');
+        return $this->morphMany(Revision::class, 'revisionable');
     }
     /**
      * Generates a list of the last $limit revisions made to any objects of the class it is being called from.
@@ -82,7 +82,7 @@ trait Revisionable
      */
     public static function classRevisions($limit = 100, $order = 'desc')
     {
-        return Revision::where('subject_type', get_called_class())
+        return Revision::where('revisionable_type', get_called_class())
             ->orderBy('updated_at', $order)->limit($limit)->get();
     }
     /**
@@ -143,8 +143,8 @@ trait Revisionable
             $revisions = array();
             foreach ($changes_to_record as $key => $change) {
                 $revisions[] = array(
-                    'subject_type' => $this->getMorphClass(),
-                    'subject_id' => $this->getKey(),
+                    // 'revisionable_type' => $this->getMorphClass(),
+                    // 'revisionable_id' => $this->getKey(),
                     'field' => $key,
                     'old_value' => array_get($this->originalData, $key),
                     // 'new_value' => $this->updatedData[$key],
@@ -153,15 +153,17 @@ trait Revisionable
                     // 'updated_at' => new \DateTime(),
                 );
             }
+
             if (count($revisions) > 0) {
+                $this->revisions()->createMany($revisions);
                 if($LimitReached && $RevisionCleanup){
                     $toDelete = $this->revisions()->orderBy('id','asc')->limit(count($revisions))->get();
                     foreach($toDelete as $delete){
                         $delete->delete();
                     }
                 }
-                $revision = new Revision;
-                \DB::table($revision->getTable())->insert($revisions);
+                // $revision = new Revision;
+                // \DB::table($revision->getTable())->insert($revisions);
                 \Event::fire('revisionable.saved', array('model' => $this, 'revisions' => $revisions));
             }
         }
@@ -173,11 +175,11 @@ trait Revisionable
     {
         // Check if we should store creations in our revision history
         // Set this value to true in your model if you want to
-        if(empty($this->revisionCreationsEnabled))
-        {
+        // if(empty($this->revisionCreationsEnabled))
+        // {
             // We should not store creations.
             return false;
-        }
+        // }
         // if ((!isset($this->revisionEnabled) || $this->revisionEnabled))
         // {
         //     $revisions[] = array(
@@ -252,7 +254,10 @@ trait Revisionable
             // check that the field is revisionable, and double check
             // that it's actually new data in case dirty is, well, clean
             if ($this->isRevisionable($key) && !is_array($value)) {
-                if (!isset($this->originalData[$key]) || $this->originalData[$key] != $this->updatedData[$key]) {
+                // if (!isset($this->originalData[$key]) || $this->originalData[$key] != $this->updatedData[$key]) {
+                //     $changes_to_record[$key] = $value;
+                // }
+                if (isset($this->originalData[$key]) && $this->originalData[$key] != $this->updatedData[$key]) {
                     $changes_to_record[$key] = $value;
                 }
             } else {

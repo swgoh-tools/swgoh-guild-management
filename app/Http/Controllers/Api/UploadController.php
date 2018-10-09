@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class UploadController extends Controller
@@ -51,6 +52,51 @@ class UploadController extends Controller
                 'success' => false,
                 'data' => [],
                 'errors' => $e
+            ), 500);
+        }
+
+        // if (request()->wantsJson()) {
+        //     return response(['url' => $url], 204);
+        // }
+
+        return response([], 501);
+    }
+
+    /**
+     * Store a new user avatar.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeCkeditor(Request $request)
+    {
+        // https://scotch.io/tutorials/understanding-and-working-with-files-in-laravel
+        // https://laravel.com/docs/master/validation#rule-mimetypes
+        // https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
+
+        $validation = $request->validate([
+            'upload' => 'required|file|mimes:jpeg,png,gif,webp,tif,bmp,svg,json,doc,docx,docm,pdf,odt,odc,ods,odp,odi,odg,odb,ppt,pptx,xls,xlsx,xlsm,txt,csv|max:20480'
+            // for multiple file uploads
+            // 'file.*' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+        ]);
+
+        try {
+            $file = $request->file('upload');
+            $path = Storage::disk('pages')->putFile('', $file);
+            // $path = $request->file('file')->store('', 'pages');
+            $url = Storage::disk('pages')->url($path);
+            $filenameWithExt = $file->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);            
+            $extension = $file->getClientOriginalExtension();
+            return response()->json(array(
+                'uploaded' => 1,
+                'filename' => $filenameWithExt, // $path,
+                'url' => $url,
+                'error' => []
+            ), 201);
+        } catch (\Exception $e) {
+            return response()->json(array(
+                'uploaded' => 0,
+                'error' => $e
             ), 500);
         }
 

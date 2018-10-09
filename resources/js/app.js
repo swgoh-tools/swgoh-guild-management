@@ -7,7 +7,7 @@
 
 require('./bootstrap');
 
-// window.Vue = require('vue'); // already called in bootstrap.js
+// Vue = require('vue'); // already called in bootstrap.js
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -25,6 +25,6 @@ Vue.component('wysiwyg', require('./components/Wysiwyg.vue'));
 Vue.component('thread-view', require('./pages/Thread.vue'));
 Vue.component('memo-edit', require('./pages/Memo.vue'));
 
-const app = new Vue({
+  const app = new Vue({
     el: '#app'
 });

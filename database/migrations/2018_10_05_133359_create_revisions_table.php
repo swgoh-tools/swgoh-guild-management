@@ -17,8 +17,7 @@ class CreateRevisionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id')->index()->nullable();
             $table->unsignedInteger('revision_id')->index()->nullable();
-            $table->unsignedInteger('subject_id')->index();
-            $table->string('subject_type', 50);
+            $table->morphs('revisionable');
             $table->string('type', 50)->nullable();
             $table->string('field');
             $table->text('old_value')->nullable();

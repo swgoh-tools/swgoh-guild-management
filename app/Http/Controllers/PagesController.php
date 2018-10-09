@@ -22,6 +22,15 @@ class PagesController extends Controller
         return view('home', ['sync_status' => $sync_status]);
     }
 
+    public function index(Guild $guild, Page $page)
+    {
+        // return $page->memos()->paginate(20);
+        $pages = $guild->pages()->with('memos:id,title,page_id')->get();
+        return $pages;
+        return response()->json(['data' => $memos], 200);
+        // return $page->memos()->toArray();
+    }
+
     /**
      * Display the specified resource.
      *
@@ -38,8 +47,9 @@ class PagesController extends Controller
         // $trending->push($page);
 
         // $page->increment('visits');
+        $memos = $page->memos()->orderby('position', 'asc')->get();
 
-        return view('pages.show', compact('page'));
+        return view('pages.show', compact('page', 'memos'));
     }
 
     /**
@@ -126,9 +136,17 @@ class PagesController extends Controller
      * @param Thread $page
      * @return mixed
      */
-    public function destroy(Page $page)
+    public function destroy(Guild $guild, Page $page)
     {
-        $this->authorize('update', $page);
+        $this->authorize('edit memos', auth()->user());
+
+        if ($page->memos()->count() > 0) {
+            if (request()->wantsJson()) {
+                return response(['Page contains memos. Cannot be deleted.'], 450);
+            }
+    
+            return back()->with('flash', 'Seite kann nicht gelöscht werden, da Inhalte vorhanden!');
+        }
 
         $page->delete();
 
@@ -136,7 +154,7 @@ class PagesController extends Controller
             return response([], 204);
         }
 
-        return redirect('/pages');
+        return redirect(route('home'))->with('flash', 'Seite gelöscht!');
     }
 
     /**

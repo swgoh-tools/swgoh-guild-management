@@ -100,7 +100,7 @@
                         {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropLogin">
-                        <a class="dropdown-item" href="{{ url('/home') }}">Home</a>
+                        <a class="dropdown-item" href="{{ route('home') }}">Home</a>
                         <a class="dropdown-item" href="{{ route('profile', Auth::user()) }}">My Profile</a>
                         @if (Auth::user()->isAdmin())
                         <div class="dropdown-divider"></div>

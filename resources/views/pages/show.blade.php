@@ -16,12 +16,7 @@
 
             <nav class="collapse bd-links" id="bd-docs-nav">
                 <div class="nav flex-column nav-pills" id="sw-tab" role="tablist" aria-orientation="vertical">
-                @can('edit memos')
-                    <a href="{{ $page->path() }}/edit" aria-label="edit memos">
-                        <button class="btn btn-danger">{{ __('Edit') }}</button>
-                    </a>
-                @endcan
-                    @foreach ($page->memos as $memo)
+                    @foreach ($memos as $memo)
                     @if ($loop->first)
                     <a class="nav-link active" id="sw-{{ $memo->slug }}-tab" data-toggle="pill" href="#sw-{{ $memo->slug }}" role="tab" aria-controls="sw-{{ $memo->slug }}" aria-selected="true">
                     {{ $memo->title }}</a>
@@ -35,9 +30,24 @@
         </div>
 
         <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+            @can('edit memos')
+                <div>
+                    <a href="{{ $page->path() }}/edit" aria-label="edit page">
+                        <button class="btn btn-success"><i class="fa fa-pencil"></i> {{ __('Edit Page') }}</button>
+                    </a>
+                    <form id="delete-form" action="{{ $page->path() }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <a href="" aria-label="delete page">
+                            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> {{ __('Delete Page') }}</button>
+                        </a>
+                    </form>
+
+                </div>
+            @endcan
 
             <div class="tab-content" id="sw-tabContent">
-                @foreach ($page->memos as $memo)
+                @foreach ($memos as $memo)
                 @if ($loop->first)
                 <div class="tab-pane fade show active" id="sw-{{ $memo->slug }}" role="tabpanel" aria-labelledby="sw-{{ $memo->slug }}-tab">
                 @else

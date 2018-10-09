@@ -20,11 +20,11 @@ class Revision extends Model
     protected $revisionFormattedFields = array();
 
     /**
-     * Fetch the associated subject for the activity.
+     * Fetch the associated revisionable for the activity.
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function subject()
+    public function revisionable()
     {
         return $this->morphTo();
     }
@@ -32,15 +32,15 @@ class Revision extends Model
     /**
      * Fetch an activity feed for the given class.
      *
-     * @param  String $subject
+     * @param  String $revisionable
      * @param  int  $take
      * @return \Illuminate\Database\Eloquent\Collection;
      */
-    public static function history($subject, $take = 50)
+    public static function history($revisionable, $take = 50)
     {
-        return static::where('subject', $subject)
+        return static::where('revisionable', $revisionable)
             ->latest()
-            ->with('subject')
+            ->with('revisionable')
             ->take($take)
             ->get()
             ->groupBy(function ($revision) {
@@ -82,7 +82,7 @@ class Revision extends Model
      */
     private function formatFieldName($key)
     {
-        $related_model = $this->subject_type;
+        $related_model = $this->revisionable_type;
         $related_model = new $related_model;
         $revisionFormattedFieldNames = $related_model->getRevisionFormattedFieldNames();
         if (isset($revisionFormattedFieldNames[$key])) {
@@ -126,7 +126,7 @@ class Revision extends Model
     {
         $which_value = $which . '_value';
         // First find the main model that was updated
-        $main_model = $this->subject_type;
+        $main_model = $this->revisionable_type;
         // Load it, WITH the related model
         if (class_exists($main_model)) {
             $main_model = new $main_model;
@@ -236,8 +236,8 @@ class Revision extends Model
      */
     public function historyOf()
     {
-        if (class_exists($class = $this->subject_type)) {
-            return $class::find($this->subject_id);
+        if (class_exists($class = $this->revisionable_type)) {
+            return $class::find($this->revisionable_id);
         }
         return false;
     }
@@ -258,7 +258,7 @@ class Revision extends Model
      */
     public function format($key, $value)
     {
-        $related_model = $this->subject_type;
+        $related_model = $this->revisionable_type;
         $related_model = new $related_model;
         $revisionFormattedFields = $related_model->getRevisionFormattedFields();
         if (isset($revisionFormattedFields[$key])) {

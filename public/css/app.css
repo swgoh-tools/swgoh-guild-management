@@ -10466,9 +10466,265 @@ a.text-dark:focus {
   }
 }
 
+.bd-toc {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  font-size: .875rem;
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+  .bd-toc {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4rem;
+    height: calc(100vh - 8rem);
+    overflow-y: auto;
+  }
+}
+
+.section-nav {
+  padding-left: 0;
+  border-left: 1px solid #eee;
+}
+
+.section-nav ul {
+  padding-left: 1rem;
+}
+
+.section-nav ul ul {
+  display: none;
+}
+
+.toc-entry {
+  display: block;
+}
+
+.toc-entry a {
+  display: block;
+  padding: .125rem 1.5rem;
+  color: #99979c;
+}
+
+.toc-entry a:hover {
+  color: #3490dc;
+  text-decoration: none;
+}
+
+.bd-sidebar {
+  -webkit-box-ordinal-group: 1;
+      -ms-flex-order: 0;
+          order: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .bd-sidebar {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+    .bd-sidebar {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 4rem;
+      z-index: 1000;
+      height: calc(100vh - 8rem);
+    }
+}
+}
+
+@media (min-width: 1200px) {
+  .bd-sidebar {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 320px;
+            flex: 0 1 320px;
+  }
+}
+
+.bd-links {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+@media (min-width: 768px) {
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+    .bd-links {
+      max-height: calc(100vh - 9rem);
+      overflow-y: auto;
+    }
+}
+}
+
+@media (min-width: 768px) {
+  .bd-links {
+    display: block !important;
+  }
+}
+
+.bd-search {
+  position: relative;
+  padding: 1rem 15px;
+  margin-right: -15px;
+  margin-left: -15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.bd-search .form-control:focus {
+  border-color: #7952b3;
+  -webkit-box-shadow: 0 0 0 3px rgba(121, 82, 179, 0.25);
+          box-shadow: 0 0 0 3px rgba(121, 82, 179, 0.25);
+}
+
+.bd-search-docs-toggle {
+  line-height: 1;
+  color: #212529;
+}
+
+.bd-sidenav {
+  display: none;
+}
+
+.bd-toc-link {
+  display: block;
+  padding: .25rem 1.5rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.bd-toc-link:hover {
+  color: rgba(0, 0, 0, 0.85);
+  text-decoration: none;
+}
+
+.bd-toc-item.active {
+  margin-bottom: 1rem;
+}
+
+.bd-toc-item.active:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.bd-toc-item.active > .bd-toc-link {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.bd-toc-item.active > .bd-toc-link:hover {
+  background-color: transparent;
+}
+
+.bd-toc-item.active > .bd-sidenav {
+  display: block;
+}
+
+.bd-sidebar .nav > li > a {
+  display: block;
+  padding: .25rem 1.5rem;
+  font-size: 90%;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.bd-sidebar .nav > li > a:hover {
+  color: rgba(0, 0, 0, 0.85);
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.bd-sidebar .nav > .active > a,
+.bd-sidebar .nav > .active:hover > a {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.85);
+  background-color: transparent;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+html,
+body {
+  line-height: 1.2rem;
+}
+
+.table th,
+.table td {
+  padding: 0.3rem 0.15rem;
+}
+
+td {
+  font-family: monospace;
+}
+
+.table-sm {
+  font-size: 0.7rem;
+}
+
+.table-sm .btn-sm,
+.table-sm .btn-group-sm > .btn {
+  padding: 0.25rem 0.1rem;
+  font-size: 0.7rem;
+  line-height: 1.0;
+  border-radius: 0.2rem;
+}
+
+/* .form-control {
+  font-size: 0.7rem;
+} */
+
+header,
+footer {
+  min-height: 4rem;
+}
+
+/* main, .bd-content {
+  top: 4rem;
+  position: relative;
+} */
+
+#toonTabs .nav-link {
+  padding: 0rem 0.5rem;
+}
+
+/* .level {
+  display: flex;
+  align-items: center;
+} */
+
+/* .level-item {
+  margin-right: 1em;
+} */
+
+/* .flex {
+  flex: 1;
+} */
+
+.mr-1 {
+  margin-right: 1em;
+}
+
+.ml-a {
+  margin-left: auto;
+}
+
+/* [v-cloak] {
+  display: none;
+} */
+
+.ais-highlight > em {
+  background: yellow;
+  font-style: normal;
+}
+
+div.ais-index {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
 }
 

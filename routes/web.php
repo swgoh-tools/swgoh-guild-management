@@ -15,12 +15,10 @@ use Illuminate\Support\Facades\Storage;
 
 
 Route::get('/', 'PagesController@home')->name('home');
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+// Route::get('/welcome', function () {
+//     return view('welcome');
+// });
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('threads', 'ThreadsController@index')->name('threads');
 Route::post('threads', 'ThreadsController@store')->middleware('auth'); //->middleware('must-be-confirmed');
@@ -60,7 +58,6 @@ Route::prefix('g')->group(function () {
     Route::get('/', function (Request $request) {
         return view('guild.info');
     })->name('guild.home');
-    Route::get('{guild}', 'PagesController@show');
     Route::get('{guild}/roster', 'PagesController@roster')->name('guild.roster');
     Route::get('{guild}/squads', 'PagesController@squads')->name('guild.squads');
     Route::post('{guild}/squads', 'PagesController@squads');
@@ -70,13 +67,16 @@ Route::prefix('g')->group(function () {
 
     Route::get('{guild}/{page}', 'PagesController@show');
     Route::get('{guild}/{page}/edit', 'PagesController@showEdit');
+    Route::delete('{guild}/{page}', 'PagesController@destroy')->middleware('auth');
     Route::post('{guild}/{page}/edit', 'MemosController@store');
     Route::get('{guild}/{page}/edit/memos', 'MemosController@index');
+    Route::get('{guild}/{page}/edit/pages', 'PagesController@index');
     
     Route::get('{guild}/{page}/memos', 'MemosController@index');
     Route::post('{guild}/{page}/memos', 'MemosController@store')->middleware('auth'); //->middleware('must-be-confirmed');
     Route::put('{guild}/{page}/memos/{memo}', 'MemosController@update')->middleware('auth');
     Route::delete('{guild}/{page}/memos/{memo}', 'MemosController@destroy')->middleware('auth');
+    Route::put('{guild}/{page}/memos/{memo}/relocate', 'MemosController@relocate')->middleware('auth');
     Route::post('{guild}/{page}/memos/{memo}/lock', 'MemosController@getLock')->name('memos.lock.store')->middleware('auth');
     Route::delete('{guild}/{page}/memos/{memo}/lock', 'MemosController@releaseLock')->name('memos.lock.destroy')->middleware('auth');
 });
@@ -109,7 +109,8 @@ Route::prefix('admin')->group(function () {
 Route::prefix('f')->group(function () {
     Route::get('a/{filename}', function (String $filename, Request $request) {
         // return Storage::disk('avatars')->get($filename);
-        return response()->download(Storage::disk('avatars')->path($filename));
+        return response()->get(Storage::disk('avatars')->path($filename));
+        // return response()->download(Storage::disk('avatars')->path($filename));
         //$exists = Storage::disk('s3')->exists('file.jpg');
         //$url = Storage::url('file1.jpg');
     })->name('files.avatars');
@@ -129,3 +130,5 @@ Route::group(
         Route::resource('posts', 'PostController', ['as' => 'permissions']);
     }
 );
+
+        Route::post('permissions/posts/{post}/upload', 'Api\UploadController@storeCkeditor')->middleware('auth'); //->middleware('must-be-confirmed');

@@ -160,8 +160,7 @@
         </div>
 
         <!-- Create Memo Modal -->
-        <!-- tabindex="-1" not allowed, breaks fokus for editors -->
-        <div class="modal fade" id="modal-create-memo" role="dialog">
+        <div class="modal fade" id="modal-create-memo" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -200,7 +199,10 @@
                                         <!-- </div> -->
                                     </div>
                                     <div class="form-group">
-<ckeditor name="body" id="create-memo-body" v-model="createForm.body" placeholder="Bitte Text eingeben..."></ckeditor>
+                                        <input id="create-memo-body" type="hidden" name="body" value="" v-model="createForm.body">
+
+                                        <trix-editor ref="trixc" input="create-memo-body" placeholder="Bitte Text eingeben."></trix-editor>
+                                        <!-- <xwysiwyg name="updateForm.body" v-model="updateForm.body" placeholder="Have something to say?" :shouldClear="completed"></xwysiwyg> -->
                                     </div>
 
                                 </form>
@@ -229,8 +231,7 @@
         </div>
 
         <!-- Edit Memo Modal -->
-        <!-- tabindex="-1" not allowed, breaks fokus for editors -->
-        <div class="modal fade" id="modal-edit-memo" role="dialog">
+        <div class="modal fade" id="modal-edit-memo" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -273,7 +274,10 @@
                                 <!-- <label class="col-md-3 col-form-label">Text</label> -->
 
                                 <!-- <div class="col-md-9"> -->
-<ckeditor name="body" id="edit-memo-body" v-model="editForm.body" placeholder="Bitte Text eingeben..."></ckeditor>
+                                    <input id="edit-memo-body" type="hidden" name="body" value="" v-model="editForm.body">
+
+                                    <trix-editor ref="trixe" input="edit-memo-body" placeholder="Bitte Text eingeben."></trix-editor>
+
                                     <span class="form-text text-muted">
                                         Inhalt / Text des Abschnitts.
                                     </span>
@@ -295,13 +299,12 @@
         </div>
 
         <!-- Position Memo Modal -->
-        <!-- tabindex="-1" not allowed, breaks fokus for editors -->
-        <div class="modal fade" id="modal-position-memo" role="dialog">
+        <div class="modal fade" id="modal-position-memo" tabindex="-1" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">
-                            Change Position ({{ positionForm.title }})
+                            Change Position
                         </h4>
 
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -326,12 +329,9 @@
                                 <label class="col-md-3 col-form-label">Page</label>
 
                                 <div class="col-md-9">
-                                    <select v-model="positionForm.page_id">
-                                    <option v-for="page in pages" v-bind:value="page.id">
-                                        {{ page.title }}
-                                    </option>
-                                    </select>
-                                    <span>Selected: {{ positionForm.page_id }}</span>
+                                    <input id="position-memo-title" type="text" class="form-control"
+                                                                @keyup.enter="update" v-model="positionForm.title">
+
                                     <span class="form-text text-muted">
                                         Seite, auf der der Abschnitt angezeigt wird.
                                     </span>
@@ -340,21 +340,12 @@
 
                             <!-- Redirect URL -->
                             <div class="form-group row">
-                                <label class="col-md-3 col-form-label">Nachfolger</label>
+                                <label class="col-md-3 col-form-label">Vorgänger</label>
 
                                 <div class="col-md-9">
-                                    <select v-model="positionForm.before_id">
-                                    <option value="">
-                                        - ans Ende -
-                                    </option>
-                                    <option v-for="page_memo in page_memos" v-bind:value="page_memo.id">
-                                        {{ page_memo.title }}
-                                    </option>
-                                    </select>
-                                    <span>Selected: {{ positionForm.before_id }}</span>
 
                                     <span class="form-text text-muted">
-                                        Abschnitt, VOR dem dieser Abschnitt angezeigt/eingeordnet werden soll.
+                                        Abschnitt, hinter dem dieser Abschnitt angezeigt/eingeordnet werden soll.
                                     </span>
                                 </div>
                             </div>
@@ -396,20 +387,17 @@
 </template>
 
 <script>
-    import ckeditor from '../components/ckeditor.vue';
+    import Trix from 'trix';
     import 'jquery.caret';
     import 'at.js';
     export default {
         props: ['name', 'value', 'placeholder', 'shouldClear'],
-        components: { ckeditor },
         /*
          * The component's data.
          */
         data() {
             return {
                 memos: [],
-                page_memos: [],
-                pages: [],
 
                 createForm: {
                     errors: [],
@@ -448,6 +436,13 @@
         },
 
         /**
+         * Prepare the component (Vue 1.x).
+         */
+        ready() {
+            this.prepareComponent();
+        },
+
+        /**
          * Prepare the component (Vue 2.x).
          */
         mounted() {
@@ -475,16 +470,26 @@
                     }
                 }
             });
+
+            this.$refs.trixc.addEventListener('trix-change', e => {
+                // $('#create-memo-body').value = e.target.innerHTML; // e.target.attributes.input
+                this.$emit('input', e.target.innerHTML);
+            });
+
+            this.$watch('shouldClear', () => {
+                this.$refs.trixc.value = '';
+            });
+            this.$refs.trixe.addEventListener('trix-change', e => {
+                // $('#edit-memo-body').value = e.target.innerHTML; // e.target.attributes.input
+                this.$emit('input', e.target.innerHTML);
+            });
+
+            this.$watch('shouldClear', () => {
+                this.$refs.trixe.value = '';
+            });
         },
 
         computed: {
-        },
-
-        watch: {
-            'positionForm.page_id': function() {
-                this.getOtherMemos(this.positionForm.page_id);
-                this.positionForm.before_id = '';
-            }
         },
 
         methods: {
@@ -536,9 +541,14 @@
              * Prepare the component.
              */
             prepareComponent() {
+                Trix.config.attachments.preview.caption = {
+                    name: false,
+                    size: false
+                };
+                // this.test1 = this.$refs.trixe.editor.getDocument(); // Trix Document Object => tostring loses all html tags
+                // this.test2 = this.$refs.trixe.value; // HTML Source Text
 
                 this.getMemos();
-                this.getPages();
 
                 $('#modal-create-memo').on('shown.bs.modal', () => {
                     $('#create-memo-title').focus();
@@ -566,14 +576,6 @@
 
             },
 
-            includeCkeditor() {
-                // if (document.getElementById('my-ckeditor-include')) return; // was already loaded
-                // var scriptTag = document.createElement("script");
-                // scriptTag.src = "//cdn.ckeditor.com/4.10.1/standard/ckeditor.js";
-                // scriptTag.id = "my-ckeditor-include";
-                // document.getElementsByTagName('head')[0].appendChild(scriptTag);
-            },
-
             /**
              * Get all of the memos for the user.
              */
@@ -598,31 +600,6 @@
                 // }
                 this.timer.value = this.timer.interval;
                 this.timer.requestrunning = false;
-            },
-
-            /**
-             * Get all of the memos for the user.
-             */
-            getOtherMemos(id = null) {
-                if (! id || ! this.pages) {
-                    return;
-                }
-                this.pages.forEach(page => {
-                    if (page.id == id) {
-                        this.page_memos = page.memos;
-                        return;
-                    }
-                });
-            },
-
-            /**
-             * Get all of the memos for the user.
-             */
-            getPages(spin = false) {
-                axios.get(location.pathname + '/pages')
-                        .then(response => {
-                            this.pages = response.data;
-                        });
             },
 
             /**
@@ -706,7 +683,7 @@
                 let data = new FormData();
 
                 data.append('title', this.createForm.title);
-                data.append('body', this.createForm.body);
+                data.append('body', this.$refs.trixc.value);
                 this.persistMemo(
                     'post', 'memos',
                     data, '#modal-create-memo', this.createForm
@@ -726,6 +703,7 @@
                 this.editForm.id = memo.id;
                 this.editForm.title = memo.title;
                 this.editForm.body = memo.body;
+                this.$refs.trixe.value = memo.body;
 
                 $('#modal-edit-memo').modal({
                     backdrop: "static", //remove ability to close modal with click
@@ -741,7 +719,6 @@
                 this.positionForm.id = memo.id;
                 this.positionForm.page_id = memo.page_id;
                 this.positionForm.title = memo.title;
-                // this.getOtherMemos(memo.page_id); //done via watch
 
                 $('#modal-position-memo').modal({
                     backdrop: "static", //remove ability to close modal with click
@@ -757,7 +734,7 @@
                 let data = new FormData();
 
                 data.append('title', this.editForm.title);
-                data.append('body', this.editForm.body);
+                data.append('body', this.$refs.trixe.value);
                 this.persistMemo(
                     'put', 'memos/' + this.editForm.id,
                     data, '#modal-edit-memo', this.editForm
@@ -773,10 +750,25 @@
                 data.append('page_id', this.positionForm.page_id);
                 data.append('before_id', this.positionForm.before_id);
                 this.persistMemo(
-                    'put', 'memos/' + this.positionForm.id + '/relocate',
+                    'put', 'memos/' + this.positionForm.id,
                     data, '#modal-position-memo', this.positionForm
                 );
             },
+
+            // addReply() {
+            //     axios.post(location.pathname + '/replies', { body: this.body })
+            //         .catch(error => {
+            //             flash(error.response.data, 'danger');
+            //         })
+            //         .then(({data}) => {
+            //             this.body = '';
+            //             this.completed = true;
+
+            //             flash('Your reply has been posted.');
+
+            //             this.$emit('created', data);
+            //         });
+            // },
 
             /**
              * Persist the memo to storage using the given form.
@@ -805,32 +797,56 @@
                     $(modal).modal('hide');
                     flash('Your memo has been posted.', 'success');
                     this.getMemos();
+                    // console.log(response.data);
+                    // console.log(response.status);
+                    // console.log(response.statusText);
+                    // console.log(response.headers);
+                    // console.log(response.config);
                 })
                 .catch(error => {
                     if (error.response) {
-                        form.errors = [];
-                        // The request was made and the server responded with a status code
-                        // that falls out of the range of 2xx
-                        console.log(error.response.data);
-                        console.log(error.response.status);
-                        console.log(error.response.headers);
-                        form.errors = [error.response.data];
-                        flash(error.message, 'danger');
+                    form.errors = [];
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                    form.errors = [error.response];
+                    flash(error.response, 'danger');
                     } else if (error.request) {
-                        // The request was made but no response was received
-                        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                        // http.ClientRequest in node.js
-                        form.errors = [error.message];
-                        flash(error.message, 'danger');
-                        console.log(error.request);
+                    // The request was made but no response was received
+                    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                    // http.ClientRequest in node.js
+                    console.log(error.request);
                     } else {
-                        // Something happened in setting up the request that triggered an Error
-                        console.log('Error', error.message);
-                        form.errors = [error.message];
-                        flash(error.message, 'danger');
+                    // Something happened in setting up the request that triggered an Error
+                    console.log('Error', error.message);
                     }
+                    console.log(error.config);
+                    form.errors = [error.message];
+                    flash(error.message, 'danger');
                 });
             },
+
+            // /**
+            //  * Persist the memo to storage using the given form.
+            //  */
+            // persistMemoTRY(method, uri, form, modal) {
+            //     alert(uri);
+            //     form.errors = [];
+            //     axios.post(location.pathname + '/memos', { body: this.createForm.body, title: this.createForm.title })
+            //         .catch(error => {
+            //             flash(error.response.data, 'danger');
+            //         })
+            //         .then(({data}) => {
+            //             this.body = '';
+            //             this.completed = true;
+
+            //             flash('Your reply has been posted.');
+
+            //             this.$emit('created', data);
+            //         });
+            // },
 
             /**
              * Destroy the given memo.

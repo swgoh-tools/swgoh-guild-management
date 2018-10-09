@@ -25,6 +25,7 @@
 
 @endsection
 
-@section ('scripts')
-    <script src="{{ asset('js/attachments.js') }}"></script>
+@section ('head')
+<script src="//cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
+    <!-- <script src="{{ asset('js/attachments.js') }}"></script> -->
 @endsection
