@@ -12,6 +12,19 @@ return [
     |
     */
 
+    'CONTACT' => [
+        'USER_ID' => env('CONTACT_USER_ID', ''),
+        'USER_NAME' => env('CONTACT_USER_NAME', ''),
+        'PLAYER_NAME' => env('CONTACT_PLAYER_NAME', ''),
+        'SWGOH_GG_URL' => env('CONTACT_SWGOH_GG_URL', ''),
+        'SWGOH_GG_NAME' => env('CONTACT_SWGOH_GG_NAME', ''),
+        'DISCORD' => env('CONTACT_DISCORD', ''),
+        'LINE' => env('CONTACT_LINE', ''),
+        'EA_FORUM_URL' => env('CONTACT_EA_FORUM_URL', ''),
+        'EA_FORUM_NAME' => env('CONTACT_EA_FORUM_NAME', ''),
+    ],
+    'GUILD_DEFAULT_ID' => env('GUILD_DEFAULT_ID', ''),
+    'GUILD_TEST_ID' => env('GUILD_TEST_ID', ''),
     'DATA_FILE_EXT' => 'json',
     'DIR_AUTH' => env('DIR_AUTH', 'auth/'),
     'MSG_STATUS_ALREADY_SYNCING' => 'already syncing',
@@ -31,6 +44,7 @@ return [
             'USER' => env('API_SWGOH_GG_USER'),
             'PASSWORD' => env('API_SWGOH_GG_PASSWORD'),
             'SERVER' => env('API_SWGOH_GG_SERVER', 'https://swgoh.gg/api/'),
+            'AUTH_SERVER' => env('API_SWGOH_GG_AUTH_SERVER'),
             'CLIENT_ID' => env('API_SWGOH_GG_CLIENT_ID'),
             'CLIENT_SECRET' => env('API_SWGOH_GG_CLIENT_SECRET'),
         ],
@@ -38,8 +52,9 @@ return [
             'USER' => env('API_SWGOH_HELP_USER'),
             'PASSWORD' => env('API_SWGOH_HELP_PASSWORD'),
             'SERVER' => env('API_SWGOH_HELP_SERVER', 'https://api.swgoh.help/'),
-            'CLIENT_ID' => env('API_SWGOH_HELP_CLIENT_ID'),
-            'CLIENT_SECRET' => env('API_SWGOH_HELP_CLIENT_SECRET'),
+            'AUTH_SERVER' => env('API_SWGOH_HELP_AUTH_SERVER', 'https://api.swgoh.help/auth/signin'),
+            'CLIENT_ID' => env('API_SWGOH_HELP_CLIENT_ID', 'abc'),
+            'CLIENT_SECRET' => env('API_SWGOH_HELP_CLIENT_SECRET', '123'),
         ],
     ],
 

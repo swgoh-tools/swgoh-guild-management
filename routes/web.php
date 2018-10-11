@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Storage;
 
 
 Route::get('/', 'PagesController@home')->name('home');
+Route::get('/home', 'PagesController@home');
+Route::get('/sync', 'PagesController@syncView')->name('sync');
+Route::post('/sync', 'PagesController@sync')->middleware('role:admin|leader|officer|member');
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
 // Route::get('/welcome', function () {
 //     return view('welcome');
 // });
@@ -55,9 +61,9 @@ Route::get('api/users', 'Api\UsersController@index');
 Route::post('api/users/{user}/avatar', 'Api\UserAvatarController@store')->middleware('auth')->name('avatar');
 
 Route::prefix('g')->group(function () {
-    Route::get('/', function (Request $request) {
-        return view('guild.info');
-    })->name('guild.home');
+    Route::get('/', 'PagesController@home')->name('guild');
+    Route::get('{guild}', 'PagesController@home');
+    Route::get('{guild}/roster', 'PagesController@roster');
     Route::get('{guild}/roster', 'PagesController@roster')->name('guild.roster');
     Route::get('{guild}/squads', 'PagesController@squads')->name('guild.squads');
     Route::post('{guild}/squads', 'PagesController@squads');
@@ -71,6 +77,7 @@ Route::prefix('g')->group(function () {
     Route::post('{guild}/{page}/edit', 'MemosController@store');
     Route::get('{guild}/{page}/edit/memos', 'MemosController@index');
     Route::get('{guild}/{page}/edit/pages', 'PagesController@index');
+    Route::post('{guild}/{page}/upload', 'Api\UploadController@storeCkeditor')->middleware('auth'); //->middleware('must-be-confirmed');
     
     Route::get('{guild}/{page}/memos', 'MemosController@index');
     Route::post('{guild}/{page}/memos', 'MemosController@store')->middleware('auth'); //->middleware('must-be-confirmed');
@@ -107,13 +114,19 @@ Route::prefix('admin')->group(function () {
     // Route::get('memos/search', 'SearchController@show')->name('memos.search');
 
 Route::prefix('f')->group(function () {
-    Route::get('a/{filename}', function (String $filename, Request $request) {
+    Route::get('a/{filename}', function (String $filename) {
         // return Storage::disk('avatars')->get($filename);
-        return response()->get(Storage::disk('avatars')->path($filename));
+        return response()->file(Storage::disk('avatars')->path($filename));
         // return response()->download(Storage::disk('avatars')->path($filename));
         //$exists = Storage::disk('s3')->exists('file.jpg');
         //$url = Storage::url('file1.jpg');
     })->name('files.avatars');
+    Route::get('d/{filename}', function (String $filename) {
+        if (Storage::disk('sync')->exists($filename)) {
+            return response()->download(Storage::disk('sync')->path($filename));
+        }
+        abort(404);
+    })->where('filename', '(.*)\\.json')->name('files.sync');
 });
 Route::get('api/test', 'Api\UserAvatarController@test');
 
@@ -131,4 +144,13 @@ Route::group(
     }
 );
 
-        Route::post('permissions/posts/{post}/upload', 'Api\UploadController@storeCkeditor')->middleware('auth'); //->middleware('must-be-confirmed');
+Route::post('permissions/posts/{post}/upload', 'Api\UploadController@storeCkeditor')->middleware('auth'); //->middleware('must-be-confirmed');
+
+Route::get('testitnow/{param1WithSlash}/{param2}/{param3}', function ($param1MayContainsSlash, $param2, $param3) {
+    $content = "PATH: " . Request::path() . "</br>";
+    $content .= "PARAM1: $param1WithSlash </br>";
+    $content .= "PARAM2: $param2 </br>".PHP_EOL;
+    $content .= "PARAM3: $param3 </br>".PHP_EOL;
+
+    return Response::make($content);
+})->where('param1MayContainsSlash', '(.*(?:%2F:)?.*)');

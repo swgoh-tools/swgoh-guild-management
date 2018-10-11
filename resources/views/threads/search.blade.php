@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="card-body">
-                            <ais-refinement-list attribute-name="channel.name"></ais-refinement-list>
+                            <ais-refinement-list attribute-name="channel.title"></ais-refinement-list>
                         </div>
                     </div>
 

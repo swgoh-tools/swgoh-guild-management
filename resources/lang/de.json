@@ -1,7 +1,15 @@
 {
+    "contact": "kontakt",
     "on": "am",
     "Edit": "Bearbeiten",
     "Edit Page": "Seite bearbeiten",
+    "Dashboard": "Übersicht",
+    "home": "startseite",
     "Delete": "Löschen",
-    "Delete Page": "Seite löschen"
+    "Delete Page": "Seite löschen",
+    "User Profil": "Benutzerprofil",
+    "Player Name": "Spielername",
+    "May the force be with you.": "Möge die Macht mit Dir sein.",
+    "You are currently logged in.": "Du bist erfolgreich eingeloggt.",
+    "You are currently viewing this website as guest.": "Du betrachtest die Webseite zur Zeit als Gast."
 }

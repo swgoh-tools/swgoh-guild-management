@@ -39,7 +39,7 @@ class Guild extends Model
      */
     public function path()
     {
-        return route('guilds') . "/{$this->slug}";
+        return route('guild') . "/{$this->slug}";
     }
 
     /**

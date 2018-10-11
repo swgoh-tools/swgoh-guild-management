@@ -4,7 +4,7 @@
                     <ol class="breadcrumb">
                 <div>Themenkatalog: &nbsp; </div>
                 @foreach ($channels as $channel)
-                        <li class="breadcrumb-item"><a href="{{ route('threads') }}/{{ $channel->slug }}"> {{ $channel->name }} </a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('threads') }}/{{ $channel->slug }}"> {{ $channel->title }} </a></li>
                 @endforeach
                     </ol>
                 </nav>

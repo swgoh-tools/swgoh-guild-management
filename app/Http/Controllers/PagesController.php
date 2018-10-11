@@ -11,7 +11,7 @@ use App\User;
 
 class PagesController extends Controller
 {
-    public function home(Request $request)
+    public function home(Request $request, Guild $guild = null)
     {
         $sync_status = [];
         if ($request->get('sync')) {
@@ -235,30 +235,14 @@ class PagesController extends Controller
 
     public function roster(Request $request)
     {
-        $datapath = storage_path() . '/app/public/data';
-        if (! file_exists($datapath)) {
-            mkdir($datapath, 0770, false);
-        }
-        $datafile = $datapath . '/swgoh.help/guild/758735237/units.json';
-        $units = [];
-        try {
-            $data = file_get_contents($datafile);
-            $units = json_decode($data, true);
-            $units = $units['roster'];
-            // ksort($units); // way too slow!
-        } catch (Exception $e) {
-            //
+        $units = SyncClient::getRoster();
+        if (! $units) {
+            $units = [];
         }
 
-        $sync_status = [];
-        if ($request->sync) {
-            $client = new SyncClient();
-            $sync_status = $client->sync();
-        }
-
-        return view('guild.roster-2col', [
+        return view('guild.roster', [
             'title' => 'Gesamtliste',
-            'sync_status' => $sync_status, 
+            // 'sync_status' => $sync_status, 
             'units' => $units
             ]);
     }
@@ -269,33 +253,24 @@ class PagesController extends Controller
 
     public function squads(Request $request)
     {
-        $datapath = storage_path() . '/app/public/data';
-        if (! file_exists($datapath)) {
-            mkdir($datapath, 0770, false);
-        }
-        $datafile = $datapath . '/swgoh.help/guild/758735237/units.json';
-        $units = [];
-        $roster = [];
-        $player_data = [];
-        try {
-            $data = file_get_contents($datafile);
-            $units = json_decode($data, true);
-            $units = $units['roster'];
-            // ksort($units); // way too slow!
-            foreach ($units as $unit_key => $players) {
-                foreach ($players as $player_key => $player) {
-                    $roster[$player['allyCode']] = $player['player']; // was id
-                    $player_data[$player['allyCode']][$unit_key] = $player; // was id
+        $units = SyncClient::getRoster();
+        if ($units) {
+            try {
+                foreach ($units as $unit_key => $players) {
+                    foreach ($players as $player_key => $player) {
+                        $roster[$player['allyCode']] = $player['player']; // was id
+                        $player_data[$player['allyCode']][$unit_key] = $player; // was id
+                    }
                 }
+            } catch (Exception $e) {
+                $units = [];
+                $roster = [];
+                $player_data = [];
             }
-        } catch (Exception $e) {
-            //
-        }
-
-        $sync_status = [];
-        if ($request->has('sync')) {
-            $client = new SyncClient();
-            $sync_status = $client->sync();
+        } else {
+            $units = [];
+            $roster = [];
+            $player_data = [];    
         }
 
         $char_list = [
@@ -334,11 +309,11 @@ class PagesController extends Controller
                 $result[$player_id]['sort_sum'] = $sort_sum;
             }
             
-            usort($result, array($this, "desc"));
+            usort($result, array($this, "cmp_sort_sum_desc"));
         }
 
         return view('guild.squads', [
-            'sync_status' => \Cache::get('sync_status', []), 
+            // 'sync_status' => \Cache::get('sync_status', []), 
             'units' => $units, 
             'result' => $result, 
             'caption' => $caption, 
@@ -349,15 +324,63 @@ class PagesController extends Controller
         ); //$request->all()
     }
 
-    protected function desc($a, $b)
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function syncView()
     {
-        return $this->cmp($a, $b, true);
+        $targets = SyncClient::getTargets();
+        $client = new SyncClient();
+        $time = $client->isRunning();
+        $targets['clear'] = $time ? 'Sync Lock seit ' . date('d.m. H:m:s', $time) : 'Kein Lock File gefunden.';
+        return view('admin.sync', compact('targets'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Rules\Recaptcha $recaptcha
+     * @return \Illuminate\Http\Response
+     */
+    public function sync()
+    {
+        request()->validate([
+            'sync' => 'required|string|max:20',
+        ]);
+
+        $client = new SyncClient();
+        if (request('sync') == 'clear') {
+            $result = $client->clearLock();
+        } else {
+            $result = $client->sync(request('sync'));
+        }
+
+
+        if (request()->wantsJson()) {
+            return response($result, 201);
+        }
+
+        return back()
+            ->with('flash', $result['error'] ?? '');
+    }
+
+
+    protected function cmp_sort_sum_desc($a, $b)
+    {
+        return $this->cmp($a, $b, "sort_sum", true);
     }
     
-    protected function cmp($a, $b, $desc = false)
+    protected function cmp_unit_key_asc($a, $b)
     {
-        $one = $a["sort_sum"];
-        $two = $b["sort_sum"];
+        return $this->cmp($a, $b, "unit_key", false);
+    }
+    
+    protected function cmp($a, $b, $sort_field, $desc = false)
+    {
+        $one = $a[$sort_field];
+        $two = $b[$sort_field];
         if (is_numeric($one) && is_numeric($two)) {
             switch (true) {
                 case $one > $two:

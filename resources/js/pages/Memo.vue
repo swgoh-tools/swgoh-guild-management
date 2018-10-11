@@ -413,12 +413,14 @@
 
                 createForm: {
                     errors: [],
+                    clearToggle: false,
                     title: '',
                     body: ''
                 },
 
                 editForm: {
                     errors: [],
+                    clearToggle: false,
                     id: '',
                     title: '',
                     body: ''
@@ -426,6 +428,7 @@
 
                 positionForm: {
                     errors: [],
+                    clearToggle: false,
                     id: '',
                     title: '',
                     page_id: '',
@@ -481,9 +484,27 @@
         },
 
         watch: {
+            'createForm.clearToggle': function() {
+                this.createForm.errors = [],
+                this.createForm.title = '';
+                this.createForm.body = '';
+            },
+            'editForm.clearToggle': function() {
+                this.editForm.errors = [],
+                this.editForm.id = '';
+                this.editForm.title = '';
+                this.editForm.body = '';
+            },
             'positionForm.page_id': function() {
                 this.getOtherMemos(this.positionForm.page_id);
                 this.positionForm.before_id = '';
+            },
+            'positionForm.clearToggle': function() {
+                this.positionForm.errors = [],
+                this.positionForm.id = '',
+                this.positionForm.title = '',
+                this.positionForm.page_id = '',
+                this.positionForm.before_id = ''
             }
         },
 
@@ -540,6 +561,15 @@
                 this.getMemos();
                 this.getPages();
 
+                $('#loadMe').on('shown.bs.modal', () => {
+                    if (! this.timer.requestrunning) {
+                        // Request ended faster than modal needed to show
+                        // That means hide was possibly already called and got lost
+                        console.log('Info', 'request faster than modal');
+                        $("#loadMe").modal("hide");
+                    }
+                });
+
                 $('#modal-create-memo').on('shown.bs.modal', () => {
                     $('#create-memo-title').focus();
                 });
@@ -590,14 +620,19 @@
                     });
                 }
                 await axios.get(location.pathname + '/memos')
-                        .then(response => {
-                            this.memos = response.data;
-                        });
-                // if (spin) {
-                    $("#loadMe").modal("hide");
-                // }
-                this.timer.value = this.timer.interval;
-                this.timer.requestrunning = false;
+                    .then(response => {
+                        this.memos = response.data;
+                        this.timer.value = this.timer.interval;
+                        this.timer.requestrunning = false;
+                        $("#loadMe").modal("hide");
+                    })
+                    .catch(error => {
+                        this.timer.value = this.timer.interval;
+                        this.timer.requestrunning = false;
+                        $("#loadMe").modal("hide");
+                        console.log('Error', error.message);
+                        flash('Abruf der Inhalte fehlgeschlagen', 'danger');
+                    });
             },
 
             /**
@@ -803,6 +838,7 @@
                 )
                 .then(response => {
                     $(modal).modal('hide');
+                    form.clearToggle = ! form.clearToggle;
                     flash('Your memo has been posted.', 'success');
                     this.getMemos();
                 })
@@ -813,8 +849,11 @@
                         // that falls out of the range of 2xx
                         console.log(error.response.data);
                         console.log(error.response.status);
-                        console.log(error.response.headers);
-                        form.errors = [error.response.data];
+                        if (error.response.data.message) {
+                            form.errors = [error.response.data.message];
+                        } else {
+                            form.errors = ['unknown error'];
+                        }
                         flash(error.message, 'danger');
                     } else if (error.request) {
                         // The request was made but no response was received

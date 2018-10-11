@@ -1,5 +1,5 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand disabled" href="">{{ $guild->name }}</a>
+    <a class="navbar-brand disabled text-light">{{ $guild->name }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -7,9 +7,9 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('guild.info', $guild) }}">Infos <span class="sr-only">(current)</span></a>
-            </li>
+            <!-- <li class="nav-item active"> -->
+                <!-- <a class="nav-link" href="{{ route('guild.info', $guild) }}">Infos <span class="sr-only">(current)</span></a> -->
+            <!-- </li> -->
             @foreach ($pages as $page)
             <li class="nav-item">
                 <a class="nav-link" href="{{ $page->path() }}">{{ $page->title }}</a>
@@ -56,35 +56,7 @@
                 </div>
             </li>
         </ul>
-        @isset($sync_status)
-        <?php
-                $output_status[] = "";
-            foreach ($sync_status as $key => $value) {
-                if (is_array($value)) {
-                    // $time = date("F d Y H:i:s.", $value[0]);
-                    $time = $value['time'] ?? $value[0] ?? '';
-                    $time = $time ? date("d.m H:i", $time) : '';
-                    $message = $value['msg'] ?? $value[1] ?? '';
-                    $url = $value['url'] ?? '';
-                    $tooltip = $value['error'] ?? '';
-                    if ($url) {
-                        $output_status[] = "<a href=\"$url\" data-toggle=\"tooltip\" data-html=\"true\" title=\"<em>$tooltip</em>\">$key</a> ($time $message)";
-                    } else {
-                        $output_status[] = "<span data-toggle=\"tooltip\" data-html=\"true\" title=\"<em>$tooltip</em>\">$key ($time $message)</span>";
-                    }
-                } else {
-                    $output_status[] = "$key ($value)";
-                }
-            }
-            // if (! empty($output_status)) {
-                echo "<span class=\"navbar-text ml-auto\"> " . implode(', ', $output_status) . " </span>";
-            // }
-            ?>
-        @endisset
-        <form class="form-inline my-2 my-lg-0" action="" method="post">
-            @csrf
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="sync">Sync</button>
-        </form>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="{{ route('sync') }}">Sync</a>
         <!--<form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -107,6 +79,7 @@
                         <a class="dropdown-item" href="{{ route('guilds.create') }}">New Guild</a>
                         <a class="dropdown-item" href="{{ route('pages.create') }}">New Page</a>
                         <a class="dropdown-item" href="{{ route('memos.create') }}">New Memo</a>
+                        <a class="dropdown-item" href="{{ route('channels.create') }}">New Channel</a>
                         <a class="dropdown-item" href="{{ route('files.upload') }}">Upload File</a>
                         @endif
                         <div class="dropdown-divider"></div>

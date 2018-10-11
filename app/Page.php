@@ -46,7 +46,7 @@ class Page extends Model
      */
     public function path()
     {
-        return route('guild.home') . "/{$this->guild->slug}/{$this->slug}";
+        return route('guild') . "/{$this->guild->slug}/{$this->slug}";
     }
 
     /**

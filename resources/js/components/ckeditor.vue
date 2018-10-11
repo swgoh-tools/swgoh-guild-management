@@ -60,7 +60,7 @@ export default {
     //   language: this.language,
     //   height: this.height,
       extraPlugins: this.extraplugins,
-      uploadUrl: this.extraplugins,
+      uploadUrl: this.uploadUrl,
     };
     CKEDITOR.replace(this.id, ckeditorConfig);
     CKEDITOR.instances[this.id].setData(this.value);

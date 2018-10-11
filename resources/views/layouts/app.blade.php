@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ config('app.locale') }}">
+<html lang="{{ $page_locale ?? config('app.locale') }}">
 
 <head>
     <!-- Required meta tags -->
@@ -28,7 +28,7 @@
         ]) !!};
     </script>
 
-    <title>{{ config('app.name', 'Macht Wächter') }}</title>
+    <title>{{ $page_title ?? config('app.name') }}</title>
     <style>
         /* html {
         font-size: 0.7rem;
@@ -54,16 +54,13 @@
                     2018
                 </span>
                 <div class="navbar-nav" style="flex-direction: row;">
-                    <!-- <span class="navbar-brand mx-0">2018</span>
-                <span class="navbar-brand mx-4">|</span> -->
-                    <span class="navbar-brand mx-1 mx-lg-0">VKSG</span>
-                    <a class="nav-link" href="https://swgoh.gg/u/vksg/">swgoh.gg</a>
-                    <span class="navbar-brand mx-1 mx-lg-4">|</span>
-                    <span class="navbar-brand mx-1 mx-lg-0">Macht Wächter</span>
-                    <a class="nav-link" href="https://swgoh.gg/g/17401/macht-wachter/">swgoh.gg</a>
+                    <span class="navbar-brand mx-1 mx-lg-0">{{ config('swgoh.CONTACT.USER_NAME') }}</span>
+                    <a class="nav-link" href="{{ route('contact') }}">{{ __('contact') }}</a>
+                    <span class="nav-link">|</span>
+                    <a class="nav-link" href="{{ route('home') }}">{{ __('home') }}</a>
                 </div>
                 <span class="navbar-text ml-auto">
-                    Not affiliated with EA, Capital Games, StarWars or the like.
+                    Not affiliated with EA, Capital Games, Disney, Lucasfilm or the like.
                 </span>
             </nav>
         </footer>

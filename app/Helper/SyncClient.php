@@ -2,32 +2,65 @@
 
 namespace App\Helper;
 
-class SyncClient {
+use Illuminate\Support\Facades\Storage;
 
+class SyncClient
+{
     protected $lockfile = 'sync.lock';
-    protected $datadir = '/app/public/data/';
-    protected $authdir = '/app/auth/';
+    // protected $datadir = '/app/public/data/';
+    protected $authdir = 'auth/';
 
-    public function __construct()
+    // public function __construct()
+    // {
+
+    // }
+
+    // public static function getStatus()
+    // {
+    //     return [];
+    // }
+
+    public static function getTargets()
     {
-        $this->datadir = storage_path() . $this->datadir;
-        $this->authdir = storage_path() . $this->authdir;
+        return [
+            'toons' => 'toons',
+            'squads' => 'Known Squad List',
+            'ships' => 'ships',
+            'abilities' => 'abilities',
+            'guild' => 'guild',
+            'h-units' => 'swgoh.help Units',
+            'h-abilities' => 'swgoh.help AbilityList',
+            's' => 'Access Token',
+        ];
     }
 
-    public static function getStatus() {
-        return [];
+    public static function getRoster()
+    {
+        $filename = 'swgoh.help/guild/758735237/units.roster.json';
+        if (Storage::disk('sync')->exists($filename)) {
+            return json_decode(Storage::disk('sync')->get($filename), true);
+        }
     }
 
-    public function sync() {
-        if (file_exists($this->lockfile)) {
+    public function isRunning() {
+        if (Storage::disk('sync')->exists($this->lockfile)) {
+            return Storage::disk('sync')->lastModified($this->lockfile);
+        }
+    }
+
+    public function clearLock() {
+        return Storage::disk('sync')->delete($this->lockfile);
+    }
+
+    public function sync($target)
+    {
+        if ($this->isRunning()) {
             return 'already syncing';
         }
 
-        $sync_status = [];
-
         try {
             // throw new MyException();
-            touch($this->lockfile);
+            Storage::disk('sync')->put($this->lockfile, '');
 
             ini_set('max_execution_time', 500);
             ini_set('default_socket_timeout', 300);
@@ -36,43 +69,87 @@ class SyncClient {
             ini_set('memory_limit', '256M');
             ini_set('max_input_time', 300);
 
-            $sync_status['toons'] = $this->syncToons();
+            $sync_status = \Cache::get('sync_status');
+            $sync_status['error'] = '';
 
-            $sync_status['squads'] = $this->syncSquads();
-
-            $sync_status['ships'] = $this->syncShips();
-
-            $sync_status['abilities'] = $this->syncAbilities();
-            // $sync_status['ability'] = $this->syncAbility('specialskill_GRIEVOUS02');
-
-            $sync_status['guild'] = $this->syncGuildUnits(17401);
-
-            $sync_status['h-units'] = $this->syncHelpGuild(758735237);
-            $sync_status['h-abilities'] = $this->syncHelpAbilities();
-
-            $sync_status['s'] = substr($this->getAccessToken(), 0, 7);
-
-            \Cache::forever('sync_status', $sync_status);
-
-        } catch (Exception $e) {
-            $sync_status['error'] = get_class($e);
-            $sync_last_status = \Cache::get('sync_status');
-            if (is_array($sync_last_status)) {
-                $sync_merge = array_merge($sync_last_status, $sync_status);
-            } else {
-                $sync_merge = $sync_status;
+            switch ($target) {
+                case 'toons':
+                $sync_status['toons'] = $this->syncToons();
+                break;
+                
+                case 'squads':
+                $sync_status['squads'] = $this->syncSquads();
+                break;
+            
+                case 'ships':
+                $sync_status['ships'] = $this->syncShips();
+                break;
+            
+                case 'abilities':
+                $sync_status['abilities'] = $this->syncAbilities();
+                break;
+            
+                case 'guild':
+                $sync_status['guild'] = $this->syncGuildUnits(17401);
+                break;
+            
+                case 'h-units':
+                $sync_status['h-units'] = $this->syncHelpGuild(758735237);
+                $filename = 'swgoh.help/guild/758735237/units.roster.json';
+                if (isset($sync_status['h-units']['status']) && $sync_status['h-units']['status'] == 'NEW') {
+                    $this->prepareHelpGuild(758735237);
+                } elseif (! Storage::disk('sync')->exists($filename)) {
+                    $this->prepareHelpGuild(758735237);
+                }
+                break;
+            
+                case 'h-abilities':
+                $sync_status['h-abilities'] = $this->syncHelpAbilities();
+                break;
+            
+                case 's':
+                $sync_status['s'] = substr($this->getAccessToken(), 0, 7);
+                break;
+                
+                default:
+                    # code...
+                    break;
             }
-            \Cache::forever('sync_status', $sync_merge);
-        } finally {
-            unlink($this->lockfile);
-        }
 
-        return $sync_status;
+            // $sync_status['ability'] = $this->syncAbility('specialskill_GRIEVOUS02');
+        } catch (Exception $e) {
+            $sync_status['error'] = $e; //get_class($e);
+            $sync_status['test'] = time(); //get_class($e);
+        } finally {
+            \Cache::forever('sync_status', $sync_status);
+            $this->clearLock();
+            return $sync_status;
+        }
     }
 
-    public function syncHelpGuild($player_allycode) {
+    private function prepareHelpGuild($player_allycode)
+    {
+        if (Storage::disk('sync')->exists("swgoh.help/guild/$player_allycode/units.json")) {
+            $data = Storage::disk('sync')->get("swgoh.help/guild/$player_allycode/units.json");
+            $units = json_decode($data, true);
+            $roster = null;
+            if (isset($units['roster']) && is_array($units['roster'])) {
+                $roster = $units['roster'];
+            } elseif (isset($units[0]) && isset($units[0]['roster']) && is_array($units[0]['roster'])) {
+                $roster = $units[0]['roster'];
+            }
+            if ($roster) {
+                ksort($roster); // slow!
+                $roster = json_encode($roster, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+                Storage::disk('sync')->put("swgoh.help/guild/$player_allycode/units.roster.json", $roster);
+            }
+        }
+    }
+
+    public function syncHelpGuild($player_allycode)
+    {
         $source = "https://api.swgoh.help/swgoh/guild";
-        $dir = $this->datadir . "swgoh.help/guild/$player_allycode/";
+        $dir = "swgoh.help/guild/$player_allycode/";
         $file = 'units';
         $ext = 'json';
         $threshold = 60 * 60 * 24;
@@ -100,6 +177,7 @@ class SyncClient {
                 'http'=>array(
                     'method'=>"POST",
                     'header'=>[
+                        "Accept: application/json",
                         "Content-Type: application/json",
                         "Authorization: Bearer $token"
                     ],
@@ -112,9 +190,10 @@ class SyncClient {
         }
     }
 
-    public function syncHelpAbilities() {
+    public function syncHelpAbilities()
+    {
         $source = "https://api.swgoh.help/swgoh/data";
-        $dir = $this->datadir . "swgoh.help/data/";
+        $dir = "swgoh.help/data/";
         $file = 'abilities';
         $ext = 'json';
         $threshold = 60 * 60 * 24;
@@ -136,13 +215,14 @@ class SyncClient {
                 //     "forceAlignment" => 1,
                 //     "categoryIdList" => 1,
                 //     "baseStat" => 1,
-                //     "combatType" => 1    
+                //     "combatType" => 1
                 // ],
                 ];
             $opts = array(
                 'http'=>array(
                     'method'=>"POST",
                     'header'=>[
+                        "Accept: application/json",
                         "Content-Type: application/json",
                         "Authorization: Bearer $token"
                     ],
@@ -155,19 +235,15 @@ class SyncClient {
         }
     }
 
-    private function getAccessToken() {
+    private function getAccessToken()
+    {
         $dir = $this->authdir . 'swgoh.help/';
         $filename = $dir . "access.json";
 
-        if (! file_exists($dir)) {
-            mkdir($dir, 0750, true);
-        }
-
-        if (file_exists($filename)) {
-            $response = file_get_contents($filename);
+        if ($response = Storage::get($filename)) {
             $response = json_decode($response, true);
             if (array_key_exists('access_token', $response) && array_key_exists('expires_in', $response)) {
-                if ( (time() - filemtime($filename)) < ($response['expires_in'] - 60) ) {
+                if ((time() - Storage::lastModified($filename)) < ($response['expires_in'] - 60)) {
                     // return saved session
                     return $response['access_token'];
                 }
@@ -175,16 +251,18 @@ class SyncClient {
         }
 
         // if we are still here, get new Access Token
-        $https_user = 'vksg';
-        $https_password = 'godown13SW';
-        $https_server = 'api.swgoh.help/auth/signin';
+        $https_user = config('swgoh.API.SWGOH_HELP.USER');
+        $https_password = config('swgoh.API.SWGOH_HELP.PASSWORD');
+        $https_server = config('swgoh.API.SWGOH_HELP.AUTH_SERVER');
+        $client_id = config('swgoh.API.SWGOH_HELP.CLIENT_ID');
+        $client_secret = config('swgoh.API.SWGOH_HELP.CLIENT_SECRET');
         $body = "username=$https_user&password=$https_password&grant_type=password&client_id=abc&client_secret=123";
         $opts = array(
             'http'=>array(
                 'method'=>"POST",
                 'header'=>"Accept-language: en\r\n" .
-                        "Content-Type: application/x-www-form-urlencoded\r\n" . 
-                        "Payload: ".base64_encode("username=$https_user&password=$https_password&grant_type=password&client_id=abc&client_secret=123")."\r\n",
+                        "Content-Type: application/x-www-form-urlencoded\r\n" .
+                        "Payload: ".base64_encode("username=$https_user&password=$https_password&grant_type=password&client_id=$client_id&client_secret=$client_secret")."\r\n",
                 // 'content' => $body,
                 'timeout' => 30
             )
@@ -200,86 +278,95 @@ class SyncClient {
         );
         //   die(var_dump($opts));
         $context = stream_context_create($opts);
-        $url = 'https://'.$https_server;
+        $url = $https_server;
         $result = file_get_contents($url, false, $context, 0, 40000);
         $result = json_decode($result, true);
         if (array_key_exists('access_token', $result)) {
-            file_put_contents($filename, json_encode($result));
+            Storage::put($filename, json_encode($result));
             return $result['access_token'];
         }
 
         return false;
     }
 
-    public function syncGuildUnits($swgoh_guild_id) {
+    public function syncGuildUnits($swgoh_guild_id)
+    {
         $source = "https://swgoh.gg/api/guild/$swgoh_guild_id/";
-        $dir = $this->datadir . "swgoh.gg/guild/$swgoh_guild_id/";
+        $dir = "swgoh.gg/guild/$swgoh_guild_id/";
         $file = 'units';
         $ext = 'json';
         $threshold = 60 * 60 * 24;
         return $this->syncData($source, $dir, $file, $ext, $threshold);
     }
 
-    public function syncGuildUnitsLegacy($swgoh_guild_id) {
-        $source = "https://swgoh.gg/api/guilds/$swgoh_guild_id/units/";
-        $dir = $this->datadir . "swgoh.gg/guilds/$swgoh_guild_id/units/";
-        $file = 'units';
-        $ext = 'json';
-        $threshold = 60 * 60 * 24;
-        return $this->syncData($source, $dir, $file, $ext, $threshold);
-    }
+    // public function syncGuildUnitsLegacy($swgoh_guild_id)
+    // {
+    //     $source = "https://swgoh.gg/api/guilds/$swgoh_guild_id/units/";
+    //     $dir = "swgoh.gg/guilds/$swgoh_guild_id/units/";
+    //     $file = 'units';
+    //     $ext = 'json';
+    //     $threshold = 60 * 60 * 24;
+    //     return $this->syncData($source, $dir, $file, $ext, $threshold);
+    // }
 
-    public function syncToons() {
+    public function syncToons()
+    {
         $source = 'https://swgoh.gg/api/characters/';
-        $dir = $this->datadir . 'swgoh.gg/characters/';
+        $dir = 'swgoh.gg/characters/';
         $file = 'characters';
         $ext = 'json';
         $threshold = 60 * 60 * 24 * 3;
         return $this->syncData($source, $dir, $file, $ext, $threshold);
     }
 
-    public function syncAbilities() {
+    public function syncAbilities()
+    {
         $source = 'https://swgoh.gg/api/abilities/';
-        $dir = $this->datadir . 'swgoh.gg/abilities/';
+        $dir = 'swgoh.gg/abilities/';
         $file = 'abilities';
         $ext = 'json';
         $threshold = 60 * 60 * 24 * 3;
         return $this->syncData($source, $dir, $file, $ext, $threshold);
     }
 
-    public function syncAbility($id) {
+    public function syncAbility($id)
+    {
         $source = "https://swgoh.gg/api/abilities/$id/";
-        $dir = $this->datadir . "swgoh.gg/abilities/ability/";
+        $dir = "swgoh.gg/abilities/ability/";
         $file = "$id";
         $ext = 'json';
         $threshold = 60 * 60 * 24 * 3;
         return $this->syncData($source, $dir, $file, $ext, $threshold);
     }
 
-    public function syncShips() {
+    public function syncShips()
+    {
         $source = 'https://swgoh.gg/api/ships/';
-        $dir = $this->datadir . 'swgoh.gg/ships/';
+        $dir = 'swgoh.gg/ships/';
         $file = 'ships';
         $ext = 'json';
         $threshold = 60 * 60 * 24 * 3;
         return $this->syncData($source, $dir, $file, $ext, $threshold);
     }
 
-    public function syncSquads() {
+    public function syncSquads()
+    {
         $source = 'https://swgoh.help/data/squads.json';
-        $dir = $this->datadir . 'swgoh.help/squads/';
+        $dir = 'swgoh.help/squads/';
         $file = 'squads';
         $ext = 'json';
         $threshold = 60 * 60 * 24 * 7;
         return $this->syncData($source, $dir, $file, $ext, $threshold);
     }
 
-    private function syncData($source, $dir, $file, $ext, $threshold, $context = null) {
+    private function syncData($source, $dir, $file, $ext, $threshold, $context = null)
+    {
         $time = time();
         $filename = "$dir$file.$ext";
         $filename_ts = "$dir$file.$time.$ext";
         $filename_hash = "$dir$file.md5";
         $filename_retry = "$dir$file.retry";
+        $filename_sync = "$dir$file.sync";
 
         $threshold_retry = 60 * 1; // 10 min cooldown
 
@@ -287,62 +374,59 @@ class SyncClient {
         $last_hash = '';
         $last_hash_ts = 0;
 
-        if (! file_exists($dir)) {
-            mkdir($dir, 0750, true);
+        if (Storage::disk('sync')->exists($filename_sync)) {
+            $last_sync = Storage::disk('sync')->lastModified($filename_sync);
+        }
+        if (Storage::disk('sync')->exists($filename)) {
+            // needed for legacy reasons (there were no separate sync-files before)
+            // and it's a good double check
+            $last_sync = max($last_sync, Storage::disk('sync')->lastModified($filename));
         }
 
-        if (file_exists($filename)) {
-            $last_sync = filemtime($filename);
-        }
-
-        if (! $last_sync || ($time - $last_sync > $threshold) ) {
-            if (file_exists($filename_retry) && ($time - filemtime($filename_retry) < $threshold_retry) ) {
+        if (! $last_sync || ($time - $last_sync > $threshold)) {
+            if (Storage::disk('sync')->exists($filename_retry) && ($time - Storage::disk('sync')->lastModified($filename_retry) < $threshold_retry)) {
                 // need some cooldown
                 // prevents sync spawn in case there are errors
                 // example: source not available / timeout
-                return [$last_sync, '-'];
+                return ['time' => $last_sync, 'status' => 'WAIT/RETRY'];
             }
-            touch($filename_retry); // continue but log time of request
+            Storage::disk('sync')->put($filename_retry, ''); // continue but log time of request
 
             try {
                 if ($data = file_get_contents($source, false, $context)) {
-                    if (file_exists($filename_hash)) {
-                        $last_hash = file_get_contents($filename_hash);
-                        $last_hash_ts = filemtime($filename_hash);
+                    if (Storage::disk('sync')->exists($filename_hash)) {
+                        $last_hash = Storage::disk('sync')->get($filename_hash);
+                        $last_hash_ts = Storage::disk('sync')->lastModified($filename_hash);
                     }
 
                     $hash = md5($data);
                     if ($hash == $last_hash) {
-                        touch($filename, $time);
-                        return [$last_hash_ts, 'EQ'];
+                        Storage::disk('sync')->put($filename_sync, $time);
+                        return ['time' => $last_hash_ts, 'status' => 'EQUAL', 'url' => Storage::disk('sync')->url($filename), 'size' => Storage::disk('sync')->size($filename)];
                     }
 
                     $data = json_decode($data);
                     $data = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
-                    if (file_put_contents($filename, $data)) {
-                        file_put_contents($filename_hash, $hash);
-                        copy($filename, $filename_ts);
-                        return [$time, 'NEW'];
+                    if (Storage::disk('sync')->put($filename, $data)) {
+                        Storage::disk('sync')->put($filename_hash, $hash);
+                        Storage::disk('sync')->copy($filename, $filename_ts);
+                        return ['time' => $time, 'status' => 'NEW', 'url' => Storage::disk('sync')->url($filename), 'size' => Storage::disk('sync')->size($filename)];
                     }
                 } else {
                     return [
-                        '',
-                        'PROBLEM',
-                        'url' => 'https://' .  $_SERVER['SERVER_NAME'] . "/dev/web-games-swgoh/roster/" . str_ireplace($_SERVER['DOCUMENT_ROOT'], '', $filename),
+                        'status' => 'PROBLEM',
                         'error' => isset($http_response_header) ? implode('<br />', $http_response_header) : ''
                     ];
                 }
             } catch (Exception $e) {
                 return [
-                    '',
-                    'ERROR',
-                    'url' => 'https://' .  $_SERVER['SERVER_NAME'] . "/dev/web-games-swgoh/roster/" . str_ireplace($_SERVER['DOCUMENT_ROOT'], '', $filename),
+                    'status' => 'ERROR',
                     'error' => $e->getCode() . ':' . $e->getMessage() . ':' . isset($http_response_header) ? implode('|', $http_response_header) : ''
                 ];
             }
         } else {
             // data is current
-            return [$last_sync, 'CUR', 'url' => 'https://' .  $_SERVER['SERVER_NAME'] . "/dev/web-games-swgoh/roster/" . str_ireplace($_SERVER['DOCUMENT_ROOT'], '', $filename)];
+            return ['time' => $last_sync, 'status' => 'CURRENT', 'url' => Storage::disk('sync')->url($filename), 'size' => Storage::disk('sync')->size($filename)];
         }
 
         return false;

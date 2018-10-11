@@ -10,7 +10,7 @@ E-Mail bestätigen
 Danke und herzlich willkommen!<br>
 {{ config('app.name') }}
 
-##################################################################################################
+------------
 
 # One Last Step
 
