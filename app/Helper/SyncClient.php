@@ -9,6 +9,7 @@ class SyncClient
     protected $lockfile = 'sync.lock';
     // protected $datadir = '/app/public/data/';
     protected $authdir = 'auth/';
+    public $ignoreThreshold = false;
 
     // public function __construct()
     // {
@@ -37,6 +38,14 @@ class SyncClient
     public static function getRoster()
     {
         $filename = 'swgoh.help/guild/758735237/units.roster.json';
+        if (Storage::disk('sync')->exists($filename)) {
+            return json_decode(Storage::disk('sync')->get($filename), true);
+        }
+    }
+
+    public static function getSquadList()
+    {
+        $filename = 'swgoh.help/squads/squads.json';
         if (Storage::disk('sync')->exists($filename)) {
             return json_decode(Storage::disk('sync')->get($filename), true);
         }
@@ -383,7 +392,7 @@ class SyncClient
             $last_sync = max($last_sync, Storage::disk('sync')->lastModified($filename));
         }
 
-        if (! $last_sync || ($time - $last_sync > $threshold)) {
+        if (! $last_sync || ($this->ignoreThreshold || $time - $last_sync > $threshold)) {
             if (Storage::disk('sync')->exists($filename_retry) && ($time - Storage::disk('sync')->lastModified($filename_retry) < $threshold_retry)) {
                 // need some cooldown
                 // prevents sync spawn in case there are errors

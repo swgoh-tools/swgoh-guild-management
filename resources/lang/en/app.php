@@ -35,6 +35,11 @@ return [
         'gear'   => 'Gear',
         'zetas'   => 'Zetas',
         'mods'   => 'Mods',
+        'rarity'   => 'Stars',
+        'name'   => 'Name',
+        'note'   => 'Note',
+        'url'   => 'URL',
+        'team'   => 'Team',
     ],
 
 ];

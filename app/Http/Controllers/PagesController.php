@@ -247,6 +247,20 @@ class PagesController extends Controller
             ]);
     }
 
+    public function squadlist(Request $request)
+    {
+        $list = SyncClient::getSquadList();
+        if (! $list) {
+            $list = [];
+        }
+
+        return view('guild.squadlist', [
+            'title' => 'Vordefinierte Teams',
+            // 'sync_status' => $sync_status, 
+            'list' => $list
+            ]);
+    }
+
     public function squadspost() {
         return redirect()->back()->withInput(); 
     }
@@ -292,6 +306,7 @@ class PagesController extends Controller
         }
         
         if (!empty($char_list)) {
+            $char_list = array_flip(array_flip($char_list)); // remove duplicates
             $caption = implode(',', $char_list);
             foreach ($player_data as $player_id => $player_units) {
                 $result[$player_id]['id'] = $player_id;
@@ -351,6 +366,10 @@ class PagesController extends Controller
         ]);
 
         $client = new SyncClient();
+        if (request('force') && auth()->user()->hasRole('admin')) {
+            $client->ignoreThreshold = true;
+        }
+
         if (request('sync') == 'clear') {
             $result = $client->clearLock();
         } else {

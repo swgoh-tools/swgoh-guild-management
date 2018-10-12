@@ -61,6 +61,12 @@
                             <i class="fa fa-refresh"></i>
                             <!-- <i class="glyphicon glyphicon-refresh"></i> -->
                         </button>
+                        @role('admin')
+                        <button type="submit" class="btn btn-xs btn-danger" name="force" value="true">
+                            <i class="fa fa-refresh"></i>
+                            <!-- <i class="glyphicon glyphicon-trash"></i> -->
+                        </button>
+                        @endrole
                         @endif
                     {!! Form::close() !!}
                     </td>

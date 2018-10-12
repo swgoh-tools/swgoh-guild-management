@@ -35,6 +35,11 @@ return [
         'gear'   => 'Ausrüstung',
         'zetas'   => 'Zetas',
         'mods'   => 'Mods',
+        'rarity'   => 'Sterne',
+        'name'   => 'Bezeichnung',
+        'note'   => 'Bemerkung',
+        'url'   => 'URL',
+        'team'   => 'Team',
     ],
 
 ];

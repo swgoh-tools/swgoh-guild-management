@@ -65,6 +65,7 @@ Route::prefix('g')->group(function () {
     Route::get('{guild}', 'PagesController@home');
     Route::get('{guild}/roster', 'PagesController@roster');
     Route::get('{guild}/roster', 'PagesController@roster')->name('guild.roster');
+    Route::get('{guild}/squadlist', 'PagesController@squadlist')->name('guild.squadlist');
     Route::get('{guild}/squads', 'PagesController@squads')->name('guild.squads');
     Route::post('{guild}/squads', 'PagesController@squads');
     Route::get('{guild}/info', function (Request $request) {

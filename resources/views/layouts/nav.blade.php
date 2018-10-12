@@ -20,22 +20,26 @@
                         <a class="nav-link" href="{{ route('pages.create') }}"><i class="fa fa-plus"></i></a>
                     </li>
             @endcan
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('guild.squads', $guild) }}">Teamsuche</a>
-            </li>
+            </li> -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Vordefinierte Teams
+                    Teamsuche
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}?t1=ADMIRALACKBAR&t2=BB8&t3=COMMANDERLUKESKYWALKER&t4=HERMITYODA&t5=EZRABRIDGERS3">Ezradicator</a>
-                    <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}?t1=VADER&t2=WAMPA&t3=GRANDADMIRALTHRAWN&t4=COMMANDERLUKESKYWALKER&t5=BB8">Wampanader</a>
-                    <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}?t1=ADMIRALACKBAR&t2=COMMANDERLUKESKYWALKER&t3=BB8&t4=GRANDADMIRALTHRAWN&t5=ASAJVENTRESS">ABC</a>
-                    <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}?t1=ADMIRALACKBAR&t2=BB8&t3=COMMANDERLUKESKYWALKER&t4=HERMITYODA&t5=YOUNGHAN">YOLO
-                        SOLO</a>
+                    <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}">Teamsuche</a>
+                <!-- <div class="dropdown-divider"></div> -->
+                    <a class="dropdown-item" href="{{ route('guild.squadlist', $guild) }}">Vordefinierte Teams</a>
+                    <!-- <div class="dropdown-item">Beispiele</div> -->
+                    <!-- <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}?t1=ADMIRALACKBAR&t2=BB8&t3=COMMANDERLUKESKYWALKER&t4=HERMITYODA&t5=EZRABRIDGERS3">Ezradicator</a> -->
+                    <!-- <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}?t1=VADER&t2=WAMPA&t3=GRANDADMIRALTHRAWN&t4=COMMANDERLUKESKYWALKER&t5=BB8">Wampanader</a> -->
+                    <!-- <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}?t1=ADMIRALACKBAR&t2=COMMANDERLUKESKYWALKER&t3=BB8&t4=GRANDADMIRALTHRAWN&t5=ASAJVENTRESS">ABC</a> -->
+                    <!-- <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}?t1=ADMIRALACKBAR&t2=BB8&t3=COMMANDERLUKESKYWALKER&t4=HERMITYODA&t5=YOUNGHAN">YOLO
+                        SOLO</a> -->
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('guild.roster', $guild) }}">Gesamtliste</a>
+                    <a class="dropdown-item" href="{{ route('guild.roster', $guild) }}">Gesamtliste (große Datenmenge!)</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
