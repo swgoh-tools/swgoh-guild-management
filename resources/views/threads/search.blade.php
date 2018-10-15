@@ -23,22 +23,22 @@
                 </div>
 
                 <div class="col-md-4">
-                    <div class="card">
+                    <div class="card mb-3">
                         <div class="card-header">
-                            Search
+                            {{ __('Search') }}
                         </div>
 
                         <div class="card-body">
                             <ais-search-box>
-                                <ais-input placeholder="Find a thread..." :autofocus="true" class="form-control"></ais-input>
+                                <ais-input placeholder="{{ __('Find a thread...') }}" :autofocus="true" class="form-control"></ais-input>
                             </ais-search-box>
                         </div>
                         <img class="bg-secondary" src="{{ asset('/svg/search-by-algolia.svg') }}" alt="search-by-algolia">
                     </div>
 
-                    <div class="card">
+                    <div class="card mb-3">
                         <div class="card-header">
-                            Filter By Channel
+                            {{ __('Filter By Channel') }}
                         </div>
 
                         <div class="card-body">
@@ -47,9 +47,9 @@
                     </div>
 
                     @if (count($trending))
-                        <div class="card">
+                        <div class="card mb-3">
                             <div class="card-header">
-                                Trending Threads
+                                {{ __('Trending Threads') }}
                             </div>
 
                             <div class="card-body">

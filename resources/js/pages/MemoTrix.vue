@@ -56,7 +56,7 @@
 
 <template>
     <div>
-        <div class="card card-default">
+        <div class="card mb-3">
             <div class="card-header">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <span>
@@ -136,7 +136,7 @@
 
                             <!-- Position Button -->
                             <td style="vertical-align: middle;">
-                                <a class="btn btn-default" @click="showPosition(memo)" aria-label="Position">
+                                <a class="btn btn-secondary" @click="showPosition(memo)" aria-label="Position">
                                     <i class="fa fa-arrows-v" aria-hidden="true"></i>
                                 </a>
                                 <!-- <a class="action-link" @click="showPosition(memo)">
@@ -222,7 +222,7 @@
                             Create
                         </button>
                         <!-- <button type="submit"
-                                class="btn btn-default"
+                                class="btn btn-secondary"
                                 @click="addReply">Post</button> -->
                     </div>
 

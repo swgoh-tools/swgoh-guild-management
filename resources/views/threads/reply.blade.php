@@ -1,11 +1,11 @@
 <reply :attributes="{{ $reply }}" inline-template v-cloak>
-    <div id="reply-{{ $reply->id }}" class="card">
+    <div id="reply-{{ $reply->id }}" class="card mb-3">
         <div class="card-header">
-            <div class="level">
-                <h5 class="flex">
+            <div class="d-flex justify-content-between">
+                <h5>
                     <a href="{{ route('profile', $reply->owner) }}">
                         {{ $reply->owner->name }}
-                    </a> said {{ $reply->created_at->diffForHumans() }}...
+                    </a> {{ __('wrote') }} {{ $reply->created_at->diffForHumans() }}...
                 </h5>
 
                 @if (Auth::check())
@@ -22,17 +22,17 @@
                     <textarea class="form-control" v-model="body"></textarea>
                 </div>
 
-                <button class="btn btn-xs btn-primary" @click="update">Update</button>
-                <button class="btn btn-xs btn-link" @click="editing = false">Cancel</button>
+                <button class="btn btn-sm btn-primary" @click="update">{{ __('Update') }}</button>
+                <button class="btn btn-sm btn-link" @click="editing = false">{{ __('Cancel') }}</button>
             </div>
 
             <div v-else v-text="body"></div>
         </div>
 
         @can ('update', $reply)
-            <div class="card-footer level">
-                <button class="btn btn-xs mr-1" @click="editing = true">Edit</button>
-                <button class="btn btn-xs btn-danger mr-1" @click="destroy">Delete</button>
+            <div class="card-footer">
+                <button class="btn btn-sm btn-secondary mr-1" @click="editing = true">{{ __('Edit') }}</button>
+                <button class="btn btn-sm btn-danger mr-1" @click="destroy">{{ __('Delete') }}</button>
             </div>
         @endcan
     </div>

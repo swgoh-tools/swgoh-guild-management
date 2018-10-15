@@ -11,28 +11,28 @@
             </div>
 
             <div class="col-md-4">
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-header">
-                        Search
+                        {{ __('Search') }}
                     </div>
 
                     <div class="card-body">
                         <form method="GET" action="{{ route('threads.search') }}">
                             <div class="form-group">
-                                <input type="text" placeholder="Search for something..." name="q" class="form-control">
+                                <input type="text" placeholder="{{ __('Search for something...') }}" name="q" class="form-control">
                             </div>
 
                             <div class="form-group">
-                                <button class="btn btn-default" type="submit">Search</button>
+                                <button class="btn btn-secondary" type="submit">{{ __('Search') }}</button>
                             </div>
                         </form>
                     </div>
                 </div>
 
                 @if (count($trending))
-                    <div class="card">
+                    <div class="card mb-3">
                         <div class="card-header">
-                            Trending Threads
+                            {{ __('Trending Threads') }}
                         </div>
 
                         <div class="card-body">

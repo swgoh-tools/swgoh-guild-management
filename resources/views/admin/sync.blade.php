@@ -4,11 +4,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-5">
-            <h3 class="modal-title">Sync Status</h3>
+            <h3 class="modal-title">{{ __('Sync State') }}</h3>
         </div>
         <div class="col-md-7 page-action text-right">
             <!-- @can('add_users')
-                <a href="{{ route('permissions.users.create') }}" class="btn btn-primary btn-sm"> <i class="glyphicon glyphicon-plus-sign"></i> Create</a>
+                <a href="{{ route('permissions.users.create') }}" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> {{ __('Create') }}</a>
             @endcan -->
         </div>
     </div>
@@ -17,14 +17,14 @@
         <table class="table table-bordered table-striped table-hover">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Target</th>
-                <th>Zeit</th>
-                <th>Größe</th>
-                <th>Status</th>
-                <th>Ablage</th>
+                <th>{{ __('No') }}</th>
+                <th>{{ __('Target') }}</th>
+                <th>{{ __('Time') }}</th>
+                <th>{{ __('Size') }}</th>
+                <th>{{ __('State') }}</th>
+                <th>{{ __('Details') }}</th>
                 @hasanyrole('admin|leader|officer|member')
-                <th class="text-center">Actions</th>
+                <th class="text-center">{{ __('Actions') }}</th>
                 @endhasanyrole
             </tr>
             </thead>
@@ -51,20 +51,23 @@
                         {!! Form::hidden('sync', $key) !!}
                         @if($key == 'clear')
                         @role('admin')
-                        <button type="submit" class="btn btn-xs btn-danger">
+                        <button type="submit" class="btn btn-sm btn-danger">
                             <i class="fa fa-trash"></i>
-                            <!-- <i class="glyphicon glyphicon-trash"></i> -->
+                        </button>
+                        @endrole
+                        @elseif($key == 's')
+                        @role('admin')
+                        <button type="submit" class="btn btn-sm btn-danger" name="force" value="true">
+                            <i class="fa fa-refresh"></i>
                         </button>
                         @endrole
                         @else
-                        <button type="submit" class="btn btn-xs btn-info">
+                        <button type="submit" class="btn btn-sm btn-info">
                             <i class="fa fa-refresh"></i>
-                            <!-- <i class="glyphicon glyphicon-refresh"></i> -->
                         </button>
                         @role('admin')
-                        <button type="submit" class="btn btn-xs btn-danger" name="force" value="true">
+                        <button type="submit" class="btn btn-sm btn-danger" name="force" value="true">
                             <i class="fa fa-refresh"></i>
-                            <!-- <i class="glyphicon glyphicon-trash"></i> -->
                         </button>
                         @endrole
                         @endif
@@ -76,7 +79,7 @@
             </tbody>
         </table>
 
-        <div class="text-left">Servertime ({{ date("e", time()) }})
+        <div class="text-left">{{ __('Server Time') }} ({{ date("e", time()) }})
             <ul>
             <li class="">{{ gmdate("d.m.y H:i", time()) }}</li>
             <li class="">{{ date("c", time()) }}</li>

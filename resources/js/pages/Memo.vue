@@ -41,22 +41,20 @@
     opacity: 0.75;
     }
 
-    .loader-txt {
-    p {
+    .loader-txt p {
         font-size: 13px;
         color: #666;
-        small {
+    }
+    .loader-txt small {
         font-size: 11.5px;
         color: #999;
         }
-    }
-    }
 
 </style>
 
 <template>
     <div>
-        <div class="card card-default">
+        <div class="card mb-3">
             <div class="card-header">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <span>
@@ -97,7 +95,7 @@
                     </thead>
 
                     <tbody>
-                        <tr v-for="memo in memos">
+                        <tr v-for="memo in memos" :key="memo.id">
                             <!-- ID -->
                             <td style="vertical-align: middle;">
                                 {{ memo.id }}
@@ -136,8 +134,8 @@
 
                             <!-- Position Button -->
                             <td style="vertical-align: middle;">
-                                <a class="btn btn-default" @click="showPosition(memo)" aria-label="Position">
-                                    <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                                <a class="btn btn-secondary" @click="showPosition(memo)" aria-label="Position">
+                                    <i class="fa fa-arrows" aria-hidden="true"></i>
                                 </a>
                                 <!-- <a class="action-link" @click="showPosition(memo)">
                                     Position
@@ -178,7 +176,7 @@
                             <p class="mb-0"><strong>Whoops!</strong> Something went wrong!</p>
                             <br>
                             <ul>
-                                <li v-for="error in createForm.errors">
+                                <li v-for="(error, index) in createForm.errors" :key="`error-${index}`">
                                     {{ error }}
                                 </li>
                             </ul>
@@ -200,7 +198,7 @@
                                         <!-- </div> -->
                                     </div>
                                     <div class="form-group">
-<ckeditor name="body" id="create-memo-body" v-model="createForm.body" placeholder="Bitte Text eingeben..."></ckeditor>
+<ckeditor name="body" id="create-memo-body" v-model="createForm.body" placeholder="Bitte Text eingeben..." :shouldClear="createForm.clearToggle"></ckeditor>
                                     </div>
 
                                 </form>
@@ -220,7 +218,7 @@
                             Create
                         </button>
                         <!-- <button type="submit"
-                                class="btn btn-default"
+                                class="btn btn-secondary"
                                 @click="addReply">Post</button> -->
                     </div>
 
@@ -247,7 +245,7 @@
                             <p class="mb-0"><strong>Whoops!</strong> Something went wrong!</p>
                             <br>
                             <ul>
-                                <li v-for="error in editForm.errors">
+                                <li v-for="(error, index) in editForm.errors" :key="`error-${index}`">
                                     {{ error }}
                                 </li>
                             </ul>
@@ -273,7 +271,7 @@
                                 <!-- <label class="col-md-3 col-form-label">Text</label> -->
 
                                 <!-- <div class="col-md-9"> -->
-<ckeditor name="body" id="edit-memo-body" v-model="editForm.body" placeholder="Bitte Text eingeben..."></ckeditor>
+<ckeditor name="body" id="edit-memo-body" v-model="editForm.body" placeholder="Bitte Text eingeben..." :should-clear="editForm.clearToggle"></ckeditor>
                                     <span class="form-text text-muted">
                                         Inhalt / Text des Abschnitts.
                                     </span>
@@ -313,7 +311,7 @@
                             <p class="mb-0"><strong>Whoops!</strong> Something went wrong!</p>
                             <br>
                             <ul>
-                                <li v-for="error in positionForm.errors">
+                                <li v-for="(error, index) in positionForm.errors" :key="`error-${index}`">
                                     {{ error }}
                                 </li>
                             </ul>
@@ -326,12 +324,15 @@
                                 <label class="col-md-3 col-form-label">Page</label>
 
                                 <div class="col-md-9">
+                                    <span class="form-text">Aktualität der Listen: {{ pages_time | formatDate }} <span class="btn btn-link" @click="getPages">(refresh)</span></span>
+                                    
                                     <select v-model="positionForm.page_id">
-                                    <option v-for="page in pages" v-bind:value="page.id">
+                                    <option v-for="page in pages" v-bind:value="page.id" :key="page.id">
                                         {{ page.title }}
                                     </option>
                                     </select>
                                     <span>Selected: {{ positionForm.page_id }}</span>
+                                    
                                     <span class="form-text text-muted">
                                         Seite, auf der der Abschnitt angezeigt wird.
                                     </span>
@@ -347,7 +348,7 @@
                                     <option value="">
                                         - ans Ende -
                                     </option>
-                                    <option v-for="page_memo in page_memos" v-bind:value="page_memo.id">
+                                    <option v-for="page_memo in page_memos" v-bind:value="page_memo.id" :key="page_memo.id">
                                         {{ page_memo.title }}
                                     </option>
                                     </select>
@@ -396,11 +397,16 @@
 </template>
 
 <script>
+// https://forum.vuejs.org/t/v-for-with-simple-arrays-what-key-to-use/13692/2
+// https://github.com/vuejs/eslint-plugin-vue/blob/master/docs/rules/require-v-for-key.md
+// pref: v-for="(error, index) in createForm.errors" :key="`error-${index}`"
+// var2: v-for="(item, index) in items" :key="index"
     import ckeditor from '../components/ckeditor.vue';
     import 'jquery.caret';
     import 'at.js';
+    import moment,{ now } from 'moment';
     export default {
-        props: ['name', 'value', 'placeholder', 'shouldClear'],
+        props: ['name', 'value', 'placeholder'],
         components: { ckeditor },
         /*
          * The component's data.
@@ -410,6 +416,7 @@
                 memos: [],
                 page_memos: [],
                 pages: [],
+                pages_time: 0,
 
                 createForm: {
                     errors: [],
@@ -421,7 +428,7 @@
                 editForm: {
                     errors: [],
                     clearToggle: false,
-                    id: '',
+                    id: 0,
                     title: '',
                     body: ''
                 },
@@ -429,24 +436,21 @@
                 positionForm: {
                     errors: [],
                     clearToggle: false,
-                    id: '',
+                    id: 0,
                     title: '',
-                    page_id: '',
-                    before_id: ''
+                    page_id: 0,
+                    before_id: 0
                 },
 
-                // body: '',
-                test: '',
                 timer: {
-                    value: '',
-                    count: '',
+                    value: 0,
+                    count: 0,
                     enabled: true,
                     requestrunning: false,
                     interval: 60,
                     refresh: 1000,
                     limit: 20
-                },
-                completed: false
+                }
             };
         },
 
@@ -481,34 +485,53 @@
         },
 
         computed: {
+            ago() {
+                return moment(this.pages_time).fromNow() + '...';
+            }
+        },
+
+        filters: {
+            formatDate: function(value) {
+                if (value) {
+                    return moment(value).format('MM.DD.YYYY H:m:s')
+                }
+            }
         },
 
         watch: {
-            'createForm.clearToggle': function() {
-                this.createForm.errors = [],
-                this.createForm.title = '';
-                this.createForm.body = '';
-            },
-            'editForm.clearToggle': function() {
-                this.editForm.errors = [],
-                this.editForm.id = '';
-                this.editForm.title = '';
-                this.editForm.body = '';
-            },
             'positionForm.page_id': function() {
                 this.getOtherMemos(this.positionForm.page_id);
                 this.positionForm.before_id = '';
-            },
-            'positionForm.clearToggle': function() {
-                this.positionForm.errors = [],
-                this.positionForm.id = '',
-                this.positionForm.title = '',
-                this.positionForm.page_id = '',
-                this.positionForm.before_id = ''
             }
         },
 
         methods: {
+            clearCreate() {
+                this.createForm.errors = [];
+                this.createForm.title = '';
+                // this.createForm.body = ''; //crashes on ckeditor
+                this.createForm.clearToggle = ! this.createForm.clearToggle;
+            },
+            clearEdit() {
+                this.editForm.errors = [];
+                this.editForm.id = 0;
+                this.editForm.title = '';
+                // this.editForm.body = ''; //crashes on ckeditor
+                this.editForm.clearToggle = ! this.editForm.clearToggle;
+            },
+            clearPosition() {
+                this.positionForm.errors = [];
+                this.positionForm.id = 0;
+                this.positionForm.title = '';
+                this.positionForm.page_id = 0;
+                this.positionForm.before_id = 0;
+            },
+            clearPages() {
+                //clear list of pages
+                this.pages = [];
+                this.pages_time = 0;
+
+            },
             hasCreator(memo) {
                 // return !!this.$slots.default[0].text.length;
                 return typeof memo.creator !== 'undefined' && memo.creator !== null;
@@ -517,7 +540,6 @@
                 return typeof memo.editor !== 'undefined' && memo.editor !== null;
             },
             hasLock(memo) {
-                // return !!this.$slots.default[0].text.length;
                 return typeof memo.lock !== 'undefined' && memo.lock !== null;
             },
             async checkTimer() {
@@ -531,6 +553,10 @@
                     await this.getMemos(false);
                     this.timer.count = this.timer.count + 1;
                     this.resetTimer();
+                } else if (left < 1) {
+                    // should never happen
+                    // if it does, sth is wrong so do nothing and get out
+                    return;
                 } else {
                     var h = Math.floor(left / 60 / 60);
                     var m = Math.floor( (left % 60) / 60);
@@ -540,13 +566,13 @@
                     this.timer.value = this.timer.value - 1;
                 }
             },
-            toggleTimer () {
+            toggleTimer() {
                 this.timer.enabled = ! this.timer.enabled;
                 if (this.timer.enabled) {
                     this.resetTimer(true);
                 }
             },
-            resetTimer (resetcounter = false) {
+            resetTimer(resetcounter = false) {
                 if (resetcounter) {
                     this.timer.count = 0;
                 }
@@ -557,9 +583,6 @@
              * Prepare the component.
              */
             prepareComponent() {
-
-                this.getMemos();
-                this.getPages();
 
                 $('#loadMe').on('shown.bs.modal', () => {
                     if (! this.timer.requestrunning) {
@@ -579,19 +602,25 @@
                 });
 
                 $('#modal-create-memo').on('hidden.bs.modal', () => {
-                    this.createForm.errors = [];
+                    this.clearCreate();
                 });
-                $('#modal-edit-memo').on('hide.bs.modal', () => {
-                    this.releaseLock(this.editForm.id);
-                    this.editForm.errors = [];
+                // $('#modal-edit-memo').on('hide.bs.modal', () => {
+                //     this.releaseLock(this.editForm.id);
+                // });
+                $('#modal-edit-memo').on('hidden.bs.modal', () => {
+                    this.clearEdit();
                 });
                 $('#modal-position-memo').on('hidden.bs.modal', () => {
-                    this.positionForm.errors = [];
+                    this.clearPosition();
                 });
 
                 // console.log(location.pathname); // w/o prot, w/o domain
                 // console.log(location.origin); // prot + domain
                 // console.log(location.href); // complete url
+                this.getMemos();
+
+                // this.getPages();
+
                 this.resetTimer();
 
             },
@@ -628,6 +657,7 @@
                     })
                     .catch(error => {
                         this.timer.value = this.timer.interval;
+                        this.timer.enabled = false;
                         this.timer.requestrunning = false;
                         $("#loadMe").modal("hide");
                         console.log('Error', error.message);
@@ -638,7 +668,7 @@
             /**
              * Get all of the memos for the user.
              */
-            getOtherMemos(id = null) {
+            getOtherMemos(id) {
                 if (! id || ! this.pages) {
                     return;
                 }
@@ -653,10 +683,11 @@
             /**
              * Get all of the memos for the user.
              */
-            getPages(spin = false) {
+            getPages() {
                 axios.get(location.pathname + '/pages')
                         .then(response => {
                             this.pages = response.data;
+                            this.pages_time = moment.now();
                         });
             },
 
@@ -671,27 +702,23 @@
                         }
                     })
                     .then(response => {
-                        // console.log('success');
-                        // console.log(response);
                         flash('Sperre für Bearbeitung eingerichtet.', 'success');
                         return response.data;
                     })
                     .catch(error => {
-                    if (error.response) {
-                        console.log(error.response);
+                        if (error.response) {
+                            console.log(error.response.data);
+                            return false;
+                        } else if (error.request) {
+                            // The request was made but no response was received
+                            console.log(error.request);
+                        } else {
+                            // Something happened in setting up the request that triggered an Error
+                            console.log('Error', error.message);
+                        }
                         flash('Bearbeitungssperre für Textelement fehlgeschlagen.', 'danger');
                         return false;
-                    } else if (error.request) {
-                    // The request was made but no response was received
-                    console.log(error.request);
-                    } else {
-                    // Something happened in setting up the request that triggered an Error
-                    console.log('Error', error.message);
-                    }
-                    flash(error.message, 'danger');
-                    return false;
-                });
-                this.test = lock;
+                    });
                 return lock;
             },
 
@@ -707,20 +734,20 @@
                     })
                     .then(response => {
                         flash(response.data, 'success');
-                        // return true;
+                        return true;
                     })
                     .catch(error => {
-                    if (error.response) {
-                    flash(error.response, 'danger');
-                    } else if (error.request) {
-                    // The request was made but no response was received
-                    console.log(error.request);
-                    } else {
-                    // Something happened in setting up the request that triggered an Error
-                    console.log('Error', error.message);
-                    }
-                    flash(error.message, 'danger');
-                });
+                        if (error.response) {
+                            console.log(error.response.data);
+                        } else if (error.request) {
+                            // The request was made but no response was received
+                            console.log(error.request);
+                        } else {
+                            // Something happened in setting up the request that triggered an Error
+                            console.log('Error', error.message);
+                        }
+                        flash('Die Bearbeitungssperre konnte nicht aufgehoben werden.', 'danger');
+                    });
             },
 
             /**
@@ -776,7 +803,11 @@
                 this.positionForm.id = memo.id;
                 this.positionForm.page_id = memo.page_id;
                 this.positionForm.title = memo.title;
-                // this.getOtherMemos(memo.page_id); //done via watch
+                // this.getOtherMemos(memo.page_id); //watch
+                // if (! this.pages || this.pages.length == 0) {
+                    this.pages = [];
+                    this.getPages();
+                // }
 
                 $('#modal-position-memo').modal({
                     backdrop: "static", //remove ability to close modal with click
@@ -828,19 +859,39 @@
                     method: method,
                     url: uri,
                     data: data,
-                        headers: {
-                            'Accept': 'application/json',
-                            // 'Content-Type': 'application/x-www-form-urlencoded',
-                            'Content-Type': 'multipart/form-data',
-                            // 'Content-Type': 'application/json',
-                            }
-                    }
-                )
+                    headers: {
+                        'Accept': 'application/json',
+                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                        'Content-Type': 'multipart/form-data',
+                        // 'Content-Type': 'application/json',
+                        }
+                })
                 .then(response => {
                     $(modal).modal('hide');
-                    form.clearToggle = ! form.clearToggle;
-                    flash('Your memo has been posted.', 'success');
-                    this.getMemos();
+                    switch (modal) {
+                        case '#modal-create-memo':
+                            this.clearPages();
+                            this.getMemos();
+                            flash('Your memo has been posted.', 'success');
+                            break;
+                    
+                        case '#modal-edit-memo':
+                            this.releaseLock(this.editForm.id);
+                            this.clearPages();
+                            this.getMemos();
+                            flash('Your memo has been updated.', 'success');
+                            break;
+                    
+                        case '#modal-position-memo':
+                            this.clearPages();
+                            this.getMemos();
+                            flash('Your memo has been relocated.', 'success');
+                            break;
+                    
+                        default:
+                            flash('Something unknown was done successfully... ugh!?', 'success');
+                            break;
+                    }
                 })
                 .catch(error => {
                     if (error.response) {
@@ -885,7 +936,20 @@
                     }
                 )
                 .then(response => {
-                    this.getMemos();
+                    // this.getMemos();
+                    let i = this.memos.map(item => item.id).indexOf(memo.id) // find index of your object
+                    this.memos.splice(i, 1) // remove it from array
+                    flash('Memo erfolgreich gelöscht.', 'success');
+                })
+                .catch(error => {
+                    if (error.response) {
+                        console.log(error.response.data);
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log('Error', error.message);
+                    }
+                    flash('Es ist ein Fehler beim Löschen aufgetreten.', 'danger');
                 });
             }
         }

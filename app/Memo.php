@@ -222,6 +222,22 @@ class Memo extends Model
      */
     public function toSearchableArray()
     {
-        return $this->toArray() + ['path' => $this->path()];
+        $array = $this->toArray();
+        if (isset($array['body'])) {
+            if (strlen($array['body']) > 9000) {
+                // // convert to plain text to save space
+                // // Note: Configuration passed into the second parameter is not merged with your current configuration.
+                // $config = ['HTML.Allowed' => ''];
+                // $array['body'] = \Purify::clean($array['body'], $config);
+                // or use plain php
+                // strip_tags — Entfernt HTML- und PHP-Tags aus einem String
+                $array['body'] =strip_tags($array['body'], null);
+
+                // in case it's still too big, cut it off
+                $array['body'] = substr($array['body'], 0, 9000);
+            }
+        }
+        return $array + ['path' => $this->path()];
+    // return $this->toArray() + ['path' => $this->path()];
     }
 }

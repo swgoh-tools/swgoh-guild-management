@@ -1,24 +1,22 @@
 @extends('layouts.app')
 
-@section ('head')
-    <!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
-@endsection
+@include('layouts.cdn._trix')
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="card">
-                    <div class="card-header">Create a New Memo</div>
+                <div class="card mb-3">
+                    <div class="card-header">{{ __('Create a New Memo') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('memos') }}">
-                            {{ csrf_field() }}
+                            @csrf
 
                             <div class="form-group">
-                                <label for="page_id">Choose a Page:</label>
+                                <label for="page_id">{{ __('Choose a Page') }}:</label>
                                 <select name="page_id" id="page_id" class="form-control" required>
-                                    <option value="">Choose One...</option>
+                                    <option value="">-- {{ __('Choose One') }} --</option>
 
                                     @foreach ($pages as $page)
                                         <option value="{{ $page->id }}" {{ old('page_id') == $page->id ? 'selected' : '' }}>
@@ -29,19 +27,19 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="title">Title:</label>
+                                <label for="title">{{ __('Title') }}:</label>
                                 <input type="text" class="form-control" id="title" name="title"
                                        value="{{ old('title') }}" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="trix">Content:</label>
+                                <label for="trix">{{ __('Content') }}:</label>
                                 <input id="trix" type="hidden" name="body" value="{{ old('body') }}" required>
-                                <trix-editor ref="trix" input="trix" placeholder="Have something to say?"></trix-editor>
+                                <trix-editor ref="trix" input="trix" placeholder="{{ __('Have something to say?') }}"></trix-editor>
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Publish</button>
+                                <button type="submit" class="btn btn-primary">{{ __('Publish') }}</button>
                             </div>
 
                             @if (count($errors))
@@ -58,8 +56,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section ('scripts')
-    <script src="{{ asset('js/attachments.js') }}"></script>
 @endsection

@@ -1,24 +1,20 @@
 @extends('layouts.app')
 
-@section ('head')
-    <!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
-@endsection
-
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="card">
-                    <div class="card-header">Create a New Guild</div>
+                <div class="card mb-3">
+                    <div class="card-header">{{ __('Create a New Guild') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('guilds') }}">
-                            {{ csrf_field() }}
+                            @csrf
 
                             <div class="form-group">
-                                <label for="user_id">Choose a Leader:</label>
+                                <label for="user_id">{{ __('Choose a Leader') }}:</label>
                                 <select name="user_id" id="user_id" class="form-control" required>
-                                    <option value="">Choose One...</option>
+                                    <option value="">-- {{ __('Choose One') }} --</option>
 
                                     @foreach ($users as $user)
                                         <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
@@ -29,19 +25,19 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="name">Name:</label>
+                                <label for="name">{{ __('Name') }}:</label>
                                 <input type="text" class="form-control" id="name" name="name"
                                        value="{{ old('name') }}" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="code">Code (if known):</label>
+                                <label for="code">{{ __('Guild Code') }} ({{ __('if known') }}):</label>
                                 <input type="text" class="form-control" id="code" name="code"
                                        value="{{ old('code') }}">
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
                             </div>
 
                             @if (count($errors))

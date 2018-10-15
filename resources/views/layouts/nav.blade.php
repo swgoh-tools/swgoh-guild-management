@@ -21,17 +21,17 @@
                     </li>
             @endcan
             <!-- <li class="nav-item">
-                <a class="nav-link" href="{{ route('guild.squads', $guild) }}">Teamsuche</a>
+                <a class="nav-link" href="{{ route('guild.squads', $guild) }}">{{ __('Team Search') }}</a>
             </li> -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Teamsuche
+                    {{ __('Team Search') }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}">Teamsuche</a>
+                    <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}">{{ __('Team Search') }}</a>
                 <!-- <div class="dropdown-divider"></div> -->
-                    <a class="dropdown-item" href="{{ route('guild.squadlist', $guild) }}">Vordefinierte Teams</a>
+                    <a class="dropdown-item" href="{{ route('guild.squadlist', $guild) }}">{{ __('Predefined Teams') }}</a>
                     <!-- <div class="dropdown-item">Beispiele</div> -->
                     <!-- <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}?t1=ADMIRALACKBAR&t2=BB8&t3=COMMANDERLUKESKYWALKER&t4=HERMITYODA&t5=EZRABRIDGERS3">Ezradicator</a> -->
                     <!-- <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}?t1=VADER&t2=WAMPA&t3=GRANDADMIRALTHRAWN&t4=COMMANDERLUKESKYWALKER&t5=BB8">Wampanader</a> -->
@@ -39,31 +39,31 @@
                     <!-- <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}?t1=ADMIRALACKBAR&t2=BB8&t3=COMMANDERLUKESKYWALKER&t4=HERMITYODA&t5=YOUNGHAN">YOLO
                         SOLO</a> -->
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('guild.roster', $guild) }}">Gesamtliste (große Datenmenge!)</a>
+                    <a class="dropdown-item" href="{{ route('guild.roster', $guild) }}">{{ __('Full Roster') }} ({{ __('big data') }}!)</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropForum" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Forum
+                    {{ __('Forum') }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropForum">
-                    <a class="dropdown-item" href="{{ route('threads') }}">All Threads</a>
+                    <a class="dropdown-item" href="{{ route('threads') }}">{{ __('All Threads') }}</a>
                     @if (auth()->check())
-                    <a class="dropdown-item" href="{{ route('threads') }}?by={{ auth()->user()->name }}">My Threads</a>
+                    <a class="dropdown-item" href="{{ route('threads') }}?by={{ auth()->user()->name }}">{{ __('My Threads') }}</a>
                     @endif
-                    <a class="dropdown-item" href="{{ route('threads') }}?popular=1">Popular Threads</a>
-                    <a class="dropdown-item" href="{{ route('threads') }}?unanswered=1">Unanswered Threads</a>
+                    <a class="dropdown-item" href="{{ route('threads') }}?popular=1">{{ __('Popular Threads') }}</a>
+                    <a class="dropdown-item" href="{{ route('threads') }}?unanswered=1">{{ __('Unanswered Threads') }}</a>
                     <div class="dropdown-divider"></div>
 
-                    <a class="dropdown-item" href="{{ route('threads.create') }}">New Thread</a>
+                    <a class="dropdown-item" href="{{ route('threads.create') }}">{{ __('Create New Thread') }}</a>
                 </div>
             </li>
         </ul>
-            <a class="btn btn-outline-success my-2 my-sm-0" href="{{ route('sync') }}">Sync</a>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="{{ route('sync') }}">{{ __('Sync') }}</a>
         <!--<form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{ __('Search') }}</button>
           </form>-->
         @if (Route::has('login'))
         <div class="navbar-nav">
@@ -75,21 +75,21 @@
                         aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropLogin">
-                        <a class="dropdown-item" href="{{ route('home') }}">Home</a>
-                        <a class="dropdown-item" href="{{ route('profile', Auth::user()) }}">My Profile</a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropLogin">
+                        <a class="dropdown-item" href="{{ route('home') }}">{{ __('Home') }}</a>
+                        <a class="dropdown-item" href="{{ route('profile', Auth::user()) }}">{{ __('My Profile') }}</a>
                         @if (Auth::user()->isAdmin())
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('guilds.create') }}">New Guild</a>
-                        <a class="dropdown-item" href="{{ route('pages.create') }}">New Page</a>
-                        <a class="dropdown-item" href="{{ route('memos.create') }}">New Memo</a>
-                        <a class="dropdown-item" href="{{ route('channels.create') }}">New Channel</a>
-                        <a class="dropdown-item" href="{{ route('files.upload') }}">Upload File</a>
+                        <a class="dropdown-item" href="{{ route('guilds.create') }}">{{ __('Create a New Guild') }}</a>
+                        <a class="dropdown-item" href="{{ route('pages.create') }}">{{ __('Create a New Page') }}</a>
+                        <a class="dropdown-item" href="{{ route('memos.create') }}">{{ __('Create a New Memo') }}</a>
+                        <a class="dropdown-item" href="{{ route('channels.create') }}">{{ __('Create a New Channel') }}</a>
+                        <a class="dropdown-item" href="{{ route('files.upload') }}">{{ __('Upload a New File') }}</a>
                         @endif
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            Logout</a>
+                            {{ __('Logout') }}</a>
                     </div>
                 </li>
             </ul>
@@ -97,9 +97,9 @@
                 @csrf
             </form>
             @else
-            <a class="nav-link" href="{{ route('login') }}">Login</a>
+            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
             @if (Route::has('register'))
-            <a class="nav-link" href="{{ route('register') }}">Register</a>
+            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
             @endif
             @endauth
         </div>

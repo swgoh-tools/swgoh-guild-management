@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@include('layouts.cdn._datatables')
+
 @section('content')
 <?php
     $bsize = '-sm'; // btn-sm, btn-md, btn-lg

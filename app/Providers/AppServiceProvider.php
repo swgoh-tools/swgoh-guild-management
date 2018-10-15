@@ -56,6 +56,7 @@ class AppServiceProvider extends ServiceProvider
             // dd($params);
             $page_locale = app()->getLocale();
             $page_title = config('app.name');
+            $page_guild = '';
 
             if (isset($params['guild']) && $params['guild'] instanceof Guild ) {
                 $guild = $params['guild'];
@@ -64,8 +65,9 @@ class AppServiceProvider extends ServiceProvider
             }
 
             if ($guild) {
+                $page_guild = $guild->name;
                 $page_title .= ' - ' . $guild->name;
-                $pages = $guild->pages()->get();
+                $pages = $guild->pages()->orderBy('position', 'asc')->get();
             } else {
                 $guild = new Guild;
                 $guild->name = 'Dummy';
@@ -73,7 +75,7 @@ class AppServiceProvider extends ServiceProvider
                 $pages = [];
             }
 
-            $view->with(compact(['page_title', 'page_locale', 'guild', 'pages']));
+            $view->with(compact(['page_guild', 'page_locale', 'page_title', 'guild', 'pages']));
         });
 
         // \View::composer('*', function ($view) {

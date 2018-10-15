@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
                     <!-- Submit Form Button -->
                     {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-7 page-action text-right">
             @can('add_roles')
-                <a href="#" class="btn btn-sm btn-success pull-right" data-toggle="modal" data-target="#roleModal"> <i class="glyphicon glyphicon-plus"></i> New</a>
+                <a href="#" class="btn btn-sm btn-success pull-right" data-toggle="modal" data-target="#roleModal"> <i class="fa fa-plus"></i> New</a>
             @endcan
         </div>
     </div>

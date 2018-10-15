@@ -1,6 +1,6 @@
 <template>
     <button type="submit" :class="classes" @click="toggle">
-        <span class="glyphicon glyphicon-heart"></span>
+        <span class="fa fa-heart"></span>
         <span v-text="count"></span>
     </button>
 </template>
@@ -20,7 +20,8 @@
             classes() {
                 return [
                     'btn',
-                    this.active ? 'btn-primary' : 'btn-default'
+                    'btn-sm',
+                    this.active ? 'btn-success' : 'btn-secondary'
                 ];
             },
 

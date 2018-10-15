@@ -1,7 +1,7 @@
 {{-- Editing the question. --}}
-<div class="card" v-if="editing">
+<div class="card mb-3" v-if="editing">
     <div class="card-header">
-        <div class="level">
+        <div class="d-flex justify-content-between">
             <input type="text" class="form-control" v-model="form.title">
         </div>
     </div>
@@ -13,17 +13,17 @@
     </div>
 
     <div class="card-footer">
-        <div class="level">
-            <button class="btn btn-xs level-item" @click="editing = true" v-show="! editing">Edit</button>
-            <button class="btn btn-primary btn-xs level-item" @click="update">Update</button>
-            <button class="btn btn-xs level-item" @click="resetForm">Cancel</button>
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-sm btn-secondary" @click="editing = true" v-show="! editing">{{ __('Edit') }}</button>
+            <button class="btn btn-sm btn-primary" @click="update">{{ __('Update') }}</button>
+            <button class="btn btn-sm btn-warning" @click="resetForm">{{ __('Cancel') }}</button>
 
             @can ('update', $thread)
                 <form action="{{ $thread->path() }}" method="POST" class="ml-a">
-                    {{ csrf_field() }}
+                    @csrf
                     {{ method_field('DELETE') }}
 
-                    <button type="submit" class="btn btn-link">Delete Thread</button>
+                    <button type="submit" class="btn btn-link">{{ __('Delete Thread') }}</button>
                 </form>
             @endcan
 
@@ -33,7 +33,7 @@
 
 
 {{-- Viewing the question. --}}
-<div class="card" v-else>
+<div class="card mb-3" v-else>
     <div class="card-header">
         <div class="level">
             <img src="{{ $thread->creator->avatar_path }}"
@@ -51,6 +51,6 @@
     <div class="card-body" v-html="body"></div>
 
     <div class="card-footer" v-if="authorize('owns', thread)">
-        <button class="btn btn-xs" @click="editing = true">Edit</button>
+        <button class="btn btn-sm btn-secondary" @click="editing = true">Edit</button>
     </div>
 </div>

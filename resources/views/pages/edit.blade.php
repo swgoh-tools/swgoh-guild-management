@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@include('layouts.cdn._ckeditor')
+
 @section('content')
 <div class="container-fluid">
     <div class="row">
@@ -8,7 +10,7 @@
                 <h1 class="mr-auto">{{ $page->title }}</h1>
                 <button class="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse" data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false">
-                        <title>Menu</title>
+                        <title>{{ __('Menu') }}</title>
                         <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path>
                     </svg>
                 </button>
@@ -23,9 +25,4 @@
     </div>
 </div>
 
-@endsection
-
-@section ('head')
-<script src="//cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
-    <!-- <script src="{{ asset('js/attachments.js') }}"></script> -->
 @endsection

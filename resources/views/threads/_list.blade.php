@@ -1,8 +1,8 @@
 @forelse ($threads as $thread)
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-header">
-            <div class="level">
-                <div class="flex">
+            <div class="d-flex justify-content-between">
+                <div>
                     <h4>
                         <a href="{{ $thread->path() }}">
                             @if (auth()->check() && $thread->hasUpdatesFor(auth()->user()))
@@ -16,7 +16,7 @@
                     </h4>
 
                     <h5>
-                        Posted By: <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a>
+                        {{ __('Posted by') }}: <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a>
                     </h5>
                 </div>
 
@@ -31,9 +31,9 @@
         </div>
 
         <div class="card-footer">
-            {{ $thread->visits }} Visits
+            {{ $thread->visits }} {{ __('Visits') }}
         </div>
     </div>
 @empty
-    <p>There are no relevant results at this time.</p>
+    <p>{{ __('There are no relevant results at this time.') }}</p>
 @endforelse

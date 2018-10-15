@@ -51,7 +51,7 @@
                             @can('view_users')
                                 <li class="{{ Request::is('users*') ? 'active' : '' }}">
                                     <a href="{{ route('permissions.users.index') }}">
-                                        <span class="text-info glyphicon glyphicon-user"></span> Users
+                                        <span class="text-info fa fa-user"></span> Users
                                     </a>
                                 </li>
                             @endcan
@@ -59,7 +59,7 @@
                             @can('view_posts')
                                 <li class="{{ Request::is('posts*') ? 'active' : '' }}">
                                     <a href="{{ route('permissions.posts.index') }}">
-                                        <span class="text-success glyphicon glyphicon-text-background"></span> Posts
+                                        <span class="text-success fa fa-file-text-o"></span> Posts
                                     </a>
                                 </li>
                             @endcan
@@ -77,7 +77,7 @@
                             @can('view_roles')
                             <li class="{{ Request::is('roles*') ? 'active' : '' }}">
                                 <a href="{{ route('permissions.roles.index') }}">
-                                    <span class="text-danger glyphicon glyphicon-lock"></span> Roles
+                                    <span class="text-danger fa fa-lock"></span> Roles
                                 </a>
                             </li>
                             @endcan
@@ -94,11 +94,11 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            <i class="glyphicon glyphicon-log-out"></i> Logout
+                                            <i class="fa fa-sign-out"></i> Logout
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
+                                            @csrf
                                         </form>
                                     </li>
                                 </ul>

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@include('layouts.cdn._datatables')
+
 @section('content')
 <div class="container-fluid">
     <div class="row">
@@ -9,7 +11,7 @@
                 <button class="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse"
                     data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false">
-                        <title>Menu</title>
+                        <title>{{ __('Menu') }}</title>
                         <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path>
                     </svg>
                 </button>
@@ -32,11 +34,9 @@
 
         <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
             <h1 class="mr-auto">{{ $title }}</h1>
-            <p class="lead text-center">Übersicht aller Toons, die die Mitglieder der <strong>Macht Wächter</strong>
-                besitzen.</p>
-            <p class="text-center">Das Laden der Seite kann etwas dauern, da alle Charaktere sofort geladen werden. Die Zahl hinter den Bezeichnungen gibt an, wieviele Gildenmitglieder den Charakter besitzen.</p>
-            <p class="text-center">Beim Klick auf den Spaltenkopf einer Tabelle wird diese sortierbar und
-                durchsuchbar.</p>
+            <p class="lead text-center">{!! __('app.roster.intro', ['guild' => '<strong>' . $guild->name . '</strong>']) !!}</p>
+            <p class="text-center">{{ __('app.roster.description') }}</p>
+            <p class="text-center">{{ __('app.datatables.click_head') }}</p>
             <div class="tab-content" id="toonTabsContent">
                 @foreach ($units as $unit_key => $players)
                     <div class="tab-pane fade{{ $loop->first ? ' active show' : ''}}" id="{{ $unit_key }}" role="tabpanel" aria-labelledby="{{ $unit_key }}-tab">

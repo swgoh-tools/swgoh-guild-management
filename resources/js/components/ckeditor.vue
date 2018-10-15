@@ -18,6 +18,10 @@ export default {
     placeholder: {
       type: String
     },
+    shouldClear: {
+      type: Boolean,
+      default: false
+    },
     id: {
       type: String,
       default: "editor"
@@ -49,6 +53,12 @@ export default {
     }
   },
 
+  watch: {
+    'shouldClear': function () {
+      CKEDITOR.instances[this.id].setData('');
+    }
+  },
+    
   beforeUpdate() {
     if (this.value !== CKEDITOR.instances[this.id].getData()) {
       CKEDITOR.instances[this.id].setData(this.value);
@@ -62,6 +72,7 @@ export default {
       extraPlugins: this.extraplugins,
       uploadUrl: this.uploadUrl,
     };
+
     CKEDITOR.replace(this.id, ckeditorConfig);
     CKEDITOR.instances[this.id].setData(this.value);
     CKEDITOR.instances[this.id].on("change", () => {

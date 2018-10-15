@@ -1,8 +1,8 @@
 <template>
-    <div :id="'reply-'+id" class="card" :class="isBest ? 'bg-success text-success': ''">
+    <div :id="'reply-'+id" class="card mb-3" :class="isBest ? 'border-success text-success': ''">
         <div class="card-header">
-            <div class="level">
-                <h5 class="flex">
+            <div class="d-flex justify-content-between">
+                <h5>
                     <a :href="'/profiles/' + reply.owner.name"
                         v-text="reply.owner.name">
                     </a> said <span v-text="ago"></span>
@@ -21,21 +21,24 @@
                         <wysiwyg v-model="body"></wysiwyg>
                     </div>
 
-                    <button class="btn btn-xs btn-primary">Update</button>
-                    <button class="btn btn-xs btn-link" @click="editing = false" type="button">Cancel</button>
+                    <button class="btn btn-sm btn-primary">Update</button>
+                    <button class="btn btn-sm btn-link" @click="editing = false" type="button">Cancel</button>
                 </form>
             </div>
 
             <div v-else v-html="body"></div>
         </div>
 
-        <div class="card-footer level" v-if="authorize('owns', reply) || authorize('owns', reply.thread)">
-            <div v-if="authorize('owns', reply)">
-                <button class="btn btn-xs mr-1" @click="editing = true" v-if="! editing">Edit</button>
-                <button class="btn btn-xs btn-danger mr-1" @click="destroy">Delete</button>
+        <div class="card-footer d-flex justify-content-between" v-if="authorize('owns', reply) || authorize('owns', reply.thread)">
+            <div>
+                <button class="btn btn-sm btn-secondary" @click="editing = true" v-if="authorize('owns', reply) && ! editing">Edit</button>
             </div>
-
-            <button class="btn btn-xs btn-default ml-a" @click="markBestReply" v-if="authorize('owns', reply.thread)">Best Reply?</button>
+            <div>
+                <button class="btn btn-sm btn-secondary" @click="markBestReply" v-if="authorize('owns', reply.thread)">Best Reply?</button>
+            </div>
+            <div>
+                <button class="btn btn-sm btn-danger" @click="destroy" v-if="authorize('owns', reply)">Delete</button>
+            </div>
         </div>
     </div>
 </template>

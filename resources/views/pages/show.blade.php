@@ -8,7 +8,7 @@
                 <h1 class="mr-auto"><i class="fa fa-book"></i> {{ $page->title }}</h1>
                 <button class="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse" data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false">
-                        <title>Menu</title>
+                        <title>{{ __('Menu') }}</title>
                         <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path>
                     </svg>
                 </button>
@@ -30,21 +30,6 @@
         </div>
 
         <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
-            @can('edit memos')
-                <div>
-                    <a href="{{ $page->path() }}/edit" aria-label="edit page">
-                        <button class="btn btn-success"><i class="fa fa-pencil"></i> {{ __('Edit Page') }}</button>
-                    </a>
-                    <form id="delete-form" action="{{ $page->path() }}" method="POST" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <a href="" aria-label="delete page">
-                            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> {{ __('Delete Page') }}</button>
-                        </a>
-                    </form>
-
-                </div>
-            @endcan
 
             <div class="tab-content" id="sw-tabContent">
                 @foreach ($memos as $memo)
@@ -53,13 +38,38 @@
                 @else
                 <div class="tab-pane fade" id="sw-{{ $memo->slug }}" role="tabpanel" aria-labelledby="sw-{{ $memo->slug }}-tab">
                 @endif
-                <h2><i class="fa fa-file-text-o"></i> {{ $memo->title }}</h2>
-                <h6><i class="fa fa-user"></i> {{ __('app.created_by', ['name' => $memo->creator->name]) }} {{ __('on')}} {{ $memo->created_at->isoFormat('llll') }}
-                    @if($memo->editor)
-                    <i class="fa fa-pencil"></i> {{ __('app.last_modified_by', ['name' => $memo->editor->name]) }} {{ $memo->updated_at->diffForHumans() }}
-                    @endif
-                </h6>
-                {!! $memo->body !!}
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h2 class="card-title modal-header px-0 py-1">
+                                <span><i class="fa fa-file-text-o"></i> {{ $memo->title }}</span>
+                                @if ($loop->first)
+                                    @can('edit memos')
+                                        <div>
+                                            <a href="{{ $page->path() }}/edit" aria-label="edit page">
+                                                <button class="btn btn-success"><i class="fa fa-pencil"></i> {{ __('Edit Page') }}</button>
+                                            </a>
+                                            <form id="delete-form" action="{{ $page->path() }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="" aria-label="delete page">
+                                                    <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> {{ __('Delete Page') }}</button>
+                                                </a>
+                                            </form>
+
+                                        </div>
+                                    @endcan
+                                @endif
+                            </h2>
+                            <h6 class="card-subtitle text-muted"><i class="fa fa-user"></i> {{ __('app.created_by', ['name' => $memo->creator->name]) }} {{ __('on')}} {{ $memo->created_at->isoFormat('llll') }}
+                                @if($memo->editor)
+                                <i class="fa fa-pencil"></i> {{ __('app.last_modified_by', ['name' => $memo->editor->name]) }} {{ $memo->updated_at->diffForHumans() }}
+                                @endif
+                            </h6>
+                        </div>
+                        <div class="card-body memo-body">
+                            {!! $memo->body !!}
+                        </div>
+                    </div>
                 </div>
                 @endforeach
             </div>

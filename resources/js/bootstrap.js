@@ -44,6 +44,14 @@ Vue.filter('truncate', function (text, stop, clamp) {
     return text.slice(0, stop) + (stop < text.length ? clamp || '...' : '');
 })
 
+// // https://forum.vuejs.org/t/how-to-format-date-for-display/3586/4
+// import moment from 'moment'
+// Vue.filter('formatDate', function(value) {
+//   if (value) {
+//     return moment(String(value)).format('MM/DD/YYYY hh:mm')
+//   }
+// }
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@include('layouts.cdn._datatables')
+
 @section('content')
 <div class="container-fluid">
     <div class="row">
@@ -9,7 +11,7 @@
                 <button class="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse"
                     data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false">
-                        <title>Menu</title>
+                        <title>{{ __('Menu') }}</title>
                         <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path>
                     </svg>
                 </button>
@@ -17,13 +19,13 @@
 
             <nav class="collapse bd-links" id="bd-docs-nav">
                 <div class="nav flex-column nav-pills" id="sw-tab" role="tablist" aria-orientation="vertical">
-                    @forelse ($list as $key => $section)
+                    @forelse ($list ?? [] as $key => $section)
                     @if ($loop->first)
                     <a class="nav-link active" id="{{ $key }}-tab" data-toggle="pill" href="#{{ $key }}" role="tab"
-                        aria-controls="{{ $key }}" aria-selected="true">{{ ucwords($key) }} ({{ count($section) }})</a>
+                        aria-controls="{{ $key }}" aria-selected="true">{{ ucwords($key) }}</a>
                     @else
                     <a class="nav-link" id="{{ $key }}-tab" data-toggle="pill" href="#{{ $key }}" role="tab"
-                        aria-controls="{{ $key }}" aria-selected="false">{{ ucwords($key) }} ({{ count($section) }})</a>
+                        aria-controls="{{ $key }}" aria-selected="false">{{ ucwords($key) }}</a>
                     @endif
                     @empty
                     <!-- no entries -->
@@ -43,21 +45,21 @@
             <p class="text-left">Beim Klick auf den Spaltenkopf einer Tabelle wird diese sortierbar und
                 durchsuchbar.</p>
             <div class="tab-content" id="toonTabsContent">
-                @forelse ($list as $key => $section)
+                @forelse ($list ?? [] as $key => $section)
                     <div class="tab-pane fade{{ $loop->first ? ' active show' : ''}}" id="{{ $key }}" role="tabpanel" aria-labelledby="{{ $key }}-tab">
-                    <h2>{{ ucwords(strtolower($section['name'] ?? '')) }} ({{ count($section) }})</h2>
+                    <h2>{{ ucwords(strtolower($section['name'] ?? '')) }} ({{ count($section['phase'] ?? []) }})</h2>
                     <span>{{ __('app.data_keys.rarity') }}: {{ $section['rarity'] ?? '' }}</span>
                     <span>{{ __('app.data_keys.gear') }}: {{ $section['gear'] ?? '' }}</span>
                     <span>{{ __('app.data_keys.level') }}: {{ $section['level'] ?? '' }}</span>
                     <span>Empfehlungen von Spielern für Spieler. Unverbindlich!</span>
 
-                    @forelse ($section['phase'] as $phase_key => $phase)
+                    @forelse ($section['phase'] ?? [] as $phase_key => $phase)
                     <hr />
-                    <h3>{{ ucwords(strtolower($phase['name'] ?? 'unknown phase name')) }} ({{ count($phase) }})</h3>
+                    <h3>{{ ucwords(strtolower($phase['name'] ?? 'unknown phase name')) }} ({{ count($phase['squads'] ?? []) }})</h3>
                     <table class="table table-hover toon-table">
                         <!-- table-striped table-dark  -->
 
-                            @forelse ($phase['squads'] as $squad_key => $squad)
+                            @forelse ($phase['squads'] ?? [] as $squad_key => $squad)
                             @if ($loop->first)
                             <thead>
                                 <tr>

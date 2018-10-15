@@ -17,6 +17,22 @@ class Channel extends Model
     protected $guarded = [];
 
     /**
+     * Boot the model.
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        // static::deleting(function ($channel) {
+        //     $channel->threads->each->delete();
+        // });
+
+        static::created(function ($channel) {
+            $channel->update(['slug' => $channel->title]);
+        });
+    }
+
+    /**
      * Get the route key name for Laravel.
      *
      * @return string
@@ -35,4 +51,19 @@ class Channel extends Model
     {
         return $this->hasMany(Thread::class);
     }
+    
+    /**
+     * Set the proper slug attribute.
+     *
+     * @param string $value
+     */
+    public function setSlugAttribute($value)
+    {
+        if (static::whereSlug($slug = str_slug($value))->exists()) {
+            $slug = "{$slug}-{$this->id}";
+        }
+
+        $this->attributes['slug'] = $slug;
+    }
+
 }

@@ -1,11 +1,11 @@
 <template>
     <li class="dropdown" v-if="notifications.length">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <span class="glyphicon glyphicon-bell"></span>
+            <span class="fa fa-bell"></span>
         </a>
 
         <ul class="dropdown-menu">
-            <li v-for="notification in notifications">
+            <li v-for="notification in notifications" :key="notification.id">
                 <a :href="notification.data.link"
                    v-text="notification.data.message"
                    @click="markAsRead(notification)"
