@@ -26,9 +26,8 @@ class UserAvatarController extends Controller
         return response([], 204);
     }
 
-    public function test()
+    public function test($path)
     {
-        $path = "https://galaxy.ovh/kQkHgmVMiQU2RKZURa8RU1uzQmESL22mfuJsi7DP.png";
         $id = explode('/', $path);
         $id = array_pop($id);
         $url = Storage::disk('avatars')->url($id);

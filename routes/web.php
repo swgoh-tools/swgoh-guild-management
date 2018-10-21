@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * |--------------------------------------------------------------------------
  * | Web Routes
@@ -8,16 +10,14 @@
  * | Here is where you can register web routes for your application. These
  * | routes are loaded by the RouteServiceProvider within a group which
  * | contains the "web" middleware group. Now create something great!
- * |
+ * |.
  */
-
 use Illuminate\Support\Facades\Storage;
 
-
-Route::get('/', 'PagesController@home')->name('home');
-Route::get('/home', 'PagesController@home');
-Route::get('/sync', 'PagesController@syncView')->name('sync');
-Route::post('/sync', 'PagesController@sync')->middleware('role:admin|leader|officer|member');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
+Route::get('/sync', 'HomeController@syncIndex')->name('sync');
+Route::post('/sync', 'HomeController@syncStore')->middleware('role:admin|leader|officer|member');
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
@@ -60,17 +60,23 @@ Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->na
 Route::get('api/users', 'Api\UsersController@index');
 Route::post('api/users/{user}/avatar', 'Api\UserAvatarController@store')->middleware('auth')->name('avatar');
 
-Route::prefix('g')->group(function () {
+Route::prefix('g')->group(function (): void {
     Route::get('/', 'PagesController@home')->name('guild');
     Route::get('{guild}', 'PagesController@home');
-    Route::get('{guild}/roster', 'PagesController@roster');
-    Route::get('{guild}/roster', 'PagesController@roster')->name('guild.roster');
-    Route::get('{guild}/squadlist', 'PagesController@squadlist')->name('guild.squadlist');
-    Route::get('{guild}/squads', 'PagesController@squads')->name('guild.squads');
-    Route::post('{guild}/squads', 'PagesController@squads');
-    Route::get('{guild}/info', function (Request $request) {
-        return view('guild.info');
-    })->name('guild.info');
+    // Route::get('{guild}/own/roster', 'PagesController@roster')->name('guild.roster');
+    Route::get('{guild}/own/ships/{chunk?}', 'PagesController@rosterShips')->name('guild.ships');
+    Route::get('{guild}/own/toons/{chunk?}', 'PagesController@rosterToons')->name('guild.toons');
+    Route::get('{guild}/list/zetas', 'PagesController@zetasList')->name('guild.list.zetas');
+    Route::get('{guild}/list/events', 'PagesController@eventsList')->name('guild.list.events');
+    Route::get('{guild}/list/battles', 'PagesController@battlesList')->name('guild.list.battles');
+    Route::get('{guild}/list/squads', 'PagesController@squadsList')->name('guild.list.squads');
+    Route::get('{guild}/team/ships', 'PagesController@squadsShips')->name('guild.team.ships');
+    Route::post('{guild}/team/ships', 'PagesController@squadsShips');
+    Route::get('{guild}/team/toons', 'PagesController@squadsToons')->name('guild.team.toons');
+    Route::post('{guild}/team/toons', 'PagesController@squadsToons');
+    // Route::get('{guild}/info', function () {
+    //     return view('guild.info');
+    // })->name('guild.info');
 
     Route::get('{guild}/{page}', 'PagesController@show');
     Route::get('{guild}/{page}/edit', 'PagesController@showEdit');
@@ -79,7 +85,7 @@ Route::prefix('g')->group(function () {
     Route::get('{guild}/{page}/edit/memos', 'MemosController@index');
     Route::get('{guild}/{page}/edit/pages', 'PagesController@index');
     Route::post('{guild}/{page}/upload', 'Api\UploadController@storeCkeditor')->middleware('auth'); //->middleware('must-be-confirmed');
-    
+
     Route::get('{guild}/{page}/memos', 'MemosController@index');
     Route::post('{guild}/{page}/memos', 'MemosController@store')->middleware('auth'); //->middleware('must-be-confirmed');
     Route::put('{guild}/{page}/memos/{memo}', 'MemosController@update')->middleware('auth');
@@ -89,12 +95,11 @@ Route::prefix('g')->group(function () {
     Route::delete('{guild}/{page}/memos/{memo}/lock', 'MemosController@releaseLock')->name('memos.lock.destroy')->middleware('auth');
 });
 
-Route::prefix('admin')->group(function () {
-    Route::get('users', function () {
-        // Matches The "/admin/users" URL
-    });
-    Route::post('guilds', 'PagesController@storeGuild')->name('guilds')->middleware('admin');
-    Route::get('guilds/create', 'PagesController@createGuild')->name('guilds.create')->middleware('admin');
+Route::prefix('admin')->group(function (): void {
+    // Route::get('users', function (): void {
+    //     // Matches The "/admin/users" URL
+    // });
+    Route::resource('guilds', 'GuildController', ['as' => 'admin'])->middleware('admin');
     Route::post('pages', 'PagesController@store')->name('pages')->middleware(['permission:edit pages']); //->middleware('must-be-confirmed');
     Route::get('pages/create', 'PagesController@create')->name('pages.create')->middleware(['permission:edit pages']);
     Route::post('memos', 'MemosController@storeAdmin')->name('memos')->middleware('admin'); //->middleware('must-be-confirmed');
@@ -114,44 +119,43 @@ Route::prefix('admin')->group(function () {
     Route::post('api/upload', 'Api\UploadController@store')->middleware('auth')->name('upload');
     // Route::get('memos/search', 'SearchController@show')->name('memos.search');
 
-Route::prefix('f')->group(function () {
-    Route::get('a/{filename}', function (String $filename) {
+Route::prefix('f')->group(function (): void {
+    Route::get('a/{filename}', function (string $filename) {
         // return Storage::disk('avatars')->get($filename);
         return response()->file(Storage::disk('avatars')->path($filename));
         // return response()->download(Storage::disk('avatars')->path($filename));
         //$exists = Storage::disk('s3')->exists('file.jpg');
         //$url = Storage::url('file1.jpg');
     })->name('files.avatars');
-    Route::get('d/{filename}', function (String $filename) {
+    Route::get('d/{filename}', function (string $filename) {
         if (Storage::disk('sync')->exists($filename)) {
             return response()->download(Storage::disk('sync')->path($filename));
         }
         abort(404);
     })->where('filename', '(.*)\\.json')->name('files.sync');
 });
-Route::get('api/test', 'Api\UserAvatarController@test');
 
 Route::group(
     [
-        'prefix' => 'permissions',
+        'prefix' => 'admin',
         // 'name' => 'permissions.',
         'namespace' => 'Permissions',
-        'middleware' => ['auth']
+        'middleware' => ['auth'], //fine grained access done via authorizable trait on controllers
     ],
-    function () {
-        Route::resource('users', 'UserController', ['as' => 'permissions']);
-        Route::resource('roles', 'RoleController', ['as' => 'permissions']);
-        Route::resource('posts', 'PostController', ['as' => 'permissions']);
+    function (): void {
+        Route::resource('users', 'UserController', ['as' => 'admin']);
+        Route::resource('roles', 'RoleController', ['as' => 'admin']);
+        Route::resource('posts', 'PostController', ['as' => 'admin']);
     }
 );
 
-Route::post('permissions/posts/{post}/upload', 'Api\UploadController@storeCkeditor')->middleware('auth'); //->middleware('must-be-confirmed');
+Route::post('admin/posts/{post}/upload', 'Api\UploadController@storeCkeditor')->middleware('auth'); //->middleware('must-be-confirmed');
 
-Route::get('testitnow/{param1WithSlash}/{param2}/{param3}', function ($param1MayContainsSlash, $param2, $param3) {
-    $content = "PATH: " . Request::path() . "</br>";
-    $content .= "PARAM1: $param1WithSlash </br>";
+Route::get('testitnow/{param1MayContainSlash}/{param2}/{param3}', function ($param1Slashable, $param2, $param3) {
+    $content = 'PATH: '.Request::path().'</br>';
+    $content .= "PARAM1: $param1Slashable </br>";
     $content .= "PARAM2: $param2 </br>".PHP_EOL;
     $content .= "PARAM3: $param3 </br>".PHP_EOL;
 
     return Response::make($content);
-})->where('param1MayContainsSlash', '(.*(?:%2F:)?.*)');
+})->where('param1MayContainSlash', '(.*(?:%2F:)?.*)');

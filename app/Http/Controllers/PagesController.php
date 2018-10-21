@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -11,22 +13,18 @@ use App\User;
 
 class PagesController extends Controller
 {
-    public function home(Request $request, Guild $guild = null)
+    public function home()
     {
-        $sync_status = [];
-        if ($request->get('sync')) {
-            $client = new SyncClient();
-            $sync_status = $client->sync();
-        }
-
-        return view('home', ['sync_status' => $sync_status]);
+        return view('home');
     }
 
     public function index(Guild $guild, Page $page)
     {
         // return $page->memos()->paginate(20);
         $pages = $guild->pages()->with('memos:id,title,page_id')->get();
+
         return $pages;
+
         return response()->json(['data' => $memos], 200);
         // return $page->memos()->toArray();
     }
@@ -34,8 +32,9 @@ class PagesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Page  $page
-     * @param  \App\Guild  $guild
+     * @param \App\Page  $page
+     * @param \App\Guild $guild
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Guild $guild, Page $page) //, Guild $guild)
@@ -55,8 +54,9 @@ class PagesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Page  $page
-     * @param  \App\Guild  $guild
+     * @param \App\Page  $page
+     * @param \App\Guild $guild
+     *
      * @return \Illuminate\Http\Response
      */
     public function showEdit(Guild $guild, Page $page) //, Guild $guild)
@@ -87,7 +87,8 @@ class PagesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Rules\Recaptcha $recaptcha
+     * @param \App\Rules\Recaptcha $recaptcha
+     *
      * @return \Illuminate\Http\Response
      */
     public function store()
@@ -123,7 +124,7 @@ class PagesController extends Controller
 
         $page->update(request()->validate([
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required',
         ]));
 
         return $page;
@@ -134,6 +135,7 @@ class PagesController extends Controller
      *
      * @param        $channel
      * @param Thread $page
+     *
      * @return mixed
      */
     public function destroy(Guild $guild, Page $page)
@@ -144,7 +146,7 @@ class PagesController extends Controller
             if (request()->wantsJson()) {
                 return response(['Page contains memos. Cannot be deleted.'], 450);
             }
-    
+
             return back()->with('flash', 'Seite kann nicht gelöscht werden, da Inhalte vorhanden!');
         }
 
@@ -162,47 +164,6 @@ class PagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createGuild()
-    {
-        $users = User::all();
-
-        return view('admin.guilds.create', compact('users'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Rules\Recaptcha $recaptcha
-     * @return \Illuminate\Http\Response
-     */
-    public function storeGuild()
-    {
-        request()->validate([
-            'name' => 'required|spamfree',
-            'code' => 'integer',
-            'user_id' => 'required|exists:users,id',
-        ]);
-
-        $guild = Guild::create([
-            // 'user_id' => auth()->id(),
-            'user_id' => request('user_id'),
-            'name' => request('name'),
-            'code' => request('code'),
-        ]);
-
-        if (request()->wantsJson()) {
-            return response($guild, 201);
-        }
-
-        return redirect($guild->path())
-            ->with('flash', 'Your guild has been published!');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function createChannel()
     {
         return view('admin.channels.create');
@@ -211,7 +172,8 @@ class PagesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Rules\Recaptcha $recaptcha
+     * @param \App\Rules\Recaptcha $recaptcha
+     *
      * @return \Illuminate\Http\Response
      */
     public function storeChannel()
@@ -233,41 +195,140 @@ class PagesController extends Controller
             ->with('flash', 'Your channel has been published!');
     }
 
-    public function roster(Request $request)
+    protected function roster(Guild $guild, $list, $filter, $chunk, $title, $route_name)
     {
-        $units = SyncClient::getRoster();
-        if (! $units) {
-            $units = [];
+        $skillKeys = SyncClient::getSkillKeys();
+        $unitKeys = SyncClient::getUnitKeys();
+
+        $units = array_chunk($list[0] ?? [], 33, true);
+
+        $pagination = [];
+        foreach ($units as $chunk_key => $chunk_array) {
+            end($chunk_array);
+            $pagination[$chunk_key]['last'] =  key($chunk_array); //since php 7.3.0: array_key_last()
+            reset($chunk_array);
+            $pagination[$chunk_key]['first'] =  key($chunk_array); //since php 7.3.0: array_key_first()
         }
 
+
         return view('guild.roster', [
-            'title' => 'Gesamtliste',
-            // 'sync_status' => $sync_status, 
-            'units' => $units
+            'title' => $title,
+            'route_name' => 'guild.'.$route_name,
+            'units' => $units[$chunk] ?? $units[0] ?? [],
+            'updated' => $list[1] ?? [],
+            'filter' =>$filter,
+            'pagination' =>$pagination,
+            'skillKeys' =>$skillKeys ?? [],
+            'unitKeys' =>$unitKeys ?? [],
             ]);
     }
 
-    public function squadlist(Request $request)
+    public function rosterShips(Guild $guild, $chunk = 0)
+    {
+        $list = SyncClient::getRoster($guild->user->code ?? null, 2);
+
+        $filter = [
+            // 'pid',
+            'allyCode',
+            'player',
+            // 'id',
+            // 'defId',
+            // 'nameKey',
+            'rarity',
+            'level',
+            // 'xp',
+            // 'gear',
+            // 'equipped',
+            // 'combatType',
+            'skills',
+            // 'mods',
+            'crew',
+            'gp',
+                 ];
+
+        return $this->roster($guild, $list, $filter, $chunk, 'Ships', 'ships');
+    }
+
+    public function rosterToons(Guild $guild, $chunk = 0)
+    {
+        ini_set('zlib.output_compression', 'On');
+
+        $list = SyncClient::getRoster($guild->user->code ?? null, 1);
+
+        $filter = [
+            // 'pid',
+            'allyCode',
+            'player',
+            // 'id',
+            // 'defId',
+            // 'nameKey',
+            'rarity',
+            'level',
+            // 'xp',
+            'gear',
+            'equipped',
+            // 'combatType',
+            'skills',
+            // 'mods',
+            // 'crew',
+            'gp',
+                 ];
+
+                 return $this->roster($guild, $list, $filter, $chunk, 'Toons', 'toons');
+    }
+
+    public function squadsList()
     {
         $list = SyncClient::getSquadList();
-        if (! $list) {
+        if (!$list) {
             $list = [];
         }
 
-        return view('guild.squadlist', [
+        return view('guild.list.squads', [
             'title' => 'Vordefinierte Teams',
-            // 'sync_status' => $sync_status, 
-            'list' => $list
+            // 'sync_status' => $sync_status,
+            'list' => $list,
             ]);
     }
 
-    public function squadspost() {
-        return redirect()->back()->withInput(); 
+    public function eventsList()
+    {
+        $list = SyncClient::getEventList();
+
+        return view('guild.list.events', [
+            'list' => $list ?: [],
+            ]);
     }
 
-    public function squads(Request $request)
+    public function zetasList()
     {
-        $units = SyncClient::getRoster();
+        $list = SyncClient::getZetaList();
+
+        return view('guild.list.zetas', [
+            'list' => $list ?: [],
+            ]);
+    }
+
+    public function squadspost()
+    {
+        return redirect()->back()->withInput();
+    }
+
+    public function squadsToons(Request $request, Guild $guild)
+    {
+        return $this->squads($request, $guild, 1, 'guild.team.ships');
+    }
+
+    public function squadsShips(Request $request, Guild $guild)
+    {
+        return $this->squads($request, $guild, 2, 'guild.team.ships');
+    }
+
+    protected function squads(Request $request, Guild $guild, $combat_type, $route)
+    {
+        $list = SyncClient::getRoster($guild->user->code ?? null, $combat_type);
+        $units = $list[0];
+
         if ($units) {
             try {
                 foreach ($units as $unit_key => $players) {
@@ -284,7 +345,7 @@ class PagesController extends Controller
         } else {
             $units = [];
             $roster = [];
-            $player_data = [];    
+            $player_data = [];
         }
 
         $char_list = [
@@ -294,9 +355,13 @@ class PagesController extends Controller
             't4' => $request->input('t4'),
             't5' => $request->input('t5'),
         ];
-        $select_list = ['t1' => 'Char1', 't2' => 'Char2', 't3' => 'Char3', 't4' => 'Char4', 't5' => 'Char5'];
+        if ($combat_type == 2) {
+            $select_list = ['t1' => 'Ship1', 't2' => 'Ship2', 't3' => 'Ship3', 't4' => 'Ship4', 't5' => 'Ship5'];
+        } else {
+            $select_list = ['t1' => 'Char1', 't2' => 'Char2', 't3' => 'Char3', 't4' => 'Char4', 't5' => 'Char5'];
+        }
         $sort = 'gp';
-        $caption ='Eigene Zusammenstellung';
+        $caption = 'Eigene Zusammenstellung';
         $result = [];
 
         foreach ($char_list as $key => $char) {
@@ -304,7 +369,7 @@ class PagesController extends Controller
                 unset($char_list[$key]);
             }
         }
-        
+
         if (!empty($char_list)) {
             $char_list = array_flip(array_flip($char_list)); // remove duplicates
             $caption = implode(',', $char_list);
@@ -316,86 +381,43 @@ class PagesController extends Controller
                     $result[$player_id]['units'][$char] = '';
                     if (array_key_exists($char, $player_units)) {
                         $result[$player_id]['units'][$char] = $player_units[$char];
-                        $squad_count++;
+                        ++$squad_count;
                         $sort_sum += $player_units[$char][$sort];
                     }
                 }
                 $result[$player_id]['squad_count'] = $squad_count;
                 $result[$player_id]['sort_sum'] = $sort_sum;
             }
-            
-            usort($result, array($this, "cmp_sort_sum_desc"));
+
+            usort($result, [$this, 'cmpSortSumDesc']);
         }
 
-        return view('guild.squads', [
-            // 'sync_status' => \Cache::get('sync_status', []), 
-            'units' => $units, 
-            'result' => $result, 
-            'caption' => $caption, 
-            'char_list' => $char_list, 
-            'roster' => $roster, 
-            'select_list' => $select_list
+        return view(
+            'guild.squads',
+            [
+            // 'sync_status' => \Cache::get('sync_status', []),
+            'route' => $route,
+            'units' => $units,
+            'updated' => $list[1] ?? [],
+            'result' => $result,
+            'caption' => $caption,
+            'char_list' => $char_list,
+            'roster' => $roster,
+            'select_list' => $select_list,
             ]
         ); //$request->all()
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function syncView()
+    protected function cmpSortSumDesc($a, $b)
     {
-        $targets = SyncClient::getTargets();
-        $client = new SyncClient();
-        $time = $client->isRunning();
-        $targets['clear'] = $time ? 'Sync Lock seit ' . date('d.m. H:m:s', $time) : 'Kein Lock File gefunden.';
-        return view('admin.sync', compact('targets'));
+        return $this->cmp($a, $b, 'sort_sum', true);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Rules\Recaptcha $recaptcha
-     * @return \Illuminate\Http\Response
-     */
-    public function sync()
+    protected function cmpUnitKeyAsc($a, $b)
     {
-        request()->validate([
-            'sync' => 'required|string|max:20',
-        ]);
-
-        $client = new SyncClient();
-        if (request('force') && auth()->user()->hasRole('admin')) {
-            $client->ignoreThreshold = true;
-        }
-
-        if (request('sync') == 'clear') {
-            $result = $client->clearLock();
-        } else {
-            $result = $client->sync(request('sync'));
-        }
-
-
-        if (request()->wantsJson()) {
-            return response($result, 201);
-        }
-
-        return back()
-            ->with('flash', $result['error'] ?? '');
+        return $this->cmp($a, $b, 'unit_key', false);
     }
 
-
-    protected function cmp_sort_sum_desc($a, $b)
-    {
-        return $this->cmp($a, $b, "sort_sum", true);
-    }
-    
-    protected function cmp_unit_key_asc($a, $b)
-    {
-        return $this->cmp($a, $b, "unit_key", false);
-    }
-    
     protected function cmp($a, $b, $sort_field, $desc = false)
     {
         $one = $a[$sort_field];
@@ -413,7 +435,7 @@ class PagesController extends Controller
                     break;
             }
         }
-    
+
         return ($desc) ? strcmp($one, $two) * -1 : strcmp($one, $two);
     }
 }

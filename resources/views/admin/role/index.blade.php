@@ -1,4 +1,4 @@
-@extends('permissions.layouts.app')
+@extends('admin.layouts.app')
 
 @section('title', 'Roles & Permissions')
 
@@ -46,17 +46,17 @@
 
 
     @forelse ($roles as $role)
-        {!! Form::model($role, ['method' => 'PUT', 'route' => ['permissions.roles.update',  $role->id ], 'class' => 'm-b']) !!}
+        {!! Form::model($role, ['method' => 'PUT', 'route' => ['admin.roles.update',  $role->id ], 'class' => 'm-b']) !!}
 
         @if($role->name === 'Admin')
-            @include('permissions.shared._permissions', [
+            @include('admin.shared._permissions', [
                           'title' => $role->name .' Permissions',
-                          'closed' => false, 
+                          'closed' => false,
                           'options' => ['disabled'] ])
         @else
-            @include('permissions.shared._permissions', [
+            @include('admin.shared._permissions', [
                           'title' => $role->name .' Permissions',
-                          'closed' => false, 
+                          'closed' => false,
                           'model' => $role ])
             @can('edit_roles')
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

@@ -26,7 +26,7 @@
     @if ($errors->has('roles')) <p class="help-block">{{ $errors->first('roles') }}</p> @endif
 </div>
 
-<!-- Permissions -->
+<!-- admin -->
 @if(isset($user))
-    @include('permissions.shared._permissions', ['closed' => 'true', 'model' => $user ])
+    @include('admin.shared._permissions', ['closed' => 'true', 'model' => $user ])
 @endif

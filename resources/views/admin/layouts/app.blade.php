@@ -13,6 +13,8 @@
     <!-- Styles -->
 {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.3/css/fork-awesome.min.css" integrity="sha256-ZhApazu+kejqTYhMF+1DzNKjIzP7KXu6AzyXcC1gMus=" crossorigin="anonymous">
 
     <style>
         .result-set { margin-top: 1em }
@@ -50,7 +52,7 @@
                         @if (Auth::check())
                             @can('view_users')
                                 <li class="{{ Request::is('users*') ? 'active' : '' }}">
-                                    <a href="{{ route('permissions.users.index') }}">
+                                    <a href="{{ route('admin.users.index') }}">
                                         <span class="text-info fa fa-user"></span> Users
                                     </a>
                                 </li>
@@ -58,7 +60,7 @@
 
                             @can('view_posts')
                                 <li class="{{ Request::is('posts*') ? 'active' : '' }}">
-                                    <a href="{{ route('permissions.posts.index') }}">
+                                    <a href="{{ route('admin.posts.index') }}">
                                         <span class="text-success fa fa-file-text-o"></span> Posts
                                     </a>
                                 </li>
@@ -76,7 +78,7 @@
 
                             @can('view_roles')
                             <li class="{{ Request::is('roles*') ? 'active' : '' }}">
-                                <a href="{{ route('permissions.roles.index') }}">
+                                <a href="{{ route('admin.roles.index') }}">
                                     <span class="text-danger fa fa-lock"></span> Roles
                                 </a>
                             </li>

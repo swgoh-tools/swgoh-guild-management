@@ -18,7 +18,7 @@
 
     <!-- Short description of the document (limit to 150 characters) -->
     <meta name="description" content="{{ __('app.description', ['name' => $page_guild ?? '']) }}">
-    <meta name="author" content="VKSG">
+    <meta name="author" content="{{ config('swgoh.CONTACT.USER_NAME') }}">
 
     <!-- <meta property="fb:app_id" content="123456789"> -->
     <meta property="og:url" content="{{ url()->current() }}">
@@ -28,7 +28,7 @@
     <meta property="og:description" content="{{ __('app.description', ['name' => $page_guild ?? '']) }}">
     <meta property="og:site_name" content="{{ config('app.name') }}">
     <meta property="og:locale" content="{{ $page_locale ?? config('app.locale') }}">
-    <meta property="article:author" content="VKSG">
+    <meta property="article:author" content="{{ config('swgoh.CONTACT.USER_NAME') }}">
 
     <meta name="twitter:card" content="summary">
     <!-- <meta name="twitter:site" content="@site_account"> -->
@@ -52,7 +52,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.3/css/fork-awesome.min.css" integrity="sha256-ZhApazu+kejqTYhMF+1DzNKjIzP7KXu6AzyXcC1gMus=" crossorigin="anonymous">
 
     @stack('styles')
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!-- Scripts -->
     <script>
@@ -83,7 +83,16 @@
         <footer>
             <nav class="navbar fixed-bottom justify-content-center navbar-expand-lg navbar-dark bg-dark">
                 <span class="navbar-text mr-auto">
-                    2018<small>{{config('app.version') ? ' v'.config('app.version') : '' }}</small>
+                    {{ config('app.year') }}
+                    <small>{{ config('app.version') ? ' v'.config('app.version') : '' }}</small>
+                    <small>
+                        (
+                        <a class="text-lowercase" href="{{ url()->current() }}?lang=en">{{ ($page_locale ?? config('app.locale')) == 'en' ? ' .:en:. ' : 'en' }}</a>
+                        |
+                        <a class="text-lowercase" href="{{ url()->current() }}?lang=de">{{ ($page_locale ?? config('app.locale')) == 'de' ? ' .:de:. ' : 'de' }}</a>
+                        )
+                        {{ '>> '.$page_guild ?? '' }}
+                    </small>
                 </span>
                 <div class="navbar-nav" style="flex-direction: row;">
                     <span class="navbar-brand mx-1 mx-lg-0">{{ config('swgoh.CONTACT.USER_NAME') }}</span>
@@ -92,15 +101,17 @@
                     <a class="nav-link text-lowercase" href="{{ route('home') }}">{{ __('Home') }}</a>
                 </div>
                 <span class="navbar-text ml-auto">
-                    Not affiliated with EA, Capital Games, Disney, Lucasfilm or the like.
+                    <small>{{ __('app.disclaimer') }}</small>
                 </span>
             </nav>
         </footer>
         <flash message="{{ session('flash') }}"></flash>
     </div>
     <!-- Optional JavaScript -->
-    @stack('scripts')
+    @section('scripts-app')
     <script src="{{ asset('js/app.js') }}"></script>
+    @show
+    @stack('scripts')
 </body>
 
 </html>

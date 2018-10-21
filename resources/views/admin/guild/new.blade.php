@@ -1,4 +1,4 @@
-@extends('permissions.layouts.app')
+@extends('admin.layouts.app')
 
 @section('title', 'Create')
 
@@ -9,14 +9,14 @@
             <h3>Create</h3>
         </div>
         <div class="col-md-7 page-action text-right">
-            <a href="{{ route('permissions.posts.index') }}" class="btn btn-secondary btn-sm"> <i class="fa fa-arrow-left"></i> Back</a>
+            <a href="{{ route('admin.users.index') }}" class="btn btn-secondary btn-sm"> <i class="fa fa-arrow-left"></i> Back</a>
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-12">
-            {!! Form::open(['route' => ['permissions.posts.store'] ]) !!}
-                @include('permissions.post._form')
+            {!! Form::open(['route' => ['admin.users.store'] ]) !!}
+                @include('admin.user._form')
                 <!-- Submit Form Button -->
                 {!! Form::submit('Create', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}

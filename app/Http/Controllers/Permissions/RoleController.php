@@ -22,7 +22,7 @@ class RoleController extends Controller
         $roles = Role::all();
         $permissions = Permission::all();
 
-        return view('permissions.role.index', compact('roles', 'permissions'));
+        return view('admin.role.index', compact('roles', 'permissions'));
     }
 
     /**
@@ -55,7 +55,7 @@ class RoleController extends Controller
             // admin role has everything
             if($role->name === 'Admin') {
                 $role->syncPermissions(Permission::all());
-                return redirect()->route('permissions.roles.index');
+                return redirect()->route('admin.roles.index');
             }
 
             $permissions = $request->get('permissions', []);
@@ -67,6 +67,6 @@ class RoleController extends Controller
             flash()->error( 'Role with id '. $id .' note found.');
         }
 
-        return redirect()->route('permissions.roles.index');
+        return redirect()->route('admin.roles.index');
     }
 }

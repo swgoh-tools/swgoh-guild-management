@@ -53,8 +53,8 @@ return [
             'PASSWORD' => env('API_SWGOH_HELP_PASSWORD'),
             'SERVER' => env('API_SWGOH_HELP_SERVER', 'https://api.swgoh.help/'),
             'AUTH_SERVER' => env('API_SWGOH_HELP_AUTH_SERVER', 'https://api.swgoh.help/auth/signin'),
-            'CLIENT_ID' => env('API_SWGOH_HELP_CLIENT_ID', 'abc'),
-            'CLIENT_SECRET' => env('API_SWGOH_HELP_CLIENT_SECRET', '123'),
+            'CLIENT_ID' => env('API_SWGOH_HELP_CLIENT_ID'),
+            'CLIENT_SECRET' => env('API_SWGOH_HELP_CLIENT_SECRET'),
         ],
     ],
 

@@ -53,6 +53,16 @@ class Guild extends Model
     }
 
     /**
+     * A guild belongs to a user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * A guild has multiple pages.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Permissions;
+namespace App\Http\Controllers;
 
+use App\Guild;
 use App\User;
-use App\Role;
 use App\Permission;
 use App\Authorizable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+class GuildController extends Controller
 {
     use Authorizable;
 
@@ -21,9 +21,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $result = User::latest()->paginate();
+        $result = Guild::latest()->paginate();
 
-        return view('admin.user.index', compact('result'));
+        return view('admin.guild.index', compact('result'));
     }
 
     /**
@@ -33,9 +33,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('name', 'id');
+        $users = User::pluck('name', 'id');
 
-        return view('admin.user.new', compact('roles'));
+        return view('admin.guild.create', compact('users'));
     }
 
     /**
@@ -46,28 +46,39 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'bail|required|min:2',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'roles' => 'required|min:1'
+        request()->validate([
+            'name' => 'required|spamfree',
+            'code' => 'integer',
+            'user_id' => 'required|exists:users,id',
         ]);
 
-        // hash password
-        $request->merge(['password' => bcrypt($request->get('password'))]);
+        $guild = Guild::create([
+            // 'user_id' => auth()->id(),
+            'user_id' => request('user_id'),
+            'name' => request('name'),
+            'code' => request('code'),
+        ]);
 
-        // Create the user
-        if ( $user = User::create($request->except('roles', 'permissions')) ) {
+        if ($guild) {
+            flash('Your guild has been published!');
 
-            $this->syncPermissions($request, $user);
+            if (request()->wantsJson()) {
+                return response($guild, 201);
+            }
 
-            flash('User has been created.');
+            return redirect($guild->path());
 
         } else {
-            flash()->error('Unable to create user.');
+            flash()->error('Unable to create guild!');
+
+            if (request()->wantsJson()) {
+                return response([], 450);
+            }
+
         }
 
-        return redirect()->route('admin.users.index');
+
+        return redirect()->route('admin.guild.index');
     }
 
     /**

@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<ruleset name="PHP_CodeSniffer">
+    <description>The coding standard for swgoh-tools local environment.</description>
+
+    <!--
+    If no files or directories are specified on the command line
+    your custom standard can specify what files should be checked
+    instead.
+    Note that specifying any file or directory path
+    on the command line will ignore all file tags.
+    -->
+    <file>app</file>
+    <file>config</file>
+    <file>public</file>
+    <file>resources</file>
+    <file>routes</file>
+    <file>tests</file>
+
+    <!--
+       You can hard-code ignore patterns directly into your
+       custom standard so you don't have to specify the
+       patterns on the command line.
+    -->
+    <exclude-pattern>*/database/*</exclude-pattern>
+    <exclude-pattern>*/cache/*</exclude-pattern>
+    <exclude-pattern>*/*.js</exclude-pattern>
+    <exclude-pattern>*/*.css</exclude-pattern>
+    <exclude-pattern>*/*.xml</exclude-pattern>
+    <exclude-pattern>*/*.blade.php</exclude-pattern>
+    <exclude-pattern>*/autoload.php</exclude-pattern>
+    <exclude-pattern>*/storage/*</exclude-pattern>
+    <exclude-pattern>*/docs/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/migrations/*</exclude-pattern>
+
+    <!--
+       You can hard-code command line values into your custom standard.
+       Note that this does not work for the command line values:
+       -v[v][v], -l, -d, -sniffs and -standard
+       The following tags are equivalent to the command line arguments:
+       -p
+    -->
+    <arg name="report" value="summary"/>
+    <arg name="colors"/>
+    <arg value="p"/>
+    <!-- <arg name="basepath" value="."/>
+    <arg name="colors" />
+    <arg name="parallel" value="75" />
+    <arg value="np"/> -->
+
+    <!--
+       You can hard-code custom php.ini settings into your custom standard.
+       The following tag sets the memory limit to 128M.
+    -->
+    <ini name="memory_limit" value="128M"/>
+
+    <!--
+       Include all sniffs in the PSR2 standard. Note that the
+       path to the standard does not have to be specified as the
+       PSR2 standard exists inside the PHP_CodeSniffer install
+       directory.
+    -->
+    <rule ref="PSR2"/>
+    <!-- <rule ref="PSR1"/> -->
+    <!-- <rule ref="squiz"/> -->
+
+    <!-- Include the whole Generic standard -->
+    <rule ref="Generic">
+        <!-- conflicting with PSR2 -->
+        <exclude name="Generic.Formatting.SpaceAfterNot" />
+        <exclude name="Generic.Arrays.ArrayIndent" />
+        <!-- errors -->
+        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent" />
+        <exclude name="Generic.Classes.OpeningBraceSameLine" />
+        <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
+        <exclude name="Generic.PHP.ClosingPHPTag" />
+        <exclude name="Generic.PHP.UpperCaseConstant" />
+        <exclude name="Generic.Files.EndFileNoNewline" />
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax" />
+        <exclude name="Generic.Files.LineEndings" />
+        <exclude name="Generic.Files.LowercasedFilename" />
+        <exclude name="Generic.Commenting.DocComment" />
+        <!-- warings -->
+        <exclude name="Generic.Formatting.MultipleStatementAlignment" />
+        <!-- alternative in PSR2 exists -->
+        <exclude name="Generic.Files.EndFileNewline" />
+        <exclude name="Generic.Files.LineLength" />
+    </rule>
+
+    <!-- Use black list (see above) instead of white list for generics
+    <rule ref="Generic.PHP.DeprecatedFunctions"/>
+    <rule ref="Generic.PHP.LowerCaseKeyword"/>
+    <rule ref="Generic.Formatting.SpaceAfterCast"/>
+    <rule ref="Generic.Formatting.SpaceAfterNot"/>
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+    <rule ref="Generic.Commenting.Todo"/>
+    <rule ref="Generic.ControlStructures.InlineControlStructure"/>
+    <rule ref="Generic.Formatting.DisallowMultipleStatements"/>
+    <rule ref="Generic.NamingConventions.ConstructorName"/>
+    <rule ref="Generic.Strings.UnnecessaryStringConcat"/>
+    -->
+    <!-- Include some sniffs from other standards that don't conflict with PEAR -->
+    <rule ref="Zend.Files.ClosingTag"/>
+
+    <!-- <rule ref="Generic.Files.LineEndings">
+        <properties>
+            <property name="eolChar" value="\r\n" />
+        </properties>
+    </rule> -->
+    <!-- Ban some functions -->
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="forbiddenFunctions" type="array">
+                <element key="sizeof" value="count"/>
+                <element key="delete" value="unset"/>
+                <element key="print" value="echo"/>
+                <element key="is_null" value="null"/>
+                <element key="create_function" value="null"/>
+            </property>
+        </properties>
+    </rule>
+
+</ruleset>

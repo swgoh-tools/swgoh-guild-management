@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <!-- <li class="nav-item active"> -->
-                <!-- <a class="nav-link" href="{{ route('guild.info', $guild) }}">Infos <span class="sr-only">(current)</span></a> -->
+                <!-- <a class="nav-link" href=">Infos <span class="sr-only">(current)</span></a> -->
             <!-- </li> -->
             @foreach ($pages as $page)
             <li class="nav-item">
@@ -20,26 +20,36 @@
                         <a class="nav-link" href="{{ route('pages.create') }}"><i class="fa fa-plus"></i></a>
                     </li>
             @endcan
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="{{ route('guild.squads', $guild) }}">{{ __('Team Search') }}</a>
-            </li> -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     {{ __('Team Search') }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}">{{ __('Team Search') }}</a>
-                <!-- <div class="dropdown-divider"></div> -->
-                    <a class="dropdown-item" href="{{ route('guild.squadlist', $guild) }}">{{ __('Predefined Teams') }}</a>
+                    <a class="dropdown-item" href="{{ route('guild.team.toons', $guild) }}">{{ __('Team Search') }} - {{ __('Toons') }}</a>
+                    <a class="dropdown-item" href="{{ route('guild.team.ships', $guild) }}">{{ __('Team Search') }} - {{ __('Ships') }}</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('guild.list.squads', $guild) }}">{{ __('Predefined Teams') }}</a>
                     <!-- <div class="dropdown-item">Beispiele</div> -->
-                    <!-- <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}?t1=ADMIRALACKBAR&t2=BB8&t3=COMMANDERLUKESKYWALKER&t4=HERMITYODA&t5=EZRABRIDGERS3">Ezradicator</a> -->
-                    <!-- <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}?t1=VADER&t2=WAMPA&t3=GRANDADMIRALTHRAWN&t4=COMMANDERLUKESKYWALKER&t5=BB8">Wampanader</a> -->
-                    <!-- <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}?t1=ADMIRALACKBAR&t2=COMMANDERLUKESKYWALKER&t3=BB8&t4=GRANDADMIRALTHRAWN&t5=ASAJVENTRESS">ABC</a> -->
-                    <!-- <a class="dropdown-item" href="{{ route('guild.squads', $guild) }}?t1=ADMIRALACKBAR&t2=BB8&t3=COMMANDERLUKESKYWALKER&t4=HERMITYODA&t5=YOUNGHAN">YOLO
+                    <!-- <a class="dropdown-item" href="{{ route('guild.team.toons', $guild) }}?t1=ADMIRALACKBAR&t2=BB8&t3=COMMANDERLUKESKYWALKER&t4=HERMITYODA&t5=EZRABRIDGERS3">Ezradicator</a> -->
+                    <!-- <a class="dropdown-item" href="{{ route('guild.team.toons', $guild) }}?t1=VADER&t2=WAMPA&t3=GRANDADMIRALTHRAWN&t4=COMMANDERLUKESKYWALKER&t5=BB8">Wampanader</a> -->
+                    <!-- <a class="dropdown-item" href="{{ route('guild.team.toons', $guild) }}?t1=ADMIRALACKBAR&t2=COMMANDERLUKESKYWALKER&t3=BB8&t4=GRANDADMIRALTHRAWN&t5=ASAJVENTRESS">ABC</a> -->
+                    <!-- <a class="dropdown-item" href="{{ route('guild.team.toons', $guild) }}?t1=ADMIRALACKBAR&t2=BB8&t3=COMMANDERLUKESKYWALKER&t4=HERMITYODA&t5=YOUNGHAN">YOLO
                         SOLO</a> -->
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('guild.roster', $guild) }}">{{ __('Full Roster') }} ({{ __('big data') }}!)</a>
+                    <a class="dropdown-item" href="{{ route('guild.toons', $guild) }}">{{ __('Full Roster') }} - {{ __('Toons') }} ({{ __('big data') }}!)</a>
+                    <a class="dropdown-item" href="{{ route('guild.ships', $guild) }}">{{ __('Full Roster') }} - {{ __('Ships') }} ({{ __('big data') }}!)</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    {{ __('Game Data') }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('guild.list.zetas', $guild) }}">{{ __('Zeta List') }}</a>
+                    <!-- <a class="dropdown-item" href="{{ route('guild.list.battles', $guild) }}">{{ __('Battle List') }}</a> -->
+                    <a class="dropdown-item" href="{{ route('guild.list.events', $guild) }}">{{ __('Event List') }}</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -80,7 +90,7 @@
                         <a class="dropdown-item" href="{{ route('profile', Auth::user()) }}">{{ __('My Profile') }}</a>
                         @if (Auth::user()->isAdmin())
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('guilds.create') }}">{{ __('Create a New Guild') }}</a>
+                        <a class="dropdown-item" href="{{ route('admin.guilds.create') }}">{{ __('Create a New Guild') }}</a>
                         <a class="dropdown-item" href="{{ route('pages.create') }}">{{ __('Create a New Page') }}</a>
                         <a class="dropdown-item" href="{{ route('memos.create') }}">{{ __('Create a New Memo') }}</a>
                         <a class="dropdown-item" href="{{ route('channels.create') }}">{{ __('Create a New Channel') }}</a>

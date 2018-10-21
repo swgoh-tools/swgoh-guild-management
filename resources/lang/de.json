@@ -31,11 +31,13 @@
     "Forgot Your Password?": "Passwort vergessen?",
     "Forum": "Forum",
     "Full Roster": "Gesamtliste",
+    "Game Data": "Spieldaten",
     "Guild Code": "Gildencode",
     "Have something to say?": "Bitte Nachricht eingeben.",
     "Home": "Startseite",
     "if known": "sofern bekannt",
     "If you did not receive the email": "Falls Du die E-Mail nicht erhalten hast",
+    "Last updated": "Zuletzt aktualisiert",
     "Login": "Anmelden",
     "Logout": "Abmelden",
     "May the force be with you.": "Möge die Macht mit Dir sein.",
@@ -59,6 +61,7 @@
     "Search": "Suche",
     "Send Password Reset Link": "Link zum Zurücksetzen des Passworts versenden",
     "Server Time": "Serverzeit",
+    "Ships": "Schiffe",
     "Size": "Größe",
     "Slug": "Slug",
     "State": "Status",
@@ -69,6 +72,7 @@
     "Thanks and welcome!": "Danke und herzlich willkommen!",
     "Time": "Zeit",
     "Title": "Titel",
+    "Toons": "Charaktere",
     "Unanswered Threads": "Unbeantwortete Themen",
     "Upload a New File": "Neue Datei hochladen",
     "User Profil": "Benutzerprofil",
@@ -89,6 +93,9 @@
     "This thread was published": "Dieses Thema wurde veröffentlicht",
     "by": "von",
     "and currently has": "und hat zur Zeit",
-    
+    "Zeta List": "Zeta-Liste",
+    "Event List": "Event-Liste",
+    "Battle List": "Kampf-Liste",
+
     "x-last-without-comma": ""
 }

@@ -20,7 +20,7 @@ class PostController extends Controller
     public function index()
     {
         $result = Post::latest()->with('user')->paginate();
-        return view('permissions.post.index', compact('result'));
+        return view('admin.post.index', compact('result'));
     }
 
     /**
@@ -30,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('permissions.post.new');
+        return view('admin.post.new');
     }
 
     /**
@@ -74,7 +74,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($post->id);
 
-        return view('permissions.post.edit', compact('post'));
+        return view('admin.post.edit', compact('post'));
     }
 
     /**
@@ -103,7 +103,7 @@ class PostController extends Controller
 
         flash()->success('Post has been updated.');
 
-        return redirect()->route('permissions.posts.index');
+        return redirect()->route('admin.posts.index');
     }
 
     /**
@@ -126,6 +126,6 @@ class PostController extends Controller
 
         flash()->success('Post has been deleted.');
 
-        return redirect()->route('permissions.posts.index');
+        return redirect()->route('admin.posts.index');
     }
 }

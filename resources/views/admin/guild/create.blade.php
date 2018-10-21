@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Create a New Guild') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('guilds') }}">
+                        <form method="POST" action="{{ route('admin.guilds.store') }}">
                             @csrf
 
                             <div class="form-group">
@@ -16,9 +16,9 @@
                                 <select name="user_id" id="user_id" class="form-control" required>
                                     <option value="">-- {{ __('Choose One') }} --</option>
 
-                                    @foreach ($users as $user)
-                                        <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
-                                            {{ $user->name }}
+                                    @foreach ($users as $id => $user)
+                                        <option value="{{ $id }}" {{ old('user_id') == $id ? 'selected' : '' }}>
+                                            {{ $user }}
                                         </option>
                                     @endforeach
                                 </select>

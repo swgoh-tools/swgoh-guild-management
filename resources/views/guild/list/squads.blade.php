@@ -81,7 +81,7 @@
                                 <td>{{ $squad_key }}</td>
                                 <td>
                                 @if(isset($squad['team']) && is_array($squad['team']) && in_array(count($squad['team']), [1,2,3,4,5]))
-                                <a class="text-link" href="{{ route('guild.squads', $guild) }}?t1={{ explode(':', $squad['team'][0] ?? '')[0] }}&t2={{ explode(':', $squad['team'][1] ?? '')[0] }}&t3={{ explode(':', $squad['team'][2] ?? '')[0] }}&t4={{ explode(':', $squad['team'][3] ?? '')[0] }}&t5={{ explode(':', $squad['team'][4] ?? '')[0] }}">list</a>
+                                <a class="text-link" href="{{ route('guild.team.toons', $guild) }}?t1={{ explode(':', $squad['team'][0] ?? '')[0] }}&t2={{ explode(':', $squad['team'][1] ?? '')[0] }}&t3={{ explode(':', $squad['team'][2] ?? '')[0] }}&t4={{ explode(':', $squad['team'][3] ?? '')[0] }}&t5={{ explode(':', $squad['team'][4] ?? '')[0] }}">list</a>
                                 @else
                                 -
                                 @endif

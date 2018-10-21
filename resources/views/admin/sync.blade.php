@@ -8,9 +8,20 @@
         </div>
         <div class="col-md-7 page-action text-right">
             <!-- @can('add_users')
-                <a href="{{ route('permissions.users.create') }}" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> {{ __('Create') }}</a>
+                <a href="{{ route('admin.users.create') }}" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> {{ __('Create') }}</a>
             @endcan -->
         </div>
+    </div>
+
+    <div class="row">
+        <p>In der folgenden Liste sind die Datenquellen für diese Seite gelistet. Der Status ist jeweils das Ergebnis der letzten Aktualisierung.</p>
+        <p>Jeder registrierte Benutzer kann grundsätzlich eine Aktualisierung für die verschiedenen Daten anstoßen.
+            Um Missbrauch und eine unnötige Belastung der Quellserver zu vermeiden, sind verschiedene Abklingzeiten hinterlegt.
+            Bspw. werden die meisten Daten nur neu angefordert, wenn der bestehende Datenbestand älter als 1 Tag ist.</p>
+        <p>Gelegentlich werden bei der Synchronisation Fehler auftreten.
+            Dies kann etwa daraus resultieren, dass der angefragte Server nicht verfügbar ist.
+            Auch kommt es vor, dass auf der Gegenseite die Struktur der Daten geändert wird, was zu Fehlern bei der Verarbeitung führt und Anpassungen auf dieser Seite erfordert.</p>
+        <p>Auffälligkeiten gern melden.</p>
     </div>
 
     <div class="row">
@@ -24,7 +35,7 @@
                 <th>{{ __('State') }}</th>
                 <th>{{ __('Details') }}</th>
                 @hasanyrole('admin|leader|officer|member')
-                <th class="text-center">{{ __('Actions') }}</th>
+                <th class="text-center" style="min-width:4.5rem;">{{ __('Actions') }}</th>
                 @endhasanyrole
             </tr>
             </thead>
@@ -32,7 +43,7 @@
             @foreach($targets as $key => $description)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $description }}</td>
+                    <td>{{ $description ?: $key }}</td>
                         @if( ! isset($sync_status[$key]) || ! is_array($sync_status[$key]))
                             <td>-</td><td>-</td><td>-</td><td>{{ $sync_status[$key] ?? '-' }}</td>
                         @else
@@ -86,7 +97,7 @@
             <li class="">{{ date("r", time()) }}</li>
             </ul>
         </div>
-        
+
         <div class="text-left">
         @role('admin')
             @if(isset($sync_status['error']) && is_array($sync_status['error']))
