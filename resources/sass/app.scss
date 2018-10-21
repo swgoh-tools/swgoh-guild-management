@@ -1,0 +1,80 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// @import 'bs4/mixins/breakpoints';
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// @import 'algolia';
+@import 'sidebar';
+
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.table th, .table td {
+	padding: 0.3rem 0.15rem;
+}
+
+td {
+  font-family: monospace;
+}
+
+.table-sm {
+  font-size: 0.7rem;
+}
+
+.table-sm .btn-sm {
+  padding: 0.25rem 0.1rem;
+  font-size: 0.7rem;
+  line-height: 1.0;
+  border-radius: 0.2rem;
+}
+
+header,
+footer {
+  min-height: 4rem;
+}
+
+#toonTabs .nav-link {
+  padding: 0rem 0.5rem;
+}
+
+.mr-1 {
+  margin-right: 1em;
+}
+
+.ml-a {
+  margin-left: auto;
+}
+
+/* [v-cloak] {
+  display: none;
+} */
+
+.ais-highlight>em {
+  background: yellow;
+  font-style: normal;
+}
+div.ais-index {
+  display: flex;
+  width: 100%;
+}
+
+.activity-body {
+  max-height: 250px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.memo-body img {
+  max-width: 100%;
+  height: auto;
+}
