@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Helper\SyncClient;
 
-class GuildController extends Controller
+class PlayerController extends Controller
 {
     use Authorizable;
 
@@ -20,36 +20,12 @@ class GuildController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function home(Guild $guild)
+    public function home($player)
     {
-        $info = SyncClient::getGuildInfo($guild->user->code ?? null);
-        $members = SyncClient::getGuildMembers($guild->user->code ?? null);
-        $playerTitleKeys = SyncClient::getDataMap('playerTitleList');
+        $info = SyncClient::getPlayer($player ?? null);
 
-        $filter = [
-            // 'pid',
-            'allyCode',
-            'player',
-            // 'id',
-            // 'defId',
-            // 'nameKey',
-            'rarity',
-            'level',
-            // 'xp',
-            // 'gear',
-            // 'equipped',
-            // 'combatType',
-            'skills',
-            // 'mods',
-            'crew',
-            'gp',
-                 ];
-
-        return view('guild.home', [
+        return view('player.home', [
             'info' => $info[0] ?? [],
-            'members' => $members[0] ?? [],
-            'filter' =>$filter,
-            'playerTitleKeys' =>$playerTitleKeys ?? [],
         ]);
     }
 

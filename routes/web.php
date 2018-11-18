@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-/**
+/*
  * |--------------------------------------------------------------------------
  * | Web Routes
  * |--------------------------------------------------------------------------
@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\Storage;
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index');
-Route::get('/sync', 'HomeController@syncIndex')->name('sync');
-Route::post('/sync', 'HomeController@syncStore')->middleware('role:admin|leader|officer|member');
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
@@ -60,9 +58,13 @@ Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->na
 Route::get('api/users', 'Api\UsersController@index');
 Route::post('api/users/{user}/avatar', 'Api\UserAvatarController@store')->middleware('auth')->name('avatar');
 
+Route::get('sync', 'HomeController@syncIndex')->name('sync');
+Route::post('sync', 'HomeController@syncStore')->middleware('role:admin|leader|officer|member');
 Route::prefix('g')->group(function (): void {
     Route::get('/', 'PagesController@home')->name('guild');
-    Route::get('{guild}', 'PagesController@home');
+    Route::get('{guild}', 'GuildController@home')->name('guild.home');
+    Route::get('{guild}/sync', 'HomeController@syncIndex')->name('sync2');
+    Route::post('{guild}/sync', 'HomeController@syncStore')->middleware('role:admin|leader|officer|member');
     // Route::get('{guild}/own/roster', 'PagesController@roster')->name('guild.roster');
     Route::get('{guild}/own/ships/{chunk?}', 'PagesController@rosterShips')->name('guild.ships');
     Route::get('{guild}/own/toons/{chunk?}', 'PagesController@rosterToons')->name('guild.toons');
@@ -93,6 +95,10 @@ Route::prefix('g')->group(function (): void {
     Route::put('{guild}/{page}/memos/{memo}/relocate', 'MemosController@relocate')->middleware('auth');
     Route::post('{guild}/{page}/memos/{memo}/lock', 'MemosController@getLock')->name('memos.lock.store')->middleware('auth');
     Route::delete('{guild}/{page}/memos/{memo}/lock', 'MemosController@releaseLock')->name('memos.lock.destroy')->middleware('auth');
+});
+Route::prefix('p')->group(function (): void {
+    Route::get('/', 'PagesController@home')->name('player');
+    Route::get('{player}', 'PlayerController@home')->name('player.home');
 });
 
 Route::prefix('admin')->group(function (): void {

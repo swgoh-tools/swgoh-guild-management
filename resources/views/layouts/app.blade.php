@@ -73,41 +73,38 @@
 <body>
     <div id="app">
         <header>
-            @include('layouts.nav')
+            @include('layouts._nav')
         </header>
 
-        @section('content')
+        @if($cols ?? 0 == 2)
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
+                @section('sidebar')
 
-        @show
+                @show
+                </div>
+
+                <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-3 bd-content" role="main">
+                @section('content')
+
+                @show
+                </main>
+            </div>
+        </div>
+        @else
+                @section('content')
+
+                @show
+        @endif
 
         <footer>
-            <nav class="navbar fixed-bottom justify-content-center navbar-expand-lg navbar-dark bg-dark">
-                <span class="navbar-text mr-auto">
-                    {{ config('app.year') }}
-                    <small>{{ config('app.version') ? ' v'.config('app.version') : '' }}</small>
-                    <small>
-                        (
-                        <a class="text-lowercase" href="{{ url()->current() }}?lang=en">{{ ($page_locale ?? config('app.locale')) == 'en' ? ' .:en:. ' : 'en' }}</a>
-                        |
-                        <a class="text-lowercase" href="{{ url()->current() }}?lang=de">{{ ($page_locale ?? config('app.locale')) == 'de' ? ' .:de:. ' : 'de' }}</a>
-                        )
-                        {{ '>> '.$page_guild ?? '' }}
-                    </small>
-                </span>
-                <div class="navbar-nav" style="flex-direction: row;">
-                    <span class="navbar-brand mx-1 mx-lg-0">{{ config('swgoh.CONTACT.USER_NAME') }}</span>
-                    <a class="nav-link text-lowercase" href="{{ route('contact') }}">{{ __('Contact') }}</a>
-                    <span class="nav-link">|</span>
-                    <a class="nav-link text-lowercase" href="{{ route('home') }}">{{ __('Home') }}</a>
-                </div>
-                <span class="navbar-text ml-auto">
-                    <small>{{ __('app.disclaimer') }}</small>
-                </span>
-            </nav>
+            @include('layouts._footer')
         </footer>
         <flash message="{{ session('flash') }}"></flash>
     </div>
     <!-- Optional JavaScript -->
+    @stack('scripts-pre')
     @section('scripts-app')
     <script src="{{ asset('js/app.js') }}"></script>
     @show

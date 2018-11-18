@@ -25,7 +25,7 @@
             <p class="text-left">{{ __('app.zetas.intro') }}</p>
             <p class="text-left">{{ __('app.zetas.description') }}</p>
             <p class="text-left">{{ __('app.zetas.legend') }}</p>
-            <!-- <p class="text-left">{{ __('app.datatables.click_head') }}</p> -->
+            <!-- <p class="text-left">{{ __('app.howto.click_head') }}</p> -->
                     <table class="table table-hover my-data-table">
                         <!-- table-striped table-dark  -->
 

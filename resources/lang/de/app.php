@@ -14,6 +14,7 @@ return [
     */
 
     'description' => 'SWGoH-Infoseite der Gilde :name. Gildenregeln, Spiel-Infos und Datenauswertungen zur Analyse der Charaktere und Trupp-Entwicklung.',
+    'disclaimer_community' => 'Empfehlungen von Spielern für Spieler. Unverbindlich!',
     'created_by' => 'Erstellt von :name',
     'comments' => 'Kommentar|Kommentare',
     'replies' => 'Antwort|Antworten',
@@ -27,8 +28,10 @@ return [
         'pages'  => 'Registrierte Benutzer mit zusätzlichen Berechtigungen (Anführer, Offiziere) haben die Möglicheit, Gildenseiten anzulegen, zu bearbeiten und zu löschen.',
         'tools'   => 'Es werden Werkzeuge zur Analyse der Charaktere und Trupp-Entwicklung der Gildenmitglieder bereitgestellt. Genutzt werden großartige Datenschnittstellen wie swgoh.gg und swgoh.help. Gildenspezifische Datenabfragen erfordern eine korrekte Benutzer/Gilden-Konfiguration. Für Hilfe an einen Admin wenden.',
     ],
-    'datatables' => [
+    'howto' => [
         'click_head' => 'Beim Klick auf den Spaltenkopf einer Tabelle wird diese sortierbar und durchsuchbar.',
+        'new_tab' => 'Die Links öffenen standardmäßig im gleichen Fenster. Wer einen neuen Tab öffen möchte, kann die Standardfunktionen des Browsers nutzen.
+            Z.B. Klick mit der mittleren Maustaste/Mausrad, Klick mit der linken Maustaste bei gedrückter STRG-Taste, Rechtsklick + in neuem Tab öffnen.',
     ],
     'events' => [
         'title' => 'Events',
@@ -39,6 +42,12 @@ return [
     'roster' => [
         'intro' => 'Übersicht aller Toons, die die Mitglieder der Gilde :guild besitzen.',
         'description' => 'Das Laden der Seite kann etwas dauern, da alle Charaktere sofort geladen werden. Die Zahl hinter den Bezeichnungen gibt an, wieviele Gildenmitglieder den Charakter besitzen.',
+    ],
+    'squads' => [
+        'title' => 'Vordefinierte Teams',
+        'intro' => 'Die Spielergemeinschaft hat eine Liste von Teams zusammengetragen, die sich für verschiedene Situationen besonders gut eignen.',
+        'description' => 'Der <strong>Mehrwehrt</strong> auf dieser Seite besteht in der Spalte "Link". Besteht eine Teamempfehlung aus 1-5 Charakteren, kann damit direkt zur Teamsuche mit dem <strong>Status der gesamten Gilde</strong> gesprungen werden.',
+        'legend' => 'Will ein Spieler nur seine eigenen Teams analysieren, ist die Darstellung auf <a href="https://swgoh.help">swgoh.help</a> zu empfehlen.',
     ],
     'zetas' => [
         'title' => 'Zeta Ratings',
@@ -87,6 +96,24 @@ return [
         'displayStartTime' => 'Start (Anzeige)',
         'displayEndTime' => 'Ende (Anzeige)',
         'timeLimited' => 'Dauer?',
+        'char' => 'Char',
+        'ship' => 'Schiff',
+        'title' => 'Titel',
+        'members' => 'Mitglieder',
+        'status' => 'Status',
+        'required' => 'benötigt',
+        'message' => 'Mitteilung',
+        'raid' => 'Raid',
+        'id' => 'Id',
+        'defId' => 'Id',
+        'titles' => 'Titel',
+        'guildRefId' => 'Gildennr.',
+        'guildName' => 'Gildenname',
+        'guildBannerColor' => 'Gildenfarbe',
+        'guildBannerLogo' => 'Gildenlogo',
+        'guildTypeId' => 'Gildentyp',
+        'slot' => 'Slot',
+        'combatType' => 'Kampftyp',
     ],
 
 ];

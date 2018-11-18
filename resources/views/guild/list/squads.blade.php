@@ -1,49 +1,41 @@
-@extends('layouts.app')
+@extends('layouts.2col')
 
-@include('layouts.cdn._datatables')
+@section('sidebar')
+<div class="d-flex">
+    <!-- <h1 class="mr-auto">Guildeninfos</h1> -->
+    <button class="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse"
+        data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false">
+            <title>{{ __('Menu') }}</title>
+            <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path>
+        </svg>
+    </button>
+</div>
+
+<nav class="collapse bd-links" id="bd-docs-nav">
+    <div class="nav flex-column nav-pills" id="sw-tab" role="tablist" aria-orientation="vertical">
+        @forelse ($list ?? [] as $key => $section)
+        @if ($loop->first)
+        <a class="nav-link active" id="{{ $key }}-tab" data-toggle="pill" href="#{{ $key }}" role="tab"
+            aria-controls="{{ $key }}" aria-selected="true">{{ ucwords($key) }}</a>
+        @else
+        <a class="nav-link" id="{{ $key }}-tab" data-toggle="pill" href="#{{ $key }}" role="tab"
+            aria-controls="{{ $key }}" aria-selected="false">{{ ucwords($key) }}</a>
+        @endif
+        @empty
+        <!-- no entries -->
+        @endforelse
+    </div>
+</nav>
+@endsection
 
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
-            <div class="d-flex">
-                <!-- <h1 class="mr-auto">Guildeninfos</h1> -->
-                <button class="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse"
-                    data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false">
-                        <title>{{ __('Menu') }}</title>
-                        <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path>
-                    </svg>
-                </button>
-            </div>
-
-            <nav class="collapse bd-links" id="bd-docs-nav">
-                <div class="nav flex-column nav-pills" id="sw-tab" role="tablist" aria-orientation="vertical">
-                    @forelse ($list ?? [] as $key => $section)
-                    @if ($loop->first)
-                    <a class="nav-link active" id="{{ $key }}-tab" data-toggle="pill" href="#{{ $key }}" role="tab"
-                        aria-controls="{{ $key }}" aria-selected="true">{{ ucwords($key) }}</a>
-                    @else
-                    <a class="nav-link" id="{{ $key }}-tab" data-toggle="pill" href="#{{ $key }}" role="tab"
-                        aria-controls="{{ $key }}" aria-selected="false">{{ ucwords($key) }}</a>
-                    @endif
-                    @empty
-                    <!-- no entries -->
-                    @endforelse
-                </div>
-            </nav>
-        </div>
-
-        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
-            <h1 class="mr-auto">{{ $title }}</h1>
-            <p class="text-left">Die Spielergemeinschaft hat eine Liste von Teams zusammengetragen, die sich für
-                verschiedene Situationen besonders gut eignen. Will ein Spieler nur seine eigenen Teams analysieren,
-                ist die Darstellung auf <a href="https://swgoh.help">swgoh.help</a> zu empfehlen.</p>
-            <p class="text-left">Der <strong>Mehrwehrt</strong> auf dieser Seite besteht in der Spalte "Link". Besteht eine Teamempfehlung aus 1-5 Charakteren, kann damit direkt zur Teamsuche mit dem <strong>Status der gesamten Gilde</strong> gesprungen werden.</p>
-            <p class="text-left">Die Links öffenen standardmäßig im gleichen Fenster. Wer einen neuen Tab öffen möchte, kann die Standardfunktionen des Browsers nutzen.
-                Z.B. Klick mit der mittleren Maustaste/Mausrad, Klick mit der linken Maustaste bei gedrückter STRG-Taste, Rechtsklick + in neuem Tab öffnen.</p>
-            <p class="text-left">Beim Klick auf den Spaltenkopf einer Tabelle wird diese sortierbar und
-                durchsuchbar.</p>
+            <h1 class="mr-auto">{{ __('app.squads.title') }}</h1>
+            <p class="text-left">{!! __('app.squads.intro') !!}</p>
+            <p class="text-left">{!! __('app.squads.description') !!}</p>
+            <p class="text-left">{!! __('app.squads.legend') !!}</p>
+            <p class="text-left">{{ __('app.howto.new_tab') }}</p>
+            <!-- <p class="text-left">{{ __('app.howto.click_head') }}</p> -->
             <div class="tab-content" id="toonTabsContent">
                 @forelse ($list ?? [] as $key => $section)
                     <div class="tab-pane fade{{ $loop->first ? ' active show' : ''}}" id="{{ $key }}" role="tabpanel" aria-labelledby="{{ $key }}-tab">
@@ -51,7 +43,7 @@
                     <span>{{ __('app.data_keys.rarity') }}: {{ $section['rarity'] ?? '' }}</span>
                     <span>{{ __('app.data_keys.gear') }}: {{ $section['gear'] ?? '' }}</span>
                     <span>{{ __('app.data_keys.level') }}: {{ $section['level'] ?? '' }}</span>
-                    <span>Empfehlungen von Spielern für Spieler. Unverbindlich!</span>
+                    <span>{{ __('app.disclaimer_community') }}</span>
 
                     @forelse ($section['phase'] ?? [] as $phase_key => $phase)
                     <hr />
@@ -95,7 +87,7 @@
                                     @elseif($info_key == 'team' && is_array($info))
                                         <td>
                                         @forelse ($info as $toon_key => $toon)
-                                            {{ strpos($toon, ':') === false ? $toon : substr($toon, 0, strpos($toon, ':')) }}
+                                            {{ strpos($toon, ':') === false ? $unitKeys[$toon]['name'] ?? $toon : $unitKeys[substr($toon, 0, strpos($toon, ':'))]['name'] ?? substr($toon, 0, strpos($toon, ':')) }}@if(!$loop->last),@endif
                                         @empty
                                             <!-- no entries -->
                                             no team members found!
@@ -123,8 +115,5 @@
                     <!-- no entries -->
                     @endforelse
             </div>
-        </main>
-    </div>
-</div>
 
 @endsection
