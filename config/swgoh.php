@@ -43,7 +43,7 @@ return [
         'SWGOH_GG' => [
             'USER' => env('API_SWGOH_GG_USER'),
             'PASSWORD' => env('API_SWGOH_GG_PASSWORD'),
-            'SERVER' => env('API_SWGOH_GG_SERVER', 'https://swgoh.gg/api/'),
+            'SERVER' => env('API_SWGOH_GG_SERVER', 'https://swgoh.gg/api'),
             'AUTH_SERVER' => env('API_SWGOH_GG_AUTH_SERVER'),
             'CLIENT_ID' => env('API_SWGOH_GG_CLIENT_ID'),
             'CLIENT_SECRET' => env('API_SWGOH_GG_CLIENT_SECRET'),
@@ -51,7 +51,7 @@ return [
         'SWGOH_HELP' => [
             'USER' => env('API_SWGOH_HELP_USER'),
             'PASSWORD' => env('API_SWGOH_HELP_PASSWORD'),
-            'SERVER' => env('API_SWGOH_HELP_SERVER', 'https://api.swgoh.help/'),
+            'SERVER' => env('API_SWGOH_HELP_SERVER', 'https://api.swgoh.help'),
             'AUTH_SERVER' => env('API_SWGOH_HELP_AUTH_SERVER', 'https://api.swgoh.help/auth/signin'),
             'CLIENT_ID' => env('API_SWGOH_HELP_CLIENT_ID'),
             'CLIENT_SECRET' => env('API_SWGOH_HELP_CLIENT_SECRET'),

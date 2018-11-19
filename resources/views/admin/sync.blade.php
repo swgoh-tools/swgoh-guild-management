@@ -30,9 +30,10 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Target') }}</th>
-                <th>{{ __('Time') }}</th>
-                <th>{{ __('Size') }}</th>
+                <th>{{ __('Last Run') }}</th>
                 <th>{{ __('State') }}</th>
+                <th>{{ __('Currentness') }}</th>
+                <th>{{ __('Size') }}</th>
                 <th>{{ __('Details') }}</th>
                 @hasanyrole('admin|leader|officer|member')
                 <th class="text-center" style="min-width:4.5rem;">{{ __('Actions') }}</th>
@@ -45,14 +46,16 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $description ?: $key }}</td>
                         @if( ! isset($sync_status[$key]) || ! is_array($sync_status[$key]))
-                            <td>-</td><td>-</td><td>-</td><td>{{ $sync_status[$key] ?? '-' }}</td>
+                            <td>-</td><td>-</td><td>-</td><td>-</td><td>{{ $sync_status[$key] ?? '-' }}</td>
                         @else
                             <td>{{ isset($sync_status[$key]['time']) ? gmdate("d.m.y H:i", $sync_status[$key]['time']) : '-' }}</td>
-                            <td class="text-right">{{ isset($sync_status[$key]['size']) && is_int($sync_status[$key]['size']) ? number_format($sync_status[$key]['size']) : '-' }}</td>
                             <td>{{ $sync_status[$key]['status'] ?? '-' }}</td>
+                            <td>{{ isset($sync_status[$key]['time_data']) ? gmdate("d.m.y H:i", $sync_status[$key]['time_data']) : '-' }}</td>
+                            <td class="text-right">{{ isset($sync_status[$key]['size']) && is_int($sync_status[$key]['size']) ? number_format($sync_status[$key]['size']) : '-' }}</td>
                             <td>{{ $sync_status[$key]['url'] ?? '-' }}
                             @role('admin')
                                 <br />{{ isset($sync_status[$key]['error']) ? $sync_status[$key]['error'] : '-' }}
+                                {{ ! isset($sync_status[$key]['time']) ? var_dump($sync_status[$key]) : '' }}
                             @endrole
                             </td>
                         @endif

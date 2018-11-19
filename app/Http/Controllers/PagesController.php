@@ -280,14 +280,11 @@ class PagesController extends Controller
     public function squadsList()
     {
         $list = SyncClient::getSquadList();
-        if (!$list) {
-            $list = [];
-        }
+        $unitKeys = SyncClient::getUnitKeys();
 
         return view('guild.list.squads', [
-            'title' => 'Vordefinierte Teams',
-            // 'sync_status' => $sync_status,
-            'list' => $list,
+            'unitKeys' =>$unitKeys ?? [],
+            'list' => $list ?? [],
             ]);
     }
 
@@ -316,7 +313,7 @@ class PagesController extends Controller
 
     public function squadsToons(Request $request, Guild $guild)
     {
-        return $this->squads($request, $guild, 1, 'guild.team.ships');
+        return $this->squads($request, $guild, 1, 'guild.team.toons');
     }
 
     public function squadsShips(Request $request, Guild $guild)

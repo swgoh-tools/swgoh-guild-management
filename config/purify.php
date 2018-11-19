@@ -67,7 +67,7 @@ return [
         |
         */
 
-        'HTML.Allowed' => 'h1,h2,h3,h4,h5,b,strong,i,em,a[href|title],ul,ol,li,p[style],br,span[style],img[width|height|alt|src|style]',
+        'HTML.Allowed' => 'h1,h2,h3,h4,h5,b,strong,i,em,a[href|title],ul,ol,li,p[style],br,caption,span[style],img[width|height|alt|src|style],table[border|cellpadding|cellspacing|style|summary],thead,tbody,tr,th[abbr|scope],td[abbr]',
 
         /*
         |--------------------------------------------------------------------------
@@ -85,7 +85,7 @@ return [
         |
         */
 
-        'HTML.ForbiddenElements' => '',
+        'HTML.ForbiddenElements' => 'script,iframe',
 
         /*
         |--------------------------------------------------------------------------

@@ -161,10 +161,10 @@ class Memo extends Model
      * @param  string $body
      * @return string
      */
-    public function getBodyAttribute($body)
-    {
-        return \Purify::clean($body);
-    }
+    // public function getBodyAttribute($body)
+    // {
+    //     return \Purify::clean($body);
+    // }
 
     /**
      * Access the body attribute.
@@ -172,10 +172,10 @@ class Memo extends Model
      * @param  string $body
      * @return string
      */
-    public function getTitleAttribute($body)
-    {
-        return \Purify::clean($body);
-    }
+    // public function getTitleAttribute($body)
+    // {
+    //     return \Purify::clean($body);
+    // }
 
     // /**
     //  * Access the body attribute.
