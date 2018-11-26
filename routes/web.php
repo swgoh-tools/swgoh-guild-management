@@ -72,6 +72,7 @@ Route::prefix('g')->group(function (): void {
     Route::get('{guild}/list/events', 'PagesController@eventsList')->name('guild.list.events');
     Route::get('{guild}/list/battles', 'PagesController@battlesList')->name('guild.list.battles');
     Route::get('{guild}/list/squads', 'PagesController@squadsList')->name('guild.list.squads');
+    Route::get('{guild}/stats/{chunk?}', 'GuildController@stats')->name('guild.stats');
     Route::get('{guild}/team/ships', 'PagesController@squadsShips')->name('guild.team.ships');
     Route::post('{guild}/team/ships', 'PagesController@squadsShips');
     Route::get('{guild}/team/toons', 'PagesController@squadsToons')->name('guild.team.toons');
@@ -99,6 +100,7 @@ Route::prefix('g')->group(function (): void {
 Route::prefix('p')->group(function (): void {
     Route::get('/', 'PagesController@home')->name('player');
     Route::get('{player}', 'PlayerController@home')->name('player.home');
+    Route::get('{player}/calc', 'PlayerController@calc')->name('player.calc'); //TODO
 });
 
 Route::prefix('admin')->group(function (): void {

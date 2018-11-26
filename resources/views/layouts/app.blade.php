@@ -65,7 +65,99 @@
 
     <!-- Styles -->
     <style>
+        div.vertical
+        {
+        margin-left: -85px;
+        position: absolute;
+        width: 215px;
+        transform: rotate(-90deg);
+        -webkit-transform: rotate(-90deg); /* Safari/Chrome */
+        -moz-transform: rotate(-90deg); /* Firefox */
+        -o-transform: rotate(-90deg); /* Opera */
+        -ms-transform: rotate(-90deg); /* IE 9 */
+        }
 
+        th.vertical
+        {
+        height: 220px;
+        line-height: 14px;
+        padding-bottom: 20px;
+        text-align: left;
+        }
+
+        th.rotate {
+        /* Something you can count on */
+        height: 100px;
+        white-space: nowrap;
+        }
+
+        th.rotate > div {
+        transform:
+            /* Magic Numbers */
+            translate(25px, 51px)
+            /* 45 is really 360 - 45 */
+            rotate(315deg);
+        width: 30px;
+        }
+        th.rotate > div > span {
+        border-bottom: 1px solid #ccc;
+        /* padding: 5px 10px; */
+        }
+        /* Tooltip container */
+        .mytooltip {
+            position: relative;
+            display: inline-block;
+            /* border-bottom: 1px dotted black; If you want dots under the hoverable text */
+        }
+
+        /* Tooltip text */
+        .mytooltip .mytooltiptext {
+            visibility: hidden;
+            /* width: 250px; */
+            background-color: black;
+            color: #fff;
+            /* text-align: center; */
+            padding: 5px 0;
+            border-radius: 6px;
+
+            /* Position the tooltip text - see examples below! */
+            /* position: absolute; */
+            z-index: 1;
+
+            position: fixed;
+            display: flex;
+            top: 4rem;
+            right: 1rem;
+
+            /* top: -5px; */
+            /* right: 105%; */
+
+            /* bottom: 100%; */
+            /* left: 50%; */
+            /* margin-left: -60px; */
+
+            /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+            opacity: 0;
+            transition: opacity 1s;
+
+            font-weight: normal;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .mytooltip:hover .mytooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .mytooltip .mytooltiptext::after {
+            content: " ";
+            position: absolute;
+            top: 50%;
+            left: 100%; /* To the right of the tooltip */
+            margin-top: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent transparent black;
+        }
     </style>
     @yield('head')
 </head>

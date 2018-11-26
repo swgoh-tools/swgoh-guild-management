@@ -30,6 +30,8 @@
                     <a class="dropdown-item" href="{{ route('guild.team.ships', $guild) }}">{{ __('Team Search') }} - {{ __('Ships') }}</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('guild.list.squads', $guild) }}">{{ __('Predefined Teams') }}</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('guild.stats', $guild) }}">{{ __('Guild Stats') }}</a>
                     <!-- <div class="dropdown-item">Beispiele</div> -->
                     <!-- <a class="dropdown-item" href="{{ route('guild.team.toons', $guild) }}?t1=ADMIRALACKBAR&t2=BB8&t3=COMMANDERLUKESKYWALKER&t4=HERMITYODA&t5=EZRABRIDGERS3">Ezradicator</a> -->
                     <!-- <a class="dropdown-item" href="{{ route('guild.team.toons', $guild) }}?t1=VADER&t2=WAMPA&t3=GRANDADMIRALTHRAWN&t4=COMMANDERLUKESKYWALKER&t5=BB8">Wampanader</a> -->

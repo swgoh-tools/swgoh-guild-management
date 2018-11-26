@@ -206,6 +206,65 @@ class GuildController extends Controller
     }
 
     /**
+     * Display guild stats.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function stats(Guild $guild, $chunk = '')
+    {
+        $info = SyncClient::getPlayer($guild->user->code ?? null);
+        $members = SyncClient::getGuildMembers($guild->user->code ?? null);
+        $teams = SyncClient::getSquadList();
+        $unitKeys = SyncClient::getUnitKeys();
+        $skillKeys = SyncClient::getSkillKeys();
+        if (isset($teams['updated'])) unset($teams['updated']);
+        $chars = SyncClient::getRoster($guild->user->code ?? null, 1);
+        $ships = SyncClient::getRoster($guild->user->code ?? null, 2);
+        $rosterWithAllyCodeKeys = [];
+        foreach ($chars[0] as $key => $char) {
+            foreach ($char as $player) {
+                $rosterWithAllyCodeKeys[$key][$player['allyCode']] = $player;
+            }
+        }
+        foreach ($ships[0] as $key => $ship) {
+            foreach ($ship as $player) {
+                $rosterWithAllyCodeKeys[$key][$player['allyCode']] = $player;
+                $rosterWithAllyCodeKeys[$key]['isShip'] = true;
+            }
+        }
+        $anchors = [
+            'revan' => 'JEDIKNIGHTREVAN',
+            'chewbacca' => 'CHEWBACCALEGENDARY',
+            'jtr' => 'REYJEDITRAINING',
+            'cls' => 'COMMANDERLUKESKYWALKER',
+            'r2d2' => 'R2D2_LEGENDARY',
+            'bb8' => 'BB8',
+            'yoda' => 'GRANDMASTERYODA',
+            'palpatine' => 'EMPERORPALPATINE',
+            'thrawn' => 'GRANDADMIRALTHRAWN',
+            'chimaera' => 'CAPITALCHIMAERA',
+        ];
+        foreach ($teams['events']['phase'] ?? [] as $key => $value) {
+            $teams['events']['phase'][$key]['squads'][] = [
+                'name' => 'Hero',
+                'gear' => 12.5,
+                'level' => 85,
+                'rarity' => 7,
+                'team' => [$anchors[$value['anchor'] ?? 'UNKNOWN']],
+            ];
+        }
+        return view('guild.stats', [
+            'info' => $info[0] ?? [],
+            'members' => $members[0] ?? [],
+            'teams' => $teams ?? [],
+            'roster' => $rosterWithAllyCodeKeys ?? [],
+            'skillKeys' => $skillKeys,
+            'unitKeys' => $unitKeys,
+            'selection' => $chunk,
+        ]);
+    }
+
+    /**
      * Sync roles and permissions
      *
      * @param Request $request
