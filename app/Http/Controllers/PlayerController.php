@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Guild;
@@ -8,7 +10,6 @@ use App\Permission;
 use App\Authorizable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 use App\Helper\SyncClient;
 
 class PlayerController extends Controller
@@ -26,6 +27,86 @@ class PlayerController extends Controller
 
         return view('player.home', [
             'info' => $info[0] ?? [],
+        ]);
+    }
+
+    /**
+     * Display guild home page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function roster($player)
+    {
+        $info = SyncClient::getPlayer($player ?? null);
+
+        return view('player.roster', [
+            'info' => $info[0] ?? [],
+        ]);
+    }
+
+    /**
+     * Display guild home page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function calcTEST($player)
+    {
+        $info = SyncClient::getPlayer($player ?? null);
+        $teams = SyncClient::getSquadList();
+        $roster = SyncClient::getRoster($player ?? null, 1);
+        dd($roster[0]['AAYLASECURA']);
+        dd($info);
+        dd($teams);
+        $data = [];
+        foreach ($teams[0] as $event) {
+            if (is_array($event)) {
+                foreach ($event['phase'] as $phase) {
+                    foreach ($phase['squads'] as $squad) {
+                        # code...
+                    }
+                }
+            }
+        }
+        return response($guild, 201);
+
+        return view('player.home', [
+            'info' => $info[0] ?? [],
+        ]);
+    }
+
+    public function statsVerbose($player)
+    {
+        return $this->stats($player, true);
+    }
+    /**
+     * Display guild home page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function stats($player, $verbose = false)
+    {
+        $info = SyncClient::getPlayer($player ?? null);
+        // $members = SyncClient::getGuildMembers($player ?? null);
+        $teams = SyncClient::getSquadList();
+        $zetas = SyncClient::getZetaList();
+        $unitKeys = SyncClient::getUnitKeys();
+        $skillKeys = SyncClient::getSkillKeys();
+        // $roster = SyncClient::getRoster($player ?? null, 1);
+        // $rosterWithAllyCodeKeys = [];
+        // foreach ($roster[0] as $key => $char) {
+        //     foreach ($char as $player) {
+        //         $rosterWithAllyCodeKeys[$key][$player['allyCode']] = $player;
+        //     }
+        // }
+        return view('player.stats', [
+            'info' => $info[0] ?? [],
+            // 'members' => $members[0] ?? [],
+            'teams' => $teams ?? [],
+            'zetas' => $zetas ?? [],
+            'skillKeys' => $skillKeys,
+            'unitKeys' => $unitKeys,
+            'verbose' => $verbose,
+            // 'roster' => $rosterWithAllyCodeKeys ?? $roster[0] ?? [],
         ]);
     }
 
@@ -56,7 +137,8 @@ class PlayerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -82,16 +164,13 @@ class PlayerController extends Controller
             }
 
             return redirect($guild->path());
-
         } else {
             flash()->error('Unable to create guild!');
 
             if (request()->wantsJson()) {
                 return response([], 450);
             }
-
         }
-
 
         return redirect()->route('admin.guild.index');
     }
@@ -99,18 +178,19 @@ class PlayerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -125,16 +205,17 @@ class PlayerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'bail|required|min:2',
-            'email' => 'required|email|unique:users,email,' . $id,
-            'roles' => 'required|min:1'
+            'email' => 'required|email|unique:users,email,'.$id,
+            'roles' => 'required|min:1',
         ]);
 
         // Get the user
@@ -144,7 +225,7 @@ class PlayerController extends Controller
         $user->fill($request->except('roles', 'permissions', 'password'));
 
         // check for password change
-        if($request->get('password')) {
+        if ($request->get('password')) {
             $user->password = bcrypt($request->get('password'));
         }
 
@@ -161,18 +242,21 @@ class PlayerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
+     *
      * @internal param Request $request
      */
     public function destroy($id)
     {
-        if ( Auth::user()->id == $id ) {
+        if (Auth::user()->id == $id) {
             flash()->warning('Deletion of currently logged in user is not allowed :(')->important();
+
             return redirect()->back();
         }
 
-        if( User::findOrFail($id)->delete() ) {
+        if (User::findOrFail($id)->delete()) {
             flash()->success('User has been deleted');
         } else {
             flash()->success('User not deleted');
@@ -182,10 +266,11 @@ class PlayerController extends Controller
     }
 
     /**
-     * Sync roles and permissions
+     * Sync roles and permissions.
      *
      * @param Request $request
      * @param $user
+     *
      * @return string
      */
     private function syncPermissions(Request $request, $user)
@@ -198,7 +283,7 @@ class PlayerController extends Controller
         $roles = Role::find($roles);
 
         // check for current role changes
-        if( ! $user->hasAllRoles( $roles ) ) {
+        if (!$user->hasAllRoles($roles)) {
             // reset all direct permissions for user
             $user->permissions()->sync([]);
         } else {

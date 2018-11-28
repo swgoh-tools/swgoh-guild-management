@@ -567,14 +567,14 @@ class SyncClient
 
     public function syncHelpGuild($player_allycode)
     {
-        $source = config('swgoh.API.SWGOH_HELP.SERVER').'/swgoh/guild';
+        $source = config('swgoh.API.SWGOH_HELP.SERVER').'/swgoh/guilds';
         $dir = "swgoh.help/guild/$player_allycode/";
         $file = 'guild';
         $ext = 'json';
         $threshold = 60 * 60 * 24;
 
         if (!$player_allycode || !\is_int($player_allycode)) {
-            return false;
+            return ['error' => 'player_allycode missing or wrong. ' . $player_allycode ?? 'empty'];
         }
 
         $token = $this->getAccessToken();

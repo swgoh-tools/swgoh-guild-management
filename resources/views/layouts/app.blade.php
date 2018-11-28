@@ -65,6 +65,25 @@
 
     <!-- Styles -->
     <style>
+        .icon-omega {
+            background-image: url("{{ asset('images/assets/tex.skill_pentagon_gold.png') }}");
+            /* background-position: center center; */
+            background-repeat: no-repeat;
+            background-size: contain;
+            min-width: 16px;
+            min-height: 16px;
+            display: inline-block;
+        }
+        .icon-zeta {
+            background-image: url("{{ asset('images/assets/tex.skill_zeta.png') }}");
+            /* background-position: center center; */
+            background-repeat: no-repeat;
+            background-size: contain;
+            min-width: 16px;
+            min-height: 16px;
+            display: inline-block;
+        }
+
         div.vertical
         {
         margin-left: -85px;
@@ -121,20 +140,9 @@
             border-radius: 6px;
 
             /* Position the tooltip text - see examples below! */
-            /* position: absolute; */
+            position: absolute;
             z-index: 1;
 
-            position: fixed;
-            display: flex;
-            top: 4rem;
-            right: 1rem;
-
-            /* top: -5px; */
-            /* right: 105%; */
-
-            /* bottom: 100%; */
-            /* left: 50%; */
-            /* margin-left: -60px; */
 
             /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
             opacity: 0;
@@ -142,13 +150,35 @@
 
             font-weight: normal;
         }
+        /* Tooltip text */
+        .mytooltip-fixed .mytooltiptext {
+            position: fixed;
+            display: flex;
+            top: 4rem;
+            right: 1rem;
+        }
+        .mytooltip-left .mytooltiptext {
+            top: -5px;
+            right: 105%;
+        }
+        .mytooltip-top .mytooltiptext {
+            text-align: center;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -60px;
+
+        }
+        /* Tooltip text */
+        .mytooltip-no-wrap .mytooltiptext {
+            white-space: nowrap;
+        }
 
         /* Show the tooltip text when you mouse over the tooltip container */
         .mytooltip:hover .mytooltiptext {
             visibility: visible;
             opacity: 1;
         }
-        .mytooltip .mytooltiptext::after {
+        .mytooltip-left .mytooltiptext::after {
             content: " ";
             position: absolute;
             top: 50%;

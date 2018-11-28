@@ -100,8 +100,11 @@ Route::prefix('g')->group(function (): void {
 Route::prefix('p')->group(function (): void {
     Route::get('/', 'PagesController@home')->name('player');
     Route::get('{player}', 'PlayerController@home')->name('player.home');
-    Route::get('{player}/calc', 'PlayerController@calc')->name('player.calc'); //TODO
+    Route::get('{player}/roster', 'PlayerController@roster')->name('player.roster');
+    Route::get('{player}/stats', 'PlayerController@stats')->name('player.stats');
+    Route::get('{player}/stats/full', 'PlayerController@statsVerbose')->name('player.stats.full');
 });
+    Route::get('/list/zetas', 'PagesController@zetasList')->name('zetas');
 
 Route::prefix('admin')->group(function (): void {
     // Route::get('users', function (): void {

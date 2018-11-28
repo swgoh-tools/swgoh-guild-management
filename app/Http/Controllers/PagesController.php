@@ -281,9 +281,11 @@ class PagesController extends Controller
     {
         $list = SyncClient::getSquadList();
         $unitKeys = SyncClient::getUnitKeys();
+        $skillKeys = SyncClient::getSkillKeys();
 
         return view('guild.list.squads', [
             'unitKeys' =>$unitKeys ?? [],
+            'skillKeys' =>$skillKeys ?? [],
             'list' => $list ?? [],
             ]);
     }

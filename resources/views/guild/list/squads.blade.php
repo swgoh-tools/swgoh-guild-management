@@ -49,7 +49,7 @@
                     <hr />
                     <h3>{{ ucwords(strtolower($phase['name'] ?? 'unknown phase name')) }} ({{ count($phase['squads'] ?? []) }})</h3>
                     <table class="table table-hover toon-table">
-                        <!-- table-striped table-dark  -->
+                        <!-- table-striped table-dark table-sm  -->
 
                             @forelse ($phase['squads'] ?? [] as $squad_key => $squad)
                             @if ($loop->first)
@@ -87,7 +87,14 @@
                                     @elseif($info_key == 'team' && is_array($info))
                                         <td>
                                         @forelse ($info as $toon_key => $toon)
-                                            {{ strpos($toon, ':') === false ? $unitKeys[$toon]['name'] ?? $toon : $unitKeys[substr($toon, 0, strpos($toon, ':'))]['name'] ?? substr($toon, 0, strpos($toon, ':')) }}@if(!$loop->last),@endif
+                                            @foreach (preg_split('/:/', $toon) as $toonValue)
+                                            @if($loop->first)
+                                            {{ $unitKeys[$toonValue]['name'] ?? $toonValue }}
+                                            @else
+<div class="mytooltip mytooltip-top mytooltip-no-wrap icon-zeta"><span class="mytooltiptext">{{ $skillKeys[$toonValue] ?? $toonValue }}</span></div>
+                                            @endif
+                                            @endforeach
+                                            @if(!$loop->last),@endif
                                         @empty
                                             <!-- no entries -->
                                             no team members found!
