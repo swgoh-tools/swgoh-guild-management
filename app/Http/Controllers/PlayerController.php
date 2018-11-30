@@ -91,6 +91,7 @@ class PlayerController extends Controller
         $zetas = SyncClient::getZetaList();
         $unitKeys = SyncClient::getUnitKeys();
         $skillKeys = SyncClient::getSkillKeys();
+        $skillData = SyncClient::getSkillData();
         // $roster = SyncClient::getRoster($player ?? null, 1);
         // $rosterWithAllyCodeKeys = [];
         // foreach ($roster[0] as $key => $char) {
@@ -103,6 +104,7 @@ class PlayerController extends Controller
             // 'members' => $members[0] ?? [],
             'teams' => $teams ?? [],
             'zetas' => $zetas ?? [],
+            'skillData' => $skillData ?? [],
             'skillKeys' => $skillKeys,
             'unitKeys' => $unitKeys,
             'verbose' => $verbose,
