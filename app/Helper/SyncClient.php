@@ -58,7 +58,7 @@ class SyncClient
         // 'help.data.skillList' => '',
         // 'help.data.starterGuildList' => '',
         'help.data.statModList' => '111',
-        // 'help.data.statModSetList' => '',
+        'help.data.statModSetList' => '1',
         // 'help.data.statProgressionList' => '',
         // 'help.data.tableList' => '',
         // 'help.data.targetingSetList' => '',
@@ -83,21 +83,19 @@ class SyncClient
     public static function getTargets()
     {
         return [
+            // 's' => 'Access Token',
+            'help.guild.units' => 'swgoh.help Guild Data',
             'g-players' => '',
             'g-roster' => '',
             'g-units' => '',
-            'gg.characters' => 'swgoh.gg Toons',
-            // 'squads' => 'Known Squad List',
-            'gg.ships' => 'swgoh.gg Ships',
-            'gg.abilities' => 'swgoh.gg Abilities',
-            'gg.guild.units' => 'swgoh.gg Guild Units',
-            'help.guild.units' => 'swgoh.help Guild Units',
-            // 'h-abilities' => 'swgoh.help AbilityList',
-            // 's' => 'Access Token',
             'help.battles' => '',
             'help.events' => '',
             'help.squads' => '',
             'help.zetas' => '',
+            'gg.characters' => 'swgoh.gg Toons',
+            'gg.ships' => 'swgoh.gg Ships',
+            'gg.abilities' => 'swgoh.gg Abilities',
+            'gg.guild.units' => 'swgoh.gg Guild Units',
             'help.data.abilityList' => '',
             'help.data.battleEnvironmentsList' => '',
             'help.data.battleTargetingRuleList' => '',
@@ -191,6 +189,23 @@ class SyncClient
                 Storage::disk('sync')->lastModified($filename),
             ];
         }
+    }
+
+    public static function getSquadAnchors()
+    {
+        return [
+            'revan' => 'JEDIKNIGHTREVAN',
+            'chewbacca' => 'CHEWBACCALEGENDARY',
+            'jtr' => 'REYJEDITRAINING',
+            'cls' => 'COMMANDERLUKESKYWALKER',
+            'r2d2' => 'R2D2_LEGENDARY',
+            'bb8' => 'BB8',
+            'yoda' => 'GRANDMASTERYODA',
+            'palpatine' => 'EMPERORPALPATINE',
+            'thrawn' => 'GRANDADMIRALTHRAWN',
+            'chimaera' => 'CAPITALCHIMAERA',
+            'c3po' => 'C3PO',
+        ];
     }
 
     public static function getSquadList()
@@ -313,6 +328,66 @@ class SyncClient
                 $result[$value['baseId'] ?? 'error']['desc'] = $value['descKey'] ?? '';
                 $result[$value['baseId'] ?? 'error']['side'] = $value['forceAlignment'] ?? '';
             }
+        }
+
+        return $result;
+    }
+
+    public static function getUnitStatKeys()
+    {
+        $result = [
+            'UNITSTATACCURACY' => ['name' => '', 'icon' => ''],
+            'UNITSTATCRITICALCHANCEPERCENTADDITIVE' => ['name' => '', 'icon' => ''],
+            'UNITSTATCRITICALDAMAGE' => ['name' => '', 'icon' => ''],
+            'UNITSTATCRITICALNEGATECHANCEPERCENTADDITIVE' => ['name' => '', 'icon' => ''],
+            'UNITSTATDEFENSE' => ['name' => '', 'icon' => ''],
+            'UNITSTATDEFENSEPERCENTADDITIVE' => ['name' => '', 'icon' => ''],
+            'UNITSTATEVASIONNEGATEPERCENTADDITIVE' => ['name' => '', 'icon' => ''],
+            'UNITSTATMAXHEALTH' => ['name' => '', 'icon' => ''],
+            'UNITSTATMAXHEALTHPERCENTADDITIVE' => ['name' => '', 'icon' => ''],
+            'UNITSTATMAXSHIELD' => ['name' => '', 'icon' => ''],
+            'UNITSTATMAXSHIELDPERCENTADDITIVE' => ['name' => '', 'icon' => ''],
+            'UNITSTATOFFENSE' => ['name' => '', 'icon' => ''],
+            'UNITSTATOFFENSEPERCENTADDITIVE' => ['name' => '', 'icon' => ''],
+            'UNITSTATRESISTANCE' => ['name' => '', 'icon' => ''],
+            'UNITSTATSPEED' => ['name' => '', 'icon' => ''],
+        ];
+        switch (app()->getLocale()) {
+            case 'de':
+                $result['UNITSTATACCURACY']['name'] ='Potency (%)';
+                $result['UNITSTATCRITICALCHANCEPERCENTADDITIVE' ]['name'] ='CC (%)';
+                $result['UNITSTATCRITICALDAMAGE' ]['name'] ='CD (%)';
+                $result['UNITSTATCRITICALNEGATECHANCEPERCENTADDITIVE']['name'] ='CA (%)';
+                $result['UNITSTATDEFENSE' ]['name'] ='Defense';
+                $result['UNITSTATDEFENSEPERCENTADDITIVE' ]['name'] ='Defense (%)';
+                $result['UNITSTATEVASIONNEGATEPERCENTADDITIVE' ]['name'] ='Accuracy (%)';
+                $result['UNITSTATMAXHEALTH']['name'] ='Health';
+                $result['UNITSTATMAXHEALTHPERCENTADDITIVE']['name'] ='Health (%)';
+                $result['UNITSTATMAXSHIELD' ]['name'] ='Protection';
+                $result['UNITSTATMAXSHIELDPERCENTADDITIVE']['name'] ='Protection (%)';
+                $result['UNITSTATOFFENSE' ]['name'] ='Offense';
+                $result['UNITSTATOFFENSEPERCENTADDITIVE']['name'] ='Offense (%)';
+                $result['UNITSTATRESISTANCE' ]['name'] ='Tenacity (%)';
+                $result['UNITSTATSPEED' ]['name'] ='Speed';
+                break;
+
+            default:
+                $result['UNITSTATACCURACY']['name'] ='Potency (%)';
+                $result['UNITSTATCRITICALCHANCEPERCENTADDITIVE' ]['name'] ='CC (%)';
+                $result['UNITSTATCRITICALDAMAGE' ]['name'] ='CD (%)';
+                $result['UNITSTATCRITICALNEGATECHANCEPERCENTADDITIVE']['name'] ='CA (%)';
+                $result['UNITSTATDEFENSE' ]['name'] ='Defense';
+                $result['UNITSTATDEFENSEPERCENTADDITIVE' ]['name'] ='Defense (%)';
+                $result['UNITSTATEVASIONNEGATEPERCENTADDITIVE' ]['name'] ='Accuracy (%)';
+                $result['UNITSTATMAXHEALTH']['name'] ='Health';
+                $result['UNITSTATMAXHEALTHPERCENTADDITIVE']['name'] ='Health (%)';
+                $result['UNITSTATMAXSHIELD' ]['name'] ='Protection';
+                $result['UNITSTATMAXSHIELDPERCENTADDITIVE']['name'] ='Protection (%)';
+                $result['UNITSTATOFFENSE' ]['name'] ='Offense';
+                $result['UNITSTATOFFENSEPERCENTADDITIVE']['name'] ='Offense (%)';
+                $result['UNITSTATRESISTANCE' ]['name'] ='Tenacity (%)';
+                $result['UNITSTATSPEED' ]['name'] ='Speed';
+                break;
         }
 
         return $result;
@@ -810,6 +885,39 @@ class SyncClient
                     'project' => [
                         'id' => 1,
                         'nameKey' => 1,
+                        ],
+                    ];
+                break;
+
+            case 'statModList':
+                $body = [
+                    'collection' => $collection,
+                    'language' => $lang,
+                    'enums' => true,
+                    'project' => [
+                        'id' => 1,
+                        'slot' => 1,
+                        'setId' => 1,
+                        'rarity' => 1,
+                        'nameKey' => 1,
+                        'descKey' => 1,
+                        ],
+                    ];
+                break;
+
+            case 'statModSetList':
+                $body = [
+                    'collection' => $collection,
+                    'language' => $lang,
+                    'enums' => true,
+                    'project' => [
+                        'id' => 1,
+                        'nameKey' => 1,
+                        'descKey' => 1,
+                        'icon' => 1,
+                        'completeBonus' => 1,
+                        'maxLevelBonus' => 1,
+                        'setCount' => 1,
                         ],
                     ];
                 break;

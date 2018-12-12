@@ -3,9 +3,9 @@
 
     <div class="card-body">
         <table class="guild-home-table-OFF"><thead>
-        <th>{{ __('app.data_keys.name') }}</th>
-        <th>{{ __('app.data_keys.level') }}</th>
-        <th>{{ __('app.data_keys.allyCode') }}</th>
+        <th>{{ __('fields.name') }}</th>
+        <th>{{ __('fields.level') }}</th>
+        <th>{{ __('fields.allyCode') }}</th>
         <th>{{ __('Position') }}</th>
         <th>{{ __('Status') }}</th>
         <th>{{ __('Notice') }}</th>

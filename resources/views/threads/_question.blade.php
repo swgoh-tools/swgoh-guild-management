@@ -43,7 +43,7 @@
                  class="mr-1">
 
             <span class="flex">
-                <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> posted: <span v-text="title"></span>
+                <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> {{ __('posted') }}: <span v-text="title"></span>
             </span>
         </div>
     </div>
@@ -51,6 +51,6 @@
     <div class="card-body" v-html="body"></div>
 
     <div class="card-footer" v-if="authorize('owns', thread)">
-        <button class="btn btn-sm btn-secondary" @click="editing = true">Edit</button>
+        <button class="btn btn-sm btn-secondary" @click="editing = true">{{ __('Edit') }}</button>
     </div>
 </div>

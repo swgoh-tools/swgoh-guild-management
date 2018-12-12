@@ -18,44 +18,58 @@
 @endpush
 
 @section('content')
-<?php
-    $bsize = '-sm'; // btn-sm, btn-md, btn-lg
-?>
+
+@php($bsize = '-sm'){{-- btn-sm, btn-md, btn-lg --}}
+
 <div class="container-fluid">
     <main>
-        <h1 class="h3">{{ $caption }}</h1>
+        <h1 class="h3">@if('guild.team.ships' == $route){{ __('Ships') }}@else{{ __('Toons') }}@endif</h1>
         <form class="form-inline" action="{{ route($route, $guild) }}" method="post">
             @csrf
             @foreach ($select_list as $id => $name)
-            <label for="{{ $id }}">{{ $name }}</label>
-            <select class="form-control mb-2" id="{{ $id }}" name="{{ $id }}">
-                <option value="">Charakter auswählen</option>
+            <div class="form-group my-1">
+            <label for="{{ $id }}">{{ __($name) }} {{ $loop->iteration }}</label>
+            <select class="form-control mx-2" id="{{ $id }}" name="{{ $id }}">
+                <option value="">{{ __('Select Character') }}</option>
                 @foreach ($units as $key => $value)
                 @if ($key == Request::get($id) ){{-- old($id) does not work since there is no redirect with 'withInput()' --}}
-                <option value="{{ $key }}" selected>{{ $key }}</option>
+                <option value="{{ $key }}" selected>{{ $unitKeys[$key]['name'] ?? $key }}</option>
                 @else
-                <option value="{{ $key }}">{{ $key }}</option>
+                <option value="{{ $key }}">{{ $unitKeys[$key]['name'] ?? $key }}</option>
                 @endif
                 @endforeach
             </select>
+            </div>
             @endforeach
-            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            <div class="form-group my-1">
+            <button type="submit" class="btn btn-primary mx-2">{{ __('Submit') }}</button>
+            </div>
         </form>
 
-        <p class="text-left">Farbliche Markierungen nur zur groben Einordnung.
-            Anzahl der vorhandenen Toons, Ausrüstungsstufe, Level und Sterne werden berücksichtigt.</p>
-        <p class="text-left">Reihenfolge der Angabe bei den Toons: Macht, Ausrüstungsstufe, Level, Sterne, Zetas</p>
+        <div class="form-group mt-1 mb-2">
+            <!-- <label for="staticSquadLink">{{ __('Direct Link') }}</label> -->
+            <input class="form-control" type="text" name="staticSquadLink" id="staticSquadLink" readonly="readonly"
+            value="{{ route('guild.team.toons', $guild) }}?t1={{ Request::get('t1') }}&t2={{ Request::get('t2') }}&t3={{ Request::get('t3') }}&t4={{ Request::get('t4') }}&t5={{ Request::get('t5') }}">
+            <small id="staticSquadLinkHelp" class="form-text text-muted">{{ __('app.squads.direct_link_info') }}</small>
+        </div>
+
+        <p class="text-left">{{ __('app.color_disclaimer') }} {{ __('app.squads.used_for_calculation') }}</p>
+        <p class="text-left">{{ __('app.squads.field_order') }}: {{ __('Power') }}, {{ __('Gear Level') }}, {{ __('Level') }}, {{ __('Stars') }}, {{ __('Zetas') }}</p>
         <p class="text-left">{{ __('Last updated') }}: {{ date('D, d M Y', intval(substr($updated ?? '', 0, 10))) }}</p>
         <table class="table table-sm table-hover squad-table">
-            <caption>{{ $caption }}</caption>
+            <caption>
+                @foreach ($char_list as $char)
+                {{ $unitKeys[$char]['name'] ?? $char }}@if(!$loop->last),@endif
+                @endforeach
+            </caption>
             <thead>
                 <tr>
-                    <th>Player</th>
-                    <th>Units</th>
-                    <th>Squad Power</th>
+                    <th>{{ __('Player') }}</th>
+                    <th>{{ __('Units') }}</th>
+                    <th>{{ __('Squad Power') }}</th>
 
                     @foreach ($char_list as $char)
-                    <th>{{ $char }}</th>
+                    <th>{{ $unitKeys[$char]['name'] ?? $char }}</th>
                     @endforeach
                 </tr>
             </thead>

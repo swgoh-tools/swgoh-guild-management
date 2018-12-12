@@ -40,9 +40,9 @@
                 @forelse ($list ?? [] as $key => $section)
                     <div class="tab-pane fade{{ $loop->first ? ' active show' : ''}}" id="{{ $key }}" role="tabpanel" aria-labelledby="{{ $key }}-tab">
                     <h2>{{ ucwords(strtolower($section['name'] ?? '')) }} ({{ count($section['phase'] ?? []) }})</h2>
-                    <span>{{ __('app.data_keys.rarity') }}: {{ $section['rarity'] ?? '' }}</span>
-                    <span>{{ __('app.data_keys.gear') }}: {{ $section['gear'] ?? '' }}</span>
-                    <span>{{ __('app.data_keys.level') }}: {{ $section['level'] ?? '' }}</span>
+                    <span>{{ __('fields.rarity') }}: {{ $section['rarity'] ?? '' }}</span>
+                    <span>{{ __('fields.gear') }}: {{ $section['gear'] ?? '' }}</span>
+                    <span>{{ __('fields.level') }}: {{ $section['level'] ?? '' }}</span>
                     <span>{{ __('app.disclaimer_community') }}</span>
 
                     @forelse ($section['phase'] ?? [] as $phase_key => $phase)
@@ -60,7 +60,7 @@
                                     @forelse ($squad as $info_key => $info)
                                     <!-- excluded from whitelist: main, url -->
                                     @if(in_array($info_key, ['name', 'note', 'team']))
-                                        <th>{{ __('app.data_keys.' . $info_key) }}</th>
+                                        <th>{{ __('fields.' . $info_key) }}</th>
                                     @endif
                                     @empty
                     <!-- no entries -->

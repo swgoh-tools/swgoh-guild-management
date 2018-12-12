@@ -34,36 +34,38 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>{{ __('app.data_keys.nameKey') }}</th>
-                                    <th>{{ __('app.data_keys.descKey') }}</th>
-                                    <th>{{ __('app.data_keys.summaryKey') }}</th>
-                                    <th>{{ __('app.data_keys.gameEventType') }}</th>
-                                    <th>{{ __('app.data_keys.gameEventStatus') }}</th>
-                                    <th>{{ __('app.data_keys.squadType') }}</th>
-                                    <th>{{ __('app.data_keys.startTime') }}</th>
-                                    <th>{{ __('app.data_keys.endTime') }}</th>
-                                    <!-- <th>{{ __('app.data_keys.displayStartTime') }}</th> -->
-                                    <!-- <th>{{ __('app.data_keys.displayEndTime') }}</th> -->
-                                    <th>{{ __('app.data_keys.timeLimited') }}</th>
+                                    <th>{{ __('fields.nameKey') }}</th>
+                                    <!-- <th>{{ __('fields.descKey') }}</th> -->
+                                    <th>{{ __('fields.summaryKey') }}</th>
+                                    <!-- <th>{{ __('fields.gameEventType') }}</th> -->
+                                    <!-- <th>{{ __('fields.gameEventStatus') }}</th> -->
+                                    <!-- <th>{{ __('fields.squadType') }}</th> -->
+                                    <th>{{ __('fields.startTime') }}</th>
+                                    <th>{{ __('fields.endTime') }}</th>
+                                    <!-- <th>{{ __('fields.displayStartTime') }}</th> -->
+                                    <!-- <th>{{ __('fields.displayEndTime') }}</th> -->
+                                    <!-- <th>{{ __('fields.timeLimited') }}</th> -->
                                 </tr>
                             </thead>
                             <tbody>
                             @endif
                                 @forelse ($value['instanceList'] as $info_key => $info)
+                                @if($info['timeLimited'] && !in_array($value['gameEventType'], ['MODS']) && !in_array($value['squadType'], ['SQUADEVENT01', 'SQUADEVENT02', 'SQUADEVENT03', 'SQUADEVENT04', 'SQUADEVENT05', 'SQUADEVENT06', 'SQUADEVENT07', 'SQUADEVENT08', 'SQUADEVENT09']))
                             <tr>
                                 <td>{{ $key }}.{{ $info_key }}</td>
                                 <td>{{ preg_replace(['/\[[^\]]*\]/', '/\\\\n/'], ['', ' '], $value['nameKey']) }}</td>
-                                <td>{{ preg_replace(['/\[[^\]]*\]/', '/\\\\n/'], ['', ' '], $value['descKey']) }}</td>
-                                <td>{{ preg_replace(['/\[[^\]]*\]/', '/\\\\n/'], ['', ' '], $value['summaryKey']) }}</td>
-                                <td>{{ $value['gameEventType'] }}</td>
-                                <td>{{ $value['gameEventStatus'] }}</td>
-                                <td>{{ $value['squadType'] }}</td>
+                                <td>{{ preg_replace(['/\[[^\]]*\]/', '/\\\\n/'], ['', ' '], $value['descKey']) }}<br />
+                                <em>{{ preg_replace(['/\[[^\]]*\]/', '/\\\\n/'], ['', ' '], $value['summaryKey']) }}</em></td>
+                                <!-- <td>{{ $value['gameEventType'] }}</td> -->
+                                <!-- <td>{{ $value['gameEventStatus'] }}</td> -->
+                                <!-- <td>{{ $value['squadType'] }}</td> -->
                                 <td><span class="text-hide">{{ $info['startTime'] }}</span>{{ date('D, d M Y', intval(substr($info['startTime'], 0, 10))) }}</td>
                                 <td><span class="text-hide">{{ $info['endTime'] }}</span>{{ date('D, d M Y', intval(substr($info['endTime'], 0, 10))) }}</td>
                                 <!-- <td>{{ date('D, d M Y', intval(substr($info['displayStartTime'], 0, 10))) }}</td> -->
                                 <!-- <td>{{ date('D, d M Y', intval(substr($info['displayEndTime'], 0, 10))) }}</td> -->
-                                <td>{{ $info['timeLimited'] }}</td>
+                                <!-- <td>{{ $info['timeLimited'] }}</td> -->
                             </tr>
+                                @endif
                                     @empty
                     <!-- no entries -->
                                 @endforelse

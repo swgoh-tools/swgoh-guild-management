@@ -215,6 +215,7 @@ class GuildController extends Controller
         $info = SyncClient::getPlayer($guild->user->code ?? null);
         $members = SyncClient::getGuildMembers($guild->user->code ?? null);
         $teams = SyncClient::getSquadList();
+        $anchors = SyncClient::getSquadAnchors();
         $unitKeys = SyncClient::getUnitKeys();
         $skillKeys = SyncClient::getSkillKeys();
         if (isset($teams['updated'])) unset($teams['updated']);
@@ -232,27 +233,80 @@ class GuildController extends Controller
                 $rosterWithAllyCodeKeys[$key]['isShip'] = true;
             }
         }
-        $anchors = [
-            'revan' => 'JEDIKNIGHTREVAN',
-            'chewbacca' => 'CHEWBACCALEGENDARY',
-            'jtr' => 'REYJEDITRAINING',
-            'cls' => 'COMMANDERLUKESKYWALKER',
-            'r2d2' => 'R2D2_LEGENDARY',
-            'bb8' => 'BB8',
-            'yoda' => 'GRANDMASTERYODA',
-            'palpatine' => 'EMPERORPALPATINE',
-            'thrawn' => 'GRANDADMIRALTHRAWN',
-            'chimaera' => 'CAPITALCHIMAERA',
-        ];
-        foreach ($teams['events']['phase'] ?? [] as $key => $value) {
-            $teams['events']['phase'][$key]['squads'][] = [
-                'name' => 'Hero',
-                'gear' => 12.5,
-                'level' => 85,
-                'rarity' => 7,
-                'team' => [$anchors[$value['anchor'] ?? 'UNKNOWN']],
+
+        if (!$chunk) {
+            // calculat raid readiness
+            $eventStats = [];
+            $phaseSelector = [
+                'rancor' => 2,
+                'haat' => 4,
+                // 'sith'
             ];
+            foreach ($teams as $teamKey => $team) {
+                if (isset($phaseSelector[$teamKey]) && $phaseSelector[$teamKey]) {
+                    foreach ($members[0] ?? [] as $member) {
+                        foreach ($team['phase'][$phaseSelector[$teamKey]]['squads'] ?? [] as $squad) {
+                            $tmpTeam = $this->checkTeamStatus($team, $squad['team'], $member['allyCode'], $rosterWithAllyCodeKeys, $unitKeys);
+                            $eventStats[$teamKey][max($tmpTeam['size'] - $tmpTeam['stats']['valid'], 0)][$member['allyCode']] = $member['name'];
+                        }
+                    }
+                    $this->prepareEventStats($eventStats, $teamKey);
+                } elseif ('sith' == $teamKey) {
+                    $sithSquads = [];
+                    $sithDamage = [];
+                    $sithDamage[0][999]['DMG'] = 46888776;
+                    $sithDamage[1][999]['DMG'] = 52105858;
+                    $sithDamage[2][999]['DMG'] = 38371455;
+                    $sithDamage[3][999]['DMG'] = 11822005;
+                    $sithDamage[4][999]['DMG'] = 9674837;
+                    $sithDamage[5][999]['DMG'] = 12002602;
+                    // https://forums.galaxy-of-heroes.starwars.ea.com/discussion/165806/sith-raid-health-per-phase-all-tiers
+                    // Phase 1: 46,888,776
+                    // Phase 2: 52,105,858
+                    // Phase 3: 38,371,455
+                    // Phase 4: 33,499,444 (Nihilus: 11,822,005 / Sion: 9,674,837 / Traya: 12,002,602 )
+
+                    foreach ($members[0] ?? [] as $member) {
+                        foreach ($team['phase'] ?? [] as $phasekey => $phase) {
+                            foreach ($phase['squads'] ?? [] as $squad) {
+                                $tmpTeam = $this->checkTeamStatus($team, $squad['team'], $member['allyCode'], $rosterWithAllyCodeKeys, $unitKeys);
+                                $eventStats[$teamKey][$phasekey][max($tmpTeam['size'] - $tmpTeam['stats']['valid'], 0)][$member['allyCode']] = $member['name'];
+                                $squadWithDamage = $squad;
+                                // preg_match('/(\d*\.?\d+)%-(\d+)%/', $squad['note'] ?? '', $matches); // old % values till 30.11.18
+                                preg_match('/(\d{0,3}(?:,\d\d\d)+)/', $squad['note'] ?? '', $matches); // new since 1.12.18 no mor dmg ranges, absolute values
+                                $squadWithDamage['DMG'] = preg_replace( '/[^\d]/', '', ($matches[1] ?? 0));
+                                $squadWithDamage['DMG_100'] = round($squadWithDamage['DMG'] / $sithDamage[$phasekey][999]['DMG'] * 100 , 1);
+                                $sithSquads[$phasekey][max($tmpTeam['size'] - $tmpTeam['stats']['valid'], 0)][$member['allyCode']][] = $squadWithDamage;
+                            }
+                        }
+                    }
+
+                    foreach ($eventStats[$teamKey] ?? [] as $eventStatsKey => $eventStatsValue) {
+                        $this->prepareEventStats($eventStats[$eventStatsKey], $teamKey);
+                        foreach ($sithSquads[$eventStatsKey] ?? [] as $validationKey => $validationMember) {
+                            $sithDamage[$eventStatsKey][$validationKey]['DMG'] = 0;
+                            foreach ($validationMember as $validationMemberSquads) {
+                                $sithDamage[$eventStatsKey][$validationKey]['DMG'] += $validationMemberSquads[0]['DMG'];
+                            }
+                        }
+                    }
+                }
+            }
+        } elseif ('events' == $chunk) {
+            // add legendary chars as separate event squads for analysis
+            foreach ($teams['events']['phase'] ?? [] as $key => $value) {
+                if (isset($value['anchor'])) {
+                    $teams['events']['phase'][$key]['squads'][] = [
+                        'name' => 'Hero',
+                        'gear' => 12.5,
+                        'level' => 85,
+                        'rarity' => 7,
+                        'team' => [$anchors[$value['anchor']] ?? $value['anchor']],
+                    ];
+                }
+            }
         }
+
         return view('guild.stats', [
             'info' => $info[0] ?? [],
             'members' => $members[0] ?? [],
@@ -260,6 +314,9 @@ class GuildController extends Controller
             'roster' => $rosterWithAllyCodeKeys ?? [],
             'skillKeys' => $skillKeys,
             'unitKeys' => $unitKeys,
+            'eventStats' => $eventStats ?? [],
+            'sithDamage' => $sithDamage ?? [],
+            'sithSquads' => $sithSquads ?? [],
             'selection' => $chunk,
         ]);
     }
@@ -293,4 +350,77 @@ class GuildController extends Controller
 
         return $user;
     }
+
+    private function prepareEventStats(&$eventStats, $index) {
+        if(!isset($eventStats[$index])){
+            return;
+        }
+
+        if (isset($eventStats[$index][0])) {
+            asort($eventStats[$index][0]);
+        };
+        if (isset($eventStats[$index][1])) {
+            foreach ($eventStats[$index][0] ?? [] as $key => $value) {
+                if (isset($eventStats[$index][1][$key])) {
+                    unset($eventStats[$index][1][$key]);
+                }
+            }
+            asort($eventStats[$index][1]);
+        };
+    }
+
+    private function checkTeamStatus($event, $team, $memberId, &$roster, &$unitKeys) {
+        $currentTeam = [];
+        $currentStats = [
+            'gp' => 0,
+            'gear' => 0,
+            'level' => 0,
+            'rarity' => 0,
+            'zetas' => 0,
+            'valid' => 0,
+        ];
+        $teamSize = min(count($team ?? []), 5);
+
+        foreach ($team ?? [] as $teamchar) {
+            $teamchar = preg_split('/:/', $teamchar);
+            $teamcharname = $teamchar[0];
+            $tmp = [
+                'gp' => $roster[$teamcharname][$memberId]['gp'] ?? 0,
+                'gear' => $roster[$teamcharname][$memberId]['gear'] ?? 0 + (count($roster[$teamcharname][$memberId]['equipped'] ?? []) / 10),
+                'level' => $roster[$teamcharname][$memberId]['level'] ?? 0,
+                'rarity' => $roster[$teamcharname][$memberId]['rarity'] ?? 0,
+                'zetas' => [],
+            ];
+            $currentStats['gp'] += $tmp['gp'];
+            $isValid = true;
+            ($tmp['gear'] >= ($team['gear'] ?? $event['gear'] ?? 0) || ($roster[$teamcharname]['isShip'] ?? false)) ? $currentStats['gear'] += 1 : $isValid = false; // irrelevant für Schiffe
+            ($tmp['level'] >= ($team['level'] ?? $event['level'] ?? 0)) ? $currentStats['level'] += 1 : $isValid = false;
+            ($tmp['rarity'] >= ($team['rarity'] ?? $event['rarity'] ?? 0)) ? $currentStats['rarity'] += 1 : $isValid = false;
+            $zetacount = 0;
+            foreach ($teamchar as $zetaindex => $zetaskill) {
+                if ($zetaindex <> 0) {
+                    foreach ($roster[$teamcharname][$memberId]['skills'] ?? [] as $rosterindex => $rosterskill) {
+                        if ($zetaskill == $rosterskill['id'] ?? 'dummy') {
+                            $tmp['zetas'][$zetaskill] = $rosterskill['tier'] ?? 0;
+                            if (8 == $rosterskill['tier'] ?? 0) {
+                                $zetacount++;
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+            ($zetacount >= count($teamchar) - 1) ? $currentStats['zetas'] += 1 : $isValid = false;
+            ($isValid) ? $currentStats['valid'] += 1 : null;
+            // $currentTeam[$teamcharname] =  $roster[$teamcharname][$memberId]['nameKey'] ?? $teamcharname . ': ' . implode(', ', $tmp);
+            $currentTeam[$teamcharname] =  $tmp;
+            $currentTeam[$teamcharname]['name'] =  $unitKeys[$teamcharname]['name'] ?? $teamcharname;
+        }
+        return [
+            'team' => $currentTeam,
+            'stats' => $currentStats,
+            'size' => $teamSize,
+        ];
+    }
+
 }

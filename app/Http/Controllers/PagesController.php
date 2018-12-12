@@ -325,6 +325,7 @@ class PagesController extends Controller
 
     protected function squads(Request $request, Guild $guild, $combat_type, $route)
     {
+        $unitKeys = SyncClient::getUnitKeys();
         $list = SyncClient::getRoster($guild->user->code ?? null, $combat_type);
         $units = $list[0];
 
@@ -355,12 +356,11 @@ class PagesController extends Controller
             't5' => $request->input('t5'),
         ];
         if ($combat_type == 2) {
-            $select_list = ['t1' => 'Ship1', 't2' => 'Ship2', 't3' => 'Ship3', 't4' => 'Ship4', 't5' => 'Ship5'];
+            $select_list = ['t1' => 'Ship', 't2' => 'Ship', 't3' => 'Ship', 't4' => 'Ship', 't5' => 'Ship'];
         } else {
-            $select_list = ['t1' => 'Char1', 't2' => 'Char2', 't3' => 'Char3', 't4' => 'Char4', 't5' => 'Char5'];
+            $select_list = ['t1' => 'Char', 't2' => 'Char', 't3' => 'Char', 't4' => 'Char', 't5' => 'Char'];
         }
         $sort = 'gp';
-        $caption = 'Eigene Zusammenstellung';
         $result = [];
 
         foreach ($char_list as $key => $char) {
@@ -371,7 +371,6 @@ class PagesController extends Controller
 
         if (!empty($char_list)) {
             $char_list = array_flip(array_flip($char_list)); // remove duplicates
-            $caption = implode(',', $char_list);
             foreach ($player_data as $player_id => $player_units) {
                 $result[$player_id]['id'] = $player_id;
                 $squad_count = 0;
@@ -391,20 +390,16 @@ class PagesController extends Controller
             usort($result, [$this, 'cmpSortSumDesc']);
         }
 
-        return view(
-            'guild.squads',
-            [
-            // 'sync_status' => \Cache::get('sync_status', []),
+        return view('guild.squads', [
+            'unitKeys' =>$unitKeys ?? [],
             'route' => $route,
             'units' => $units,
             'updated' => $list[1] ?? [],
             'result' => $result,
-            'caption' => $caption,
             'char_list' => $char_list,
             'roster' => $roster,
             'select_list' => $select_list,
-            ]
-        ); //$request->all()
+            ]); //$request->all()
     }
 
     protected function cmpSortSumDesc($a, $b)

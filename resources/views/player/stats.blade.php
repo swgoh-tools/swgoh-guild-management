@@ -20,18 +20,18 @@
             <!-- <p class="text-left">{{ __('app.howto.click_head') }}</p> -->
 
 <div class="card mb-2">
-    <h5 class="card-header">{{ __('Arena') }} - {{ __('Team Check') }} - Aktueller Rang: {{ $info['arena']['char']['rank'] ?? '-' }}</h5>
+    <h5 class="card-header">{{ __('Arena') }} - {{ __('Team Check') }} - {{ __('Current Rank')}}: {{ $info['arena']['char']['rank'] ?? '-' }}</h5>
     <div class="card-body">
         <table class="table table-hover table-responsive">
         <thead><tr>
-        <th>{{ __('Chararacter') }}</th>
-        <th>{{ __('Typ') }}</th>
-        <th>{{ __('Status') }}</th>
+        <th>{{ __('Character') }}</th>
+        <th>{{ __('fields.squadUnitType') }}</th>
+        <th>{{ __('State') }}</th>
         </tr></thead><tbody>
         @foreach($info['arena']['char']['squad'] ?? [] as $arenaChar)
         <tr>
         <td>{{ $unitKeys[$arenaChar['defId'] ?? '-']['name'] ?? $arenaChar['defId'] ?? '-' }}</td>
-        <td>{{ ($arenaChar['squadUnitType'] ?? '') == 'UNITTYPELEADER' ? 'Leader' : '' }}</td>
+        <td>{{ __('enums.' . ($arenaChar['squadUnitType'] ?? '')) }}</td>
         <td>
         @foreach($info['roster'] as $rosterToon)
         @if($rosterToon['defId'] == $arenaChar['defId'])
@@ -49,19 +49,19 @@
 </div>
 
 <div class="card mb-2">
-    <h5 class="card-header">{{ __('Fleet Arena') }} - {{ __('Team Check') }} - Aktueller Rang: {{ $info['arena']['ship']['rank'] ?? '-' }}</h5>
+    <h5 class="card-header">{{ __('Fleet Arena') }} - {{ __('Team Check') }} - {{ __('Current Rank')}}: {{ $info['arena']['ship']['rank'] ?? '-' }}</h5>
     <div class="card-body">
         <table class="table table-hover table-responsive">
         <thead><tr>
-        <th>{{ __('Chararacter') }}</th>
-        <th>{{ __('Typ') }}</th>
-        <th>{{ __('Status') }}</th>
+        <th>{{ __('Character') }}</th>
+        <th>{{ __('fields.squadUnitType') }}</th>
+        <th>{{ __('State') }}</th>
         <th>{{ __('Crew') }}</th>
         </tr></thead><tbody>
         @foreach($info['arena']['ship']['squad'] ?? [] as $arenaChar)
         <tr>
         <td>{{ $unitKeys[$arenaChar['defId'] ?? '-']['name'] ?? $arenaChar['defId'] ?? '-' }}</td>
-        <td>{{ ($arenaChar['squadUnitType'] ?? '') == 'UNITTYPECOMMANDER' ? 'Commander' : '' }}{{ ($arenaChar['squadUnitType'] ?? '') == 'UNITTYPEDEFAULT' ? 'Startformation' : '' }}{{ ($arenaChar['squadUnitType'] ?? '') == 'UNITTYPEREINFORCEMENT' ? 'Verstärkung' : '' }}</td>
+        <td>{{ __('enums.' . ($arenaChar['squadUnitType'] ?? '')) }}</td>
         <td>
         @foreach($info['roster'] as $rosterToon)
         @if($rosterToon['defId'] == $arenaChar['defId'])

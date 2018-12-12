@@ -83,9 +83,9 @@
                                     <th>#</th>
                                     @foreach ($player as $key => $value)
                                     @if(!isset($filter) || in_array($key, $filter))
-                                    <th>{{ __('app.data_keys.' . $key) }}</th>
+                                    <th>{{ __('fields.' . $key) }}</th>
                                     @if($key == 'skills')
-                                    <th>{{ __('app.data_keys.zetas') }}</th>
+                                    <th>{{ __('fields.zetas') }}</th>
                                     @endif
                                     @endif
                                     @endforeach

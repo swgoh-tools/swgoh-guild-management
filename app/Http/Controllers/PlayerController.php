@@ -24,9 +24,11 @@ class PlayerController extends Controller
     public function home($player)
     {
         $info = SyncClient::getPlayer($player ?? null);
+        $playerTitleKeys = SyncClient::getDataMap('playerTitleList');
 
         return view('player.home', [
             'info' => $info[0] ?? [],
+            'playerTitleKeys' => $playerTitleKeys ?? [],
         ]);
     }
 
@@ -38,9 +40,11 @@ class PlayerController extends Controller
     public function roster($player)
     {
         $info = SyncClient::getPlayer($player ?? null);
+        $unitStatKeys = SyncClient::getUnitStatKeys();
 
         return view('player.roster', [
             'info' => $info[0] ?? [],
+            'unitStatKeys' => $unitStatKeys ?? [],
         ]);
     }
 

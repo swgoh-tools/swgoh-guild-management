@@ -1,99 +1,113 @@
     @if($arenaChar['squadUnitType'] == 'UNITTYPELEADER')
         @if(isset($skillKeys['leaderskill_' . strtoupper($arenaChar['defId'])]))
-        <div class="stats-check-ok"><i class="fa fa-check text-success"></i> Die Einheit im Leader-Slot ist ein Anführer ({{ $skillKeys['leaderskill_' . strtoupper($arenaChar['defId'])] }}).</div>
+        <div class="stats-check-ok"><i class="fa fa-check text-success"></i> {{ __('app.check.unit_is_leader', [
+            'skill' => $skillKeys['leaderskill_' . strtoupper($arenaChar['defId'])]
+        ]) }}</div>
         @else
-        <div class="text-danger"><i class="fa fa-bolt text-danger"></i> Die Einheit im Leader-Slot ist kein Anführer. Oops?</div>
+        <div class="text-danger"><i class="fa fa-bolt text-danger"></i> {{ __('app.check.unit_is_leader_fail') }}</div>
         @endif
     @endif
 
     @if($rosterToon['level'] == $info['level'])
-    <div class="stats-check-ok"><i class="fa fa-check text-success"></i> Die Einheit ist maximal gelevelt ({{ $rosterToon['level'] }}/{{ $info['level'] }}).</div>
+    <div class="stats-check-ok"><i class="fa fa-check text-success"></i> {{ __('app.check.level_is_max', [
+        'level' => $rosterToon['level'],
+        'max' => $info['level']
+    ]) }}</div>
     @else
-    <div class="text-danger"><i class="fa fa-times text-danger"></i> Die Einheit ist nicht auf dem maximalen Level ({{ $rosterToon['level'] }}/{{ $info['level'] }}).</div>
+    <div class="text-danger"><i class="fa fa-times text-danger"></i> {{ __('app.check.level_is_max_fail', [
+        'level' => $rosterToon['level'],
+        'max' => $info['level']
+    ]) }}</div>
     @endif
 
     @if($rosterToon['combatType'] == 'SHIP' && $rosterToon['gear'] == 1)
-    <div class="stats-check-ok"><i class="fa fa-check text-success"></i> Ausrüstung bei Schiffen ist immer gleich (1).</div>
+    <div class="stats-check-ok"><i class="fa fa-check text-success"></i> {{ __('app.check.gear_is_max_ship_one') }}</div>
     @elseif($rosterToon['combatType'] == 'SHIP')
-    <div class="text-muted"><i class="fa fa-info text-muted"></i> Ausrüstung {{ $rosterToon['gear'] }}? Das ist eigentlich nicht möglich.</div>
+    <div class="text-muted"><i class="fa fa-info text-muted"></i> {{ __('app.check.gear_is_max_ship', ['gear' => $rosterToon['gear']]) }}</div>
     @elseif($rosterToon['gear'] + (count($rosterToon['equipped']) / 10) == 12.5)
-    <div class="stats-check-ok"><i class="fa fa-check text-success"></i> Die Einheit hat sämtliche bekannte Ausrüstung (12.5 !).</div>
+    <div class="stats-check-ok"><i class="fa fa-check text-success"></i> {{ __('app.check.gear_is_max', ['gear' => 12.5]) }}</div>
     @elseif($rosterToon['gear'] + (count($rosterToon['equipped']) / 10) >= 12)
-    <div><i class="fa fa-info text-danger"></i> Die Einheit hat sehr gute Ausrüstung ({{ $rosterToon['gear'] + (count($rosterToon['equipped']) / 10) }}), aber nicht die Bestmögliche.</div>
+    <div><i class="fa fa-info text-danger"></i> {{ __('app.check.gear_is_max_near', ['gear' => $rosterToon['gear'] + (count($rosterToon['equipped']) / 10), 'max' => 12.5]) }}</div>
     @else
-    <div class="text-danger"><i class="fa fa-times text-danger"></i> Der Einheit fehlt noch Einiges an Ausrüstung ({{ $rosterToon['gear'] + (count($rosterToon['equipped']) / 10) }}).</div>
+    <div class="text-danger"><i class="fa fa-times text-danger"></i> {{ __('app.check.gear_is_max_fail', ['gear' => $rosterToon['gear'] + (count($rosterToon['equipped']) / 10)]) }}</div>
     @endif
-
+    {{--
 <!-- <div class="stats-check-ignore">NOT IMPLEMENTED - was fehlt ggf?</div> -->
+    --}}
 
     @if($rosterToon['rarity'] == 7)
-    <div class="stats-check-ok"><i class="fa fa-check text-success"></i> Die Einheit ist vollständig freigeschaltet ({{ $rosterToon['rarity'] }} Sterne).</div>
+    <div class="stats-check-ok"><i class="fa fa-check text-success"></i> {{ __('app.check.rarity_is_max', ['rarity' => $rosterToon['rarity']]) }}</div>
     @else
-    <div class="text-danger"><i class="fa fa-bolt text-danger"></i> Die Einheit ist noch nicht fertig gefarmt ({{ $rosterToon['rarity'] }}/7 Sterne).</div>
+    <div class="text-danger"><i class="fa fa-bolt text-danger"></i> {{ __('app.check.rarity_is_max_fail', ['rarity' => $rosterToon['rarity'], 'max' => 7]) }}</div>
     @endif
 
     @if($rosterToon['combatType'] == 'CHARACTER')
         @if(count($rosterToon['mods']) == 6)
-        <div class="stats-check-ok"><i class="fa fa-check text-success"></i> Die Einheit ist mit 6 Mods ausgestattet.</div>
+        <div class="stats-check-ok"><i class="fa fa-check text-success"></i> {{ __('app.check.mod_count_is_max', ['max' => 6]) }}</div>
         @else
-        <div class="text-danger"><i class="fa fa-bolt text-danger"></i> Der Einheit fehlen {{ 6 - count($rosterToon['mods']) }} Mods. Unbedingt vervollständigen.</div>
+        <div class="text-danger"><i class="fa fa-bolt text-danger"></i> {{ __('app.check.mod_count_is_max_fail', ['missing' => 6 - count($rosterToon['mods'])]) }}</div>
         @endif
     @endif
 
     @if($rosterToon['combatType'] == 'CHARACTER')
         @foreach($rosterToon['mods'] as $toonMod)
             @if($toonMod['pips'] == 6)
-            <div class="stats-check-ok"><i class="fa fa-check text-success"></i> Slot {{$toonMod['slot']}}: Ein 6-pip-Mod. Sehr beeindruckend!</div>
+            <div class="stats-check-ok"><i class="fa fa-check text-success"></i> {{ __('Slot') }} {{$toonMod['slot']}}: {{ __('app.check.mod_pips_is_max', ['pips' => $toonMod['pips']]) }}</div>
             @elseif($toonMod['pips'] == 5)
-            <div class="stats-check-ignore"><i class="fa fa-info text-danger"></i> Slot {{$toonMod['slot']}}: 5-pip-Mod gefunden. Slicing auf 6 wäre möglich.</div>
+            <div class="stats-check-ignore"><i class="fa fa-info text-danger"></i>  {{ __('Slot') }} {{$toonMod['slot']}}: {{ __('app.check.mod_pips_is_max_near', ['pips' => $toonMod['pips'], 'max' => 6]) }}</div>
             @elseif($isFleetCheck ?? false)
-            <div class="text-danger"><i class="fa fa-bolt text-danger"></i> Slot {{$toonMod['slot']}}: {{ $toonMod['pips'] }}-pip-Mod gefunden. Für die Flotte zählen nur Level und Pips eines Mods. Nicht seine Eigenschaften.</div>
+            <div class="text-danger"><i class="fa fa-bolt text-danger"></i>  {{ __('Slot') }} {{$toonMod['slot']}}: {{ __('app.check.mod_pips_is_max_ship_fail', ['pips' => $toonMod['pips']]) }}</div>
             @else
-            <div><i class="fa fa-times text-danger"></i> Slot {{$toonMod['slot']}}: {{ $toonMod['pips'] }}-pip-Mod gefunden. Wirklich arenatauglich?</div>
+            <div><i class="fa fa-times text-danger"></i>  {{ __('Slot') }} {{$toonMod['slot']}}: {{ __('app.check.mod_pips_is_max_fail', ['pips' => $toonMod['pips']]) }}</div>
             @endif
             @if($toonMod['level'] == 15)
-            <div class="stats-check-ok"><i class="fa fa-check text-success"></i> Slot {{$toonMod['slot']}}: Der Mod hat die maximale Stufe ({{ $toonMod['level'] }}).</div>
+            <div class="stats-check-ok"><i class="fa fa-check text-success"></i>  {{ __('Slot') }} {{$toonMod['slot']}}: {{ __('app.check.mod_level_is_max', ['max' => $toonMod['level']]) }}</div>
             @else
-            <div class="text-danger"><i class="fa fa-bolt text-danger"></i> Slot {{$toonMod['slot']}}: Der Mod ist nur Stufe {{ $toonMod['level'] }}. Sofort auf Max bringen oder tauschen.</div>
+            <div class="text-danger"><i class="fa fa-bolt text-danger"></i>  {{ __('Slot') }} {{$toonMod['slot']}}: {{ __('app.check.mod_level_is_max_fail', ['level' => $toonMod['level'], 'max' => 15]) }}</div>
             @endif
-            {{-- $toonMod['tier'] enthält die Qualität/Farbe des Mods --}}
-            {{-- $toonMod['set'] enthält die Set Info --}}
-            {{-- $toonMod['primaryStat'][] ... --}}
-            {{-- $toonMod['secondaryStat'][] ... --}}
         @endforeach
     @endif
-
-<!-- <div class="stats-check-ignore">NOT IMPLEMENTED - unvollständige Sets</div> -->
+    {{--
+             $toonMod['tier'] enthält die Qualität/Farbe des Mods
+             $toonMod['set'] enthält die Set Info
+             $toonMod['primaryStat'][] ...
+             $toonMod['secondaryStat'][] ...
+    <!-- <div class="stats-check-ignore">NOT IMPLEMENTED - unvollständige Sets</div> -->
+    --}}
     @foreach($rosterToon['skills'] as $toonSkill)
         @if($arenaChar['squadUnitType'] == 'UNITTYPEDEFAULT' && $toonSkill['id'] == 'leaderskill_' . strtoupper($arenaChar['defId']))
-        <div class="stats-check-ignore text-muted"><i class="fa fa-info text-muted"></i> Fähigkeit <em>{{ $skillKeys[$toonSkill['id']] }}</em> ist eine Leader-Fähigkeit und daher hier irrelevant. Stufe {{$toonSkill['tier']}}.@if($toonSkill['isZeta']) <span class="icon-zeta"></span>@endif</div>
+        <div class="stats-check-ignore text-muted"><i class="fa fa-info text-muted"></i>
+            {!! __('app.check.skill_is_max_leader_ignore', ['name' => $skillKeys[$toonSkill['id']], 'skill' => $toonSkill['tier']]) !!}@if($toonSkill['isZeta']) <span class="icon-zeta"></span>@endif</div>
         @elseif($arenaChar['squadUnitType'] <> 'UNITTYPEREINFORCEMENT' && false !== strpos($toonSkill['id'], 'hardwareskill'))
-        <div class="stats-check-ignore text-muted"><i class="fa fa-info text-muted"></i> Fähigkeit <em>{{ $skillKeys[$toonSkill['id']] }}</em> ist eine Verstärkungs-Fähigkeit und daher hier irrelevant. Stufe {{$toonSkill['tier']}}.</div>
+        <div class="stats-check-ignore text-muted"><i class="fa fa-info text-muted"></i>
+            {!! __('app.check.skill_is_max_hardware_ignore', ['name' => $skillKeys[$toonSkill['id']], 'skill' => $toonSkill['tier']]) !!}</div>
         @elseif($toonSkill['tier'] == 8 || $toonSkill['tier'] == ($skillData[$toonSkill['id']]['max_tier'] ?? -1) )
             @if(false !== strpos($toonSkill['id'], 'contractskill'))
-            <div class="stats-check-ok"><i class="fa fa-check text-success"></i> Vertrag/Payout <em>{{ $skillKeys[$toonSkill['id']] }}</em> ist auf Max ({{ $toonSkill['tier'] }}).</div>
+            <div class="stats-check-ok"><i class="fa fa-check text-success"></i> {!! __('app.check.skill_is_max_contract', ['name' => $skillKeys[$toonSkill['id']], 'skill' => $toonSkill['tier']]) !!}</div>
             @elseif(false !== strpos($toonSkill['id'], 'hardwareskill'))
-            <div class="stats-check-ok"><i class="fa fa-check text-success"></i> Verstärkung <em>{{ $skillKeys[$toonSkill['id']] }}</em> ist auf Max ({{ $toonSkill['tier'] }}).</div>
+            <div class="stats-check-ok"><i class="fa fa-check text-success"></i> {!! __('app.check.skill_is_max_hardware', ['name' => $skillKeys[$toonSkill['id']], 'skill' => $toonSkill['tier']]) !!}</div>
             @elseif($toonSkill['tier'] == 8 && $rosterToon['combatType'] == 'CHARACTER')
-            <div class="stats-check-ok"><i class="fa fa-check text-success"></i> Fähigkeit <em>{{ $skillKeys[$toonSkill['id']] }}</em> ist auf Max ({{ $toonSkill['tier'] }}).@if($toonSkill['isZeta']) <span class="icon-zeta"></span>@else <span class="icon-omega"></span>@endif</div>
+            <div class="stats-check-ok"><i class="fa fa-check text-success"></i> {!! __('app.check.skill_is_max', ['name' => $skillKeys[$toonSkill['id']], 'skill' => $toonSkill['tier']]) !!}@if($toonSkill['isZeta']) <span class="icon-zeta"></span>@else <span class="icon-omega"></span>@endif</div>
             @else
-            <div class="stats-check-ok"><i class="fa fa-check text-success"></i> Fähigkeit <em>{{ $skillKeys[$toonSkill['id']] }}</em> ist auf Max ({{ $toonSkill['tier'] }}).</div>
+            <div class="stats-check-ok"><i class="fa fa-check text-success"></i> {!! __('app.check.skill_is_max', ['name' => $skillKeys[$toonSkill['id']], 'skill' => $toonSkill['tier']]) !!}</div>
             @endif
         @elseif($toonSkill['tier'] == 7 && $rosterToon['combatType'] == 'CHARACTER')
-        <div><i class="fa fa-info text-danger"></i> Fähigkeit <em>{{ $skillKeys[$toonSkill['id']] }}</em> ist auf Stufe {{ $toonSkill['tier'] }}.@if($toonSkill['isZeta']) Zeta fehlt noch.<span class="icon-zeta"></span>@else Omega fehlt noch.<span class="icon-omega"></span>@endif</div>
+        <div><i class="fa fa-info text-danger"></i> {!! __('app.check.skill_is_max_fail', ['name' => $skillKeys[$toonSkill['id']], 'skill' => $toonSkill['tier'], 'max' => $skillData[$toonSkill['id']]['max_tier'] ?? '?']) !!}@if($toonSkill['isZeta']) {{ __('app.check.zeta_missing') }}<span class="icon-zeta"></span>@else {{ __('app.check.omega_missing') }}<span class="icon-omega"></span>@endif</div>
             @if($toonSkill['isZeta'])
             @foreach($zetas ?? [] as $zeta)
                 @if( ($zeta['name'] ?? '') == ($toonSkill['nameKey'] ?? '...') )
-            <span class="">Zeta-Bewertung: {{ $zeta['versa'] ?? '' }} (1:gut bis 10:schlecht, siehe <a href="{{ route('zetas') }}">Zetaliste</a> für Details)</span>
+            <span class="">{!! __('app.check.zeta_ranking', ['zeta' => $zeta['versa'] ?? '', 'route' => route('zetas')]) !!}</span>
                 @endif
             @endforeach
             @endif
         @elseif($rosterToon['combatType'] == 'CHARACTER')
-        <div class="text-danger"><i class="fa fa-bolt text-danger"></i> Fähigkeit <em>{{ $skillKeys[$toonSkill['id']] }}</em> ist auf Stufe {{ $toonSkill['tier'] }}/{{ $skillData[$toonSkill['id']]['max_tier'] ?? '?' }}. Sofort prüfen.@if($toonSkill['isZeta']) Ist zudem Zeta.<span class="icon-zeta"></span>@endif</div>
+        <div class="text-danger"><i class="fa fa-bolt text-danger"></i> {!! __('app.check.skill_is_max_fail', ['name' => $skillKeys[$toonSkill['id']], 'skill' => $toonSkill['tier'], 'max' => $skillData[$toonSkill['id']]['max_tier'] ?? '?']) !!} {{ __('app.check.urgent') }}@if($toonSkill['isZeta']) {{ __('app.check.zeta_missing') }}<span class="icon-zeta"></span>@endif</div>
         @else
-        <div class="text-danger"><i class="fa fa-times text-danger"></i> Fähigkeit <em>{{ $skillKeys[$toonSkill['id']] }}</em> ist auf Stufe {{ $toonSkill['tier'] }}/{{ $skillData[$toonSkill['id']]['max_tier'] ?? '?' }}.</div>
+        <div class="text-danger"><i class="fa fa-times text-danger"></i> {!! __('app.check.skill_is_max_fail', ['name' => $skillKeys[$toonSkill['id']], 'skill' => $toonSkill['tier'], 'max' => $skillData[$toonSkill['id']]['max_tier'] ?? '?']) !!}</div>
         @endif
     @endforeach
+    {{--
 <!-- <div class="stats-check-ignore">NOT IMPLEMENTED - abilities check auf fehlende skills</div> -->
 <!-- <div class="stats-check-ignore">NOT IMPLEMENTED - abilities check mit zetaliste</div> -->
 <!-- <div class="stats-check-ignore">NOT IMPLEMENTED - synergy</div> -->
+--}}
