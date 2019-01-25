@@ -96,6 +96,7 @@ class SyncClient
             'gg.ships' => 'swgoh.gg Ships',
             'gg.abilities' => 'swgoh.gg Abilities',
             'gg.guild.units' => 'swgoh.gg Guild Units',
+            'gg.gear' => 'swgoh.gg Gear',
             'help.data.abilityList' => '',
             'help.data.battleEnvironmentsList' => '',
             'help.data.battleTargetingRuleList' => '',
@@ -131,6 +132,28 @@ class SyncClient
         ];
     }
 
+/**
+ * swgoh.gg data
+ */
+    public static function getGgChars()
+    {
+        $filename = 'swgoh.gg/characters/characters.json';
+        if (Storage::disk('sync')->exists($filename)) {
+            return json_decode(Storage::disk('sync')->get($filename), true);
+        }
+    }
+
+    public static function getGgGear()
+    {
+        $filename = 'swgoh.gg/gear/gear.json';
+        if (Storage::disk('sync')->exists($filename)) {
+            return json_decode(Storage::disk('sync')->get($filename), true);
+        }
+    }
+
+/**
+ * swgoh.help data
+ */
     public static function getRoster($player_code, $combat_type = 1)
     {
         if (!$player_code) {
@@ -204,7 +227,7 @@ class SyncClient
             'palpatine' => 'EMPERORPALPATINE',
             'thrawn' => 'GRANDADMIRALTHRAWN',
             'chimaera' => 'CAPITALCHIMAERA',
-            'c3po' => 'C3PO',
+            'c3po' => 'C3POLEGENDARY',
         ];
     }
 
@@ -500,9 +523,9 @@ class SyncClient
                         $sync_status[$target] = $this->syncGgToons();
                         break;
 
-                    // case 'squads':
-                    //     $sync_status[$target] = $this->syncHelpSquads();
-                    //     break;
+                    case 'gg.gear':
+                        $sync_status[$target] = $this->syncGgGear();
+                        break;
 
                     case 'gg.ships':
                         $sync_status[$target] = $this->syncGgShips();
@@ -1149,6 +1172,17 @@ class SyncClient
         $source = config('swgoh.API.SWGOH_GG.SERVER').'/ships/';
         $dir = 'swgoh.gg/ships/';
         $file = 'ships';
+        $ext = 'json';
+        $threshold = 60 * 60 * 6 * 3;
+
+        return $this->syncData($source, $dir, $file, $ext, $threshold);
+    }
+
+    public function syncGgGear()
+    {
+        $source = config('swgoh.API.SWGOH_GG.SERVER').'/gear/?format=json';
+        $dir = 'swgoh.gg/gear/';
+        $file = 'gear';
         $ext = 'json';
         $threshold = 60 * 60 * 6 * 3;
 

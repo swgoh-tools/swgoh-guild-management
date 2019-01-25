@@ -63,14 +63,15 @@ class PlayerController extends Controller
         dd($teams);
         $data = [];
         foreach ($teams[0] as $event) {
-            if (is_array($event)) {
+            if (\is_array($event)) {
                 foreach ($event['phase'] as $phase) {
                     foreach ($phase['squads'] as $squad) {
-                        # code...
+                        // code...
                     }
                 }
             }
         }
+
         return response($guild, 201);
 
         return view('player.home', [
@@ -78,10 +79,79 @@ class PlayerController extends Controller
         ]);
     }
 
+    // public function gearPullImages()
+    // {
+    //     $gear = SyncClient::getGgGear();
+    //     // //swgoh.gg/static/img/ui/gear-atlas.png
+    // }
+
+    private function getGearIngredients($gear_item, &$gear_list, &$mat_list = [], $amount = 1)
+    {
+        if ($gear_item['ingredients'] ?? []) {
+            foreach ($gear_item['ingredients'] as $mat) {
+                $this->getGearIngredients($gear_list[$mat['gear']], $gear_list, $mat_list, $amount * $mat['amount']);
+            }
+        } else {
+            $mat_list[$gear_item['base_id']] = $amount + ($mat_list[$gear_item['base_id']] ?? 0);
+        }
+
+        return $mat_list;
+    }
+
+    public function gear(Request $request, $player)
+    {
+        $info = SyncClient::getPlayer($player ?? null);
+        $chars = SyncClient::getGgChars();
+        $gear = SyncClient::getGgGear();
+        $gear_with_key = [];
+        foreach ($gear as $key => $value) {
+            $gear_with_key[$value['base_id']] = $value;
+        }
+        foreach ($gear as $key => $value) {
+            $gear_with_key[$value['base_id']]['mat_list'] = $this->getGearIngredients($value, $gear_with_key);
+        }
+
+        if ($request->input('t')) {
+            $char_list = explode(',', $request->input('t'));
+        } else {
+            $char_list = [
+                'PAPLOO:11',
+                'LOGRAY:9:4-6',
+                'EWOKELDER:10:3-4-5-6',
+                'CHIEFCHIRPA:8:1-4',
+                'WICKET:9:2-3-4-5',
+            ];
+        }
+
+        $char_list_plain = [];
+        foreach ($char_list as $key => $value) {
+            $parts = \explode(':', $value);
+            $char_list_plain[$parts[0]] = [
+                'tier' => $parts[1] ?? 0,
+                'gear' => preg_split('/[^\d]/', $parts[2] ?? '', -1, PREG_SPLIT_NO_EMPTY),
+            ];
+
+            // $char_list_plain[] = \explode(':', $value)[0];
+        }
+
+            // return \in_array($v['base_id'], $char_list_plain);
+        $result = array_filter($chars, function ($v) use ($char_list_plain) {
+            return isset($char_list_plain[$v['base_id']]);
+        });
+
+        return view('player.gear', [
+            'info' => $info[0] ?? [],
+            'char_list' => $char_list_plain,
+            'chars' => $result ?? [],
+            'gear' => $gear_with_key ?? [],
+        ]);
+    }
+
     public function statsVerbose($player)
     {
         return $this->stats($player, true);
     }
+
     /**
      * Display guild home page.
      *

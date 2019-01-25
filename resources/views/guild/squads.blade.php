@@ -23,16 +23,16 @@
 
 <div class="container-fluid">
     <main>
-        <h1 class="h3">@if('guild.team.ships' == $route){{ __('Ships') }}@else{{ __('Toons') }}@endif</h1>
+        <h1 class="h3">@if('ship' == $type){{ __('Ships') }}@else{{ __('Toons') }}@endif</h1>
         <form class="form-inline" action="{{ route($route, $guild) }}" method="post">
             @csrf
-            @foreach ($select_list as $id => $name)
+            @for ($id = 1; $id <= 5; $id++)
             <div class="form-group my-1">
-            <label for="{{ $id }}">{{ __($name) }} {{ $loop->iteration }}</label>
-            <select class="form-control mx-2" id="{{ $id }}" name="{{ $id }}">
+            <label for="t{{ $id }}"># {{ $id }}</label>
+            <select class="form-control mx-2" id="t{{ $id }}" name="t{{ $id }}">
                 <option value="">{{ __('Select Character') }}</option>
                 @foreach ($units as $key => $value)
-                @if ($key == Request::get($id) ){{-- old($id) does not work since there is no redirect with 'withInput()' --}}
+                @if ($key == ($char_list[$id-1] ?? 'NA') ){{-- Request::get($id) ?? old($id) does not work since there is no redirect with 'withInput()' --}}
                 <option value="{{ $key }}" selected>{{ $unitKeys[$key]['name'] ?? $key }}</option>
                 @else
                 <option value="{{ $key }}">{{ $unitKeys[$key]['name'] ?? $key }}</option>
@@ -40,7 +40,7 @@
                 @endforeach
             </select>
             </div>
-            @endforeach
+            @endfor
             <div class="form-group my-1">
             <button type="submit" class="btn btn-primary mx-2">{{ __('Submit') }}</button>
             </div>
@@ -49,7 +49,7 @@
         <div class="form-group mt-1 mb-2">
             <!-- <label for="staticSquadLink">{{ __('Direct Link') }}</label> -->
             <input class="form-control" type="text" name="staticSquadLink" id="staticSquadLink" readonly="readonly"
-            value="{{ route('guild.team.toons', $guild) }}?t1={{ Request::get('t1') }}&t2={{ Request::get('t2') }}&t3={{ Request::get('t3') }}&t4={{ Request::get('t4') }}&t5={{ Request::get('t5') }}">
+            value="{{ route('guild.team.toons', $guild) }}?t={{ implode(',', $char_list) }}">
             <small id="staticSquadLinkHelp" class="form-text text-muted">{{ __('app.squads.direct_link_info') }}</small>
         </div>
 

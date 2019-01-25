@@ -6,6 +6,8 @@ use App\Guild;
 use App\User;
 use App\Permission;
 use App\Authorizable;
+use App\Player;
+use App\Sanction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -25,7 +27,8 @@ class GuildController extends Controller
         $info = SyncClient::getGuildInfo($guild->user->code ?? null);
         $members = SyncClient::getGuildMembers($guild->user->code ?? null);
         $playerTitleKeys = SyncClient::getDataMap('playerTitleList');
-
+        $sanctions = $guild->sanctions()->with('player')->get() ?? null;
+// dd($sanctions);
         $filter = [
             // 'pid',
             'allyCode',
@@ -49,6 +52,7 @@ class GuildController extends Controller
             'info' => $info[0] ?? [],
             'members' => $members[0] ?? [],
             'filter' =>$filter,
+            'sanctions' =>$sanctions,
             'playerTitleKeys' =>$playerTitleKeys ?? [],
         ]);
     }
@@ -319,6 +323,200 @@ class GuildController extends Controller
             'sithSquads' => $sithSquads ?? [],
             'selection' => $chunk,
         ]);
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexSanction(Guild $guild, $code)
+    {
+        $player = Player::where(['code' => $code])->first();
+        // dd($player->sanctions->all());
+        $origins = [
+            'TW' => 'TW, Territorialkrieg',
+            'TB' => 'TB, Territorialschlacht',
+            'PIT' => 'Raid - Rancor',
+            'AAT' => 'Raid - Tank',
+            'STR' => 'Raid - Sith',
+            'OTHER' => 'Sonstiges',
+        ];
+        $severities = [
+            '0' => 'n.a.',
+            '10' => 'harmlos (z.B. Versehen)',
+            '20' => 'problematisch (z.B. Wiederholung)',
+            '30' => 'schwerwiegend (z.B. Vorsatz)',
+        ];
+        $actions = [
+            '0' => 'Info',
+            '10' => 'Ermahnung (Sonstiges)',
+            '20' => 'Verwarnung',
+            '21' => '2. Verwarnung',
+            '22' => '3. Verwarnung',
+            '30' => 'Kick & Reinvite',
+            '31' => 'Kick',
+            '32' => 'Ban',
+        ];
+
+        return view('guild.sanction.index', compact(['actions', 'origins', 'severities', 'guild', 'code', 'player']));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createSanction(Guild $guild, $code)
+    {
+        // $users = User::pluck('name', 'id');
+        $origins = [
+            'TW' => 'TW, Territorialkrieg',
+            'TB' => 'TB, Territorialschlacht',
+            'PIT' => 'Raid - Rancor',
+            'AAT' => 'Raid - Tank',
+            'STR' => 'Raid - Sith',
+            'OTHER' => 'Sonstiges',
+        ];
+        $severities = [
+            '0' => 'n.a.',
+            '10' => 'harmlos (z.B. Versehen)',
+            '20' => 'problematisch (z.B. Wiederholung)',
+            '30' => 'schwerwiegend (z.B. Vorsatz)',
+        ];
+        $actions = [
+            '0' => 'Info',
+            '10' => 'Ermahnung (Sonstiges)',
+            '20' => 'Verwarnung',
+            '21' => '2. Verwarnung',
+            '22' => '3. Verwarnung',
+            '30' => 'Kick & Reinvite',
+            '31' => 'Kick',
+            '32' => 'Ban',
+        ];
+
+        return view('guild.sanction.create', compact(['actions', 'origins', 'severities', 'guild', 'code']));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editSanction(Guild $guild, $code, $id)
+    {
+        $sanction = Sanction::findOrFail($id);
+        // dd($sanction->toArray());
+        $origins = [
+            'TW' => 'TW, Territorialkrieg',
+            'TB' => 'TB, Territorialschlacht',
+            'PIT' => 'Raid - Rancor',
+            'AAT' => 'Raid - Tank',
+            'STR' => 'Raid - Sith',
+            'OTHER' => 'Sonstiges',
+        ];
+        $severities = [
+            '0' => 'n.a.',
+            '10' => 'harmlos (z.B. Versehen)',
+            '20' => 'problematisch (z.B. Wiederholung)',
+            '30' => 'schwerwiegend (z.B. Vorsatz)',
+        ];
+        $actions = [
+            '0' => 'Info',
+            '10' => 'Ermahnung (Sonstiges)',
+            '20' => 'Verwarnung',
+            '21' => '2. Verwarnung',
+            '22' => '3. Verwarnung',
+            '30' => 'Kick & Reinvite',
+            '31' => 'Kick',
+            '32' => 'Ban',
+        ];
+
+        return view('guild.sanction.edit', compact(['actions', 'origins', 'severities', 'guild', 'code', 'sanction']));
+    }
+
+        /**
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Rules\Recaptcha $recaptcha
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function updateSanction(Request $request, Guild $guild, $code, Sanction $sanction)
+    {
+        // Update sanction
+        $sanction->fill($request->except('roles', 'permissions', 'password'));
+        $sanction->user_id = auth()->user()->id;
+
+        $sanction->save();
+
+        flash()->success('Sanction has been updated.');
+
+        return redirect()->route('sanction', [$guild, $code]);
+    }
+
+        /**
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Rules\Recaptcha $recaptcha
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeSanction(Request $request, Guild $guild, $code)
+    {
+        $player = Player::firstOrCreate(['code' => $code]);
+        $sanction = Sanction::create(
+            [
+                'user_id' =>auth()->user()->id,
+                'guild_id' =>$guild->id,
+                'player_id' =>$player->id,
+                'origin' =>request('origin'),
+                'reason' =>request('reason'),
+                'severity' =>request('severity'),
+                'note' =>request('note'),
+                'date' =>request('date'),
+                'action' =>request('action'),
+            ]
+        );
+
+        // request()->validate([
+        //     'code' => 'required|integer|min:100000000|max:999999999',
+        // ]);
+
+        // if (request('force') && auth()->user()->hasRole('admin')) {
+        //     $client->ignoreThreshold = true;
+        // }
+
+        // if ('clear' == request('sync')) {
+        //     $result = $client->clearLock();
+        // } else {
+        //     $result = $client->sync(request('sync'));
+        // }
+
+        if (request()->wantsJson()) {
+            return response($sanction, 201);
+        }
+
+        return $this->home($guild);
+    }
+
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     * @internal param Request $request
+     */
+    public function destroySanction(Guild $guild, $code, $id)
+    {
+        if( Sanction::findOrFail($id)->delete() ) {
+            flash()->success('Sanction has been deleted');
+        } else {
+            flash()->success('Sanction not deleted');
+        }
+
+        return redirect()->back();
     }
 
     /**

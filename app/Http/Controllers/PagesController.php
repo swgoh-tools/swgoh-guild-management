@@ -348,17 +348,22 @@ class PagesController extends Controller
             $player_data = [];
         }
 
-        $char_list = [
-            't1' => $request->input('t1'),
-            't2' => $request->input('t2'),
-            't3' => $request->input('t3'),
-            't4' => $request->input('t4'),
-            't5' => $request->input('t5'),
-        ];
-        if ($combat_type == 2) {
-            $select_list = ['t1' => 'Ship', 't2' => 'Ship', 't3' => 'Ship', 't4' => 'Ship', 't5' => 'Ship'];
+        if($request->input('t')) {
+            $char_list = explode(',', $request->input('t'));
         } else {
-            $select_list = ['t1' => 'Char', 't2' => 'Char', 't3' => 'Char', 't4' => 'Char', 't5' => 'Char'];
+            $char_list = [
+                $request->input('t1'),
+                $request->input('t2'),
+                $request->input('t3'),
+                $request->input('t4'),
+                $request->input('t5'),
+            ];
+        }
+
+        if ($combat_type == 2) {
+            $type = 'ship';
+        } else {
+            $type = 'toon';
         }
         $sort = 'gp';
         $result = [];
@@ -398,7 +403,7 @@ class PagesController extends Controller
             'result' => $result,
             'char_list' => $char_list,
             'roster' => $roster,
-            'select_list' => $select_list,
+            'type' => $type,
             ]); //$request->all()
     }
 
