@@ -3,9 +3,9 @@
 
                 <div class="card-body">
                     <table class="guild-home-table"><thead>
-                    <th>{{ __('app.data_keys.name') }} {{ __('app.data_keys.title') }}</th>
-                    <th>{{ __('app.data_keys.level') }}</th>
-                    <!-- <th>{{ __('app.data_keys.title') }}</th> -->
+                    <th>{{ __('fields.name') }} {{ __('fields.title') }}</th>
+                    <th>{{ __('fields.level') }}</th>
+                    <!-- <th>{{ __('fields.title') }}</th> -->
 @forelse($members[0]['stats'] ?? [] as $stat)
 @if($loop->iteration <= 5)
 <th>
@@ -15,7 +15,7 @@
 @empty
 <!-- nothing -->
 @endforelse
-                    <!-- <th>{{ __('app.data_keys.stats') }}</th> -->
+                    <!-- <th>{{ __('fields.stats') }}</th> -->
                     <th>{{ __('Arena') }}</th>
                     <th>{{ __('Arena (F)') }}</th>
                     </thead>
@@ -39,14 +39,14 @@
 @endforelse
                     <td><span class="text-hide">{{ str_pad($player['arena']['char']['rank'], 7, '0', STR_PAD_LEFT) }}</span>
 <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-html="true" title="
-@foreach($player['arena']['char']['squad'] as $char)
+@foreach($player['arena']['char']['squad'] ?? [] as $char)
 {{ $char['defId'] }}
 @endforeach
 ">{{ $player['arena']['char']['rank'] }}</button>
                     </td>
                     <td><span class="text-hide">{{ str_pad($player['arena']['ship']['rank'], 7, '0', STR_PAD_LEFT) }}</span>
 <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-html="true" title="
-@foreach($player['arena']['ship']['squad'] as $ship)
+@foreach($player['arena']['ship']['squad'] ?? [] as $ship)
 {{ $ship['defId'] }}
 @endforeach
 ">{{ $player['arena']['ship']['rank'] }}</button>

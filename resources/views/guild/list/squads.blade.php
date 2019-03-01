@@ -40,16 +40,16 @@
                 @forelse ($list ?? [] as $key => $section)
                     <div class="tab-pane fade{{ $loop->first ? ' active show' : ''}}" id="{{ $key }}" role="tabpanel" aria-labelledby="{{ $key }}-tab">
                     <h2>{{ ucwords(strtolower($section['name'] ?? '')) }} ({{ count($section['phase'] ?? []) }})</h2>
-                    <span>{{ __('app.data_keys.rarity') }}: {{ $section['rarity'] ?? '' }}</span>
-                    <span>{{ __('app.data_keys.gear') }}: {{ $section['gear'] ?? '' }}</span>
-                    <span>{{ __('app.data_keys.level') }}: {{ $section['level'] ?? '' }}</span>
+                    <span>{{ __('fields.rarity') }}: {{ $section['rarity'] ?? '' }}</span>
+                    <span>{{ __('fields.gear') }}: {{ $section['gear'] ?? '' }}</span>
+                    <span>{{ __('fields.level') }}: {{ $section['level'] ?? '' }}</span>
                     <span>{{ __('app.disclaimer_community') }}</span>
 
                     @forelse ($section['phase'] ?? [] as $phase_key => $phase)
                     <hr />
                     <h3>{{ ucwords(strtolower($phase['name'] ?? 'unknown phase name')) }} ({{ count($phase['squads'] ?? []) }})</h3>
                     <table class="table table-hover toon-table">
-                        <!-- table-striped table-dark  -->
+                        <!-- table-striped table-dark table-sm  -->
 
                             @forelse ($phase['squads'] ?? [] as $squad_key => $squad)
                             @if ($loop->first)
@@ -60,7 +60,7 @@
                                     @forelse ($squad as $info_key => $info)
                                     <!-- excluded from whitelist: main, url -->
                                     @if(in_array($info_key, ['name', 'note', 'team']))
-                                        <th>{{ __('app.data_keys.' . $info_key) }}</th>
+                                        <th>{{ __('fields.' . $info_key) }}</th>
                                     @endif
                                     @empty
                     <!-- no entries -->
@@ -72,8 +72,20 @@
                             <tr>
                                 <td>{{ $squad_key }}</td>
                                 <td>
-                                @if(isset($squad['team']) && is_array($squad['team']) && in_array(count($squad['team']), [1,2,3,4,5]))
-                                <a class="text-link" href="{{ route('guild.team.toons', $guild) }}?t1={{ explode(':', $squad['team'][0] ?? '')[0] }}&t2={{ explode(':', $squad['team'][1] ?? '')[0] }}&t3={{ explode(':', $squad['team'][2] ?? '')[0] }}&t4={{ explode(':', $squad['team'][3] ?? '')[0] }}&t5={{ explode(':', $squad['team'][4] ?? '')[0] }}">list</a>
+                                @if(is_array($squad['team'] ?? 'NOARRAY'))
+                                @php($team_plain = [])
+                                @php($chunk_size = 10)
+                                    @foreach($squad['team'] as $toon)
+                                        @php($team_plain[] = explode(':', $toon)[0])
+                                    @endforeach
+                                    @foreach(array_chunk($team_plain, $chunk_size) as $team_part)
+                                    @if(count($squad['team']) <= 5)
+                                    <a class="text-link" href="{{ route('guild.team.toons', $guild) }}?t={{ implode(',', $team_part) }}">list</a>
+                                    @else
+                                    <a class="text-link" href="{{ route('guild.team.toons', $guild) }}?t={{ implode(',', $team_part) }}">list/{{ count($team_part) }}</a>
+                                    @endif
+                                    @endforeach
+                                    {{-- @if(count($squad['team']) > $chunk_size)({{ count($squad['team']) }})@endif --}}
                                 @else
                                 -
                                 @endif
@@ -87,7 +99,10 @@
                                     @elseif($info_key == 'team' && is_array($info))
                                         <td>
                                         @forelse ($info as $toon_key => $toon)
-                                            {{ strpos($toon, ':') === false ? $unitKeys[$toon]['name'] ?? $toon : $unitKeys[substr($toon, 0, strpos($toon, ':'))]['name'] ?? substr($toon, 0, strpos($toon, ':')) }}@if(!$loop->last),@endif
+@foreach (preg_split('/:/', $toon) as $toonValue)
+@if($loop->first){{ $unitKeys[$toonValue]['name'] ?? $toonValue }}@else <div class="mytooltip mytooltip-top mytooltip-no-wrap icon-zeta"><span class="mytooltiptext">{{ $skillKeys[$toonValue] ?? $toonValue }}</span></div>@endif
+@endforeach
+@if(!$loop->last),@endif
                                         @empty
                                             <!-- no entries -->
                                             no team members found!

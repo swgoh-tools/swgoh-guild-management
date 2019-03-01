@@ -6,6 +6,7 @@ namespace App\Helper;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use App\Player;
 
 class SyncClient
 {
@@ -16,6 +17,7 @@ class SyncClient
     protected $guild_id = 0;
     protected $guild_code = 0;
     protected $player_code = 0;
+    protected $language = null;
     protected $sort = [
         'id',
         'defId',
@@ -57,7 +59,7 @@ class SyncClient
         // 'help.data.skillList' => '',
         // 'help.data.starterGuildList' => '',
         'help.data.statModList' => '111',
-        // 'help.data.statModSetList' => '',
+        'help.data.statModSetList' => '1',
         // 'help.data.statProgressionList' => '',
         // 'help.data.tableList' => '',
         // 'help.data.targetingSetList' => '',
@@ -82,21 +84,20 @@ class SyncClient
     public static function getTargets()
     {
         return [
+            // 's' => 'Access Token',
+            'help.guild.units' => 'swgoh.help Guild Data',
             'g-players' => '',
             'g-roster' => '',
             'g-units' => '',
-            'gg.characters' => 'swgoh.gg Toons',
-            // 'squads' => 'Known Squad List',
-            'gg.ships' => 'swgoh.gg Ships',
-            'gg.abilities' => 'swgoh.gg Abilities',
-            'gg.guild.units' => 'swgoh.gg Guild Units',
-            'help.guild.units' => 'swgoh.help Guild Units',
-            // 'h-abilities' => 'swgoh.help AbilityList',
-            // 's' => 'Access Token',
             'help.battles' => '',
             'help.events' => '',
             'help.squads' => '',
             'help.zetas' => '',
+            'gg.characters' => 'swgoh.gg Toons',
+            'gg.ships' => 'swgoh.gg Ships',
+            'gg.abilities' => 'swgoh.gg Abilities',
+            'gg.guild.units' => 'swgoh.gg Guild Units',
+            'gg.gear' => 'swgoh.gg Gear',
             'help.data.abilityList' => '',
             'help.data.battleEnvironmentsList' => '',
             'help.data.battleTargetingRuleList' => '',
@@ -132,6 +133,28 @@ class SyncClient
         ];
     }
 
+/**
+ * swgoh.gg data
+ */
+    public static function getGgChars()
+    {
+        $filename = 'swgoh.gg/characters/characters.json';
+        if (Storage::disk('sync')->exists($filename)) {
+            return json_decode(Storage::disk('sync')->get($filename), true);
+        }
+    }
+
+    public static function getGgGear()
+    {
+        $filename = 'swgoh.gg/gear/gear.json';
+        if (Storage::disk('sync')->exists($filename)) {
+            return json_decode(Storage::disk('sync')->get($filename), true);
+        }
+    }
+
+/**
+ * swgoh.help data
+ */
     public static function getRoster($player_code, $combat_type = 1)
     {
         if (!$player_code) {
@@ -139,7 +162,7 @@ class SyncClient
         }
 
         // enums
-        $combat_type = $combat_type == 2 ? 'SHIP' : 'CHARACTER';
+        $combat_type = 2 == $combat_type ? 'SHIP' : 'CHARACTER';
 
         $filename = "swgoh.help/guild/$player_code/units.out.$combat_type.json";
         if (Storage::disk('sync')->exists($filename)) {
@@ -192,6 +215,23 @@ class SyncClient
         }
     }
 
+    public static function getSquadAnchors()
+    {
+        return [
+            'revan' => 'JEDIKNIGHTREVAN',
+            'chewbacca' => 'CHEWBACCALEGENDARY',
+            'jtr' => 'REYJEDITRAINING',
+            'cls' => 'COMMANDERLUKESKYWALKER',
+            'r2d2' => 'R2D2_LEGENDARY',
+            'bb8' => 'BB8',
+            'yoda' => 'GRANDMASTERYODA',
+            'palpatine' => 'EMPERORPALPATINE',
+            'thrawn' => 'GRANDADMIRALTHRAWN',
+            'chimaera' => 'CAPITALCHIMAERA',
+            'c3po' => 'C3POLEGENDARY',
+        ];
+    }
+
     public static function getSquadList()
     {
         $filename = 'swgoh.help/squads/squads.json';
@@ -237,6 +277,13 @@ class SyncClient
         }
     }
 
+    public static function getSkillData()
+    {
+        $filename = 'swgoh.help/data/skillList/skillList.out.json';
+        if (Storage::disk('sync')->exists($filename)) {
+            return json_decode(Storage::disk('sync')->get($filename), true);
+        }
+    }
 
     public static function getSkillKeys()
     {
@@ -310,6 +357,66 @@ class SyncClient
         return $result;
     }
 
+    public static function getUnitStatKeys()
+    {
+        $result = [
+            'UNITSTATACCURACY' => ['name' => '', 'icon' => ''],
+            'UNITSTATCRITICALCHANCEPERCENTADDITIVE' => ['name' => '', 'icon' => ''],
+            'UNITSTATCRITICALDAMAGE' => ['name' => '', 'icon' => ''],
+            'UNITSTATCRITICALNEGATECHANCEPERCENTADDITIVE' => ['name' => '', 'icon' => ''],
+            'UNITSTATDEFENSE' => ['name' => '', 'icon' => ''],
+            'UNITSTATDEFENSEPERCENTADDITIVE' => ['name' => '', 'icon' => ''],
+            'UNITSTATEVASIONNEGATEPERCENTADDITIVE' => ['name' => '', 'icon' => ''],
+            'UNITSTATMAXHEALTH' => ['name' => '', 'icon' => ''],
+            'UNITSTATMAXHEALTHPERCENTADDITIVE' => ['name' => '', 'icon' => ''],
+            'UNITSTATMAXSHIELD' => ['name' => '', 'icon' => ''],
+            'UNITSTATMAXSHIELDPERCENTADDITIVE' => ['name' => '', 'icon' => ''],
+            'UNITSTATOFFENSE' => ['name' => '', 'icon' => ''],
+            'UNITSTATOFFENSEPERCENTADDITIVE' => ['name' => '', 'icon' => ''],
+            'UNITSTATRESISTANCE' => ['name' => '', 'icon' => ''],
+            'UNITSTATSPEED' => ['name' => '', 'icon' => ''],
+        ];
+        switch (app()->getLocale()) {
+            case 'de':
+                $result['UNITSTATACCURACY']['name'] ='Potency (%)';
+                $result['UNITSTATCRITICALCHANCEPERCENTADDITIVE' ]['name'] ='CC (%)';
+                $result['UNITSTATCRITICALDAMAGE' ]['name'] ='CD (%)';
+                $result['UNITSTATCRITICALNEGATECHANCEPERCENTADDITIVE']['name'] ='CA (%)';
+                $result['UNITSTATDEFENSE' ]['name'] ='Defense';
+                $result['UNITSTATDEFENSEPERCENTADDITIVE' ]['name'] ='Defense (%)';
+                $result['UNITSTATEVASIONNEGATEPERCENTADDITIVE' ]['name'] ='Accuracy (%)';
+                $result['UNITSTATMAXHEALTH']['name'] ='Health';
+                $result['UNITSTATMAXHEALTHPERCENTADDITIVE']['name'] ='Health (%)';
+                $result['UNITSTATMAXSHIELD' ]['name'] ='Protection';
+                $result['UNITSTATMAXSHIELDPERCENTADDITIVE']['name'] ='Protection (%)';
+                $result['UNITSTATOFFENSE' ]['name'] ='Offense';
+                $result['UNITSTATOFFENSEPERCENTADDITIVE']['name'] ='Offense (%)';
+                $result['UNITSTATRESISTANCE' ]['name'] ='Tenacity (%)';
+                $result['UNITSTATSPEED' ]['name'] ='Speed';
+                break;
+
+            default:
+                $result['UNITSTATACCURACY']['name'] ='Potency (%)';
+                $result['UNITSTATCRITICALCHANCEPERCENTADDITIVE' ]['name'] ='CC (%)';
+                $result['UNITSTATCRITICALDAMAGE' ]['name'] ='CD (%)';
+                $result['UNITSTATCRITICALNEGATECHANCEPERCENTADDITIVE']['name'] ='CA (%)';
+                $result['UNITSTATDEFENSE' ]['name'] ='Defense';
+                $result['UNITSTATDEFENSEPERCENTADDITIVE' ]['name'] ='Defense (%)';
+                $result['UNITSTATEVASIONNEGATEPERCENTADDITIVE' ]['name'] ='Accuracy (%)';
+                $result['UNITSTATMAXHEALTH']['name'] ='Health';
+                $result['UNITSTATMAXHEALTHPERCENTADDITIVE']['name'] ='Health (%)';
+                $result['UNITSTATMAXSHIELD' ]['name'] ='Protection';
+                $result['UNITSTATMAXSHIELDPERCENTADDITIVE']['name'] ='Protection (%)';
+                $result['UNITSTATOFFENSE' ]['name'] ='Offense';
+                $result['UNITSTATOFFENSEPERCENTADDITIVE']['name'] ='Offense (%)';
+                $result['UNITSTATRESISTANCE' ]['name'] ='Tenacity (%)';
+                $result['UNITSTATSPEED' ]['name'] ='Speed';
+                break;
+        }
+
+        return $result;
+    }
+
     public static function getEventList()
     {
         switch (app()->getLocale()) {
@@ -339,9 +446,15 @@ class SyncClient
 
     public function isRunning()
     {
+        $threshold_retry = 60;
         if (Storage::disk('sync')->exists($this->lockfile)) {
-            return Storage::disk('sync')->lastModified($this->lockfile);
+            if (time() - Storage::disk('sync')->lastModified($this->lockfile) < $threshold_retry) {
+                // return date instead of "true". Is used to display info for user on frontend
+                return Storage::disk('sync')->lastModified($this->lockfile);
+            }
         }
+
+        return false;
     }
 
     public function clearLock()
@@ -355,7 +468,7 @@ class SyncClient
             return 'already syncing';
         }
 
-        if (auth()->check() && auth()->user()->hasRole('admin')){
+        if (auth()->check() && auth()->user()->hasRole('admin')) {
             ini_set('error_reporting', 'E_ALL');
             ini_set('display_errors', '1');
         }
@@ -369,7 +482,7 @@ class SyncClient
         ini_set('memory_limit', '512M'); // 256 not enough
         ini_set('max_input_time', '300');
 
-        switch (app()->getLocale()) {
+        switch ($this->language ?? app()->getLocale()) {
             case 'de':
                 $lang = 'GER_DE';
                 break;
@@ -390,7 +503,7 @@ class SyncClient
                 $collection = explode('.', $target, 3)[2];
 
                 $sync_status[$help_prefix.$collection] = $this->syncHelpData($collection, $this->getHelpDataBody($collection, $lang), $this->sample[$help_prefix.$collection] ?? null, $lang);
-                $sync_status[$help_prefix.$collection.'structure'] = $this->syncHelpDataStructure($collection);
+                // $sync_status[$help_prefix.$collection.'structure'] = $this->syncHelpDataStructure($collection);
                 $this->prepareHelpData($collection, $lang);
             } else {
                 switch ($target) {
@@ -411,9 +524,9 @@ class SyncClient
                         $sync_status[$target] = $this->syncGgToons();
                         break;
 
-                    // case 'squads':
-                    //     $sync_status[$target] = $this->syncHelpSquads();
-                    //     break;
+                    case 'gg.gear':
+                        $sync_status[$target] = $this->syncGgGear();
+                        break;
 
                     case 'gg.ships':
                         $sync_status[$target] = $this->syncGgShips();
@@ -518,7 +631,7 @@ class SyncClient
                 // Storage::disk('sync')->put(sprintf($target, 'roster'), \json_encode($roster));
 
                 // Guild member list without roster
-                Storage::disk('sync')->put(sprintf($target, "players"), \json_encode($roster));
+                Storage::disk('sync')->put(sprintf($target, 'players'), \json_encode($roster));
             }
         }
     }
@@ -527,7 +640,7 @@ class SyncClient
     {
         $source = "swgoh.help/guild/$player_allycode/players.json";
         $target = "swgoh.help/guild/$player_allycode/units.out.%s.json";
-        $target_players = "swgoh.help/guild/players/units.out.player.%s.json";
+        $target_players = 'swgoh.help/guild/players/units.out.player.%s.json';
 
         if (Storage::disk('sync')->exists($source)) {
             $data = Storage::disk('sync')->get($source);
@@ -538,8 +651,17 @@ class SyncClient
                 $roster_by_unit = [];
 
                 foreach ($roster as $key => $player) {
-                        // dd($player);
+                    // dd($player);
                     Storage::disk('sync')->put(sprintf($target_players, $player['allyCode'] ?? $player['id']), \json_encode($player));
+					
+					// Save player data to database
+					if (isset($player['allyCode']) && isset($player['name'])) {
+						Player::updateOrCreate(
+							['code' => $player['allyCode']],
+							['name' => $player['name']]
+						);
+					}
+					
                     foreach ($player['roster'] as $unit_key => $unit_value) {
                         uksort($unit_value, [$this, 'cmpUnitValue']);
                         $roster_by_unit[$unit_value['combatType'] ?? 0][$unit_value['defId']][] = array_merge(['pid' => $player['id'], 'allyCode' => $player['allyCode'], 'player' => $player['name']], $unit_value);
@@ -553,7 +675,7 @@ class SyncClient
                 }
 
                 // Guild member list without roster
-                Storage::disk('sync')->put(sprintf($target, "players"), \json_encode($guild_players));
+                Storage::disk('sync')->put(sprintf($target, 'players'), \json_encode($guild_players));
             }
         }
     }
@@ -567,14 +689,14 @@ class SyncClient
 
     public function syncHelpGuild($player_allycode)
     {
-        $source = config('swgoh.API.SWGOH_HELP.SERVER').'/swgoh/guild';
+        $source = config('swgoh.API.SWGOH_HELP.SERVER').'/swgoh/guilds';
         $dir = "swgoh.help/guild/$player_allycode/";
         $file = 'guild';
         $ext = 'json';
-        $threshold = 60 * 60 * 24;
+        $threshold = 60 * 60 * 6;
 
         if (!$player_allycode || !\is_int($player_allycode)) {
-            return false;
+            return ['error' => 'player_allycode missing or wrong. '.$player_allycode ?? 'empty'];
         }
 
         $token = $this->getAccessToken();
@@ -617,14 +739,14 @@ class SyncClient
         $dir = "swgoh.help/guild/$player_allycode/";
         $file = "$endpoint";
         $ext = 'json';
-        $threshold = 60 * 60 * 24;
+        $threshold = 60 * 60 * 6;
 
         if (!$player_allycode || !\is_int($player_allycode)) {
             return false;
         }
         $guild_source = "swgoh.help/guild/$player_allycode/guild.json";
 
-            $allycodes = [];
+        $allycodes = [];
         if (Storage::disk('sync')->exists($guild_source)) {
             $data = Storage::disk('sync')->get($guild_source);
             $units = json_decode($data, true);
@@ -634,9 +756,9 @@ class SyncClient
             }
             $allycodes = array_filter($allycodes);
         }
-            if(! count($allycodes)) {
-                return false;
-            }
+        if (!\count($allycodes)) {
+            return false;
+        }
 
         switch ($endpoint) {
             case 'players':
@@ -709,18 +831,23 @@ class SyncClient
 
             case 'skillList':
                 $source = "swgoh.help/data/skillList/skillList.$lang.json";
-                $target = 'swgoh.help/data/skillList/skillList.out.map.json';
+                $target_old = 'swgoh.help/data/skillList/skillList.out.map.json';
+                $target = 'swgoh.help/data/skillList/skillList.out.json';
 
                 if (Storage::disk('sync')->exists($source)) {
                     $data = json_decode(Storage::disk('sync')->get($source), true);
 
+                    $result_old = [];
                     $result = [];
                     if (\is_array($data)) {
                         foreach ($data as $key => $value) {
-                            $result[$value['id'] ?? 'error'] = $value['abilityReference'] ?? 'error';
+                            $result_old[$value['id'] ?? 'error'] = $value['abilityReference'] ?? 'error';
+                            $result[$value['id'] ?? 'error']['map'] = $value['abilityReference'] ?? 'error';
+                            $result[$value['id'] ?? 'error']['max_tier'] = \count($value['tierList'] ?? []) + 1;
                         }
                         // save ability mapping
                         Storage::disk('sync')->put($target, \json_encode($result));
+                        Storage::disk('sync')->put($target_old, \json_encode($result_old));
                     }
                 }
 
@@ -754,12 +881,15 @@ class SyncClient
             case 'skillList':
                 $body = [
                     'collection' => $collection,
-                    'language' => $lang,
+                    // 'language' => $lang,
                     'enums' => true,
                     'project' => [
                         'id' => 1,
                         'abilityReference' => 1,
                         'isZeta' => 1,
+                        'tierList' => [
+                            'requiredUnitLevel' => 1,
+                            ],
                         ],
                     ];
                 break;
@@ -792,6 +922,39 @@ class SyncClient
                     ];
                 break;
 
+            case 'statModList':
+                $body = [
+                    'collection' => $collection,
+                    'language' => $lang,
+                    'enums' => true,
+                    'project' => [
+                        'id' => 1,
+                        'slot' => 1,
+                        'setId' => 1,
+                        'rarity' => 1,
+                        'nameKey' => 1,
+                        'descKey' => 1,
+                        ],
+                    ];
+                break;
+
+            case 'statModSetList':
+                $body = [
+                    'collection' => $collection,
+                    'language' => $lang,
+                    'enums' => true,
+                    'project' => [
+                        'id' => 1,
+                        'nameKey' => 1,
+                        'descKey' => 1,
+                        'icon' => 1,
+                        'completeBonus' => 1,
+                        'maxLevelBonus' => 1,
+                        'setCount' => 1,
+                        ],
+                    ];
+                break;
+
             default:
                 $body = null;
                 break;
@@ -806,7 +969,7 @@ class SyncClient
         $dir = "swgoh.help/data/$collection/";
         $file = "$collection.STRUCTURE";
         $ext = 'json';
-        $threshold = 60 * 60 * 24;
+        $threshold = 60 * 60 * 6;
 
         return $this->syncData($source, $dir, $file, $ext, $threshold);
     }
@@ -817,7 +980,7 @@ class SyncClient
         $dir = "swgoh.help/$path/";
         $file = $path;
         $ext = 'json';
-        $threshold = 60 * 60 * 24;
+        $threshold = 60 * 60 * 6;
 
         if (null === $body) {
             return false;
@@ -853,7 +1016,7 @@ class SyncClient
         $dir = "swgoh.help/data/$collection/";
         $file = "$collection.$lang";
         $ext = 'json';
-        $threshold = 60 * 60 * 24;
+        $threshold = 60 * 60 * 6;
 
         $token = $this->getAccessToken();
 
@@ -966,7 +1129,7 @@ class SyncClient
         $dir = "swgoh.gg/guild/$swgoh_guild_id/";
         $file = 'units';
         $ext = 'json';
-        $threshold = 60 * 60 * 24;
+        $threshold = 60 * 60 * 6;
 
         return $this->syncData($source, $dir, $file, $ext, $threshold);
     }
@@ -977,7 +1140,7 @@ class SyncClient
     //     $dir = "swgoh.gg/guilds/$swgoh_guild_id/units/";
     //     $file = 'units';
     //     $ext = 'json';
-    //     $threshold = 60 * 60 * 24;
+    //     $threshold = 60 * 60 * 6;
     //     return $this->syncData($source, $dir, $file, $ext, $threshold);
     // }
 
@@ -987,7 +1150,7 @@ class SyncClient
         $dir = 'swgoh.gg/characters/';
         $file = 'characters';
         $ext = 'json';
-        $threshold = 60 * 60 * 24 * 3;
+        $threshold = 60 * 60 * 6 * 3;
 
         return $this->syncData($source, $dir, $file, $ext, $threshold);
     }
@@ -998,7 +1161,7 @@ class SyncClient
         $dir = 'swgoh.gg/abilities/';
         $file = 'abilities';
         $ext = 'json';
-        $threshold = 60 * 60 * 24 * 3;
+        $threshold = 60 * 60 * 6 * 3;
 
         return $this->syncData($source, $dir, $file, $ext, $threshold);
     }
@@ -1009,7 +1172,7 @@ class SyncClient
         $dir = 'swgoh.gg/abilities/ability/';
         $file = "$id";
         $ext = 'json';
-        $threshold = 60 * 60 * 24 * 3;
+        $threshold = 60 * 60 * 6 * 3;
 
         return $this->syncData($source, $dir, $file, $ext, $threshold);
     }
@@ -1020,7 +1183,18 @@ class SyncClient
         $dir = 'swgoh.gg/ships/';
         $file = 'ships';
         $ext = 'json';
-        $threshold = 60 * 60 * 24 * 3;
+        $threshold = 60 * 60 * 6 * 3;
+
+        return $this->syncData($source, $dir, $file, $ext, $threshold);
+    }
+
+    public function syncGgGear()
+    {
+        $source = config('swgoh.API.SWGOH_GG.SERVER').'/gear/?format=json';
+        $dir = 'swgoh.gg/gear/';
+        $file = 'gear';
+        $ext = 'json';
+        $threshold = 60 * 60 * 6 * 3;
 
         return $this->syncData($source, $dir, $file, $ext, $threshold);
     }
@@ -1031,7 +1205,7 @@ class SyncClient
         $dir = 'swgoh.help/squads/';
         $file = 'squads';
         $ext = 'json';
-        $threshold = 60 * 60 * 24 * 7;
+        $threshold = 60 * 60 * 6 * 7;
 
         return $this->syncData($source, $dir, $file, $ext, $threshold);
     }
@@ -1093,7 +1267,7 @@ class SyncClient
                         // malformed json or empty response
                         // indicates error on api side
                         // don't save it
-                        return ['time' => $time, 'status' => 'ERROR', 'error' => $data === null ? 'malformed json response' : 'empty api response'];
+                        return ['time' => $time, 'status' => 'ERROR', 'error' => null === $data ? 'malformed json response' : 'empty api response'];
                     }
 
                     $data = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
@@ -1107,7 +1281,7 @@ class SyncClient
                     return [
                         'status' => 'PROBLEM',
                         'source' => $source ?? '',
-                        'data' => var_export($data, TRUE),
+                        'data' => var_export($data, true),
                         'error' => isset($http_response_header) ? implode('<br />', $http_response_header) : '',
                     ];
                 }
@@ -1125,7 +1299,7 @@ class SyncClient
                 'time_data' => Storage::disk('sync')->lastModified($filename),
                 'status' => 'CURRENT',
                 'url' => Storage::disk('sync')->url($filename),
-                'size' => Storage::disk('sync')->size($filename)
+                'size' => Storage::disk('sync')->size($filename),
             ];
         }
 
@@ -1164,6 +1338,18 @@ class SyncClient
     public function setPlayerCode($player_code)
     {
         $this->player_code = $player_code;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of language.
+     *
+     * @return self
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
 
         return $this;
     }

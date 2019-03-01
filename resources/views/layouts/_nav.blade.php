@@ -26,16 +26,12 @@
                     {{ __('Team Search') }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('guild.team.toons', $guild) }}">{{ __('Team Search') }} - {{ __('Toons') }}</a>
-                    <a class="dropdown-item" href="{{ route('guild.team.ships', $guild) }}">{{ __('Team Search') }} - {{ __('Ships') }}</a>
+                    <a class="dropdown-item" href="{{ route('guild.stats', $guild) }}">{{ __('Guild State') }}</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('guild.list.squads', $guild) }}">{{ __('Predefined Teams') }}</a>
-                    <!-- <div class="dropdown-item">Beispiele</div> -->
-                    <!-- <a class="dropdown-item" href="{{ route('guild.team.toons', $guild) }}?t1=ADMIRALACKBAR&t2=BB8&t3=COMMANDERLUKESKYWALKER&t4=HERMITYODA&t5=EZRABRIDGERS3">Ezradicator</a> -->
-                    <!-- <a class="dropdown-item" href="{{ route('guild.team.toons', $guild) }}?t1=VADER&t2=WAMPA&t3=GRANDADMIRALTHRAWN&t4=COMMANDERLUKESKYWALKER&t5=BB8">Wampanader</a> -->
-                    <!-- <a class="dropdown-item" href="{{ route('guild.team.toons', $guild) }}?t1=ADMIRALACKBAR&t2=COMMANDERLUKESKYWALKER&t3=BB8&t4=GRANDADMIRALTHRAWN&t5=ASAJVENTRESS">ABC</a> -->
-                    <!-- <a class="dropdown-item" href="{{ route('guild.team.toons', $guild) }}?t1=ADMIRALACKBAR&t2=BB8&t3=COMMANDERLUKESKYWALKER&t4=HERMITYODA&t5=YOUNGHAN">YOLO
-                        SOLO</a> -->
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('guild.team.toons', $guild) }}">{{ __('Team Search') }} - {{ __('Toons') }}</a>
+                    <a class="dropdown-item" href="{{ route('guild.team.ships', $guild) }}">{{ __('Team Search') }} - {{ __('Ships') }}</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('guild.toons', $guild) }}">{{ __('Full Roster') }} - {{ __('Toons') }} ({{ __('big data') }}!)</a>
                     <a class="dropdown-item" href="{{ route('guild.ships', $guild) }}">{{ __('Full Roster') }} - {{ __('Ships') }} ({{ __('big data') }}!)</a>

@@ -70,6 +70,17 @@ class User extends Authenticatable
     }
 
     /**
+     * A user has multiple sanctions.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sanctions()
+    {
+        return $this->hasMany(Sanction::class);
+    }
+
+
+    /**
      * Fetch all threads that were created by the user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

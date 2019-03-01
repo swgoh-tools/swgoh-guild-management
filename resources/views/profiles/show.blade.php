@@ -17,7 +17,7 @@
                         @endif
                     @endforeach
                 @empty
-                    <p>There is no activity for this user yet.</p>
+                    <p>{{ __('app.user.no_activities') }}</p>
                 @endforelse
             </div>
         </div>

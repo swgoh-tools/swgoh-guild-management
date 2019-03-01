@@ -37,7 +37,7 @@
                                     @forelse ($value as $info_key => $info)
                                     <!-- excluded from whitelist: main, url -->
                                     @if(true || in_array($info_key, ['name', 'note', 'team']))
-                                        <th>{{ __('app.data_keys.' . $info_key) }}</th>
+                                        <th>{{ __('fields.' . $info_key) }}</th>
                                     @endif
                                     @empty
                     <!-- no entries -->

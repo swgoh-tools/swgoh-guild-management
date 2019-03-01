@@ -14,14 +14,10 @@
     </div>
 
     <div class="row">
-        <p>In der folgenden Liste sind die Datenquellen für diese Seite gelistet. Der Status ist jeweils das Ergebnis der letzten Aktualisierung.</p>
-        <p>Jeder registrierte Benutzer kann grundsätzlich eine Aktualisierung für die verschiedenen Daten anstoßen.
-            Um Missbrauch und eine unnötige Belastung der Quellserver zu vermeiden, sind verschiedene Abklingzeiten hinterlegt.
-            Bspw. werden die meisten Daten nur neu angefordert, wenn der bestehende Datenbestand älter als 1 Tag ist.</p>
-        <p>Gelegentlich werden bei der Synchronisation Fehler auftreten.
-            Dies kann etwa daraus resultieren, dass der angefragte Server nicht verfügbar ist.
-            Auch kommt es vor, dass auf der Gegenseite die Struktur der Daten geändert wird, was zu Fehlern bei der Verarbeitung führt und Anpassungen auf dieser Seite erfordert.</p>
-        <p>Auffälligkeiten gern melden.</p>
+        <p>{{ __('app.sync.intro') }}</p>
+        <p>{{ __('app.sync.description') }}</p>
+        <p>{{ __('app.sync.legend') }}</p>
+        <p>{{ __('app.report_any_issues') }}</p>
     </div>
 
     <div class="row">

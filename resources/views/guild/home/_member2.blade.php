@@ -3,9 +3,9 @@
 
                 <div class="card-body">
                     <table class="guild-home-table"><thead>
-                    <th>{{ __('app.data_keys.name') }} {{ __('app.data_keys.title') }}</th>
-                    <th>{{ __('app.data_keys.level') }}</th>
-                    <!-- <th>{{ __('app.data_keys.title') }}</th> -->
+                    <th>{{ __('fields.name') }} {{ __('fields.title') }}</th>
+                    <th>{{ __('fields.level') }}</th>
+                    <!-- <th>{{ __('fields.title') }}</th> -->
 @forelse($members[0]['stats'] ?? [] as $stat)
 @if($loop->iteration > 5)
 <th>
@@ -15,7 +15,7 @@
 @empty
 <!-- nothing -->
 @endforelse
-                    <!-- <th>{{ __('app.data_keys.stats') }}</th> -->
+                    <!-- <th>{{ __('fields.stats') }}</th> -->
                     </thead>
                     <tbody>
                     @forelse($members as $key => $player)

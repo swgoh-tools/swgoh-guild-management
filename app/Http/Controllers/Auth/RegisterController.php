@@ -7,9 +7,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Mail\PleaseConfirmYourEmail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+// use Illuminate\Support\Facades\Mail;
+
+// use Illuminate\Auth\Events\Registered;
+// use App\Mail\PleaseConfirmYourEmail;
+use App\Jobs\SendVerificationEmail;
 
 class RegisterController extends Controller
 {
@@ -83,6 +86,11 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
-        Mail::to($user)->send(new PleaseConfirmYourEmail($user));
+        SendVerificationEmail::dispatch($user)
+            ->onQueue('emails');
+        // Mail::to($user)->send(new PleaseConfirmYourEmail($user));
+
+        // return view('verification');
+        // This way the email is dispatched into the queue and instead of directly logging in that user, I will redirect him to another page which will ask him to verify his email in order to continue.
     }
 }

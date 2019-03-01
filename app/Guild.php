@@ -73,6 +73,16 @@ class Guild extends Model
     }
 
     /**
+     * A guild has multiple sanctions.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sanctions()
+    {
+        return $this->hasMany(Sanction::class);
+    }
+
+    /**
      * Set the proper slug attribute.
      *
      * @param string $value

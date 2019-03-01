@@ -11,6 +11,7 @@
                     <dl>
                         <dt>{{ __('User Profile') }}</dt><dd><a href="{{ route('profile', config('swgoh.CONTACT.USER_ID')) }}">{{ config('swgoh.CONTACT.USER_NAME') }}</a></dd>
                         <dt>{{ __('Player Name') }}</dt><dd>{{ config('swgoh.CONTACT.PLAYER_NAME') }}</dd>
+                        <dt>{{ __('Guild Name') }}</dt><dd>{{ config('swgoh.CONTACT.GUILD_NAME') }}</dd>
                         <dt>{{ __('swgoh.gg') }}</dt><dd><a href="{{ config('swgoh.CONTACT.SWGOH_GG_URL') }}">{{ config('swgoh.CONTACT.SWGOH_GG_NAME') }}</a></dd>
                         <dt>{{ __('Discord') }}</dt><dd>{{ config('swgoh.CONTACT.DISCORD') }}</dd>
                         <dt>{{ __('Line') }}</dt><dd>{{ config('swgoh.CONTACT.LINE') }}</dd>
