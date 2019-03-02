@@ -19,13 +19,14 @@
 @section('content')
 <div class="container">
     <h3 class="page-title">@lang('Sanctions')</h3>
+	@can('create', App\Sanction::class)
     <p>
         <a href="{{ route('sanction.create', [$guild, $code]) }}" class="btn btn-success">@lang('Add new')</a>
     </p>
-
+	@endcan
     <div class="card">
         <div class="card-header">
-            @lang('List')
+            @lang('List') - {{ $guild->name }} - {{ $code }} aka {{ $player->name ?? '?'}}
         </div>
 
         <div class="card-body table-responsive">
@@ -64,6 +65,7 @@
                                 <td>{{ $sanction->date->diffForHumans() }}</td>
                                 <td>{{ $sanction->expired }}</td>
                                 <td>
+								@can('update', $sanction)
                                     <a href="{{ route('sanction.edit', [$guild, $code, $sanction->id]) }}" class="btn btn-xs btn-info">@lang('Edit')</a>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
@@ -72,6 +74,7 @@
                                         'route' => ['sanction.destroy', $guild, $code, $sanction->id])) !!}
                                     {!! Form::submit(trans('Delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
+								@endcan
                                 </td>
 
                             </tr>

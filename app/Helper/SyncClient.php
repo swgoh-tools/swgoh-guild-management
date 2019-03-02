@@ -6,6 +6,7 @@ namespace App\Helper;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use App\Player;
 
 class SyncClient
 {
@@ -652,6 +653,15 @@ class SyncClient
                 foreach ($roster as $key => $player) {
                     // dd($player);
                     Storage::disk('sync')->put(sprintf($target_players, $player['allyCode'] ?? $player['id']), \json_encode($player));
+					
+					// Save player data to database
+					if (isset($player['allyCode']) && isset($player['name'])) {
+						Player::updateOrCreate(
+							['code' => $player['allyCode']],
+							['name' => $player['name']]
+						);
+					}
+					
                     foreach ($player['roster'] as $unit_key => $unit_value) {
                         uksort($unit_value, [$this, 'cmpUnitValue']);
                         $roster_by_unit[$unit_value['combatType'] ?? 0][$unit_value['defId']][] = array_merge(['pid' => $player['id'], 'allyCode' => $player['allyCode'], 'player' => $player['name']], $unit_value);

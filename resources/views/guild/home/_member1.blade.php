@@ -39,14 +39,14 @@
 @endforelse
                     <td><span class="text-hide">{{ str_pad($player['arena']['char']['rank'], 7, '0', STR_PAD_LEFT) }}</span>
 <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-html="true" title="
-@foreach($player['arena']['char']['squad'] as $char)
+@foreach($player['arena']['char']['squad'] ?? [] as $char)
 {{ $char['defId'] }}
 @endforeach
 ">{{ $player['arena']['char']['rank'] }}</button>
                     </td>
                     <td><span class="text-hide">{{ str_pad($player['arena']['ship']['rank'], 7, '0', STR_PAD_LEFT) }}</span>
 <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-html="true" title="
-@foreach($player['arena']['ship']['squad'] as $ship)
+@foreach($player['arena']['ship']['squad'] ?? [] as $ship)
 {{ $ship['defId'] }}
 @endforeach
 ">{{ $player['arena']['ship']['rank'] }}</button>

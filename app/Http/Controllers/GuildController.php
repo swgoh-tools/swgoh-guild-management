@@ -345,7 +345,7 @@ class GuildController extends Controller
         ];
         $severities = [
             '0' => 'n.a.',
-            '10' => 'harmlos (z.B. Versehen)',
+            '10' => 'normal (z.B. Versehen)',
             '20' => 'problematisch (z.B. Wiederholung)',
             '30' => 'schwerwiegend (z.B. Vorsatz)',
         ];
@@ -370,6 +370,8 @@ class GuildController extends Controller
      */
     public function createSanction(Guild $guild, $code)
     {
+		$this->authorize('create', Sanction::class);
+		
         // $users = User::pluck('name', 'id');
         $origins = [
             'TW' => 'TW, Territorialkrieg',
@@ -381,7 +383,7 @@ class GuildController extends Controller
         ];
         $severities = [
             '0' => 'n.a.',
-            '10' => 'harmlos (z.B. Versehen)',
+            '10' => 'normal (z.B. Versehen)',
             '20' => 'problematisch (z.B. Wiederholung)',
             '30' => 'schwerwiegend (z.B. Vorsatz)',
         ];
@@ -407,6 +409,8 @@ class GuildController extends Controller
     public function editSanction(Guild $guild, $code, $id)
     {
         $sanction = Sanction::findOrFail($id);
+		$this->authorize('update', $sanction);
+		
         // dd($sanction->toArray());
         $origins = [
             'TW' => 'TW, Territorialkrieg',
@@ -418,7 +422,7 @@ class GuildController extends Controller
         ];
         $severities = [
             '0' => 'n.a.',
-            '10' => 'harmlos (z.B. Versehen)',
+            '10' => 'normal (z.B. Versehen)',
             '20' => 'problematisch (z.B. Wiederholung)',
             '30' => 'schwerwiegend (z.B. Vorsatz)',
         ];
@@ -445,6 +449,8 @@ class GuildController extends Controller
      */
     public function updateSanction(Request $request, Guild $guild, $code, Sanction $sanction)
     {
+		$this->authorize('update', $sanction);
+		
         // Update sanction
         $sanction->fill($request->except('roles', 'permissions', 'password'));
         $sanction->user_id = auth()->user()->id;
@@ -465,7 +471,7 @@ class GuildController extends Controller
      */
     public function storeSanction(Request $request, Guild $guild, $code)
     {
-        $player = Player::firstOrCreate(['code' => $code]);
+        $player = Player::firstOrCreate(['code' => $code], ['name' => SyncClient::getPlayer($code)[0]['name'] ?? '']);
         $sanction = Sanction::create(
             [
                 'user_id' =>auth()->user()->id,
@@ -510,7 +516,11 @@ class GuildController extends Controller
      */
     public function destroySanction(Guild $guild, $code, $id)
     {
-        if( Sanction::findOrFail($id)->delete() ) {
+		$sanction = Sanction::findOrFail($id);
+		
+		$this->authorize('update', $sanction);
+		
+        if( $sanction->delete() ) {
             flash()->success('Sanction has been deleted');
         } else {
             flash()->success('Sanction not deleted');

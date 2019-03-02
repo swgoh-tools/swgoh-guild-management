@@ -15,6 +15,7 @@ return [
     'CONTACT' => [
         'USER_ID' => env('CONTACT_USER_ID', ''),
         'USER_NAME' => env('CONTACT_USER_NAME', ''),
+        'GUILD_NAME' => env('CONTACT_GUILD_NAME', ''),
         'PLAYER_NAME' => env('CONTACT_PLAYER_NAME', ''),
         'SWGOH_GG_URL' => env('CONTACT_SWGOH_GG_URL', ''),
         'SWGOH_GG_NAME' => env('CONTACT_SWGOH_GG_NAME', ''),
@@ -22,6 +23,7 @@ return [
         'LINE' => env('CONTACT_LINE', ''),
         'EA_FORUM_URL' => env('CONTACT_EA_FORUM_URL', ''),
         'EA_FORUM_NAME' => env('CONTACT_EA_FORUM_NAME', ''),
+        'ISSUES_URL' => env('CONTACT_ISSUES_URL', ''),
     ],
     'GUILD_DEFAULT_ID' => env('GUILD_DEFAULT_ID', ''),
     'GUILD_TEST_ID' => env('GUILD_TEST_ID', ''),
