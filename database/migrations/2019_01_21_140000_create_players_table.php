@@ -16,8 +16,9 @@ class CreatePlayersTable extends Migration
         Schema::create('players', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
-            $table->unsignedInteger('code')->unique();
+            $table->string('code', 10)->unique();
             $table->string('name', 50)->nullable();
+            $table->string('refId', 20)->unique()->nullable();
             $table->timestamps();
             // $table->softDeletes();
         });

@@ -133,9 +133,9 @@ class SyncClient
         ];
     }
 
-/**
- * swgoh.gg data
- */
+    /**
+     * swgoh.gg data.
+     */
     public static function getGgChars()
     {
         $filename = 'swgoh.gg/characters/characters.json';
@@ -152,9 +152,9 @@ class SyncClient
         }
     }
 
-/**
- * swgoh.help data
- */
+    /**
+     * swgoh.help data.
+     */
     public static function getRoster($player_code, $combat_type = 1)
     {
         if (!$player_code) {
@@ -173,17 +173,21 @@ class SyncClient
         }
     }
 
-    public static function getPlayer($player_code)
+    public static function getPlayer($player_code, $add_modification_timestamp = true)
     {
         if (!$player_code) {
             return null;
         }
         $filename = "swgoh.help/guild/players/units.out.player.$player_code.json";
         if (Storage::disk('sync')->exists($filename)) {
-            return [
-                json_decode(Storage::disk('sync')->get($filename), true),
-                Storage::disk('sync')->lastModified($filename),
-            ];
+            if ($add_modification_timestamp) {
+                return [
+                    json_decode(Storage::disk('sync')->get($filename), true),
+                    Storage::disk('sync')->lastModified($filename),
+                ];
+            } else {
+                return json_decode(Storage::disk('sync')->get($filename), true);
+            }
         }
     }
 
@@ -378,39 +382,39 @@ class SyncClient
         ];
         switch (app()->getLocale()) {
             case 'de':
-                $result['UNITSTATACCURACY']['name'] ='Potency (%)';
-                $result['UNITSTATCRITICALCHANCEPERCENTADDITIVE' ]['name'] ='CC (%)';
-                $result['UNITSTATCRITICALDAMAGE' ]['name'] ='CD (%)';
-                $result['UNITSTATCRITICALNEGATECHANCEPERCENTADDITIVE']['name'] ='CA (%)';
-                $result['UNITSTATDEFENSE' ]['name'] ='Defense';
-                $result['UNITSTATDEFENSEPERCENTADDITIVE' ]['name'] ='Defense (%)';
-                $result['UNITSTATEVASIONNEGATEPERCENTADDITIVE' ]['name'] ='Accuracy (%)';
-                $result['UNITSTATMAXHEALTH']['name'] ='Health';
-                $result['UNITSTATMAXHEALTHPERCENTADDITIVE']['name'] ='Health (%)';
-                $result['UNITSTATMAXSHIELD' ]['name'] ='Protection';
-                $result['UNITSTATMAXSHIELDPERCENTADDITIVE']['name'] ='Protection (%)';
-                $result['UNITSTATOFFENSE' ]['name'] ='Offense';
-                $result['UNITSTATOFFENSEPERCENTADDITIVE']['name'] ='Offense (%)';
-                $result['UNITSTATRESISTANCE' ]['name'] ='Tenacity (%)';
-                $result['UNITSTATSPEED' ]['name'] ='Speed';
+                $result['UNITSTATACCURACY']['name'] = 'Potency (%)';
+                $result['UNITSTATCRITICALCHANCEPERCENTADDITIVE']['name'] = 'CC (%)';
+                $result['UNITSTATCRITICALDAMAGE']['name'] = 'CD (%)';
+                $result['UNITSTATCRITICALNEGATECHANCEPERCENTADDITIVE']['name'] = 'CA (%)';
+                $result['UNITSTATDEFENSE']['name'] = 'Defense';
+                $result['UNITSTATDEFENSEPERCENTADDITIVE']['name'] = 'Defense (%)';
+                $result['UNITSTATEVASIONNEGATEPERCENTADDITIVE']['name'] = 'Accuracy (%)';
+                $result['UNITSTATMAXHEALTH']['name'] = 'Health';
+                $result['UNITSTATMAXHEALTHPERCENTADDITIVE']['name'] = 'Health (%)';
+                $result['UNITSTATMAXSHIELD']['name'] = 'Protection';
+                $result['UNITSTATMAXSHIELDPERCENTADDITIVE']['name'] = 'Protection (%)';
+                $result['UNITSTATOFFENSE']['name'] = 'Offense';
+                $result['UNITSTATOFFENSEPERCENTADDITIVE']['name'] = 'Offense (%)';
+                $result['UNITSTATRESISTANCE']['name'] = 'Tenacity (%)';
+                $result['UNITSTATSPEED']['name'] = 'Speed';
                 break;
 
             default:
-                $result['UNITSTATACCURACY']['name'] ='Potency (%)';
-                $result['UNITSTATCRITICALCHANCEPERCENTADDITIVE' ]['name'] ='CC (%)';
-                $result['UNITSTATCRITICALDAMAGE' ]['name'] ='CD (%)';
-                $result['UNITSTATCRITICALNEGATECHANCEPERCENTADDITIVE']['name'] ='CA (%)';
-                $result['UNITSTATDEFENSE' ]['name'] ='Defense';
-                $result['UNITSTATDEFENSEPERCENTADDITIVE' ]['name'] ='Defense (%)';
-                $result['UNITSTATEVASIONNEGATEPERCENTADDITIVE' ]['name'] ='Accuracy (%)';
-                $result['UNITSTATMAXHEALTH']['name'] ='Health';
-                $result['UNITSTATMAXHEALTHPERCENTADDITIVE']['name'] ='Health (%)';
-                $result['UNITSTATMAXSHIELD' ]['name'] ='Protection';
-                $result['UNITSTATMAXSHIELDPERCENTADDITIVE']['name'] ='Protection (%)';
-                $result['UNITSTATOFFENSE' ]['name'] ='Offense';
-                $result['UNITSTATOFFENSEPERCENTADDITIVE']['name'] ='Offense (%)';
-                $result['UNITSTATRESISTANCE' ]['name'] ='Tenacity (%)';
-                $result['UNITSTATSPEED' ]['name'] ='Speed';
+                $result['UNITSTATACCURACY']['name'] = 'Potency (%)';
+                $result['UNITSTATCRITICALCHANCEPERCENTADDITIVE']['name'] = 'CC (%)';
+                $result['UNITSTATCRITICALDAMAGE']['name'] = 'CD (%)';
+                $result['UNITSTATCRITICALNEGATECHANCEPERCENTADDITIVE']['name'] = 'CA (%)';
+                $result['UNITSTATDEFENSE']['name'] = 'Defense';
+                $result['UNITSTATDEFENSEPERCENTADDITIVE']['name'] = 'Defense (%)';
+                $result['UNITSTATEVASIONNEGATEPERCENTADDITIVE']['name'] = 'Accuracy (%)';
+                $result['UNITSTATMAXHEALTH']['name'] = 'Health';
+                $result['UNITSTATMAXHEALTHPERCENTADDITIVE']['name'] = 'Health (%)';
+                $result['UNITSTATMAXSHIELD']['name'] = 'Protection';
+                $result['UNITSTATMAXSHIELDPERCENTADDITIVE']['name'] = 'Protection (%)';
+                $result['UNITSTATOFFENSE']['name'] = 'Offense';
+                $result['UNITSTATOFFENSEPERCENTADDITIVE']['name'] = 'Offense (%)';
+                $result['UNITSTATRESISTANCE']['name'] = 'Tenacity (%)';
+                $result['UNITSTATSPEED']['name'] = 'Speed';
                 break;
         }
 
@@ -653,15 +657,16 @@ class SyncClient
                 foreach ($roster as $key => $player) {
                     // dd($player);
                     Storage::disk('sync')->put(sprintf($target_players, $player['allyCode'] ?? $player['id']), \json_encode($player));
-					
-					// Save player data to database
-					if (isset($player['allyCode']) && isset($player['name'])) {
-						Player::updateOrCreate(
-							['code' => $player['allyCode']],
-							['name' => $player['name']]
-						);
-					}
-					
+
+                    // Save player data to database
+                    if (isset($player['allyCode']) && isset($player['name'])) {
+                        Player::updateOrCreate(
+                            ['code' => $player['allyCode']],
+                            ['refId' => $player['id'] ?? null],
+                            ['name' => $player['name']]
+                        );
+                    }
+
                     foreach ($player['roster'] as $unit_key => $unit_value) {
                         uksort($unit_value, [$this, 'cmpUnitValue']);
                         $roster_by_unit[$unit_value['combatType'] ?? 0][$unit_value['defId']][] = array_merge(['pid' => $player['id'], 'allyCode' => $player['allyCode'], 'player' => $player['name']], $unit_value);
@@ -695,7 +700,7 @@ class SyncClient
         $ext = 'json';
         $threshold = 60 * 60 * 6;
 
-        if (!$player_allycode || !\is_int($player_allycode)) {
+        if (!$player_allycode || !is_numeric($player_allycode)) {
             return ['error' => 'player_allycode missing or wrong. '.$player_allycode ?? 'empty'];
         }
 
@@ -741,7 +746,7 @@ class SyncClient
         $ext = 'json';
         $threshold = 60 * 60 * 6;
 
-        if (!$player_allycode || !\is_int($player_allycode)) {
+        if (!$player_allycode || !is_numeric($player_allycode)) {
             return false;
         }
         $guild_source = "swgoh.help/guild/$player_allycode/guild.json";

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Jobs\CheckNewAllyCode;
 
 class RegisterConfirmationController extends Controller
 {
@@ -21,6 +22,10 @@ class RegisterConfirmationController extends Controller
         }
 
         $user->confirm();
+
+        // // This is done within the User Model instead
+        // CheckNewAllyCode::dispatch($user, $user->code)
+        // ->onQueue('default');
 
         return redirect(route('home'))
             ->with('flash', 'Your account is now confirmed! You may post to the forum.');
