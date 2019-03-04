@@ -16,7 +16,7 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
+                                <small id="nameHelp" class="form-text text-muted">{{ __('auth.tip.name') }}</small>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -30,10 +30,24 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
+                                <small id="emailHelp" class="form-text text-muted">{{ __('auth.tip.email') }}</small>
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="code" class="col-md-4 col-form-label text-md-right">{{ __('Ally Code') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="code" type="code" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" name="code" value="{{ old('code') }}">
+                                <small id="codeHelp" class="form-text text-muted">{{ __('auth.tip.code') }}</small>
+                                @if ($errors->has('code'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('code') }}</strong>
                                     </span>
                                 @endif
                             </div>

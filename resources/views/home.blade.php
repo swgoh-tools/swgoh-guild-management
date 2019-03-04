@@ -17,6 +17,16 @@
                         <div class="alert alert-success" role="alert">
                             {{ __('You are currently logged in.') }}
                         </div>
+                        @if(!auth()->user()->confirmed)
+                        <div class="alert alert-danger" role="alert">
+                            {{ __('auth.not-confirmed') }}
+                        </div>
+                        @endif
+                        @if(!auth()->user()->code)
+                        <div class="alert alert-warning" role="alert">
+                            {{ __('auth.no-allycode') }}
+                        </div>
+                        @endif
                     @else
                         <div class="alert alert-info" role="alert">
                             {{ __('You are currently viewing this website as guest.') }}
@@ -27,7 +37,9 @@
                     <p>{{ __('app.introduction.guilds-test') }}</p>
                     <p>{{ __('app.introduction.threads') }}</p>
                     <p>{{ __('app.introduction.tools') }}</p>
-                    <p>{{ __('May the force be with you.') }}</p>
+                </div>
+                <div class="card-footer">
+                    <div>{{ __('May the force be with you.') }}</div>
                 </div>
             </div>
 

@@ -67,13 +67,16 @@
     "May the force be with you.": "Möge die Macht mit Dir sein.",
     "Members": "Mitglieder",
     "Menu": "Menü",
+    "Notifications": "Benachrichtigungen",
     "My Profile": "Mein Profil",
+    "My Data": "Meine Daten",
     "My Threads": "Meine Themen",
     "Name": "Name",
     "No": "Nr",
     "One Last Step": "Fast geschafft",
     "Overview": "Übersicht",
     "Password": "Passwort",
+    "Permissions": "Berechtigungen",
     "Player Name": "Spielername",
     "Player": "Spieler",
     "Popular Threads": "Beliebte Themen",
@@ -83,7 +86,10 @@
     "Publish": "Veröffentlichen",
     "Register": "Registrieren",
     "Remember Me": "Angemeldet bleiben",
+    "Report Issue": "Problem melden",
     "Reset Password": "Passwort zurücksetzen",
+    "Roles": "Gruppen",
+    "Roles & Permissions": "Gruppen & Berechtigungen",
     "Search for something...": "Nach etwas suchen...",
     "Search": "Suche",
     "Select Character": "Charakter auswählen",
@@ -137,6 +143,6 @@
     "solo": "solo",
     "updated": "aktualisiert",
     "wrote": "schrieb",
-	
+
     "x-last-without-comma": ""
 }

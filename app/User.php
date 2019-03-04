@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Spatie\Permission\Traits\HasRoles;
+use App\Jobs\CheckNewAllyCode;
 
 class User extends Authenticatable
 {
@@ -21,6 +22,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'code',
         'email',
         'password',
         'email_verified_at',
@@ -182,6 +184,41 @@ class User extends Authenticatable
     //     $id = explode('/', $avatar);
     //     return array_pop($id);
     // }
+
+    /**
+     * Set the ally code and check if guild already exists.
+     *
+     * @param  string $code
+     * @return string
+     */
+    public function setCodeAttribute($code)
+    {
+        if ($code == '000000000' || !$code) {
+            return $this->attributes['code'] = null;
+        }
+
+        if ($this->confirmed && $this->code <> $code) {
+            CheckNewAllyCode::dispatch($this, $code)
+            ->onQueue('default');
+        }
+
+        return $this->attributes['code'] = $code;
+    }
+
+    /**
+     * Set the confirmed and check if guild already exists.
+     *
+     * @param  boolean $confirmed
+     * @return boolean
+     */
+    public function setConfirmedAttribute($confirmed)
+    {
+        if (!$this->confirmed && $confirmed) {
+            CheckNewAllyCode::dispatch($this, $this->code)
+            ->onQueue('default');
+        }
+        return $this->attributes['confirmed'] = $confirmed;
+    }
 
     /**
      * Get the cache key for when a user reads a thread.

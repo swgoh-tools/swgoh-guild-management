@@ -16,8 +16,9 @@ class CreateGuildsTable extends Migration
         Schema::create('guilds', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
-            $table->unsignedInteger('code')->unique()->nullable();
+            $table->string('code', 10)->unique()->nullable();
             $table->string('name', 50);
+            $table->string('refId', 20)->unique()->nullable();
             $table->string('slug', 50)->unique()->nullable();
             $table->timestamps();
             $table->softDeletes();

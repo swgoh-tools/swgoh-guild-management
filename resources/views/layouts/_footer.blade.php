@@ -17,7 +17,7 @@
         <span class="nav-link">|</span>
         <a class="nav-link text-lowercase" href="{{ route('home') }}">{{ __('Home') }}</a>
         <span class="nav-link">|</span>
-        <a class="nav-link text-lowercase" href="{{config('swgoh.CONTACT.ISSUES_URL')) }}">{{ __('Report Issue') }}</a>
+        <a class="nav-link text-lowercase" href="{{ config('swgoh.CONTACT.ISSUES_URL') }}">{{ __('Report Issue') }}</a>
     </div>
     <span class="navbar-text ml-auto">
         <small>{{ __('app.disclaimer') }}</small>

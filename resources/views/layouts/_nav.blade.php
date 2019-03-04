@@ -84,7 +84,9 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropLogin">
                         <a class="dropdown-item" href="{{ route('home') }}">{{ __('Home') }}</a>
                         <a class="dropdown-item" href="{{ route('profile', Auth::user()) }}">{{ __('My Profile') }}</a>
+                        <a class="dropdown-item" href="{{ route('user.edit', Auth::user()->id) }}">{{ __('My Data') }}</a>
                         @if (Auth::user()->isAdmin())
+                        <a class="dropdown-item" href="{{ route('notifications', Auth::user()) }}">{{ __('Notifications') }}</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('admin.guilds.create') }}">{{ __('Create a New Guild') }}</a>
                         <a class="dropdown-item" href="{{ route('pages.create') }}">{{ __('Create a New Page') }}</a>

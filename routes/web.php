@@ -50,8 +50,11 @@ Route::post('/replies/{reply}/favorites', 'FavoritesController@store');
 Route::delete('/replies/{reply}/favorites', 'FavoritesController@destroy');
 
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
-Route::get('/profiles/{user}/notifications', 'UserNotificationsController@index');
+Route::get('/profiles/{user}/notifications', 'UserNotificationsController@index')->name('notifications');
 Route::delete('/profiles/{user}/notifications/{notification}', 'UserNotificationsController@destroy');
+Route::get('/users/{id}', 'Permissions\UserController@show')->name('user.show');
+Route::get('/users/{id}/edit', 'Permissions\UserController@editRestricted')->name('user.edit');
+Route::put('/users/{id}', 'Permissions\UserController@updateRestricted')->name('user.update');
 
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');
 
