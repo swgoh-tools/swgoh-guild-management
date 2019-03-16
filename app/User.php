@@ -58,7 +58,8 @@ class User extends Authenticatable
      */
     public function getRouteKeyName()
     {
-        return 'name';
+        // return 'name';
+        return 'id';
     }
 
     public function guilds()

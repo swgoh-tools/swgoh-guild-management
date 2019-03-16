@@ -155,7 +155,7 @@ class SyncClient
     /**
      * swgoh.help data.
      */
-    public static function getRoster($player_code, $combat_type = 1)
+    public static function getRoster($player_code, $combat_type = 1, $return_modification_timestamp = false)
     {
         if (!$player_code) {
             return null;
@@ -164,12 +164,24 @@ class SyncClient
         // enums
         $combat_type = 2 == $combat_type ? 'SHIP' : 'CHARACTER';
 
+        $unitKeys = SyncClient::getUnitKeys();
+
         $filename = "swgoh.help/guild/$player_code/units.out.$combat_type.json";
         if (Storage::disk('sync')->exists($filename)) {
-            return [
-                json_decode(Storage::disk('sync')->get($filename), true),
-                Storage::disk('sync')->lastModified($filename),
-            ];
+            if ($return_modification_timestamp) {
+                return Storage::disk('sync')->lastModified($filename);
+            } else {
+                return collect(json_decode(Storage::disk('sync')->get($filename), true))
+					->transform(function ($item, $key) use ($unitKeys) {
+						return [
+							'players' => $item,
+							'name' => $unitKeys[$key]['name'] ?? $key,
+							'side' => $unitKeys[$key]['side'] ?? '',
+							'desc' => $unitKeys[$key]['desc'] ?? '',
+							];
+					})
+					->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
+            }
         }
     }
 
@@ -205,34 +217,35 @@ class SyncClient
         }
     }
 
-    public static function getGuildMembers($player_code)
+    public static function getGuildMembers($player_code, $return_modification_timestamp = false)
     {
         if (!$player_code) {
             return null;
         }
         $filename = "swgoh.help/guild/$player_code/units.out.players.json";
         if (Storage::disk('sync')->exists($filename)) {
-            return [
-                json_decode(Storage::disk('sync')->get($filename), true),
-                Storage::disk('sync')->lastModified($filename),
-            ];
+            if ($return_modification_timestamp) {
+                return Storage::disk('sync')->lastModified($filename);
+            } else {
+                return collect(json_decode(Storage::disk('sync')->get($filename), true))->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
+            }
         }
     }
 
     public static function getSquadAnchors()
     {
         return [
-            'revan' => 'JEDIKNIGHTREVAN',
-            'chewbacca' => 'CHEWBACCALEGENDARY',
-            'jtr' => 'REYJEDITRAINING',
-            'cls' => 'COMMANDERLUKESKYWALKER',
-            'r2d2' => 'R2D2_LEGENDARY',
             'bb8' => 'BB8',
-            'yoda' => 'GRANDMASTERYODA',
-            'palpatine' => 'EMPERORPALPATINE',
-            'thrawn' => 'GRANDADMIRALTHRAWN',
-            'chimaera' => 'CAPITALCHIMAERA',
             'c3po' => 'C3POLEGENDARY',
+            'chewbacca' => 'CHEWBACCALEGENDARY',
+            'chimaera' => 'CAPITALCHIMAERA',
+            'cls' => 'COMMANDERLUKESKYWALKER',
+            'jtr' => 'REYJEDITRAINING',
+            'palpatine' => 'EMPERORPALPATINE',
+            'r2d2' => 'R2D2_LEGENDARY',
+            'revan' => 'JEDIKNIGHTREVAN',
+            'thrawn' => 'GRANDADMIRALTHRAWN',
+            'yoda' => 'GRANDMASTERYODA',
         ];
     }
 

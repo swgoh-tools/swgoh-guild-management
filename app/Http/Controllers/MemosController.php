@@ -141,6 +141,7 @@ class MemosController extends Controller
             return response(['Page and Memo (before) do not match!'], 450);
         }
         if ($memo->page_id <> $new_page->id) {
+			$memo->timestamps = false;
             $memo->page()->associate($new_page);
             $memo->save();
         }
@@ -148,6 +149,7 @@ class MemosController extends Controller
 
         if (! $other_memo) {
 
+			$memo->timestamps = false;
             $memo->update(['position' => (is_int($max_position) ? $max_position + 1 : null)]);
             return response(['Memo relocated to end of ' . $new_page->title], 200);
         }
@@ -168,6 +170,7 @@ class MemosController extends Controller
         foreach ($new_neighbors as $current_memo) {
             if (! $reloc_done && $current_memo->id == $other_memo->id) {
                 //this is our new position
+				$memo->timestamps = false;
                 $memo->update(['position' => $position + 1]);
                 $position += 1;
                 $reloc_done = true;
@@ -179,6 +182,7 @@ class MemosController extends Controller
                 }
                 $position = $current_memo->position;
             } else {
+				$current_memo->timestamps = false;
                 $current_memo->update(['position' => $position + 1]);
                 $position += 1;
             }

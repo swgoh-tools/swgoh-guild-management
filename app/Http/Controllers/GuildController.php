@@ -50,7 +50,7 @@ class GuildController extends Controller
 
         return view('guild.home', [
             'info' => $info[0] ?? [],
-            'members' => $members[0] ?? [],
+            'members' => $members,
             'filter' =>$filter,
             'sanctions' =>$sanctions,
             'playerTitleKeys' =>$playerTitleKeys ?? [],
@@ -226,13 +226,13 @@ class GuildController extends Controller
         $chars = SyncClient::getRoster($guild->user->code ?? null, 1);
         $ships = SyncClient::getRoster($guild->user->code ?? null, 2);
         $rosterWithAllyCodeKeys = [];
-        foreach ($chars[0] as $key => $char) {
-            foreach ($char as $player) {
+        foreach ($chars as $key => $char) {
+            foreach ($char['players'] as $player) {
                 $rosterWithAllyCodeKeys[$key][$player['allyCode']] = $player;
             }
         }
-        foreach ($ships[0] as $key => $ship) {
-            foreach ($ship as $player) {
+        foreach ($ships as $key => $ship) {
+            foreach ($ship['players'] as $player) {
                 $rosterWithAllyCodeKeys[$key][$player['allyCode']] = $player;
                 $rosterWithAllyCodeKeys[$key]['isShip'] = true;
             }
@@ -248,7 +248,7 @@ class GuildController extends Controller
             ];
             foreach ($teams as $teamKey => $team) {
                 if (isset($phaseSelector[$teamKey]) && $phaseSelector[$teamKey]) {
-                    foreach ($members[0] ?? [] as $member) {
+                    foreach ($members as $member) {
                         foreach ($team['phase'][$phaseSelector[$teamKey]]['squads'] ?? [] as $squad) {
                             $tmpTeam = $this->checkTeamStatus($team, $squad['team'], $member['allyCode'], $rosterWithAllyCodeKeys, $unitKeys);
                             $eventStats[$teamKey][max($tmpTeam['size'] - $tmpTeam['stats']['valid'], 0)][$member['allyCode']] = $member['name'];
@@ -270,7 +270,7 @@ class GuildController extends Controller
                     // Phase 3: 38,371,455
                     // Phase 4: 33,499,444 (Nihilus: 11,822,005 / Sion: 9,674,837 / Traya: 12,002,602 )
 
-                    foreach ($members[0] ?? [] as $member) {
+                    foreach ($members as $member) {
                         foreach ($team['phase'] ?? [] as $phasekey => $phase) {
                             foreach ($phase['squads'] ?? [] as $squad) {
                                 $tmpTeam = $this->checkTeamStatus($team, $squad['team'], $member['allyCode'], $rosterWithAllyCodeKeys, $unitKeys);
@@ -313,7 +313,7 @@ class GuildController extends Controller
 
         return view('guild.stats', [
             'info' => $info[0] ?? [],
-            'members' => $members[0] ?? [],
+            'members' => $members,
             'teams' => $teams ?? [],
             'roster' => $rosterWithAllyCodeKeys ?? [],
             'skillKeys' => $skillKeys,
