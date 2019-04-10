@@ -91,6 +91,12 @@ return [
         'intro' => 'List of all toons owned by memberes of guild :guild.',
         'description' => 'Please be patient. Page loading may take some time due to loading all toons. The number behind headers shows by how many guild members a character is owned.',
     ],
+    'targeting' => [
+        'title' => 'AI Targeting Rules',
+        'intro' => 'List of rules defined for AI targeting.',
+        'description' => 'This list contains all abilities (characters and ships) that have targeting rules for the AI associated with them.',
+        'legend' => 'Ability types: L = Leader, B = Basic, U = Unique, S = Special, RI = Reinforcement',
+    ],
     'zetas' => [
         'title' => 'Zeta Ratings',
         'intro' => 'List of zeta recommendations.',

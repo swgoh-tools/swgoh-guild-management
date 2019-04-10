@@ -71,10 +71,11 @@ Route::prefix('g')->group(function (): void {
     // Route::get('{guild}/own/roster', 'PagesController@roster')->name('guild.roster');
     Route::get('{guild}/own/ships/{chunk?}', 'PagesController@rosterShips')->name('guild.ships');
     Route::get('{guild}/own/toons/{chunk?}', 'PagesController@rosterToons')->name('guild.toons');
-    Route::get('{guild}/list/zetas', 'PagesController@zetasList')->name('guild.list.zetas');
-    Route::get('{guild}/list/events', 'PagesController@eventsList')->name('guild.list.events');
-    Route::get('{guild}/list/battles', 'PagesController@battlesList')->name('guild.list.battles');
-    Route::get('{guild}/list/squads', 'PagesController@squadsList')->name('guild.list.squads');
+    Route::get('{guild}/list/targeting', 'ListController@targeting')->name('guild.list.targeting');
+    Route::get('{guild}/list/zetas', 'ListController@zetas')->name('guild.list.zetas');
+    Route::get('{guild}/list/events', 'ListController@events')->name('guild.list.events');
+    // Route::get('{guild}/list/battles', 'PagesController@battlesList')->name('guild.list.battles');
+    Route::get('{guild}/list/squads', 'ListController@squads')->name('guild.list.squads');
     Route::get('{guild}/sanctions/{code}', 'GuildController@indexSanction')->name('sanction');
     Route::post('{guild}/sanctions/{code}', 'GuildController@storeSanction')->middleware('role:admin|leader|officer');
     Route::get('{guild}/sanctions/{code}/create', 'GuildController@createSanction')->name('sanction.create');
@@ -115,7 +116,8 @@ Route::prefix('p')->group(function (): void {
     Route::get('{player}/stats', 'PlayerController@stats')->name('player.stats');
     Route::get('{player}/stats/full', 'PlayerController@statsVerbose')->name('player.stats.full');
 });
-    Route::get('/list/zetas', 'PagesController@zetasList')->name('zetas');
+Route::get('/list/targeting', 'ListController@targeting')->name('targeting');
+Route::get('/list/zetas', 'ListController@zetas')->name('zetas');
 
 Route::prefix('admin')->group(function (): void {
     // Route::get('users', function (): void {

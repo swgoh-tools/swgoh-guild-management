@@ -44,8 +44,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('guild.list.zetas', $guild) }}">{{ __('Zeta List') }}</a>
-                    <!-- <a class="dropdown-item" href="{{ route('guild.list.battles', $guild) }}">{{ __('Battle List') }}</a> -->
                     <a class="dropdown-item" href="{{ route('guild.list.events', $guild) }}">{{ __('Event List') }}</a>
+                    <a class="dropdown-item" href="{{ route('guild.list.targeting', $guild) }}">{{ __('AI Targeting List') }}</a>
                 </div>
             </li>
             <li class="nav-item dropdown">

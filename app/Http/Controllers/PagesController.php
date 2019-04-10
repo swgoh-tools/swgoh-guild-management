@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Helper\SyncClient;
-use App\Channel;
 use App\Page;
-use App\Guild;
 use App\User;
+use App\Guild;
+use App\Channel;
+use App\Helper\SyncClient;
+use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
@@ -277,37 +277,6 @@ class PagesController extends Controller
                  ];
 
                  return $this->roster($guild, $list, $filter, $updated, $chunk, 'Toons', 'toons');
-    }
-
-    public function squadsList()
-    {
-        $list = SyncClient::getSquadList();
-        $unitKeys = SyncClient::getUnitKeys();
-        $skillKeys = SyncClient::getSkillKeys();
-
-        return view('guild.list.squads', [
-            'unitKeys' =>$unitKeys ?? [],
-            'skillKeys' =>$skillKeys ?? [],
-            'list' => $list ?? [],
-            ]);
-    }
-
-    public function eventsList()
-    {
-        $list = SyncClient::getEventList();
-
-        return view('guild.list.events', [
-            'list' => $list ?: [],
-            ]);
-    }
-
-    public function zetasList()
-    {
-        $list = SyncClient::getZetaList();
-
-        return view('guild.list.zetas', [
-            'list' => $list ?: [],
-            ]);
     }
 
     public function squadspost()

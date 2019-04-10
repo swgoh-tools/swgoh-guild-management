@@ -72,4 +72,13 @@ return [
     'versa' => '=Synopse',
     'xp' => 'XP',
     'zetas'   => 'Zetas',
+    'forceAlignment'   => 'Seite',
+    'categoryIdList'   => 'Kategorien',
+    'combatType'   => 'Kampftyp',
+    'abilityType'   => 'Fähigkeitentyp',
+    'aiParams'   => 'KI-Parameter',
+    'preferredAllyTargetingRuleId'   => 'Zielsuche Freund',
+    'preferredEnemyTargetingRuleId'   => 'Zielsuche Gegner',
+    'cooldownType'   => 'Cooldown',
+    'phase'   => 'Phase',
 ];

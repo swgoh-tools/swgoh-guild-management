@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="card col-4"><div class="card-header">{{ __('Player Info') }}</div><div class="card-body">
+    <div class="card col-4 p-0"><div class="card-header">{{ __('Player Info') }}</div><div class="card-body">
     <table>
     <tr><th>{{ __('fields.id') }}</th><td class="text-right">{{ $info['id'] ?? '' }}</td></tr>
     <tr><th>{{ __('fields.allyCode') }}</th><td class="text-right">{{ $info['allyCode'] ?? '' }}</td></tr>
