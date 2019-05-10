@@ -30,6 +30,21 @@
         </div>
 
         <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+            @can('edit memos')
+                <div>
+                    <a href="{{ $page->path() }}/edit" aria-label="edit page">
+                        <button class="btn btn-success"><i class="fa fa-pencil"></i> {{ __('Edit Page') }}</button>
+                    </a>
+                    <form id="delete-form" action="{{ $page->path() }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <a href="" aria-label="delete page">
+                            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> {{ __('Delete Page') }}</button>
+                        </a>
+                    </form>
+
+                </div>
+            @endcan
 
             <div class="tab-content" id="sw-tabContent">
                 @foreach ($memos as $memo)
@@ -42,23 +57,6 @@
                         <div class="card-header">
                             <h2 class="card-title modal-header px-0 py-1">
                                 <span><i class="fa fa-file-text-o"></i> {{ $memo->title }}</span>
-                                @if ($loop->first)
-                                    @can('edit memos')
-                                        <div>
-                                            <a href="{{ $page->path() }}/edit" aria-label="edit page">
-                                                <button class="btn btn-success"><i class="fa fa-pencil"></i> {{ __('Edit Page') }}</button>
-                                            </a>
-                                            <form id="delete-form" action="{{ $page->path() }}" method="POST" style="display: inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <a href="" aria-label="delete page">
-                                                    <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> {{ __('Delete Page') }}</button>
-                                                </a>
-                                            </form>
-
-                                        </div>
-                                    @endcan
-                                @endif
                             </h2>
                             <h6 class="card-subtitle text-muted"><i class="fa fa-user"></i> {{ __('app.created_by', ['name' => $memo->creator->name]) }} {{ __('on')}} {{ $memo->created_at->isoFormat('llll') }}
                                 @if($memo->editor)

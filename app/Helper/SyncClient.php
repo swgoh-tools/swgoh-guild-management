@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Helper;
 
+use App\Player;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
-use App\Player;
 
 class SyncClient
 {
@@ -62,7 +62,7 @@ class SyncClient
         'help.data.statModSetList' => '1',
         // 'help.data.statProgressionList' => '',
         // 'help.data.tableList' => '',
-        // 'help.data.targetingSetList' => '',
+        'help.data.targetingSetList' => 'default_pvp',
         // 'help.data.territoryBattleDefinitionList' => '',
         // 'help.data.territoryWarDefinitionList' => '',
         // 'help.data.unitsList' => '',
@@ -155,7 +155,7 @@ class SyncClient
     /**
      * swgoh.help data.
      */
-    public static function getRoster($player_code, $combat_type = 1)
+    public static function getRoster($player_code, $combat_type = 1, $return_modification_timestamp = false)
     {
         if (!$player_code) {
             return null;
@@ -164,12 +164,24 @@ class SyncClient
         // enums
         $combat_type = 2 == $combat_type ? 'SHIP' : 'CHARACTER';
 
+        $unitKeys = self::getUnitKeys();
+
         $filename = "swgoh.help/guild/$player_code/units.out.$combat_type.json";
         if (Storage::disk('sync')->exists($filename)) {
-            return [
-                json_decode(Storage::disk('sync')->get($filename), true),
-                Storage::disk('sync')->lastModified($filename),
-            ];
+            if ($return_modification_timestamp) {
+                return Storage::disk('sync')->lastModified($filename);
+            } else {
+                return collect(json_decode(Storage::disk('sync')->get($filename), true))
+                    ->transform(function ($item, $key) use ($unitKeys) {
+                        return [
+                            'players' => $item,
+                            'name' => $unitKeys[$key]['name'] ?? $key,
+                            'side' => $unitKeys[$key]['side'] ?? '',
+                            'desc' => $unitKeys[$key]['desc'] ?? '',
+                            ];
+                    })
+                    ->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE);
+            }
         }
     }
 
@@ -205,34 +217,35 @@ class SyncClient
         }
     }
 
-    public static function getGuildMembers($player_code)
+    public static function getGuildMembers($player_code, $return_modification_timestamp = false)
     {
         if (!$player_code) {
             return null;
         }
         $filename = "swgoh.help/guild/$player_code/units.out.players.json";
         if (Storage::disk('sync')->exists($filename)) {
-            return [
-                json_decode(Storage::disk('sync')->get($filename), true),
-                Storage::disk('sync')->lastModified($filename),
-            ];
+            if ($return_modification_timestamp) {
+                return Storage::disk('sync')->lastModified($filename);
+            } else {
+                return collect(json_decode(Storage::disk('sync')->get($filename), true))->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE);
+            }
         }
     }
 
     public static function getSquadAnchors()
     {
         return [
-            'revan' => 'JEDIKNIGHTREVAN',
-            'chewbacca' => 'CHEWBACCALEGENDARY',
-            'jtr' => 'REYJEDITRAINING',
-            'cls' => 'COMMANDERLUKESKYWALKER',
-            'r2d2' => 'R2D2_LEGENDARY',
             'bb8' => 'BB8',
-            'yoda' => 'GRANDMASTERYODA',
-            'palpatine' => 'EMPERORPALPATINE',
-            'thrawn' => 'GRANDADMIRALTHRAWN',
-            'chimaera' => 'CAPITALCHIMAERA',
             'c3po' => 'C3POLEGENDARY',
+            'chewbacca' => 'CHEWBACCALEGENDARY',
+            'chimaera' => 'CAPITALCHIMAERA',
+            'cls' => 'COMMANDERLUKESKYWALKER',
+            'jtr' => 'REYJEDITRAINING',
+            'palpatine' => 'EMPERORPALPATINE',
+            'r2d2' => 'R2D2_LEGENDARY',
+            'revan' => 'JEDIKNIGHTREVAN',
+            'thrawn' => 'GRANDADMIRALTHRAWN',
+            'yoda' => 'GRANDMASTERYODA',
         ];
     }
 
@@ -289,7 +302,7 @@ class SyncClient
         }
     }
 
-    public static function getSkillKeys()
+    public static function getSkillKeys($full_ability_info = false)
     {
         $filename = 'swgoh.help/data/skillList/skillList.out.map.json';
         $skills = null;
@@ -309,26 +322,39 @@ class SyncClient
                 $lang = 'ENG_US';
                 break;
         }
-        $filename = "swgoh.help/data/abilityList/abilityList.out.map.$lang.json";
+        $file_suffix = '.out.map';
+        if ($full_ability_info) {
+            $file_suffix = '';
+        }
+        $filename = "swgoh.help/data/abilityList/abilityList$file_suffix.$lang.json";
         $abilities = null;
         if (Storage::disk('sync')->exists($filename)) {
             $abilities = json_decode(Storage::disk('sync')->get($filename), true);
         } else {
-            $filename = 'swgoh.help/data/abilityList/abilityList.out.map.ENG_US.json';
+            $filename = "swgoh.help/data/abilityList/abilityList$file_suffix.ENG_US.json";
             if (Storage::disk('sync')->exists($filename)) {
                 $abilities = json_decode(Storage::disk('sync')->get($filename), true);
             }
         }
         if ($abilities) {
-            foreach ($skills as $skill => $ability) {
-                $skills[$skill] = $abilities[$ability] ?? $ability;
+            if ($full_ability_info) {
+                $ab2skill = array_flip($skills);
+                foreach ($abilities as $key => $ability) {
+                    if (isset($ab2skill[$ability['id']])) {
+                        $skills[$ab2skill[$ability['id']]] = $ability;
+                    }
+                }
+            } else {
+                foreach ($skills as $skill => $ability) {
+                    $skills[$skill] = $abilities[$ability] ?? $ability;
+                }
             }
         }
 
         return $skills;
     }
 
-    public static function getUnitKeys()
+    public static function getUnitKeys($raw = false)
     {
         switch (app()->getLocale()) {
             case 'de':
@@ -351,6 +377,9 @@ class SyncClient
         }
         $result = [];
         if ($units) {
+            if($raw) {
+                return collect($units)->sortBy('nameKey', SORT_NATURAL | SORT_FLAG_CASE);
+            }
             foreach ($units as $key => $value) {
                 $result[$value['baseId'] ?? 'error']['name'] = $value['nameKey'] ?? '';
                 $result[$value['baseId'] ?? 'error']['desc'] = $value['descKey'] ?? '';
@@ -866,19 +895,53 @@ class SyncClient
     protected function getHelpDataBody($collection, $lang)
     {
         switch ($collection) {
-            case 'unitsList':
+            case 'abilityList':
                 $body = [
                     'collection' => $collection,
                     'language' => $lang,
                     'enums' => true,
-                    'match' => ['rarity' => 7],
                     'project' => [
-                        'baseId' => 1,
+                        'id' => 1,
                         'nameKey' => 1,
                         'descKey' => 1,
-                        'forceAlignment' => 1,
-                        'categoryIdList' => 1,
-                        'combatType' => 1,
+                        'abilityType' => 1,
+                        'cooldownType' => 1,
+                        'aiParams' => 1,
+                        ],
+                    ];
+                break;
+
+            case 'battleTargetingRuleList':
+                $body = [
+                    'collection' => $collection,
+                    'language' => $lang,
+                    'enums' => true,
+                    'project' => [
+                        'id' => 1,
+                        'excludeSelf' => 1,
+                        'excludeSelectedTarget' => 1,
+                        'battleDeploymentState' => 1,
+                        'activeEffectTagCriteriaList' => 1,
+                        'statValueList' => 1,
+                        'unitSelect' => 1,
+                        'battleSide' => 1,
+                        'unitClassList' => 1,
+                        'healthState' => 1,
+                        'category' => 1,
+                        'forceAlignmentList' => 1,
+                        ],
+                    ];
+                break;
+
+            case 'equipmentList':
+            case 'playerTitleList':
+                $body = [
+                    'collection' => $collection,
+                    'language' => $lang,
+                    'enums' => true,
+                    'project' => [
+                        'id' => 1,
+                        'nameKey' => 1,
                         ],
                     ];
                 break;
@@ -899,30 +962,31 @@ class SyncClient
                     ];
                 break;
 
-            case 'abilityList':
+            case 'unitsList':
                 $body = [
                     'collection' => $collection,
                     'language' => $lang,
                     'enums' => true,
+                    'match' => ['rarity' => 7],
                     'project' => [
-                        'id' => 1,
+                        'baseId' => 1,
                         'nameKey' => 1,
-                        'abilityType' => 1,
-                        'cooldownType' => 1,
-                        'aiParams' => 1,
-                        ],
-                    ];
-                break;
-
-            case 'playerTitleList':
-            case 'equipmentList':
-                $body = [
-                    'collection' => $collection,
-                    'language' => $lang,
-                    'enums' => true,
-                    'project' => [
-                        'id' => 1,
-                        'nameKey' => 1,
+                        'descKey' => 1,
+                        'forceAlignment' => 1,
+                        'categoryIdList' => 1,
+                        'combatType' => 1,
+                        // 'creationRecipeReference' => 1,
+                        'skillReferenceList' => 1,
+                        // 'limitBreakList' => 1,
+                        // 'uniqueAbilityList' => 1,
+                        // 'crewAbilityList' => 1,
+                        // 'crewUniqueAbilityList' => 1,
+                        // 'basicAttackRef' => 1,
+                        // 'leaderAbilityRef' => 1,
+                        // 'limitBreakRefList' => 1,
+                        // 'uniqueAbilityRefList' => 1,
+                        // 'crewAbilityRefList' => 1,
+                        // 'crewUniqueAbilityRefList' => 1,
                         ],
                     ];
                 break;

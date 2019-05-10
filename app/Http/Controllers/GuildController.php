@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Guild;
 use App\User;
-use App\Permission;
-use App\Authorizable;
+use App\Guild;
 use App\Player;
 use App\Sanction;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
+use App\Permission;
+use App\Authorizable;
 use App\Helper\SyncClient;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class GuildController extends Controller
 {
@@ -50,7 +50,7 @@ class GuildController extends Controller
 
         return view('guild.home', [
             'info' => $info[0] ?? [],
-            'members' => $members[0] ?? [],
+            'members' => $members ?? [],
             'filter' =>$filter,
             'sanctions' =>$sanctions,
             'playerTitleKeys' =>$playerTitleKeys ?? [],
@@ -214,7 +214,7 @@ class GuildController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function stats(Guild $guild, $chunk = '')
+    public function stats(Guild $guild, $chunk = '', $code = '')
     {
         $info = SyncClient::getPlayer($guild->user->code ?? null);
         $members = SyncClient::getGuildMembers($guild->user->code ?? null);
@@ -226,21 +226,22 @@ class GuildController extends Controller
         $chars = SyncClient::getRoster($guild->user->code ?? null, 1);
         $ships = SyncClient::getRoster($guild->user->code ?? null, 2);
         $rosterWithAllyCodeKeys = [];
-        foreach ($chars[0] as $key => $char) {
-            foreach ($char as $player) {
+        foreach ($chars as $key => $char) {
+            foreach ($char['players'] as $player) {
                 $rosterWithAllyCodeKeys[$key][$player['allyCode']] = $player;
             }
         }
-        foreach ($ships[0] as $key => $ship) {
-            foreach ($ship as $player) {
+        foreach ($ships as $key => $ship) {
+            foreach ($ship['players'] as $player) {
                 $rosterWithAllyCodeKeys[$key][$player['allyCode']] = $player;
                 $rosterWithAllyCodeKeys[$key]['isShip'] = true;
             }
         }
 
-        if (!$chunk) {
+        if (!$chunk || $chunk == 'raid-hstr') {
             // calculat raid readiness
             $eventStats = [];
+            $eventStatsMax = [];
             $phaseSelector = [
                 'rancor' => 2,
                 'haat' => 4,
@@ -248,7 +249,7 @@ class GuildController extends Controller
             ];
             foreach ($teams as $teamKey => $team) {
                 if (isset($phaseSelector[$teamKey]) && $phaseSelector[$teamKey]) {
-                    foreach ($members[0] ?? [] as $member) {
+                    foreach ($members as $member) {
                         foreach ($team['phase'][$phaseSelector[$teamKey]]['squads'] ?? [] as $squad) {
                             $tmpTeam = $this->checkTeamStatus($team, $squad['team'], $member['allyCode'], $rosterWithAllyCodeKeys, $unitKeys);
                             $eventStats[$teamKey][max($tmpTeam['size'] - $tmpTeam['stats']['valid'], 0)][$member['allyCode']] = $member['name'];
@@ -257,6 +258,7 @@ class GuildController extends Controller
                     $this->prepareEventStats($eventStats, $teamKey);
                 } elseif ('sith' == $teamKey) {
                     $sithSquads = [];
+                    $sithSquadsPhasePlayer = [];
                     $sithDamage = [];
                     $sithDamage[0][999]['DMG'] = 46888776;
                     $sithDamage[1][999]['DMG'] = 52105858;
@@ -270,27 +272,38 @@ class GuildController extends Controller
                     // Phase 3: 38,371,455
                     // Phase 4: 33,499,444 (Nihilus: 11,822,005 / Sion: 9,674,837 / Traya: 12,002,602 )
 
-                    foreach ($members[0] ?? [] as $member) {
-                        foreach ($team['phase'] ?? [] as $phasekey => $phase) {
-                            foreach ($phase['squads'] ?? [] as $squad) {
+                    foreach ($team['phase'] ?? [] as $phasekey => $phase) {
+                        $squadsSorted = [];
+                        foreach ($phase['squads'] ?? [] as $squad) {
+                            // preg_match('/(\d*\.?\d+)%-(\d+)%/', $squad['note'] ?? '', $matches); // old % values till 30.11.18
+                            preg_match('/(\d{0,3}(?:,\d\d\d)+)/', $squad['note'] ?? '', $matches); // new since 1.12.18 no mor dmg ranges, absolute values
+                            $squad['DMG'] = preg_replace( '/[^\d]/', '', ($matches[1] ?? 0));
+                            $squad['DMG_100'] = round($squad['DMG'] / $sithDamage[$phasekey][999]['DMG'] * 100 , 1);
+                            $squadsSorted[] = $squad;
+                        }
+                        usort($squadsSorted, $this->sort_field('DMG'));
+
+                        foreach ($members as $member) {
+                            foreach ($squadsSorted as $squad) {
                                 $tmpTeam = $this->checkTeamStatus($team, $squad['team'], $member['allyCode'], $rosterWithAllyCodeKeys, $unitKeys);
-                                $eventStats[$teamKey][$phasekey][max($tmpTeam['size'] - $tmpTeam['stats']['valid'], 0)][$member['allyCode']] = $member['name'];
-                                $squadWithDamage = $squad;
-                                // preg_match('/(\d*\.?\d+)%-(\d+)%/', $squad['note'] ?? '', $matches); // old % values till 30.11.18
-                                preg_match('/(\d{0,3}(?:,\d\d\d)+)/', $squad['note'] ?? '', $matches); // new since 1.12.18 no mor dmg ranges, absolute values
-                                $squadWithDamage['DMG'] = preg_replace( '/[^\d]/', '', ($matches[1] ?? 0));
-                                $squadWithDamage['DMG_100'] = round($squadWithDamage['DMG'] / $sithDamage[$phasekey][999]['DMG'] * 100 , 1);
-                                $sithSquads[$phasekey][max($tmpTeam['size'] - $tmpTeam['stats']['valid'], 0)][$member['allyCode']][] = $squadWithDamage;
+                                $squad['readiness'] = max($tmpTeam['size'] - $tmpTeam['stats']['valid'], 0);
+                                $eventStats[$teamKey][$phasekey][$squad['readiness']][$member['allyCode']] = $member['name'];
+                                $eventStatsMax[$teamKey][$phasekey][$member['allyCode']] = min($squad['readiness'], $eventStatsMax[$teamKey][$phasekey][$member['allyCode']] ?? 99);
+                                $sithSquads[$phasekey][$squad['readiness']][$member['allyCode']][] = $squad;
+                                $sithSquadsPhasePlayer[$phasekey][$member['allyCode']][$squad['readiness']][] = $squad;
                             }
                         }
                     }
 
                     foreach ($eventStats[$teamKey] ?? [] as $eventStatsKey => $eventStatsValue) {
-                        $this->prepareEventStats($eventStats[$eventStatsKey], $teamKey);
-                        foreach ($sithSquads[$eventStatsKey] ?? [] as $validationKey => $validationMember) {
+                        $this->prepareEventStats($eventStats[$teamKey][$eventStatsKey], $teamKey);
+                        foreach ($sithSquads[$eventStatsKey] ?? [] as $validationKey => $validationMembers) {
                             $sithDamage[$eventStatsKey][$validationKey]['DMG'] = 0;
-                            foreach ($validationMember as $validationMemberSquads) {
-                                $sithDamage[$eventStatsKey][$validationKey]['DMG'] += $validationMemberSquads[0]['DMG'];
+                            foreach ($validationMembers as $validationMemberKey => $validationMemberSquads) {
+                                //only add damage if it is the best team of this member
+                                if($validationKey === ($eventStatsMax[$teamKey][$eventStatsKey][$validationMemberKey] ?? null)) {
+                                    $sithDamage[$eventStatsKey][$validationKey]['DMG'] += $validationMemberSquads[0]['DMG'];
+                                }
                             }
                         }
                     }
@@ -313,18 +326,26 @@ class GuildController extends Controller
 
         return view('guild.stats', [
             'info' => $info[0] ?? [],
-            'members' => $members[0] ?? [],
+            'members' => $members,
             'teams' => $teams ?? [],
             'roster' => $rosterWithAllyCodeKeys ?? [],
             'skillKeys' => $skillKeys,
             'unitKeys' => $unitKeys,
             'eventStats' => $eventStats ?? [],
+            'eventStatsMax' => $eventStatsMax ?? [],
             'sithDamage' => $sithDamage ?? [],
             'sithSquads' => $sithSquads ?? [],
+            'sithSquadsPhasePlayer' => $sithSquadsPhasePlayer ?? [],
             'selection' => $chunk,
+            'detail' => $code,
         ]);
     }
 
+    private function sort_field($key) {
+        return function ($a, $b) use ($key) {
+            return ($a[$key] <=> $b[$key]) * -1;
+        };
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -371,7 +392,7 @@ class GuildController extends Controller
     public function createSanction(Guild $guild, $code)
     {
 		$this->authorize('create', Sanction::class);
-		
+
         // $users = User::pluck('name', 'id');
         $origins = [
             'TW' => 'TW, Territorialkrieg',
@@ -410,7 +431,7 @@ class GuildController extends Controller
     {
         $sanction = Sanction::findOrFail($id);
 		$this->authorize('update', $sanction);
-		
+
         // dd($sanction->toArray());
         $origins = [
             'TW' => 'TW, Territorialkrieg',
@@ -450,7 +471,7 @@ class GuildController extends Controller
     public function updateSanction(Request $request, Guild $guild, $code, Sanction $sanction)
     {
 		$this->authorize('update', $sanction);
-		
+
         // Update sanction
         $sanction->fill($request->except('roles', 'permissions', 'password'));
         $sanction->user_id = auth()->user()->id;
@@ -517,9 +538,9 @@ class GuildController extends Controller
     public function destroySanction(Guild $guild, $code, $id)
     {
 		$sanction = Sanction::findOrFail($id);
-		
+
 		$this->authorize('update', $sanction);
-		
+
         if( $sanction->delete() ) {
             flash()->success('Sanction has been deleted');
         } else {

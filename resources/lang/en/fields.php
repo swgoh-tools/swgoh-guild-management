@@ -72,5 +72,13 @@ return [
     'versa' => '=Synopsis',
     'xp' => 'XP',
     'zetas'   => 'Zetas',
-
+    'forceAlignment'   => 'Side',
+    'categoryIdList'   => 'Categories',
+    'combatType'   => 'Combat Type',
+    'abilityType'   => 'Ability Type',
+    'aiParams'   => 'AI Params',
+    'preferredAllyTargetingRuleId'   => 'Ally Targeting',
+    'preferredEnemyTargetingRuleId'   => 'Enemy Targeting',
+    'cooldownType'   => 'Cooldown',
+    'phase'   => 'Phase',
 ];

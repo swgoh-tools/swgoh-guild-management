@@ -91,6 +91,12 @@ return [
         'field_order' => 'Reihenfolge der Angabe bei den Toons',
         'direct_link_info' => 'Direkter Link. Kann zum Weitergeben und Verweis auf genau diese Team-Zusammenstellung dieser Gilde genutzt werden.',
     ],
+    'targeting' => [
+        'title' => 'Regeln zur KI Zielsuche',
+        'intro' => 'Liste der Regeln, die von der KI zur Auswahl von Zielen (befreundet und gegnerisch) verwendet werden.',
+        'description' => 'Die Liste enthält sämtliche Fähigkeiten (Chars und Schiffe) denen eine Regel zur Zielauswahl für die KI zugewiesen ist.',
+        'legend' => 'Fähigkeitentypen: L = Anführer, B = Basis, U = Einmalig, S = Spezial, RI = Verstärkung',
+    ],
     'zetas' => [
         'title' => 'Zeta Ratings',
         'intro' => 'Liste mit Zeta Empfehlungen.',

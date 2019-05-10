@@ -10,11 +10,36 @@
             <!-- <li class="nav-item active"> -->
                 <!-- <a class="nav-link" href=">Infos <span class="sr-only">(current)</span></a> -->
             <!-- </li> -->
-            @foreach ($pages as $page)
-            <li class="nav-item">
-                <a class="nav-link" href="{{ $page->path() }}">{{ $page->title }}</a>
-            </li>
-            @endforeach
+            @switch(count($pages ?? []))
+                @case(0)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('guild.pages', $guild) }}">{{ __('Guild-Created Content') }}</a>
+                    </li>
+                    @break
+
+                @case(1)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ $pages->first()->path() }}">{{ $pages->first()->title }}</a>
+                    </li>
+                    @break
+
+                @default
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        {{ __('Guild-Created Content') }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @forelse ($pages as $page)
+                        <a class="dropdown-item" href="{{ $page->path() }}">{{ $page->title }}</a>
+                        @empty
+                        <a class="dropdown-item" href="{{ route('guild.pages', $guild) }}">{{ __('Guild-Created Content') }}</a>
+                        @endforelse
+                    </div>
+                </li>
+
+            @endswitch
+
             @can('edit pages')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pages.create') }}"><i class="fa fa-plus"></i></a>
@@ -27,6 +52,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('guild.stats', $guild) }}">{{ __('Guild State') }}</a>
+                    <a class="dropdown-item" href="{{ route('guild.stats', [$guild, 'raid-hstr']) }}">{{ __('HSTR Special') }}</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('guild.list.squads', $guild) }}">{{ __('Predefined Teams') }}</a>
                     <div class="dropdown-divider"></div>
@@ -44,8 +70,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('guild.list.zetas', $guild) }}">{{ __('Zeta List') }}</a>
-                    <!-- <a class="dropdown-item" href="{{ route('guild.list.battles', $guild) }}">{{ __('Battle List') }}</a> -->
                     <a class="dropdown-item" href="{{ route('guild.list.events', $guild) }}">{{ __('Event List') }}</a>
+                    <a class="dropdown-item" href="{{ route('guild.list.targeting', $guild) }}">{{ __('AI Targeting List') }}</a>
                 </div>
             </li>
             <li class="nav-item dropdown">

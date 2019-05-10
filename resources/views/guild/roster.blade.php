@@ -37,13 +37,13 @@
 
             <nav class="collapse bd-links" id="bd-docs-nav">
                 <div class="nav flex-column nav-pills" id="sw-tab" role="tablist" aria-orientation="vertical">
-                    @foreach ($units as $unit_key => $players)
+                    @foreach ($units as $unit_key => $unit)
                     @if ($loop->first)
                     <a class="nav-link active" id="{{ $unit_key }}-tab" data-toggle="pill" href="#{{ $unit_key }}" role="tab"
-                        aria-controls="{{ $unit_key }}" aria-selected="true">{{ $unit_key }} ({{ count($players) }})</a>
+                        aria-controls="{{ $unit_key }}" aria-selected="true">{{ $unit['name'] ?? $unit_key }} ({{ count($unit['players']) }})</a>
                     @else
                     <a class="nav-link" id="{{ $unit_key }}-tab" data-toggle="pill" href="#{{ $unit_key }}" role="tab"
-                        aria-controls="{{ $unit_key }}" aria-selected="false">{{ $unit_key }} ({{ count($players) }})</a>
+                        aria-controls="{{ $unit_key }}" aria-selected="false">{{ $unit['name'] ?? $unit_key }} ({{ count($unit['players']) }})</a>
                     @endif
                     @endforeach
                 </div>
@@ -69,14 +69,14 @@
             <p class="text-left">{{ __('app.howto.click_head') }}</p>
             <p class="text-left">{{ __('Last updated') }}: {{ date('D, d M Y', intval(substr($updated ?? '', 0, 10))) }}</p>
             <div class="tab-content" id="toonTabsContent">
-                @foreach ($units as $unit_key => $players)
+                @foreach ($units as $unit_key => $unit)
                     <div class="tab-pane fade{{ $loop->first ? ' active show' : ''}}" id="{{ $unit_key }}" role="tabpanel" aria-labelledby="{{ $unit_key }}-tab">
-                    <h2>{{ $unitKeys[$unit_key]['name'] ?? $unit_key }} ({{ count($players) }})</h2>
-                    <p class="text-muted">[{{ $unitKeys[$unit_key]['side'] ?? '' }}] {{ $unitKeys[$unit_key]['desc'] ?? '' }}</p>
+                    <h2>{{ $unit['name'] ?? $unit_key }} ({{ count($unit['players']) }})</h2>
+                    <p class="text-muted">[{{ $unit['side'] ?? '' }}] {{ $unit['desc'] ?? '' }}</p>
                     <table class="table table-hover toon-table">
                         <!-- table-striped table-dark  -->
 
-                            @foreach ($players as $player_key => $player)
+                            @foreach ($unit['players'] as $player_key => $player)
                             @if ($loop->first)
                             <thead>
                                 <tr>

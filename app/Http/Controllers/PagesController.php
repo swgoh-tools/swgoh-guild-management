@@ -4,15 +4,20 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Helper\SyncClient;
-use App\Channel;
 use App\Page;
-use App\Guild;
 use App\User;
+use App\Guild;
+use App\Channel;
+use App\Helper\SyncClient;
+use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
+    public function info()
+    {
+        return view('pages.info');
+    }
+
     public function home()
     {
         return view('home');
@@ -195,19 +200,19 @@ class PagesController extends Controller
             ->with('flash', 'Your channel has been published!');
     }
 
-    protected function roster(Guild $guild, $list, $filter, $chunk, $title, $route_name)
+    protected function roster(Guild $guild, $list, $filter, $updated, $chunk, $title, $route_name)
     {
         $skillKeys = SyncClient::getSkillKeys();
         $unitKeys = SyncClient::getUnitKeys();
 
-        $units = array_chunk($list[0] ?? [], 33, true);
+        $units = array_chunk($list->all(), 42, true);
 
         $pagination = [];
         foreach ($units as $chunk_key => $chunk_array) {
             end($chunk_array);
-            $pagination[$chunk_key]['last'] =  key($chunk_array); //since php 7.3.0: array_key_last()
+            $pagination[$chunk_key]['last'] = current($chunk_array)['name'] ?? key($chunk_array); //since php 7.3.0: array_key_last()
             reset($chunk_array);
-            $pagination[$chunk_key]['first'] =  key($chunk_array); //since php 7.3.0: array_key_first()
+            $pagination[$chunk_key]['first'] = current($chunk_array)['name'] ?? key($chunk_array); //since php 7.3.0: array_key_first()
         }
 
 
@@ -215,7 +220,7 @@ class PagesController extends Controller
             'title' => $title,
             'route_name' => 'guild.'.$route_name,
             'units' => $units[$chunk] ?? $units[0] ?? [],
-            'updated' => $list[1] ?? [],
+            'updated' => $updated,
             'filter' =>$filter,
             'pagination' =>$pagination,
             'skillKeys' =>$skillKeys ?? [],
@@ -226,6 +231,7 @@ class PagesController extends Controller
     public function rosterShips(Guild $guild, $chunk = 0)
     {
         $list = SyncClient::getRoster($guild->user->code ?? null, 2);
+        $updated = SyncClient::getRoster($guild->user->code ?? null, 2, true);
 
         $filter = [
             // 'pid',
@@ -246,7 +252,7 @@ class PagesController extends Controller
             'gp',
                  ];
 
-        return $this->roster($guild, $list, $filter, $chunk, 'Ships', 'ships');
+        return $this->roster($guild, $list, $filter, $updated, $chunk, 'Ships', 'ships');
     }
 
     public function rosterToons(Guild $guild, $chunk = 0)
@@ -254,6 +260,7 @@ class PagesController extends Controller
         ini_set('zlib.output_compression', 'On');
 
         $list = SyncClient::getRoster($guild->user->code ?? null, 1);
+        $updated = SyncClient::getRoster($guild->user->code ?? null, 1, true);
 
         $filter = [
             // 'pid',
@@ -274,38 +281,7 @@ class PagesController extends Controller
             'gp',
                  ];
 
-                 return $this->roster($guild, $list, $filter, $chunk, 'Toons', 'toons');
-    }
-
-    public function squadsList()
-    {
-        $list = SyncClient::getSquadList();
-        $unitKeys = SyncClient::getUnitKeys();
-        $skillKeys = SyncClient::getSkillKeys();
-
-        return view('guild.list.squads', [
-            'unitKeys' =>$unitKeys ?? [],
-            'skillKeys' =>$skillKeys ?? [],
-            'list' => $list ?? [],
-            ]);
-    }
-
-    public function eventsList()
-    {
-        $list = SyncClient::getEventList();
-
-        return view('guild.list.events', [
-            'list' => $list ?: [],
-            ]);
-    }
-
-    public function zetasList()
-    {
-        $list = SyncClient::getZetaList();
-
-        return view('guild.list.zetas', [
-            'list' => $list ?: [],
-            ]);
+                 return $this->roster($guild, $list, $filter, $updated, $chunk, 'Toons', 'toons');
     }
 
     public function squadspost()
@@ -326,13 +302,13 @@ class PagesController extends Controller
     protected function squads(Request $request, Guild $guild, $combat_type, $route)
     {
         $unitKeys = SyncClient::getUnitKeys();
-        $list = SyncClient::getRoster($guild->user->code ?? null, $combat_type);
-        $units = $list[0];
+        $units = SyncClient::getRoster($guild->user->code ?? null, $combat_type);
+        $updated = SyncClient::getRoster($guild->user->code ?? null, $combat_type, true);
 
         if ($units) {
             try {
-                foreach ($units as $unit_key => $players) {
-                    foreach ($players as $player_key => $player) {
+                foreach ($units as $unit_key => $unit) {
+                    foreach ($unit['players'] as $player_key => $player) {
                         $roster[$player['allyCode']] = $player['player']; // was id
                         $player_data[$player['allyCode']][$unit_key] = $player; // was id
                     }
@@ -399,7 +375,7 @@ class PagesController extends Controller
             'unitKeys' =>$unitKeys ?? [],
             'route' => $route,
             'units' => $units,
-            'updated' => $list[1] ?? [],
+            'updated' => $updated,
             'result' => $result,
             'char_list' => $char_list,
             'roster' => $roster,
