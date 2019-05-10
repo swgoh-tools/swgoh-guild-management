@@ -83,7 +83,7 @@ Route::prefix('g')->group(function (): void {
     Route::put('{guild}/sanctions/{code}/{sanction}', 'GuildController@updateSanction')->name('sanction.update');
     Route::delete('{guild}/sanctions/{code}/{sanction}', 'GuildController@destroySanction')->name('sanction.destroy');
     Route::get('{guild}/sanctions/{code}/{sanction}/edit', 'GuildController@editSanction')->name('sanction.edit');
-    Route::get('{guild}/stats/{chunk?}', 'GuildController@stats')->name('guild.stats');
+    Route::get('{guild}/stats/{chunk?}/{code?}', 'GuildController@stats')->name('guild.stats');
     Route::get('{guild}/team/ships', 'PagesController@squadsShips')->name('guild.team.ships');
     Route::post('{guild}/team/ships', 'PagesController@squadsShips');
     Route::get('{guild}/team/toons', 'PagesController@squadsToons')->name('guild.team.toons');
@@ -92,6 +92,7 @@ Route::prefix('g')->group(function (): void {
     //     return view('guild.info');
     // })->name('guild.info');
 
+    Route::get('{guild}/pages', 'PagesController@info')->name('guild.pages');
     Route::get('{guild}/{page}', 'PagesController@show');
     Route::get('{guild}/{page}/edit', 'PagesController@showEdit');
     Route::delete('{guild}/{page}', 'PagesController@destroy')->middleware('auth');

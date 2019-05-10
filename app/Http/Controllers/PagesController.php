@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
+    public function info()
+    {
+        return view('pages.info');
+    }
+
     public function home()
     {
         return view('home');

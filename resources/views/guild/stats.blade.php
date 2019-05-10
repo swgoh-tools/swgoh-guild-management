@@ -26,7 +26,11 @@
                 {{-- Zusammenfassung --}}
                 @if(!$selection)
 
-                @include('guild.stats._raids')
+                @includeIf('guild.stats._raids-' . $key)
+
+                {{-- Special --}}
+                @elseif($key == 'sith' && 'raid-hstr' == $selection)
+                @include('guild.stats._raids-sith')
 
                 {{-- Detailauswertung --}}
                 @elseif($key == $selection)
