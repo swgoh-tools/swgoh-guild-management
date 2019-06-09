@@ -22,7 +22,7 @@
         <dt>{{ __('fields.message') }}</dt><dd>{{ $info['message'] ?? '-' }}</dd>
         <dt>{{ __('fields.gp') }}</dt><dd>{{ number_format($info['gp'] ?? 0) }}</dd>
         <dt>{{ __('fields.raid') }}</dt><dd>{{ implode(', ', $info['raid'] ?? []) }}</dd>
-        <dt>{{ __('fields.updated') }}</dt><dd>{{ date('D, d M Y', intval(substr($info['updated'] ?? '', 0, 10))) }}</dd>
+        <dt>{{ __('fields.updated') }}</dt><dd>{{ timezone()->formatDateLong($info['updated'] ?? 0) }}</dd>
         </dl>
     </div>
 </div>

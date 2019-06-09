@@ -53,6 +53,14 @@ class Guild extends Model
     }
 
     /**
+     * The permission roles via users that belong to the guild.
+     */
+    public function permUsers()
+    {
+        return $this->belongsToMany(User::class)->withPivot('role_id');
+    }
+
+    /**
      * A guild belongs to a user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

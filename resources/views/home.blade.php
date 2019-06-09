@@ -34,9 +34,13 @@
                     @endauth
                     <p>{{ __('app.introduction.guilds') }}</p>
                     <p>{{ __('app.introduction.pages') }}</p>
-                    <p>{{ __('app.introduction.guilds-test') }}</p>
+                    <!-- <p>{{ __('app.introduction.guilds-test') }}</p> -->
                     <p>{{ __('app.introduction.threads') }}</p>
                     <p>{{ __('app.introduction.tools') }}</p>
+                    <p>{{ __('Guilds registered:') }} {{ count($guilds ?? []) }}</p>
+                    @role('admin')
+                    <div>@forelse($guilds ?? [] as $guild) <a class="link-item mr-3" href="{{ route('guild.home', $guild) }}">{{ $guild->name }}</a> @empty {{ __('None') }} @endforelse</div>
+                    @endrole
                 </div>
                 <div class="card-footer">
                     <div>{{ __('May the force be with you.') }}</div>

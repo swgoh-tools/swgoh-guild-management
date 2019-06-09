@@ -1,12 +1,25 @@
+@push('scripts')
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+@endpush
+
+
 <table class="table table-sm table-hover table-striped w-auto"><tr>
-    <th>Name</th>
-    <th>Schaden</th>
-    <th>Prozent</th>
-    <th>Team</th>
-    <th>Note</th>
-    <th>Schaden (kum.)</th>
-    <th>Prozent (kum.)</th>
-    <th>Readyness</th>
+<th>{{ __('Name') }}</th>
+    <th>{{ __('Damage') }}</th>
+    <th>{{ __('Share') }}</th>
+    <th>{{ __('Team') }}</th>
+    <th>{{ __('Note') }}</th>
+    <th>{{ __('Readiness') }}</th>
+    <th>{{ __('Damage') }} ({{ __('cum.') }})</th>
+    <th>{{ __('Percent') }} ({{ __('cum.') }})</th>
+    <th> </th>
     </tr>
 @php($sumProgress = 0)
 @php($sumProgressTotal = 0)
@@ -37,15 +50,22 @@
         @php($curTableClass = 'table-danger')
     @endswitch
 
+@php($tmpTeam = checkTeamStatus($team, $esTeam['team'], $esCode, $roster, $unitKeys))
 <tr class='{{ $curTableClass }}'>
     <td>{{ $esPhaseValue[$esReadyKey][$esCode] }}</td>
     <td>{{ round( $curDMG / 1000000 , 1) }}M</td>
     <td>{{ $curDMG_100 }}%</td>
     <td>{{ $esTeam['name'] ?? '' }}</td>
     <td>{{ preg_split('/\s/', $esTeam['note'] ?? '')[0] }}</td>
+    <td>{{ $esTeam['readiness'] ?? '' }}</td>
     <td>{{ round( $sumProgressTotal / 1000000 , 1) }}M</td>
     <td>{{ $sumProgress }}%</td>
-    <td>{{ $esTeam['readiness'] ?? '' }}</td>
+    <td>
+<span class="@if($tmpTeam['stats']['valid'] >= $tmpTeam['size'])bg-success text-white @elseif($tmpTeam['stats']['valid'] == $tmpTeam['size'] - 1)bg-warning @else text-muted @endif">{{  $tmpTeam['stats']['gp'] }}</span>
+<span class="mytooltip mytooltip-xxfixed mytooltip-no-wrap"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="mytooltiptext">
+{{ $esTeam['name'] }}<br />- - - - -<br />
+@include('guild.stats._details-tooltiptext')</span></span>
+    </td>
 </tr>
 
 @endif

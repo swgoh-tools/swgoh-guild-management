@@ -84,9 +84,24 @@ class PagesController extends Controller
      */
     public function create()
     {
-        $guilds = Guild::all();
+        $this->authorize('create', Page::class);
+        $guilds = Guild::with(['permUsers' => function ($query) {
+            $query->where('user_id', auth()->id());
+        }])
+        // ->where('user_id', auth()->id())
+        // ->orWhereNotNull('permUsers.role_id')
+        ->get();
+//         foreach ($guilds as $key => $value) {
+//             if (!auth()->user()->can('create', [Page::class, $value->id])){
 
-        return view('admin.pages.create', compact('guilds'));
+//             }
+//         }
+        $filtered = $guilds->filter(function ($value, $key) {
+            return auth()->user()->can('create', [Page::class, $value->id]);
+        });
+
+        // $filtered->all();
+        return view('admin.pages.create', ['guilds' => $filtered]);
     }
 
     /**
@@ -102,6 +117,8 @@ class PagesController extends Controller
             'title' => 'required|spamfree',
             'guild_id' => 'required|exists:guilds,id',
         ]);
+
+        $this->authorize('create', [Page::class, request('guild_id')]);
 
         $page = Page::create([
             'user_id' => auth()->id(),
@@ -230,8 +247,8 @@ class PagesController extends Controller
 
     public function rosterShips(Guild $guild, $chunk = 0)
     {
-        $list = SyncClient::getRoster($guild->user->code ?? null, 2);
-        $updated = SyncClient::getRoster($guild->user->code ?? null, 2, true);
+        $list = SyncClient::getRoster($guild, 2);
+        $updated = SyncClient::getRoster($guild, 2, true);
 
         $filter = [
             // 'pid',
@@ -259,8 +276,8 @@ class PagesController extends Controller
     {
         ini_set('zlib.output_compression', 'On');
 
-        $list = SyncClient::getRoster($guild->user->code ?? null, 1);
-        $updated = SyncClient::getRoster($guild->user->code ?? null, 1, true);
+        $list = SyncClient::getRoster($guild, 1);
+        $updated = SyncClient::getRoster($guild, 1, true);
 
         $filter = [
             // 'pid',
@@ -302,8 +319,8 @@ class PagesController extends Controller
     protected function squads(Request $request, Guild $guild, $combat_type, $route)
     {
         $unitKeys = SyncClient::getUnitKeys();
-        $units = SyncClient::getRoster($guild->user->code ?? null, $combat_type);
-        $updated = SyncClient::getRoster($guild->user->code ?? null, $combat_type, true);
+        $units = SyncClient::getRoster($guild, $combat_type);
+        $updated = SyncClient::getRoster($guild, $combat_type, true);
 
         if ($units) {
             try {

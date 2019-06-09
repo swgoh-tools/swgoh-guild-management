@@ -10,7 +10,7 @@
             "paging": false,
             "ordering": true,
             "info": true,
-            "order": [[8, "asc"]]
+            "order": [[4, "asc"]]
             });
         }
     });

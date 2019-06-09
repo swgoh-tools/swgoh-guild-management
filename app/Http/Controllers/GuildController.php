@@ -24,8 +24,8 @@ class GuildController extends Controller
      */
     public function home(Guild $guild)
     {
-        $info = SyncClient::getGuildInfo($guild->user->code ?? null);
-        $members = SyncClient::getGuildMembers($guild->user->code ?? null);
+        $info = SyncClient::getGuildInfo($guild);
+        $members = SyncClient::getGuildMembers($guild);
         $playerTitleKeys = SyncClient::getDataMap('playerTitleList');
         $sanctions = $guild->sanctions()->with('player')->get() ?? null;
 // dd($sanctions);
@@ -216,15 +216,15 @@ class GuildController extends Controller
      */
     public function stats(Guild $guild, $chunk = '', $code = '')
     {
-        $info = SyncClient::getPlayer($guild->user->code ?? null);
-        $members = SyncClient::getGuildMembers($guild->user->code ?? null);
+        $info = SyncClient::getPlayer($guild);
+        $members = SyncClient::getGuildMembers($guild);
         $teams = SyncClient::getSquadList();
         $anchors = SyncClient::getSquadAnchors();
         $unitKeys = SyncClient::getUnitKeys();
         $skillKeys = SyncClient::getSkillKeys();
         if (isset($teams['updated'])) unset($teams['updated']);
-        $chars = SyncClient::getRoster($guild->user->code ?? null, 1);
-        $ships = SyncClient::getRoster($guild->user->code ?? null, 2);
+        $chars = SyncClient::getRoster($guild, 1);
+        $ships = SyncClient::getRoster($guild, 2);
         $rosterWithAllyCodeKeys = [];
         foreach ($chars as $key => $char) {
             foreach ($char['players'] as $player) {
