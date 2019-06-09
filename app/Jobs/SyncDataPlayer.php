@@ -2,12 +2,12 @@
 
 namespace App\Jobs;
 
+use App\Helper\SyncClient;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Helper\SyncClient;
 
 class SyncDataPlayer implements ShouldQueue
 {
@@ -51,7 +51,7 @@ class SyncDataPlayer implements ShouldQueue
         $syncClient->sync('help.guild.units');
 
         $syncClient->sync('g-players');
-        $syncClient->sync('g-roster');
+        // $syncClient->sync('g-roster');
         // $syncClient->sync('g-units');
     }
 }

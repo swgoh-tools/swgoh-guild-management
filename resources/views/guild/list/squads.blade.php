@@ -39,96 +39,70 @@
             <div class="tab-content" id="toonTabsContent">
                 @forelse ($list ?? [] as $key => $section)
                     <div class="tab-pane fade{{ $loop->first ? ' active show' : ''}}" id="{{ $key }}" role="tabpanel" aria-labelledby="{{ $key }}-tab">
-                    <h2>{{ ucwords(strtolower($section['name'] ?? '')) }} ({{ count($section['phase'] ?? []) }})</h2>
-                    <span>{{ __('fields.rarity') }}: {{ $section['rarity'] ?? '' }}</span>
-                    <span>{{ __('fields.gear') }}: {{ $section['gear'] ?? '' }}</span>
-                    <span>{{ __('fields.level') }}: {{ $section['level'] ?? '' }}</span>
-                    <span>{{ __('app.disclaimer_community') }}</span>
+                    @switch($key)
+                        @case('updated')
+                            <h2>{{ ucwords(strtolower($key)) }}</h2>
+                            <p>{{ __('Currentness') }}: {{ timezone()->formatDateLong($section) }}</p>
+                            @break
 
-                    @forelse ($section['phase'] ?? [] as $phase_key => $phase)
-                    <hr />
-                    <h3>{{ ucwords(strtolower($phase['name'] ?? 'unknown phase name')) }} ({{ count($phase['squads'] ?? []) }})</h3>
-                    <table class="table table-hover toon-table">
-                        <!-- table-striped table-dark table-sm  -->
+                        @case('twcounters')
+                            <h2>{{ ucwords(strtolower($section['name'] ?? '')) }} ({{ count($section['phase'] ?? []) }})</h2>
+                            <span>{{ __('app.disclaimer_community') }}</span>
 
-                            @forelse ($phase['squads'] ?? [] as $squad_key => $squad)
-                            @if ($loop->first)
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Link</th>
-                                    @forelse ($squad as $info_key => $info)
-                                    <!-- excluded from whitelist: main, url -->
-                                    @if(in_array($info_key, ['name', 'note', 'team']))
-                                        <th>{{ __('fields.' . $info_key) }}</th>
-                                    @endif
-                                    @empty
-                    <!-- no entries -->
-                                    @endforelse
-                                </tr>
-                            </thead>
-                            <tbody>
-                            @endif
-                            <tr>
-                                <td>{{ $squad_key }}</td>
-                                <td>
-                                @if(is_array($squad['team'] ?? 'NOARRAY'))
-                                @php($team_plain = [])
-                                @php($chunk_size = 10)
-                                    @foreach($squad['team'] as $toon)
-                                        @php($team_plain[] = explode(':', $toon)[0])
-                                    @endforeach
-                                    @foreach(array_chunk($team_plain, $chunk_size) as $team_part)
-                                    @if(count($squad['team']) <= 5)
-                                    <a class="text-link" href="{{ route('guild.team.toons', $guild) }}?t={{ implode(',', $team_part) }}">list</a>
-                                    @else
-                                    <a class="text-link" href="{{ route('guild.team.toons', $guild) }}?t={{ implode(',', $team_part) }}">list/{{ count($team_part) }}</a>
-                                    @endif
-                                    @endforeach
-                                    {{-- @if(count($squad['team']) > $chunk_size)({{ count($squad['team']) }})@endif --}}
-                                @else
-                                -
-                                @endif
-                                </td>
-                                @forelse ($squad as $info_key => $info)
-                                    <!-- excluded from whitelist: main, url -->
-                                    @if(!in_array($info_key, ['name', 'note', 'team']))
-                                        <!-- skip -->
-                                    @elseif($info_key == 'name')
-                                        <td>{{ ucwords(strtolower($info ?? '')) }}</td>
-                                    @elseif($info_key == 'team' && is_array($info))
-                                        <td>
-                                        @forelse ($info as $toon_key => $toon)
-@foreach (preg_split('/:/', $toon) as $toonValue)
-@if($loop->first){{ $unitKeys[$toonValue]['name'] ?? $toonValue }}@else <div class="mytooltip mytooltip-top mytooltip-no-wrap icon-zeta"><span class="mytooltiptext">{{ $skillKeys[$toonValue] ?? $toonValue }}</span></div>@endif
-@endforeach
-@if(!$loop->last),@endif
-                                        @empty
-                                            <!-- no entries -->
-                                            no team members found!
-                                        @endforelse
-                                        </td>
-                                    @elseif(is_array($info))
-                                        <td>{{ implode(', ', $info) }}x </td>
-                                    @else
-                                        <td>{{ $info }}</td>
-                                    @endif
-                                    @empty
-                    <!-- no entries -->
+
+                            @forelse ($section['phase'] ?? [] as $opponent)
+                                <hr />
+                                <h3>{{ $unitKeys[$opponent['team']]['name'] ?? $opponent['team'] ?? 'unknown opponent' }}</h3>
+
+                                @php($squads = [])
+                                @forelse ($opponent['hardcounters'] ?? [] as $squad)
+                                    @php($squad['note'] = 'hard counter')
+                                    @php($squads[] = $squad)
+                                @empty
+                                <!-- no hardcounters -->
                                 @endforelse
-                            </tr>
+                                @forelse ($opponent['softcounters'] ?? [] as $squad)
+                                    @php($squad['note'] = 'soft counter')
+                                    @php($squads[] = $squad)
+                                @empty
+                                <!-- no softcounters -->
+                                @endforelse
+                                @forelse ($squads as $squad_key => $squad)
+                                    @include('guild.list.squads._table')
+                                @empty
+                                <!-- no entries -->
+                                <span>{{ __('No counter teams defined') }}</span>
+                                @endforelse
                             @empty
-                    <!-- no entries -->
+                            <!-- no entries -->
                             @endforelse
-                        </tbody>
-                    </table>
-                    @empty
-                    <!-- no entries -->
-                    @endforelse
+
+                            @break
+
+                        @default
+                            <h2>{{ ucwords(strtolower($section['name'] ?? '')) }} ({{ count($section['phase'] ?? []) }})</h2>
+                            <span>{{ __('fields.rarity') }}: {{ $section['rarity'] ?? '' }}</span>
+                            <span>{{ __('fields.gear') }}: {{ $section['gear'] ?? '' }}</span>
+                            <span>{{ __('fields.level') }}: {{ $section['level'] ?? '' }}</span>
+                            <span>{{ __('app.disclaimer_community') }}</span>
+
+                            @forelse ($section['phase'] ?? [] as $phase_key => $phase)
+                                <hr />
+                                <h3>{{ ucwords(strtolower($phase['name'] ?? 'unknown phase name')) }} ({{ count($phase['squads'] ?? []) }})</h3>
+
+                                @forelse ($phase['squads'] ?? [] as $squad_key => $squad)
+                                    @include('guild.list.squads._table')
+                                @empty
+                                <!-- no entries -->
+                                @endforelse
+                            @empty
+                            <!-- no entries -->
+                            @endforelse
+                    @endswitch
                     </div>
-                    @empty
-                    <!-- no entries -->
-                    @endforelse
+                @empty
+                <!-- no entries -->
+                @endforelse
             </div>
 
 @endsection

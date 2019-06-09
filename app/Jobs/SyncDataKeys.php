@@ -2,12 +2,12 @@
 
 namespace App\Jobs;
 
+use App\Helper\SyncClient;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Helper\SyncClient;
 
 class SyncDataKeys implements ShouldQueue
 {
@@ -47,6 +47,9 @@ class SyncDataKeys implements ShouldQueue
     public function handle(SyncClient $syncClient)
     {
         $syncClient->setLanguage($this->language);
+
+        $syncClient->sync('help.events');
+        $syncClient->sync('help.battles');
 
         $syncClient->sync('help.data.abilityList');
         $syncClient->sync('help.data.equipmentList');

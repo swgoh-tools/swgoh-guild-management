@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use App\Jobs\SyncDataPlayer;
-use App\Jobs\SyncDataGlobal;
 use App\Jobs\SyncDataKeys;
+use App\Jobs\SyncDataGlobal;
+use App\Jobs\SyncDataPlayer;
+use Illuminate\Console\Command;
 
 class Sync extends Command
 {
@@ -55,6 +55,7 @@ class Sync extends Command
             SyncDataGlobal::dispatch('en');
             SyncDataKeys::dispatch('en');
             SyncDataKeys::dispatch('de');
+            SyncDataKeys::dispatch('br');
         }
     }
 }

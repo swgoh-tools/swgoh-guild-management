@@ -2,12 +2,12 @@
 
 namespace App\Jobs;
 
+use App\Helper\SyncClient;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Helper\SyncClient;
 
 class SyncDataGlobal implements ShouldQueue
 {
@@ -49,9 +49,7 @@ class SyncDataGlobal implements ShouldQueue
         $syncClient = new SyncClient;
         $syncClient->setLanguage($this->language);
 
-        $syncClient->sync('help.events');
         $syncClient->sync('help.squads');
         $syncClient->sync('help.zetas');
-        $syncClient->sync('help.battles');
     }
 }

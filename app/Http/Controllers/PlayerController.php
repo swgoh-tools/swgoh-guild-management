@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Guild;
 use App\User;
+use App\Guild;
 use App\Permission;
 use App\Authorizable;
+use App\Helper\SyncClient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Helper\SyncClient;
 
 class PlayerController extends Controller
 {
@@ -23,7 +23,7 @@ class PlayerController extends Controller
      */
     public function home($player)
     {
-        $info = SyncClient::getPlayer($player ?? null);
+        $info = SyncClient::getPlayer($player);
         $playerTitleKeys = SyncClient::getDataMap('playerTitleList');
 
         return view('player.home', [
@@ -39,43 +39,12 @@ class PlayerController extends Controller
      */
     public function roster($player)
     {
-        $info = SyncClient::getPlayer($player ?? null);
+        $info = SyncClient::getPlayer($player);
         $unitStatKeys = SyncClient::getUnitStatKeys();
 
         return view('player.roster', [
             'info' => $info[0] ?? [],
             'unitStatKeys' => $unitStatKeys ?? [],
-        ]);
-    }
-
-    /**
-     * Display guild home page.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function calcTEST($player)
-    {
-        $info = SyncClient::getPlayer($player ?? null);
-        $teams = SyncClient::getSquadList();
-        $roster = SyncClient::getRoster($player ?? null, 1);
-        dd($roster[0]['AAYLASECURA']);
-        dd($info);
-        dd($teams);
-        $data = [];
-        foreach ($teams[0] as $event) {
-            if (\is_array($event)) {
-                foreach ($event['phase'] as $phase) {
-                    foreach ($phase['squads'] as $squad) {
-                        // code...
-                    }
-                }
-            }
-        }
-
-        return response($guild, 201);
-
-        return view('player.home', [
-            'info' => $info[0] ?? [],
         ]);
     }
 
@@ -100,7 +69,7 @@ class PlayerController extends Controller
 
     public function gear(Request $request, $player)
     {
-        $info = SyncClient::getPlayer($player ?? null);
+        $info = SyncClient::getPlayer($player);
         $chars = SyncClient::getGgChars();
         $gear = SyncClient::getGgGear();
         $gear_with_key = [];
@@ -159,7 +128,7 @@ class PlayerController extends Controller
      */
     public function stats($player, $verbose = false)
     {
-        $info = SyncClient::getPlayer($player ?? null);
+        $info = SyncClient::getPlayer($player);
         // $members = SyncClient::getGuildMembers($player ?? null);
         $teams = SyncClient::getSquadList();
         $zetas = SyncClient::getZetaList();

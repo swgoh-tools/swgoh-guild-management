@@ -2,8 +2,10 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\Page;
+use App\Role;
+use App\User;
+use App\Guild;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PagePolicy
@@ -28,9 +30,19 @@ class PagePolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user, $guild_id = null)
     {
-        //
+        $guild = Guild::with('permUsers')->find($guild_id);
+        if($guild) {
+            foreach ($guild->permUsers as $perm) {
+                $role = Role::find($perm->pivot->role_id);
+                if($role && $role->hasPermissionTo('edit pages')) {
+                    return true;
+                }
+            }
+            return $guild->user_id === $user->id;
+        }
+        return $user->hasPermissionTo('edit pages');
     }
 
     /**
@@ -42,7 +54,14 @@ class PagePolicy
      */
     public function update(User $user, Page $page)
     {
-        //
+        foreach ($page->guild->permUsers as $perm) {
+            $role = Role::find($perm->pivot->role_id);
+            if($role->can('edit pages')) {
+                return true;
+            }
+        }
+
+        return $page->guild->user_id === $user->id;
     }
 
     /**

@@ -12,12 +12,12 @@
 </h5>
 <p>
     {!! __('app.stats.sith_prepared', [
-        'count' => '<span class="badge badge-pill badge-primary">'. ($countBest[0] ?? []) .'</span>',
+        'count' => '<span class="badge badge-pill badge-primary">'. ($countBest[0] ?? 0) .'</span>',
         'footnote' => '<small style="vertical-align:top;">'. $loop->iteration .'a)</small>',
         'damage' => number_format($sithDamage[$esPhaseKey][0]['DMG'] ?? 0),
         ]) !!}
     {!! __('app.stats.sith_soon', [
-        'count' => '<span class="badge badge-pill badge-primary">'. ($countBest[1] ?? []) .'</span>',
+        'count' => '<span class="badge badge-pill badge-primary">'. ($countBest[1] ?? 0) .'</span>',
         'footnote' => '<small style="vertical-align:top;">'. $loop->iteration .'b)</small>',
         'damage' => number_format($sithDamage[$esPhaseKey][1]['DMG'] ?? 0),
         ]) !!}

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Helper;
 
+use App\Guild;
 use App\Player;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -18,6 +19,7 @@ class SyncClient
     protected $guild_code = 0;
     protected $player_code = 0;
     protected $language = null;
+    protected $missingGuildCodeWorkaround = false; //it is not possible to retrieve guild data with a guild reference. Guilds are identified by any member code. This flag is used to trigger additional workaround functions.
     protected $sort = [
         'id',
         'defId',
@@ -155,9 +157,10 @@ class SyncClient
     /**
      * swgoh.help data.
      */
-    public static function getRoster($player_code, $combat_type = 1, $return_modification_timestamp = false)
+    public static function getRoster(Guild $guild, $combat_type = 1, $return_modification_timestamp = false)
     {
-        if (!$player_code) {
+        $guild_id = self::getGuildId($guild);
+        if (!$guild_id) {
             return null;
         }
 
@@ -166,7 +169,7 @@ class SyncClient
 
         $unitKeys = self::getUnitKeys();
 
-        $filename = "swgoh.help/guild/$player_code/units.out.$combat_type.json";
+        $filename = "swgoh.help/guild/$guild_id/units.out.$combat_type.json";
         if (Storage::disk('sync')->exists($filename)) {
             if ($return_modification_timestamp) {
                 return Storage::disk('sync')->lastModified($filename);
@@ -203,12 +206,13 @@ class SyncClient
         }
     }
 
-    public static function getGuildInfo($player_code)
+    public static function getGuildInfo(Guild $guild)
     {
-        if (!$player_code) {
+        $guild_id = self::getGuildId($guild);
+        if (!$guild_id) {
             return null;
         }
-        $filename = "swgoh.help/guild/$player_code/guild.out.guild.json";
+        $filename = "swgoh.help/guild/$guild_id/guild.out.guild.json";
         if (Storage::disk('sync')->exists($filename)) {
             return [
                 json_decode(Storage::disk('sync')->get($filename), true),
@@ -217,12 +221,13 @@ class SyncClient
         }
     }
 
-    public static function getGuildMembers($player_code, $return_modification_timestamp = false)
+    public static function getGuildMembers(Guild $guild, $return_modification_timestamp = false)
     {
-        if (!$player_code) {
+        $guild_id = self::getGuildId($guild);
+        if (!$guild_id) {
             return null;
         }
-        $filename = "swgoh.help/guild/$player_code/units.out.players.json";
+        $filename = "swgoh.help/guild/$guild_id/units.out.players.json";
         if (Storage::disk('sync')->exists($filename)) {
             if ($return_modification_timestamp) {
                 return Storage::disk('sync')->lastModified($filename);
@@ -246,6 +251,9 @@ class SyncClient
             'revan' => 'JEDIKNIGHTREVAN',
             'thrawn' => 'GRANDADMIRALTHRAWN',
             'yoda' => 'GRANDMASTERYODA',
+            'dr' => 'DARTHREVAN',
+            'malak' => 'DARTHMALAK',
+            'padme' => 'PADMEAMIDALA',
         ];
     }
 
@@ -275,16 +283,7 @@ class SyncClient
 
     public static function getDataMap($collection)
     {
-        switch (app()->getLocale()) {
-            case 'de':
-                $lang = 'GER_DE';
-                break;
-
-            default:
-                $lang = 'ENG_US';
-                break;
-        }
-        $filename = "swgoh.help/data/$collection/$collection.out.map.$lang.json";
+        $filename = "swgoh.help/data/$collection/$collection.out.map." . self::getLang() . ".json";
         if (Storage::disk('sync')->exists($filename)) {
             return json_decode(Storage::disk('sync')->get($filename), true);
         }
@@ -302,6 +301,51 @@ class SyncClient
         }
     }
 
+    public static function getLang($locale = null)
+    {
+        switch ($locale ?? app()->getLocale()) {
+            case 'de':
+                $lang = 'GER_DE';
+                break;
+
+            case 'ru':
+                $lang = 'RUS_RU';
+                break;
+
+            case 'fr':
+                $lang = 'FRE_FR';
+                break;
+
+            case 'br':
+            case 'pt':
+                $lang = 'POR_BR';
+                break;
+
+            default:
+                $lang = 'ENG_US';
+                break;
+        }
+
+        // // param NOT case sensitive, so it's just for fun
+        // $lang = strtolower($lang);
+        return $lang;
+
+        // CHS_CN
+        // CHT_CN
+        // ENG_US
+        // FRE_FR
+        // GER_DE
+        // IND_ID
+        // ITA_IT
+        // JPN_JP
+        // KOR_KR
+        // POR_BR
+        // RUS_RU
+        // SPA_XM
+        // THA_TH
+        // TUR_TR
+    }
+
     public static function getSkillKeys($full_ability_info = false)
     {
         $filename = 'swgoh.help/data/skillList/skillList.out.map.json';
@@ -313,20 +357,11 @@ class SyncClient
             return null;
         }
 
-        switch (app()->getLocale()) {
-            case 'de':
-                $lang = 'GER_DE';
-                break;
-
-            default:
-                $lang = 'ENG_US';
-                break;
-        }
         $file_suffix = '.out.map';
         if ($full_ability_info) {
             $file_suffix = '';
         }
-        $filename = "swgoh.help/data/abilityList/abilityList$file_suffix.$lang.json";
+        $filename = "swgoh.help/data/abilityList/abilityList$file_suffix." . self::getLang() . ".json";
         $abilities = null;
         if (Storage::disk('sync')->exists($filename)) {
             $abilities = json_decode(Storage::disk('sync')->get($filename), true);
@@ -354,18 +389,20 @@ class SyncClient
         return $skills;
     }
 
+    public static function getGuildId(Guild $guild)
+    {
+        return $guild->refId ?? self::getGuildIdFromPlayer($guild->user()->code) ?? null;
+    }
+
+    public static function getGuildIdFromPlayer($player_code)
+    {
+        $player = self::getPlayer($player_code, false);
+        return $player['guildRefId'] ?? null;
+    }
+
     public static function getUnitKeys($raw = false)
     {
-        switch (app()->getLocale()) {
-            case 'de':
-                $lang = 'GER_DE';
-                break;
-
-            default:
-                $lang = 'ENG_US';
-                break;
-        }
-        $filename = "swgoh.help/data/unitsList/unitsList.$lang.json";
+        $filename = "swgoh.help/data/unitsList/unitsList." . self::getLang() . ".json";
         $units = null;
         if (Storage::disk('sync')->exists($filename)) {
             $units = json_decode(Storage::disk('sync')->get($filename), true);
@@ -452,16 +489,7 @@ class SyncClient
 
     public static function getEventList()
     {
-        switch (app()->getLocale()) {
-            case 'de':
-                $lang = 'GER_DE';
-                break;
-
-            default:
-                $lang = 'ENG_US';
-                break;
-        }
-        $filename = "swgoh.help/events/events.$lang.json";
+        $filename = "swgoh.help/events/events." . self::getLang() . ".json";
         if (Storage::disk('sync')->exists($filename)) {
             return json_decode(Storage::disk('sync')->get($filename), true)['events'] ?? null;
         }
@@ -515,17 +543,7 @@ class SyncClient
         ini_set('memory_limit', '512M'); // 256 not enough
         ini_set('max_input_time', '300');
 
-        switch ($this->language ?? app()->getLocale()) {
-            case 'de':
-                $lang = 'GER_DE';
-                break;
-
-            default:
-                $lang = 'ENG_US';
-                break;
-        }
-        // // param NOT case sensitive, so it's just for fun
-        // $lang = strtolower($lang);
+        $lang = $this->getLang($this->language);
 
         try {
             // throw new MyException();
@@ -542,16 +560,16 @@ class SyncClient
                 switch ($target) {
                     case 'g-players':
                         $sync_status[$target] = $this->syncHelpGuildPlayers($this->player_code, 'players');
-                        $this->prepareHelpGuildPlayers($this->player_code);
+                        $this->prepareHelpGuildPlayers($this->guild_id);
                         break;
 
-                    case 'g-roster':
-                        $sync_status[$target] = $this->syncHelpGuildPlayers($this->player_code, 'roster');
-                        break;
+                    // case 'g-roster':
+                    //     $sync_status[$target] = $this->syncHelpGuildPlayers($this->player_code, 'roster');
+                    //     break;
 
-                    case 'g-units':
-                        $sync_status[$target] = $this->syncHelpGuildPlayers($this->player_code, 'units');
-                        break;
+                    // case 'g-units':
+                    //     $sync_status[$target] = $this->syncHelpGuildPlayers($this->player_code, 'units');
+                    //     break;
 
                     case 'gg.characters':
                         $sync_status[$target] = $this->syncGgToons();
@@ -575,11 +593,11 @@ class SyncClient
 
                     case 'help.guild.units':
                         $sync_status[$target] = $this->syncHelpGuild($this->player_code);
-                        $this->prepareHelpGuild($this->player_code, $sync_status[$target]['status'] ?? null);
+                        $this->prepareHelpGuild($this->guild_id, $sync_status[$target]['status'] ?? null);
                         // $sync_status['g-players'] = $this->syncHelpGuildPlayers($this->player_code, 'players');
                         // $sync_status['g-roster'] = $this->syncHelpGuildPlayers($this->player_code, 'roster');
                         // $sync_status['g-units'] = $this->syncHelpGuildPlayers($this->player_code, 'units');
-                        // $this->prepareHelpGuildPlayers($this->player_code);
+                        // $this->prepareHelpGuildPlayers($this->guild_id);
                         break;
 
                     case 'help.battles':
@@ -638,10 +656,10 @@ class SyncClient
         }
     }
 
-    private function prepareHelpGuild($player_allycode, $status = null): void
+    private function prepareHelpGuild($guild_id, $status = null): void
     {
-        $source = "swgoh.help/guild/$player_allycode/guild.json";
-        $target = "swgoh.help/guild/$player_allycode/guild.out.%s.json";
+        $source = "swgoh.help/guild/$guild_id/guild.json";
+        $target = "swgoh.help/guild/$guild_id/guild.out.%s.json";
 
         if (Storage::disk('sync')->exists($source)) {
             $data = Storage::disk('sync')->get($source);
@@ -669,10 +687,10 @@ class SyncClient
         }
     }
 
-    private function prepareHelpGuildPlayers($player_allycode, $status = null): void
+    private function prepareHelpGuildPlayers($guild_id, $status = null): void
     {
-        $source = "swgoh.help/guild/$player_allycode/players.json";
-        $target = "swgoh.help/guild/$player_allycode/units.out.%s.json";
+        $source = "swgoh.help/guild/$guild_id/players.json";
+        $target = "swgoh.help/guild/$guild_id/units.out.%s.json";
         $target_players = 'swgoh.help/guild/players/units.out.player.%s.json';
 
         if (Storage::disk('sync')->exists($source)) {
@@ -763,14 +781,18 @@ class SyncClient
 
             $context = stream_context_create($opts);
 
-            return $this->syncData($source, $dir, $file, $ext, $threshold, $context);
+            $this->missingGuildCodeWorkaround = true;
+            $result = $this->syncData($source, $dir, $file, $ext, $threshold, $context);
+            $this->missingGuildCodeWorkaround = false;
+
+            return $result;
         }
     }
 
     public function syncHelpGuildPlayers($player_allycode, $endpoint)
     {
         $source = config('swgoh.API.SWGOH_HELP.SERVER')."/swgoh/$endpoint";
-        $dir = "swgoh.help/guild/$player_allycode/";
+        // $dir = see below
         $file = "$endpoint";
         $ext = 'json';
         $threshold = 60 * 60 * 6;
@@ -783,16 +805,22 @@ class SyncClient
         $allycodes = [];
         if (Storage::disk('sync')->exists($guild_source)) {
             $data = Storage::disk('sync')->get($guild_source);
-            $units = json_decode($data, true);
-            $units = $units[0]['roster'] ?? [];
+            $data = json_decode($data, true);
+            $units = $data[0]['roster'] ?? [];
             foreach ($units as $key => $value) {
                 $allycodes[] = $value['allyCode'] ?? '';
             }
             $allycodes = array_filter($allycodes);
+            $this->guild_id = $data[0]['id'] ?? null;
         }
         if (!\count($allycodes)) {
             return false;
         }
+
+        if (!$this->guild_id) {
+            return false;
+        }
+        $dir = "swgoh.help/guild/$this->guild_id/";
 
         switch ($endpoint) {
             case 'players':
@@ -1340,9 +1368,22 @@ class SyncClient
                     }
 
                     $data = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+
+                    if ($this->missingGuildCodeWorkaround) {
+                        # Write guild data to guild folder instead of player folder
+                        # need to get guild id from requested data first
+                        $this->guild_id = $data[0]['id'] ?? null;
+                        if ($this->guild_id) {
+                            $workaround_target = "swgoh.help/guild/$this->guild_id/$file.$ext";
+                            $filename_ts = "swgoh.help/guild/$this->guild_id/$file.$time.$ext";
+                            Storage::disk('sync')->put($workaround_target, $data);
+                        }
+                    }
+
                     if (Storage::disk('sync')->put($filename, $data)) {
                         Storage::disk('sync')->put($filename_hash, $hash);
-                        Storage::disk('sync')->copy($filename, $filename_ts);
+                        // Storage::disk('sync')->copy($filename, $filename_ts); // use .orig file instead of pretty-printed because it saves a lot of space
+                        Storage::disk('sync')->copy($filename.'.orig', $filename_ts);
 
                         return ['time' => $time, 'time_data' => $time, 'status' => 'NEW', 'url' => Storage::disk('sync')->url($filename), 'size' => Storage::disk('sync')->size($filename)];
                     }

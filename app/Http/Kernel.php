@@ -38,6 +38,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\CheckForLanguage::class,
             \App\Http\Middleware\CheckForGuild::class,
+            \App\Http\Middleware\ShareDataToViews::class,
         ],
 
         'api' => [

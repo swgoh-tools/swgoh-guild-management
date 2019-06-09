@@ -25,7 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $guilds = Guild::all();
+        return view('home', compact('guilds'));
     }
 
     /**
@@ -61,8 +62,9 @@ class HomeController extends Controller
         $guild = Guild::where('slug', '=', $request->session()->get('guild_slug') ?? '')->first();
 
         if ($guild) {
-            $client->setGuildCode($guild->code ?? 0);
-            $client->setPlayerCode($guild->user->code ?? 0);
+            $client->setGuildCode($guild->code);
+            $client->setGuildId($guild->refId);
+            $client->setPlayerCode($guild->user->code);
         }
 
         if (request('force') && auth()->user()->hasRole('admin')) {

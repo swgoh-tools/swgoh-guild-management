@@ -2,14 +2,14 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use App\Jobs\CheckNewAllyCode;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
-use Spatie\Permission\Traits\HasRoles;
-use App\Jobs\CheckNewAllyCode;
 
 class User extends Authenticatable
 {
@@ -60,6 +60,14 @@ class User extends Authenticatable
     {
         // return 'name';
         return 'id';
+    }
+
+    /**
+     * The permission roles via guilds that belong to the user.
+     */
+    public function permGuilds()
+    {
+        return $this->belongsToMany(Guild::class)->withPivot('role_id');
     }
 
     public function guilds()

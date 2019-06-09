@@ -2,6 +2,20 @@
 
 namespace App\Providers;
 
+use App\Memo;
+use App\Page;
+use App\User;
+use App\Guild;
+use App\Reply;
+use App\Thread;
+use App\Sanction;
+use App\Policies\MemoPolicy;
+use App\Policies\PagePolicy;
+use App\Policies\UserPolicy;
+use App\Policies\GuildPolicy;
+use App\Policies\ReplyPolicy;
+use App\Policies\ThreadPolicy;
+use App\Policies\SanctionPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -13,13 +27,13 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Guild' => 'App\Policies\GuildPolicy',
-        'App\Memo' => 'App\Policies\MemoPolicy',
-        'App\Page' => 'App\Policies\PagePolicy',
-        'App\Reply' => 'App\Policies\ReplyPolicy',
-        'App\Thread' => 'App\Policies\ThreadPolicy',
-        'App\User' => 'App\Policies\UserPolicy',
-        'App\Sanction' => 'App\Policies\SanctionPolicy',
+        Guild::class => GuildPolicy::class,
+        Memo::class => MemoPolicy::class,
+        Page::class => PagePolicy::class,
+        Reply::class => ReplyPolicy::class,
+        Thread::class => ThreadPolicy::class,
+        User::class => UserPolicy::class,
+        Sanction::class => SanctionPolicy::class,
     ];
 
     /**

@@ -4,9 +4,10 @@
         <small>{{ config('app.version') ? ' v'.config('app.version') : '' }}</small>
         <small>
             (
-            <a class="text-lowercase" href="{{ url()->current() }}?lang=en">{{ ($page_locale ?? config('app.locale')) == 'en' ? ' .:en:. ' : 'en' }}</a>
-            |
-            <a class="text-lowercase" href="{{ url()->current() }}?lang=de">{{ ($page_locale ?? config('app.locale')) == 'de' ? ' .:de:. ' : 'de' }}</a>
+            @foreach(['en', 'de', 'br'] as $langValue)
+            @if(!$loop->first) | @endif
+            <a class="text-lowercase" href="{{ url()->current() }}?lang={{ $langValue }}">{{ ($page_locale ?? config('app.locale')) == $langValue ? " .:$langValue:. " : $langValue }}</a>
+            @endforeach
             )
             {{ '>> '.$page_guild ?? '' }}
         </small>

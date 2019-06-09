@@ -14,7 +14,7 @@ class CheckForLanguage
      *
      * @array $languages
      */
-    protected $languages = ['en', 'de'];
+    protected $languages = ['en', 'de', 'br'];
 
     /**
      * Handle an incoming request.
