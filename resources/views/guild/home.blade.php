@@ -18,8 +18,18 @@
 @endpush
 
 @include('layouts._item', ['key' => 'guild.home._member-status', 'title' => __('Member Status')])
-@include('layouts._item', ['key' => 'guild.home._member1', 'title' => __('Member Stats 1')])
-@include('layouts._item', ['key' => 'guild.home._member2', 'title' => __('Member Stats 2')])
+{{-- @include('layouts._item', ['key' => 'guild.home._member1', 'title' => __('Member Stats 1')]) --}}
+{{-- @include('layouts._item', ['key' => 'guild.home._member2', 'title' => __('Member Stats 2')]) --}}
+{{-- @foreach(array_chunk($members[0]['stats'] ?? [], 5) as $stats))
+    @php($min_iteration = $loop->index * 5 + 1)
+    @php($max_iteration = $loop->iteration * 5)
+    @include('layouts._item', ['inc' => 'guild.home._member-stats', 'key' => 'guild.home._member-stats-' . $loop->iteration, 'title' => __('Member Stats ') . $loop->iteration])
+@endforeach --}}
+@include('layouts._item', ['inc' => 'guild.home._member-stats', 'key' => 'guild.home._member-stats-1', 'title' => __('Member Stats ') . '1', 'min_iteration' => 1, 'max_iteration' => 5])
+@include('layouts._item', ['inc' => 'guild.home._member-stats', 'key' => 'guild.home._member-stats-2', 'title' => __('Member Stats ') . '2', 'min_iteration' => 6, 'max_iteration' => 12])
+@include('layouts._item', ['inc' => 'guild.home._member-stats', 'key' => 'guild.home._member-stats-3', 'title' => __('Member Stats ') . 'GAC 1', 'min_iteration' => 13, 'max_iteration' => 17])
+@include('layouts._item', ['inc' => 'guild.home._member-stats', 'key' => 'guild.home._member-stats-4', 'title' => __('Member Stats ') . 'GAC 2', 'min_iteration' => 18, 'max_iteration' => 99])
+
 
 @section('sidebar')
 <div class="d-flex">

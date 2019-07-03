@@ -28,7 +28,7 @@
     <div class="card"><div class="card-header">{{ __('Player Stats') }}</div><div class="card-body">
     <table>
     @foreach($info['stats'] ?? [] as $stat)
-    <tr><th>{{ __($stat['nameKey'] ?? '') }}</th><td class="text-right">{{ number_format($stat['value'] ?? '') }}</td></tr>
+    <tr><th>{{ __($stat['nameKey'] ?? '') }}</th><td class="text-right">{{ stat_format($stat) }}</td></tr>
     @endforeach
     </table>
     </div></div>

@@ -6,6 +6,7 @@ namespace App\Helper;
 
 use App\Guild;
 use App\Player;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
@@ -391,7 +392,25 @@ class SyncClient
 
     public static function getGuildId(Guild $guild)
     {
-        return $guild->refId ?? self::getGuildIdFromPlayer($guild->user()->code) ?? null;
+        if (!$guild) {
+            return null;
+        }
+        if ($guild->refId) {
+            return $guild->refId;
+        }
+
+        Log::warning('Guild has no refId.', ['name' => $guild->name, 'id' => $guild->id]);
+
+        $user = $guild->user();
+        if ($user) {
+            Log::info('Trying user.', ['name' => $user->name, 'code' => $user->code]);
+
+            return self::getGuildIdFromPlayer($user->code);
+        }
+
+        Log::warning('Guild has no user.', ['name' => $guild->name, 'id' => $guild->id]);
+
+        return null;
     }
 
     public static function getGuildIdFromPlayer($player_code)
@@ -414,7 +433,7 @@ class SyncClient
         }
         $result = [];
         if ($units) {
-            if($raw) {
+            if ($raw) {
                 return collect($units)->sortBy('nameKey', SORT_NATURAL | SORT_FLAG_CASE);
             }
             foreach ($units as $key => $value) {
@@ -1341,24 +1360,31 @@ class SyncClient
             Storage::disk('sync')->put($filename_retry, ''); // continue but log time of request
 
             try {
-                $data = file_get_contents($source, false, $context);
-                if (false !== $data) {
+                // $data = file_get_contents($source, false, $context);
+                $data_stream = fopen($source, 'r', false, $context);
+                // $stream = $fs->readStream($source);
+                // $fs->writeStream($path, $stream);
+                if (false !== $data_stream) {
                     // always save original response for debugging api errors
-                    Storage::disk('sync')->put($filename.'.orig', $data);
+                    Storage::disk('sync')->putStream($filename.'.orig', $data_stream);
+                    if (is_resource($data_stream)) {
+                        fclose($data_stream);
+                    }
 
                     if (Storage::disk('sync')->exists($filename_hash)) {
                         $last_hash = Storage::disk('sync')->get($filename_hash);
                         $last_hash_ts = Storage::disk('sync')->lastModified($filename_hash);
                     }
 
-                    $hash = md5($data);
+                    $hash = md5_file(config('filesystems.disks.sync.root') . '/' . $filename.'.orig');
                     if ($hash == $last_hash) {
                         Storage::disk('sync')->put($filename_sync, $time);
 
                         return ['time' => $time, 'time_data' => $last_hash_ts, 'status' => 'EQUAL', 'url' => Storage::disk('sync')->url($filename), 'size' => Storage::disk('sync')->size($filename)];
                     }
 
-                    $data = json_decode($data, true);
+                    $data = json_decode(Storage::disk('sync')->get($filename.'.orig'), true);
+                    // $data = json_decode($data, true);
 
                     if (!$data) {
                         // malformed json or empty response
@@ -1367,7 +1393,7 @@ class SyncClient
                         return ['time' => $time, 'status' => 'ERROR', 'error' => null === $data ? 'malformed json response' : 'empty api response'];
                     }
 
-                    $data = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+                    // $data = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 
                     if ($this->missingGuildCodeWorkaround) {
                         # Write guild data to guild folder instead of player folder
@@ -1376,17 +1402,32 @@ class SyncClient
                         if ($this->guild_id) {
                             $workaround_target = "swgoh.help/guild/$this->guild_id/$file.$ext";
                             $filename_ts = "swgoh.help/guild/$this->guild_id/$file.$time.$ext";
-                            Storage::disk('sync')->put($workaround_target, $data);
+                            if (Storage::disk('sync')->exists($workaround_target)) {
+                                Storage::disk('sync')->delete($workaround_target);
+                            }
+                            Storage::disk('sync')->copy($filename.'.orig', $workaround_target);
+                            // Storage::disk('sync')->putStream($workaround_target, $data);
                         }
                     }
 
-                    if (Storage::disk('sync')->put($filename, $data)) {
-                        Storage::disk('sync')->put($filename_hash, $hash);
-                        // Storage::disk('sync')->copy($filename, $filename_ts); // use .orig file instead of pretty-printed because it saves a lot of space
-                        Storage::disk('sync')->copy($filename.'.orig', $filename_ts);
-
-                        return ['time' => $time, 'time_data' => $time, 'status' => 'NEW', 'url' => Storage::disk('sync')->url($filename), 'size' => Storage::disk('sync')->size($filename)];
+                    if (Storage::disk('sync')->exists($filename)) {
+                        Storage::disk('sync')->delete($filename);
                     }
+                    Storage::disk('sync')->copy($filename.'.orig', $filename);
+                    Storage::disk('sync')->put($filename_hash, $hash);
+                    if (Storage::disk('sync')->exists($filename_ts)) {
+                        Storage::disk('sync')->delete($filename_ts);
+                    }
+                    Storage::disk('sync')->copy($filename.'.orig', $filename_ts);
+                    return ['time' => $time, 'time_data' => $time, 'status' => 'NEW', 'url' => Storage::disk('sync')->url($filename), 'size' => Storage::disk('sync')->size($filename)];
+
+                // if (Storage::disk('sync')->put($filename, $data)) {
+                    //     Storage::disk('sync')->put($filename_hash, $hash);
+                    //     // Storage::disk('sync')->copy($filename, $filename_ts); // use .orig file instead of pretty-printed because it saves a lot of space
+                    //     Storage::disk('sync')->copy($filename.'.orig', $filename_ts);
+
+                    //     return ['time' => $time, 'time_data' => $time, 'status' => 'NEW', 'url' => Storage::disk('sync')->url($filename), 'size' => Storage::disk('sync')->size($filename)];
+                    // }
                 } else {
                     return [
                         'status' => 'PROBLEM',
@@ -1396,6 +1437,9 @@ class SyncClient
                     ];
                 }
             } catch (Exception $e) {
+                if (is_resource($data_stream)) {
+                    fclose($data_stream);
+                }
                 return [
                     'status' => 'ERROR',
                     'source' => $source ?? '',

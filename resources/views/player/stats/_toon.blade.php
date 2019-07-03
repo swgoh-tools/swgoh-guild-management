@@ -24,10 +24,10 @@
     <div class="stats-check-ok"><i class="fa fa-check text-success"></i> {{ __('app.check.gear_is_max_ship_one') }}</div>
     @elseif($rosterToon['combatType'] == 'SHIP')
     <div class="text-muted"><i class="fa fa-info text-muted"></i> {{ __('app.check.gear_is_max_ship', ['gear' => $rosterToon['gear']]) }}</div>
-    @elseif($rosterToon['gear'] + (count($rosterToon['equipped']) / 10) == 12.5)
-    <div class="stats-check-ok"><i class="fa fa-check text-success"></i> {{ __('app.check.gear_is_max', ['gear' => 12.5]) }}</div>
+    @elseif($rosterToon['gear'] + (count($rosterToon['equipped']) / 10) >= 13)
+    <div class="stats-check-ok"><i class="fa fa-check text-success"></i> {{ __('app.check.gear_is_max', ['gear' => 13, 'max' => 13]) }}</div>
     @elseif($rosterToon['gear'] + (count($rosterToon['equipped']) / 10) >= 12)
-    <div><i class="fa fa-info text-danger"></i> {{ __('app.check.gear_is_max_near', ['gear' => $rosterToon['gear'] + (count($rosterToon['equipped']) / 10), 'max' => 12.5]) }}</div>
+    <div><i class="fa fa-info text-danger"></i> {{ __('app.check.gear_is_max_near', ['gear' => $rosterToon['gear'] + (count($rosterToon['equipped']) / 10), 'max' => 13]) }}</div>
     @else
     <div class="text-danger"><i class="fa fa-times text-danger"></i> {{ __('app.check.gear_is_max_fail', ['gear' => $rosterToon['gear'] + (count($rosterToon['equipped']) / 10)]) }}</div>
     @endif
