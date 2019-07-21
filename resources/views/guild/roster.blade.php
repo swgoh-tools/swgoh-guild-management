@@ -57,15 +57,15 @@
         @foreach ($pagination as $key => $value)
         @if ($loop->first)Nav: @endif
         @if (!$loop->first) <i class="fa fa-empire"></i><i class="fa fa-resistance"></i> @endif
-        <a href="{{ route($route_name, $guild) }}/{{ $key }}">{{ $value['first'] ?? '' }} - {{ $value['last'] ?? '' }}</a>
+        <a href="{{ route($route_name, $page_guild) }}/{{ $key }}">{{ $value['first'] ?? '' }} - {{ $value['last'] ?? '' }}</a>
         @endforeach
         </div>
         @endif
 
 
             <h1 class="mr-auto">{{ __('Full Roster') }} - {{ __($title) }}</h1>
-            <p class="lead text-left">{!! __('app.roster.intro', ['guild' => '<strong>' . $guild->name . '</strong>']) !!}</p>
-            <p class="text-left">{{ __('app.roster.description') }}</p>
+            <p class="lead text-left">{!! __('pages.roster.intro', ['guild' => '<strong>' . $page_guild->name . '</strong>']) !!}</p>
+            <p class="text-left">{{ __('pages.roster.description') }}</p>
             <p class="text-left">{{ __('app.howto.click_head') }}</p>
             <p class="text-left">{{ __('Last updated') }}: {{ date('D, d M Y', intval(substr($updated ?? '', 0, 10))) }}</p>
             <div class="tab-content" id="toonTabsContent">

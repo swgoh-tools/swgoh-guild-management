@@ -6,6 +6,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Guild;
+use App\Helper\SyncClient;
+use Illuminate\Support\Facades\View;
 
 class CheckForGuild
 {
@@ -35,6 +37,20 @@ class CheckForGuild
         // no typehinting happened yet
         // params on route are plain, no instanceof Guild
         $guild = $request->route('guild');
+        $player = $request->route('player');
+        $logo = '';
+        $name = '';
+
+        // if it is not a guild page, we might get the guild from a player page instead
+        if (!$guild && $player) {
+            $info = SyncClient::getPlayer($player);
+            $guild_ref = $info[0]['guildRefId'] ?? null;
+            $logo = $info[0]['guildBannerLogo'] ?? null;
+            $name = $info[0]['name'] ?? null;
+            if ($guild_ref) {
+                $guild = Guild::where('refId', '=', $guild_ref)->first();
+            }
+        }
 
         if ($guild) {
             if ($guild instanceof Guild) {
@@ -44,6 +60,29 @@ class CheckForGuild
                 $request->session()->put('guild', Guild::where('slug', '=', $guild)->first());
                 $request->session()->put('guild_slug', $guild);
             }
+
+            $guild = $request->session()->get('guild');
+            if ($name) {
+                View::share('page_title', __('pages.player.title', ['name' => $name]));
+                View::share('page_description', implode(' ', [
+                    __('pages.player.intro', ['name' => $name]),
+                    __('pages.player.description', ['name' => $name])
+                ]));
+            } else {
+                $name = $guild->name ?? '';
+                View::share('page_title', __('pages.guild.title', ['name' => $name]));
+                View::share('page_description', implode(' ', [
+                    __('pages.guild.intro', ['name' => $name]),
+                    __('pages.guild.description', ['name' => $name])
+                ]));
+            }
+
+            if (!$logo) {
+                $info = SyncClient::getGuildInfo($guild);
+                $logo = $info[0]['bannerLogo'] ?? 'default';
+            }
+
+            View::share('page_image', "//swgoh.gg/static/img/assets/tex.$logo.png");
         }
 
         return $next($request);

@@ -42,7 +42,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <a class="form-text" href="{{ route('guild.home', $guild) }}">{{ route('guild.home', $guild) }}</a>
+                                <a class="form-text" href="{{ route('guild.home', $page_guild) }}">{{ route('guild.home', $page_guild) }}</a>
                             </div>
                         </div>
                 </div>

@@ -304,47 +304,14 @@ class SyncClient
 
     public static function getLang($locale = null)
     {
-        switch ($locale ?? app()->getLocale()) {
-            case 'de':
-                $lang = 'GER_DE';
-                break;
+        $api_locales = config('swgoh.API.SWGOH_HELP.LOCALES', []);
+        $req_locale = $locale ?? app()->getLocale();
 
-            case 'ru':
-                $lang = 'RUS_RU';
-                break;
-
-            case 'fr':
-                $lang = 'FRE_FR';
-                break;
-
-            case 'br':
-            case 'pt':
-                $lang = 'POR_BR';
-                break;
-
-            default:
-                $lang = 'ENG_US';
-                break;
-        }
+        $lang = $api_locales[$req_locale] ?? config('swgoh.API.SWGOH_HELP.LOCALE');
 
         // // param NOT case sensitive, so it's just for fun
         // $lang = strtolower($lang);
         return $lang;
-
-        // CHS_CN
-        // CHT_CN
-        // ENG_US
-        // FRE_FR
-        // GER_DE
-        // IND_ID
-        // ITA_IT
-        // JPN_JP
-        // KOR_KR
-        // POR_BR
-        // RUS_RU
-        // SPA_XM
-        // THA_TH
-        // TUR_TR
     }
 
     public static function getSkillKeys($full_ability_info = false)

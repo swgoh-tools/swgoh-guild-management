@@ -6,7 +6,7 @@
 <div class="container">
     <h3 class="page-title">@lang('Edit')</h3>
 
-    {!! Form::model($sanction, ['method' => 'PUT', 'route' => ['sanction.update', $guild, $code, $sanction->id]]) !!}
+    {!! Form::model($sanction, ['method' => 'PUT', 'route' => ['sanction.update', $page_guild, $code, $sanction->id]]) !!}
 
     <div class="card">
         <div class="card-header">
@@ -58,7 +58,7 @@
 
 
     {!! Form::submit(trans('Update'), ['class' => 'btn btn-danger']) !!}
-    <a href="{{ route('sanction', [$guild, $code]) }}" class="btn btn-info">@lang('Back')</a>
+    <a href="{{ route('sanction', [$page_guild, $code]) }}" class="btn btn-info">@lang('Back')</a>
     {!! Form::close() !!}
     </div>
 @stop

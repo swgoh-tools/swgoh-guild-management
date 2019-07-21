@@ -4,12 +4,12 @@
         <small>{{ config('app.version') ? ' v'.config('app.version') : '' }}</small>
         <small>
             (
-            @foreach(['en', 'de', 'br'] as $langValue)
+            @foreach(config('app.locales', []) as $langValue)
             @if(!$loop->first) | @endif
             <a class="text-lowercase" href="{{ url()->current() }}?lang={{ $langValue }}">{{ ($page_locale ?? config('app.locale')) == $langValue ? " .:$langValue:. " : $langValue }}</a>
             @endforeach
             )
-            {{ '>> '.$page_guild ?? '' }}
+            {{ '>> '.$page_guild_name ?? '' }}
         </small>
     </span>
     <div class="navbar-nav" style="flex-direction: row;">
@@ -19,6 +19,8 @@
         <a class="nav-link text-lowercase" href="{{ route('home') }}">{{ __('Home') }}</a>
         <span class="nav-link">|</span>
         <a class="nav-link text-lowercase" href="{{ config('swgoh.CONTACT.ISSUES_URL') }}">{{ __('Report Issue') }}</a>
+        <span class="nav-link">|</span>
+        <a class="nav-link text-lowercase" href="{{ route('changes') }}">{{ __('Changes') }}</a>
     </div>
     <span class="navbar-text ml-auto">
         <small>{{ __('app.disclaimer') }}</small>

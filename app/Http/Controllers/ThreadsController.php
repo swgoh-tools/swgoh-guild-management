@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Channel;
-use App\Filters\ThreadFilters;
-use App\Rules\Recaptcha;
 use App\Thread;
+use App\Channel;
 use App\Trending;
+use App\Rules\Recaptcha;
+use App\Filters\ThreadFilters;
+use Illuminate\Support\Facades\View;
 
 class ThreadsController extends Controller
 {
@@ -16,6 +17,7 @@ class ThreadsController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
+        View::share('page_description', __('pages.threads.description'));
     }
 
     /**

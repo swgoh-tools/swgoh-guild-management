@@ -68,7 +68,7 @@ class AppServiceProvider extends ServiceProvider
         //     // $viewdata= $view->getData(); // contains all data already added to view with \View::creator or \View::composer and everything from Controllers etc.
         //     $page_locale = app()->getLocale();
         //     $page_title = config('app.name');
-        //     $page_guild = '';
+        //     $page_guild_name = '';
         //     $pages = [];
 
         //     if (Session::has('guild')) {
@@ -80,7 +80,7 @@ class AppServiceProvider extends ServiceProvider
         //     }
 
         //     if ($guild) {
-        //         $page_guild = $guild->name;
+        //         $page_guild_name = $guild->name;
         //         $page_title .= ' - '.$guild->name;
         //         $pages = $guild->pages()->orderBy('position', 'asc')->get();
         //     } else {
@@ -89,7 +89,7 @@ class AppServiceProvider extends ServiceProvider
         //         $guild->slug = 'dummy';
         //     }
 
-        //     $view->with(compact(['page_guild', 'page_locale', 'page_title', 'guild', 'pages']));
+        //     $view->with(compact(['page_guild_name', 'page_locale', 'page_title', 'guild', 'pages']));
         // });
 
 

@@ -21,10 +21,10 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <main class="col-12 col-lg-9" role="main">
-            <h1 class="mr-auto">{{ __('app.zetas.title') }}</h1>
-            <p class="text-left">{{ __('app.zetas.intro') }}</p>
-            <p class="text-left">{{ __('app.zetas.description') }}</p>
-            <p class="text-left">{{ __('app.zetas.legend') }}</p>
+            <h1 class="mr-auto">{{ __('pages.zetas.title') }}</h1>
+            <p class="text-left">{{ __('pages.zetas.intro') }}</p>
+            <p class="text-left">{{ __('pages.zetas.description') }}</p>
+            <p class="text-left">{{ __('pages.zetas.legend') }}</p>
             <!-- <p class="text-left">{{ __('app.howto.click_head') }}</p> -->
                     <table class="table table-hover my-data-table">
                         <!-- table-striped table-dark  -->

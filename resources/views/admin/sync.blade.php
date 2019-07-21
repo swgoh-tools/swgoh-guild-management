@@ -14,9 +14,9 @@
     </div>
 
     <div class="row">
-        <p>{{ __('app.sync.intro') }}</p>
-        <p>{{ __('app.sync.description') }}</p>
-        <p>{{ __('app.sync.legend') }}</p>
+        <p>{{ __('pages.sync.intro') }}</p>
+        <p>{{ __('pages.sync.description') }}</p>
+        <p>{{ __('pages.sync.legend') }}</p>
         <p>{{ __('app.report_any_issues') }}</p>
     </div>
 

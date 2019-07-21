@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-5">
             <div class="card mb-3">
                 <div class="card-header">{{ __('Contact') }}</div>
 
@@ -20,6 +20,17 @@
                 </div>
             </div>
         </div>
+        @if(config('swgoh.CONTACT.DISCORD_WIDGET_URL'))
+        <div class="col-md-5">
+            <div class="card mb-3">
+                <div class="card-header">{{ __('Chat') }}</div>
+
+                <div class="card-body">
+                    <iframe src="{{ config('swgoh.CONTACT.DISCORD_WIDGET_URL') }}" width="100%" height="300" allowtransparency="true" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 @endsection

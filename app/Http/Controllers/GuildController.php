@@ -12,10 +12,34 @@ use App\Helper\SyncClient;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Session;
 
 class GuildController extends Controller
 {
     use Authorizable;
+
+    /**
+     * Create a new ThreadsController instance.
+     */
+    public function __construct()
+    {
+        // $name = '';
+        // $logo = 'default';
+
+        // $guild = Session::get('guild');
+        // if ($guild) {
+        //     $info = SyncClient::getGuildInfo($guild);
+        //     $logo = $info['bannerLogo'] ?? 'default';
+        //     $name = $guild->name;
+        // }
+
+        // View::share('page_description', implode(' ', [
+        //     __('pages.guild.intro', [$name]),
+        //     __('pages.guild.description', [$name])
+        // ]));
+        // View::share('page_image', "//swgoh.gg/static/img/assets/tex.$logo.png");
+    }
 
     /**
      * Display guild home page.
@@ -28,7 +52,7 @@ class GuildController extends Controller
         $members = SyncClient::getGuildMembers($guild);
         $playerTitleKeys = SyncClient::getDataMap('playerTitleList');
         $sanctions = $guild->sanctions()->with('player')->get() ?? null;
-// dd($sanctions);
+        // dd($sanctions);
         $filter = [
             // 'pid',
             'allyCode',
@@ -110,14 +134,12 @@ class GuildController extends Controller
             }
 
             return redirect($guild->path());
-
         } else {
             flash()->error('Unable to create guild!');
 
             if (request()->wantsJson()) {
                 return response([], 450);
             }
-
         }
 
 
@@ -172,7 +194,7 @@ class GuildController extends Controller
         $user->fill($request->except('roles', 'permissions', 'password'));
 
         // check for password change
-        if($request->get('password')) {
+        if ($request->get('password')) {
             $user->password = bcrypt($request->get('password'));
         }
 
@@ -195,12 +217,12 @@ class GuildController extends Controller
      */
     public function destroy($id)
     {
-        if ( Auth::user()->id == $id ) {
+        if (Auth::user()->id == $id) {
             flash()->warning('Deletion of currently logged in user is not allowed :(')->important();
             return redirect()->back();
         }
 
-        if( User::findOrFail($id)->delete() ) {
+        if (User::findOrFail($id)->delete()) {
             flash()->success('User has been deleted');
         } else {
             flash()->success('User not deleted');
@@ -222,7 +244,9 @@ class GuildController extends Controller
         $anchors = SyncClient::getSquadAnchors();
         $unitKeys = SyncClient::getUnitKeys();
         $skillKeys = SyncClient::getSkillKeys();
-        if (isset($teams['updated'])) unset($teams['updated']);
+        if (isset($teams['updated'])) {
+            unset($teams['updated']);
+        }
         $chars = SyncClient::getRoster($guild, 1);
         $ships = SyncClient::getRoster($guild, 2);
         $rosterWithAllyCodeKeys = [];
@@ -277,8 +301,8 @@ class GuildController extends Controller
                         foreach ($phase['squads'] ?? [] as $squad) {
                             // preg_match('/(\d*\.?\d+)%-(\d+)%/', $squad['note'] ?? '', $matches); // old % values till 30.11.18
                             preg_match('/(\d{0,3}(?:,\d\d\d)+)/', $squad['note'] ?? '', $matches); // new since 1.12.18 no mor dmg ranges, absolute values
-                            $squad['DMG'] = preg_replace( '/[^\d]/', '', ($matches[1] ?? 0));
-                            $squad['DMG_100'] = round($squad['DMG'] / $sithDamage[$phasekey][999]['DMG'] * 100 , 1);
+                            $squad['DMG'] = preg_replace('/[^\d]/', '', ($matches[1] ?? 0));
+                            $squad['DMG_100'] = round($squad['DMG'] / $sithDamage[$phasekey][999]['DMG'] * 100, 1);
                             $squadsSorted[] = $squad;
                         }
                         usort($squadsSorted, $this->sort_field('DMG'));
@@ -301,7 +325,7 @@ class GuildController extends Controller
                             $sithDamage[$eventStatsKey][$validationKey]['DMG'] = 0;
                             foreach ($validationMembers as $validationMemberKey => $validationMemberSquads) {
                                 //only add damage if it is the best team of this member
-                                if($validationKey === ($eventStatsMax[$teamKey][$eventStatsKey][$validationMemberKey] ?? null)) {
+                                if ($validationKey === ($eventStatsMax[$teamKey][$eventStatsKey][$validationMemberKey] ?? null)) {
                                     $sithDamage[$eventStatsKey][$validationKey]['DMG'] += $validationMemberSquads[0]['DMG'];
                                 }
                             }
@@ -341,7 +365,8 @@ class GuildController extends Controller
         ]);
     }
 
-    private function sort_field($key) {
+    private function sort_field($key)
+    {
         return function ($a, $b) use ($key) {
             return ($a[$key] <=> $b[$key]) * -1;
         };
@@ -391,7 +416,7 @@ class GuildController extends Controller
      */
     public function createSanction(Guild $guild, $code)
     {
-		$this->authorize('create', Sanction::class);
+        $this->authorize('create', Sanction::class);
 
         // $users = User::pluck('name', 'id');
         $origins = [
@@ -430,7 +455,7 @@ class GuildController extends Controller
     public function editSanction(Guild $guild, $code, $id)
     {
         $sanction = Sanction::findOrFail($id);
-		$this->authorize('update', $sanction);
+        $this->authorize('update', $sanction);
 
         // dd($sanction->toArray());
         $origins = [
@@ -461,7 +486,7 @@ class GuildController extends Controller
         return view('guild.sanction.edit', compact(['actions', 'origins', 'severities', 'guild', 'code', 'sanction']));
     }
 
-        /**
+    /**
      * Store a newly created resource in storage.
      *
      * @param \App\Rules\Recaptcha $recaptcha
@@ -470,7 +495,7 @@ class GuildController extends Controller
      */
     public function updateSanction(Request $request, Guild $guild, $code, Sanction $sanction)
     {
-		$this->authorize('update', $sanction);
+        $this->authorize('update', $sanction);
 
         // Update sanction
         $sanction->fill($request->except('roles', 'permissions', 'password'));
@@ -483,7 +508,7 @@ class GuildController extends Controller
         return redirect()->route('sanction', [$guild, $code]);
     }
 
-        /**
+    /**
      * Store a newly created resource in storage.
      *
      * @param \App\Rules\Recaptcha $recaptcha
@@ -528,7 +553,7 @@ class GuildController extends Controller
         return $this->home($guild);
     }
 
-        /**
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int $id
@@ -537,11 +562,11 @@ class GuildController extends Controller
      */
     public function destroySanction(Guild $guild, $code, $id)
     {
-		$sanction = Sanction::findOrFail($id);
+        $sanction = Sanction::findOrFail($id);
 
-		$this->authorize('update', $sanction);
+        $this->authorize('update', $sanction);
 
-        if( $sanction->delete() ) {
+        if ($sanction->delete()) {
             flash()->success('Sanction has been deleted');
         } else {
             flash()->success('Sanction not deleted');
@@ -567,7 +592,7 @@ class GuildController extends Controller
         $roles = Role::find($roles);
 
         // check for current role changes
-        if( ! $user->hasAllRoles( $roles ) ) {
+        if (! $user->hasAllRoles($roles)) {
             // reset all direct permissions for user
             $user->permissions()->sync([]);
         } else {
@@ -580,8 +605,9 @@ class GuildController extends Controller
         return $user;
     }
 
-    private function prepareEventStats(&$eventStats, $index) {
-        if(!isset($eventStats[$index])){
+    private function prepareEventStats(&$eventStats, $index)
+    {
+        if (!isset($eventStats[$index])) {
             return;
         }
 
@@ -598,7 +624,8 @@ class GuildController extends Controller
         };
     }
 
-    private function checkTeamStatus($event, $team, $memberId, &$roster, &$unitKeys) {
+    private function checkTeamStatus($event, $team, $memberId, &$roster, &$unitKeys)
+    {
         $currentTeam = [];
         $currentStats = [
             'gp' => 0,
@@ -651,5 +678,4 @@ class GuildController extends Controller
             'size' => $teamSize,
         ];
     }
-
 }

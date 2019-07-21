@@ -38,7 +38,7 @@
     @endswitch
     @php($tmpTeam = checkTeamStatus($team, $sithSquads[$esPhaseKey][$esReadyKey][$esCode][0]['team'], $esCode, $roster, $unitKeys))
 <tr class='{{ $curTableClass }}'>
-    <td><a href="{{ route('guild.stats', $guild) }}/raid-hstr/{{ $esCode }}">{{ $esName }}</a></td>
+    <td><a href="{{ route('guild.stats', $page_guild) }}/raid-hstr/{{ $esCode }}">{{ $esName }}</a></td>
     <td>{{ round( $curDMG / 1000000 , 1) }}M</td>
     <td>{{ $curDMG_100 }}%</td>
     <td>{{ $sithSquads[$esPhaseKey][$esReadyKey][$esCode][0]['name'] ?? '' }}</td>

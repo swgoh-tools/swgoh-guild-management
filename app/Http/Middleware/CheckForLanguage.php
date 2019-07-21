@@ -14,7 +14,7 @@ class CheckForLanguage
      *
      * @array $languages
      */
-    protected $languages = ['en', 'de', 'br'];
+    protected $languages = [];
 
     /**
      * Handle an incoming request.
@@ -26,6 +26,8 @@ class CheckForLanguage
      */
     public function handle($request, Closure $next)
     {
+        $this->languages = config('app.locales', []);
+
         if ($request->has('lang')) {
             $lang = $request->input('lang');
             if (\in_array($lang, $this->languages)) {

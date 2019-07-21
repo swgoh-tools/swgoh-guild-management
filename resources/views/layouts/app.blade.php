@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $page_title ?? config('app.name') }}</title>
+    <title>{{ config('app.name') }}@if($page_title ?? false) - {{ $page_title }}@endif</title>
 
     <!-- Name of web application (only should be used if the website is used as an app) -->
     <meta name="application-name" content="{{ config('app.name') }}">
@@ -17,15 +17,15 @@
     <meta name="theme-color" content="#4285f4">
 
     <!-- Short description of the document (limit to 150 characters) -->
-    <meta name="description" content="{{ __('app.description', ['name' => $page_guild ?? '']) }}">
+    <meta name="description" content="{{ $page_description ?? __('app.description') }}">
     <meta name="author" content="{{ config('swgoh.CONTACT.USER_NAME') }}">
 
     <!-- <meta property="fb:app_id" content="123456789"> -->
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ $page_title ?? config('app.name') }}">
-    <meta property="og:image" content="{{ url('/images/logo.png') }}">
-    <meta property="og:description" content="{{ __('app.description', ['name' => $page_guild ?? '']) }}">
+    <meta property="og:image" content="{{ $page_image ?? url('/images/logo.png') }}">
+    <meta property="og:description" content="{{ $page_description ?? __('app.description') }}">
     <meta property="og:site_name" content="{{ config('app.name') }}">
     <meta property="og:locale" content="{{ $page_locale ?? config('app.locale') }}">
     <meta property="article:author" content="{{ config('swgoh.CONTACT.USER_NAME') }}">
@@ -35,8 +35,8 @@
     <!-- <meta name="twitter:creator" content="@individual_account"> -->
     <meta name="twitter:url" content="{{ url()->current() }}">
     <meta name="twitter:title" content="{{ $page_title ?? config('app.name') }}">
-    <meta name="twitter:description" content="{{ __('app.description', ['name' => $page_guild ?? '']) }}">
-    <meta name="twitter:image" content="{{ url('/images/logo.png') }}">
+    <meta name="twitter:description" content="{{ $page_description ??  __('app.description') }}">
+    <meta name="twitter:image" content="{{ $page_image ?? url('/images/logo.png') }}">
 
 
     <!-- Icon in the highest resolution we need it for 192x192-->

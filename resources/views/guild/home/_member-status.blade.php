@@ -22,10 +22,10 @@
         <td><a href="{{ route('player.home', $player['allyCode']) }}">{{ $player['allyCode'] }}</a></td>
         <td></td>
         <td>{{ $sanctions->where('player.code', $player['allyCode'])->implode('origin', ', ') }} {{ $sanctions->where('player.code', $player['allyCode'])->implode('severity', ', ') }}</td>
-        <td><a class="btn btn-link" href="{{ route('sanction', [$guild, $player['allyCode']]) }}">{{ $sanctions->where('player.code', $player['allyCode'])->count() }}</a></td>
+        <td><a class="btn btn-link" href="{{ route('sanction', [$page_guild, $player['allyCode']]) }}">{{ $sanctions->where('player.code', $player['allyCode'])->count() }}</a></td>
         @hasanyrole('admin|leader|officer')
         <td class="text-center">
-        {!! Form::open( ['method' => 'post', 'url' => route('guild.home', $guild), 'style' => 'display: inline']) !!}
+        {!! Form::open( ['method' => 'post', 'url' => route('guild.home', $page_guild), 'style' => 'display: inline']) !!}
             {!! Form::hidden('code', $player['allyCode']) !!}
             @if($key === 'test')
             @role('admin')
@@ -44,7 +44,7 @@
             @endrole
             @endif
         {!! Form::close() !!}
-        <a class="btn btn-sm btn-danger" href="{{ route('sanction', [$guild, $player['allyCode']]) }}">{{ __('Punish') }}</a>
+        <a class="btn btn-sm btn-danger" href="{{ route('sanction', [$page_guild, $player['allyCode']]) }}">{{ __('Punish') }}</a>
         </td>
         @endhasanyrole
         </tr>

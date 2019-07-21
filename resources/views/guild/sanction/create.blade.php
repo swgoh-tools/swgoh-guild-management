@@ -10,7 +10,7 @@
                     <div class="card-header">{{ __('Create a New Sanction') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('sanction', [$guild, $code]) }}">
+                        <form method="POST" action="{{ route('sanction', [$page_guild, $code]) }}">
                             @csrf
 
                             <div class="form-group">

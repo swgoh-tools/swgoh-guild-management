@@ -12,6 +12,7 @@ declare(strict_types=1);
  * | contains the "web" middleware group. Now create something great!
  * |.
  */
+use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\Storage;
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -19,9 +20,19 @@ Route::get('/home', 'HomeController@index');
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
-// Route::get('/welcome', function () {
-//     return view('welcome');
-// });
+// Route::get('/test', function () {
+//     // $my_user = \App\User::find(9);
+//     // $my_user->confirmed = false;
+//     // $my_user->confirmed = true;
+//     $playerInfo = \App\Helper\SyncClient::getPlayer(145521821, false);
+//     dd($playerInfo);
+//     // return view('test')->with(['playerInfo' => $playerInfo]);
+// })->name('test');
+Route::get('/changes', function () {
+    $changes = file_get_contents(base_path(). '/CHANGELOG.md');
+    $changes = Markdown::parse($changes);
+    return view('changes')->with(['changes' => $changes]);
+})->name('changes');
 Auth::routes();
 
 Route::get('threads', 'ThreadsController@index')->name('threads');
@@ -119,6 +130,7 @@ Route::prefix('p')->group(function (): void {
 });
 Route::get('/list/targeting', 'ListController@targeting')->name('targeting');
 Route::get('/list/zetas', 'ListController@zetas')->name('zetas');
+Route::get('/list/events', 'ListController@zetas')->name('events');
 
 Route::prefix('admin')->group(function (): void {
     // Route::get('users', function (): void {

@@ -19,8 +19,8 @@ class ShareDataToViews
      */
     public function handle($request, Closure $next)
     {
-        $page_title = config('app.name');
-        $page_guild = '';
+        // $page_title = config('app.name');
+        $page_guild_name = '';
         $pages = [];
 
         if (Session::has('guild')) {
@@ -32,8 +32,8 @@ class ShareDataToViews
         }
 
         if ($guild) {
-            $page_guild = $guild->name;
-            $page_title .= ' - '.$guild->name;
+            $page_guild_name = $guild->name;
+            // $page_title .= ' - '.$guild->name;
             $pages = $guild->pages()->orderBy('position', 'asc')->get();
         } else {
             $guild = new Guild();
@@ -41,11 +41,11 @@ class ShareDataToViews
             $guild->slug = 'dummy';
         }
 
-        View::share('page_guild', $page_guild);
+        View::share('page_guild_name', $page_guild_name);
         View::share('channels', Channel::all());
         View::share('page_locale', app()->getLocale());
-        View::share('page_title', $page_title);
-        View::share('guild', $guild);
+        // View::share('page_title', $page_title);
+        View::share('page_guild', $guild);
         View::share('pages', $pages);
 
         // Anything above this line will perform its task BEFORE the request is handled by the application

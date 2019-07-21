@@ -24,7 +24,7 @@
 <div class="container-fluid">
     <main>
         <h1 class="h3">@if('ship' == $type){{ __('Ships') }}@else{{ __('Toons') }}@endif</h1>
-        <form class="form-inline" action="{{ route($route, $guild) }}" method="post">
+        <form class="form-inline" action="{{ route($route, $page_guild) }}" method="post">
             @csrf
             @for ($id = 1; $id <= 5; $id++)
             <div class="form-group my-1">
@@ -49,12 +49,12 @@
         <div class="form-group mt-1 mb-2">
             <!-- <label for="staticSquadLink">{{ __('Direct Link') }}</label> -->
             <input class="form-control" type="text" name="staticSquadLink" id="staticSquadLink" readonly="readonly"
-            value="{{ route('guild.team.toons', $guild) }}?t={{ implode(',', $char_list) }}">
-            <small id="staticSquadLinkHelp" class="form-text text-muted">{{ __('app.squads.direct_link_info') }}</small>
+            value="{{ route('guild.team.toons', $page_guild) }}?t={{ implode(',', $char_list) }}">
+            <small id="staticSquadLinkHelp" class="form-text text-muted">{{ __('pages.squads.direct_link_info') }}</small>
         </div>
 
-        <p class="text-left">{{ __('app.color_disclaimer') }} {{ __('app.squads.used_for_calculation') }}</p>
-        <p class="text-left">{{ __('app.squads.field_order') }}: {{ __('Power') }}, {{ __('Gear Level') }}, {{ __('Level') }}, {{ __('Stars') }}, {{ __('Zetas') }}</p>
+        <p class="text-left">{{ __('app.color_disclaimer') }} {{ __('pages.squads.used_for_calculation') }}</p>
+        <p class="text-left">{{ __('pages.squads.field_order') }}: {{ __('Power') }}, {{ __('Gear Level') }}, {{ __('Level') }}, {{ __('Stars') }}, {{ __('Zetas') }}</p>
         <p class="text-left">{{ __('Last updated') }}: {{ date('D, d M Y', intval(substr($updated ?? '', 0, 10))) }}</p>
         <table class="table table-sm table-hover squad-table">
             <caption>

@@ -13,8 +13,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <p>{{ __('app.introduction.guilds') }}</p>
-                    <p>{{ __('app.introduction.pages') }}</p>
+                    <p>{{ __('app.info.guilds') }}</p>
+                    <p>{{ __('app.info.pages') }}</p>
                 </div>
                 <div class="card-footer">
                     <p>{{ __('Own content created by this guild so far:') }}</p>
@@ -26,7 +26,7 @@
                 <div class="card-header">{{ __('Auto-Created Content') }}</div>
 
                 <div class="card-body">
-                    <p>{{ __('app.introduction.tools') }}</p>
+                    <p>{{ __('app.info.tools') }}</p>
                 </div>
                 <div class="card-footer">
                     <div>{{ __('May the force be with you.') }}</div>

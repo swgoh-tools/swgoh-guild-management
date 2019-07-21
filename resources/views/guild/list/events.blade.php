@@ -21,10 +21,10 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <main class="col-12 col-lg-9" role="main">
-            <h1 class="mr-auto">{{ __('app.events.title') }}</h1>
-            <p class="text-left">{{ __('app.events.intro') }}</p>
-            <p class="text-left">{{ __('app.events.description') }}</p>
-            <p class="text-left">{!! __('app.events.legend') !!}</p>
+            <h1 class="mr-auto">{{ __('pages.events.title') }}</h1>
+            <p class="text-left">{{ __('pages.events.intro') }}</p>
+            <p class="text-left">{{ __('pages.events.description') }}</p>
+            <p class="text-left">{!! __('pages.events.legend') !!}</p>
             <!-- <p class="text-left">{{ __('app.howto.click_head') }}</p> -->
                     <table class="table table-hover my-data-table">
                         <!-- table-striped table-dark  -->

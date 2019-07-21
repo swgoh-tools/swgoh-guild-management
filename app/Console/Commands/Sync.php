@@ -54,8 +54,9 @@ class Sync extends Command
             $this->info('sync all data that is global (player/guild independent)');
             SyncDataGlobal::dispatch('en');
             SyncDataKeys::dispatch('en');
-            SyncDataKeys::dispatch('de');
             SyncDataKeys::dispatch('br');
+            SyncDataKeys::dispatch('de');
+            SyncDataKeys::dispatch('it');
         }
     }
 }

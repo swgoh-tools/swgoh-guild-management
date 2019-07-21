@@ -28,9 +28,9 @@
                 @endforeach
                 @foreach(array_chunk($team_plain, $chunk_size) as $team_part)
                 @if(count($squad['team']) <= 5)
-                <a class="text-link" href="{{ route('guild.team.toons', $guild) }}?t={{ implode(',', $team_part) }}">list</a>
+                <a class="text-link" href="{{ route('guild.team.toons', $page_guild) }}?t={{ implode(',', $team_part) }}">list</a>
                 @else
-                <a class="text-link" href="{{ route('guild.team.toons', $guild) }}?t={{ implode(',', $team_part) }}">list/{{ count($team_part) }}</a>
+                <a class="text-link" href="{{ route('guild.team.toons', $page_guild) }}?t={{ implode(',', $team_part) }}">list/{{ count($team_part) }}</a>
                 @endif
                 @endforeach
                 {{-- @if(count($squad['team']) > $chunk_size)({{ count($squad['team']) }})@endif --}}

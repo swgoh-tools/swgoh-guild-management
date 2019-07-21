@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-
+{{-- @php($page_title = __('pages.player.title'))
+@php($page_description = __('pages.player.intro', ['name' => $info['name'] ?? ''])) --}}
 
 
 @section('content')

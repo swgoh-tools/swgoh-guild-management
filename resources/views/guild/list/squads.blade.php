@@ -30,10 +30,10 @@
 @endsection
 
 @section('content')
-            <h1 class="mr-auto">{{ __('app.squads.title') }}</h1>
-            <p class="text-left">{!! __('app.squads.intro') !!}</p>
-            <p class="text-left">{!! __('app.squads.description') !!}</p>
-            <p class="text-left">{!! __('app.squads.legend') !!}</p>
+            <h1 class="mr-auto">{{ __('pages.squads.title') }}</h1>
+            <p class="text-left">{!! __('pages.squads.intro') !!}</p>
+            <p class="text-left">{!! __('pages.squads.description') !!}</p>
+            <p class="text-left">{!! __('pages.squads.legend') !!}</p>
             <p class="text-left">{{ __('app.howto.new_tab') }}</p>
             <!-- <p class="text-left">{{ __('app.howto.click_head') }}</p> -->
             <div class="tab-content" id="toonTabsContent">

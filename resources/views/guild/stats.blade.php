@@ -8,13 +8,13 @@
             <div class="text-center">
                 <div class="alert alert-info" role="alert">
                 @foreach ($teams ?? [] as $key => $team)
-                @if ($loop->first) <a href="{{ route('guild.stats', $guild) }}">{{ __('Dashboard') }}</a> |
+                @if ($loop->first) <a href="{{ route('guild.stats', $page_guild) }}">{{ __('Dashboard') }}</a> |
                 @else
                     @if ($loop->index & 1) <i class="fa fa-empire"></i>
                     @else <i class="fa fa-resistance"></i>
                     @endif
                 @endif
-                @if ($key <> 'updated') <a href="{{ route('guild.stats', $guild) }}/{{ $key }}">{{ strtoupper($key) }}</a> @endif
+                @if ($key <> 'updated') <a href="{{ route('guild.stats', $page_guild) }}/{{ $key }}">{{ strtoupper($key) }}</a> @endif
                 @endforeach
                 </div>
 
