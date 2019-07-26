@@ -1,6 +1,9 @@
 # swgoh-guild-management changes
 
-## 1.4.1-dev
+## 1.4.3 (2019-07-26)
+-   fix regression from v1.4.0 (broken content creation due to laravel-mix v4 changes)
+
+## 1.4.2 (2019-07-21)
 
 -   activate Italian API syncs
 -   fix guild selection session storage

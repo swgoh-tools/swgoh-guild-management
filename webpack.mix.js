@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix')
 
 /*
  |--------------------------------------------------------------------------
@@ -12,4 +12,19 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .sourceMaps()
+
+if (mix.inProduction()) {
+    mix.version().options({
+        // optimize js minification process
+        terser: {
+            cache: true,
+            parallel: true,
+            sourceMap: true
+        }
+    })
+} else {
+    // Uses inline source-maps on development
+    mix.webpackConfig({ devtool: 'inline-source-map' })
+}

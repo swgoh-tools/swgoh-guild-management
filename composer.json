@@ -18,7 +18,9 @@
         "stevebauman/purify": "^2.0"
     },
     "require-dev": {
+        "andrey-helldar/laravel-lang-publisher": "^2.0",
         "barryvdh/laravel-debugbar": "^3.2",
+        "barryvdh/laravel-translation-manager": "dev-master as 0.5.3",
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
