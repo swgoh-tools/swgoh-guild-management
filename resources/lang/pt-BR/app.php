@@ -1,0 +1,107 @@
+<?php
+
+return array(
+  'description' => 'Guild Management System (GMS) para o SWGoH. Regras de guilda, informações sobre jogos, ferramentas e relatórios de dados para analisar toons e progresso de esquadrão.',
+  'disclaimer' => 'Não é afiliado à EA, Capital Games, Disney, Lucasfilm ou afins.',
+  'disclaimer_community' => 'Recomendações para jogadores de jogadores. Sem garantias!',
+  'color_disclaimer' => 'Os códigos de cores representam apenas uma avaliação rápida.',
+  'created_by' => 'Criado por :name',
+  'comments' => 'comentário | comentários',
+  'replies' => 'responder | respostas',
+  'modified_by' => 'Modificado por :name',
+  'last_modified_by' => 'Última modificação por :name',
+  'report_any_issues' => 'Por favor, relate quaisquer problemas.',
+  'you_registered_on' => 'Você se registrou na página :url.',
+  'info' =>
+  array(
+    'guilds' => 'As páginas da guilda são públicas (contanto que você saiba o link da guilda). O registro não é necessário para membros da guilda ou partes interessadas se informarem.',
+    'guilds-test' => 'Existe uma Corporação de Testes que permite que os líderes e oficiais se familiarizem com a criação de conteúdo sem atrapalhar as páginas da própria guilda oficial.',
+    'threads' => 'Existe uma seção do fórum global (não relacionada a páginas da guilda). Posts são públicos. Permite que qualquer usuário registrado faça ou responda a perguntas.',
+    'pages' => 'Os usuários registrados que receberam permissões adicionais (líder ou oficial) podem criar, modificar e excluir páginas específicas da corporação.',
+    'tools' => 'Existem ferramentas para analisar a lista e os estados de membros da guilda. Ele faz uso de excelentes interfaces de dados de jogos fornecidas por swgoh.gg ou swgoh.help. É WIP. Sincronizações específicas da guilda requerem configuração adequada de usuário / guilda. Ligue para o administrador para obter ajuda.',
+  ),
+  'howto' =>
+  array(
+    'click_head' => 'Clique em um cabeçalho de tabela para tornar a tabela classificável e pesquisável.',
+    'new_tab' => 'Os links abrem na mesma janela por padrão. Para abrir um link dentro de uma nova guia, consulte a funcionalidade do seu navegador.
+            Por exemplo. clique no botão do meio do mouse / roda de rolagem, clique com o botão esquerdo do mouse segurando a tecla ctrl, clique com o botão direito do mouse (menu) e abra em nova aba.',
+    'find_guild' => 'Onde está a página da minha guilda? <br /> As páginas da guilda são criadas assim que um jogador se registra neste site com um código aliado pertencente a essa guilda. Isso é feito como trabalho em segundo plano, então dê ao servidor alguns minutos (10 devem) para acompanhar. Não há busca global por corporações existentes (intencionais). Melhor marcador para uso posterior se alguém o enviou para você. Deve se parecer com <code>:url</code>.',
+    'find_player' => 'Onde está a minha página de jogador? <br /> Se alguém (você ou qualquer outra pessoa, não importa) registrou sua guilda, as páginas de jogador para todos os membros da guilda estão automaticamente disponíveis. Tudo que você precisa é o seu allycode para construir o link. Ele deve se parecer com: <code>:url</code>. Se você digitar seu allycode, o sistema automaticamente alterna para a guilda do jogador.',
+  ),
+  'legend' =>
+  array(
+    'gear_total' => 'Qualquer equipamento requerido por todos os personagens disponíveis no jogo.',
+    'gear_done' => 'Engrenagem já equipada.',
+    'gear_todo' => 'Todos os equipamentos ainda a serem equipados pelo jogador selecionado no futuro.',
+    'gear_next' => 'Visualizar na engrenagem necessária para a próxima (ainda) camada bloqueada de caracteres disponíveis.',
+    'gear_now' => 'Engrenagem atualmente necessária para todos os personagens do jogador selecionado.',
+    'gear_tier' => 'Nível mínimo de engrenagem para o qual esta peça está disponível.',
+    'gear_lvl' => 'Nível mínimo de caractere necessário para equipar esta peça.',
+    'gear_cost' => 'Custos adicionais de elaboração (créditos). Apenas disponível para salvamento. Equipar equipamentos totalmente artesanais é sempre gratuito.',
+  ),
+  'stats' =>
+  array(
+    'equal_damage' => 'Se vários jogadores forem responsáveis ​​pela mesma quantidade de danos, a classificação será definida pelo RNG.',
+    'requirements' => 'A força do personagem necessária para completar: o nome é estimado em <strong>: estrelas de raridade </strong>,
+            <strong> level :level </strong> e <strong> gear :gear </strong>.',
+    'tiers' => 'Tem camadas <strong>:count</strong>.',
+    'short_name' => 'Abreviações comuns: <strong>:name</strong>.',
+    'rancor_intro' => 'Mais antigo ataque do jogo.',
+    'tank_intro' => 'Segunda invasão do jogo.',
+    'sith_intro' => 'Terceiro e mais novo ataque do jogo.',
+    'auto_solo_prepared' => 'De acordo com os dados da guilda disponíveis, há :count os membros da guilda com uma equipe que seja capaz de <strong> auto soloing </strong>:name.',
+    'solo_prepared' => 'De acordo com os dados da guilda disponíveis, há :count os membros da guilda com uma equipe que pode ser capaz de <strong> solo </strong>:name.',
+    'auto_solo_info' => 'Isso significa usar <em> uma única </em> equipe no <em> modo de reprodução automática </em> para completar todas as 4 fases e obter o máximo <strong>:max</strong> pontos de dano:footnote.',
+    'solo_info' => 'Isso significa usar <em> uma única </em> equipe para <em> manualmente </em> completar todas as 4 fases e obter o máximo <strong>:max</strong> pontos de dano:footnote.',
+    'auto_solo_soon' => 'Outro :count membros da guilda provavelmente ou em breve serão capazes de auto-solo.',
+    'solo_soon' => 'Outro :count membros da guilda contam com pelo menos um time solo conhecido em estado avançado.',
+    'rancor_info' => 'Devido à maturidade deste ataque, existem incontáveis ​​composições de equipes diferentes viáveis ​​para corridas rancor solo.',
+    'tank_info' => 'Auto solo HAAT ainda não é possível com as equipes atuais. As corridas a solo requerem um conhecimento decente da equipa e do adversário, bem como um bom timing (manual).',
+    'sith_info' => 'Solo executado no HSTR não é possível. Mesmo solar uma única fase não é possível. Este ataque requer que toda a guilda trabalhe em conjunto.
+            Cada jogador deve tentar causar 4-6% de dano por fase.
+            Isso significa que <em> todos os jogadores </em> têm, idealmente, pelo menos, <strong> 4 equipes de ataque </strong> com diferentes caracteres (sem atualização da lista) disponíveis.',
+    'sith_progress_count_info' => 'As barras de progresso acima mostram a porcentagem de dano contribuído pelos jogadores por fase.
+            As barras de progresso abaixo mostram quantos jogadores da guilda estão prontos para o ataque.',
+    'sith_prepared' => 'De acordo com os dados da guilda disponíveis, há :count membros da guilda:footnote com equipes viáveis ​​para contribuir com :damage de dano.',
+    'sith_soon' => 'Outro: conte membros da guilda:footnote tem pelo menos uma equipe conhecida em condição avançada por contribuir com :damage de dano.',
+    'sith_health' => 'Saúde estimada do chefe: <strong>:health</strong>.',
+    'sith_undefined' => 'Não há propostas específicas de equipe para esta fase.',
+  ),
+  'user' =>
+  array(
+    'no_activities' => 'Não há atividade para este usuário ainda.',
+    'reply_favorited_by' => ':name favorited uma resposta.',
+  ),
+  'check' =>
+  array(
+    'unit_is_leader' => 'A unidade no slot do líder é um líder (:skill).',
+    'unit_is_leader_fail' => 'A unidade no slot do líder não é líder. Oops!',
+    'level_is_max' => 'A unidade está no nível máximo (:level / :max).',
+    'level_is_max_fail' => 'O nível da unidade não está maximizado (:level / :max).',
+    'gear_is_max_ship' => 'Engrenagem em :gear? Isso não deveria acontecer. Entre em contato com o administrador.',
+    'gear_is_max_ship_one' => 'O nível de marcha para navios é sempre o mesmo (1).',
+    'gear_is_max' => 'A unidade tem todas as peças de engrenagem conhecidas (:max). Agradável!',
+    'gear_is_max_near' => 'A unidade é bem engrenada (:gear), mas não no seu melhor ainda (:max).',
+    'gear_is_max_fail' => 'A unidade ainda não possui muita engrenagem (:gear).',
+    'rarity_is_max' => 'A unidade está totalmente desbloqueada (:rarity estrelas).',
+    'rarity_is_max_fail' => 'A unidade ainda não é cultivada / desbloqueada em todo o seu potencial (:rarity / :max estrelas).',
+    'mod_count_is_max' => 'A unidade está equipada com todos os mods máx.',
+    'mod_count_is_max_fail' => 'A unidade está faltando: falta de mods. Preencha os espaços ausentes imediatamente.',
+    'mod_pips_is_max' => 'A: pips-pip-mod. Muito impressionante!',
+    'mod_pips_is_max_near' => ': pips-pip-mod encontrado. Fatiar para :max seria possível.',
+    'mod_pips_is_max_ship_fail' => ': pips-pip-mod encontrado. Verifique a substituição. Para navios apenas mod level e mod pips contam. As estatísticas de modificação não são relevantes.',
+    'mod_pips_is_max_fail' => ': pips-pip-mod encontrado. Por favor, verifique se este é realmente um mod de arena!',
+    'mod_level_is_max' => 'O mod está nivelado para max (:max).',
+    'mod_level_is_max_fail' => 'O mod só tem um nível de :level. Max out para (:max) imediatamente ou substitua-o.',
+    'skill_is_max' => 'Habilidade <em>:name</em> está maximizada (:skill).',
+    'skill_is_max_fail' => 'Habilidade <em>:name</em> está na camada :skill / :max.',
+    'skill_is_max_contract' => 'Contrato <em>:name</em> está no limite máximo (:skill).',
+    'skill_is_max_hardware' => 'Reforço <em>:name</em> está maximizado (:skill).',
+    'skill_is_max_hardware_ignore' => 'Habilidade <em>:name</em> é uma habilidade de reforço e, portanto, não é relevante. Camada :skill.',
+    'skill_is_max_leader_ignore' => 'Habilidade <em>:name</em> é uma habilidade de líder e, portanto, não é relevante. Camada :skill.',
+    'zeta_ranking' => 'Rank de Zeta: :zeta (1: bom a 10: mau, veja <a href=":route"> Ranking de Zeta </a> para detalhes)',
+    'zeta_missing' => 'Zeta desaparecido.',
+    'omega_missing' => 'Omega em falta.',
+    'urgent' => 'Verifique imediatamente.',
+  ),
+);

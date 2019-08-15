@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
   'description' => 'Guild Management System (GMS) for SWGoH. Guild rules, game info, tools and data reports to analyse toons and squad progress.',
   'disclaimer' => 'Not affiliated with EA, Capital Games, Disney, Lucasfilm or the like.',
   'disclaimer_community' => 'Recommendations for players by players. No warranties!',
@@ -12,22 +12,37 @@ return array (
   'last_modified_by' => 'Last modified by :name',
   'report_any_issues' => 'Please report any issues.',
   'you_registered_on' => 'You registered on page :url.',
-  'info' => 
-  array (
-    'guilds' => 'Guild pages are public. Registration is not required for guild members or interested parties to get yourself informed.',
+  'info' =>
+  array(
+    'guilds' => 'Guild pages are public (as long as you know the guild link). Registration is not required for guild members or interested parties to get yourself informed.',
     'guilds-test' => 'There is a Test Guild that allows leaders and officers to familiarize with content creation without messing up own official guild pages.',
     'threads' => 'There is a global (unrelated to guild pages) forum section. Posts are public. It allows any registered user to ask or answer questions.',
     'pages' => 'Registered users who received additional permissions (leader or officer) are able to create, modify and delete guild-specific pages.',
     'tools' => 'There are tools to analyse the roster and squad states of guild members. It makes use of great game data interfaces provided by the like of swgoh.gg or swgoh.help. It is WIP. Guild specific syncs require proper user/guild setup. Call admin for assistance.',
   ),
-  'howto' => 
-  array (
+  'howto' =>
+  array(
+    'direct_link' => 'Direct link. Use this to bookmark or share the current selection.',
+    'direct_link++gear' => 'Use the variant 1, if you only want to save/share character names. Gear tiers will be computed automatically for the selected allycode. Use variant 2, if you want to save/overwrite specific gear tiers and/or equipped slots.',
     'click_head' => 'Click on a table head to make the table sortable and searchable.',
     'new_tab' => 'Links open within the same window by default. To open a link within a new tab please refer to your browser\'s functionality.
             E.g. click the middle mouse button/scroll wheel, left mouse click holding the ctrl key, right mouse click (menu) + open in new tab.',
+    'find_guild' => 'Where is my guild page?<br />Guild pages are created as soon as one player registers on this website with an allycode belonging to that guild. This is done as background job so give the server a few minutes (10 should do) to catch up. There is no global search for existing guilds (intentional). Best bookmark it for later use if someone sent it to you. It should look like <code>:url</code>.',
+    'find_player' => 'Where is my player page?<br />If someone (you or any other person, it doesn\'t matter) registered your guild, player pages for all guild members are automatically available. All you need is your allycode to build the link. It should look like: <code>:url</code>. If you enter your allycode the system automatically switches to that player\'s guild as well.',
   ),
-  'stats' => 
-  array (
+  'legend' =>
+  array(
+    'gear_total' => 'Any gear required by all characters available in the game.',
+    'gear_done' => 'Gear already equipped.',
+    'gear_todo' => 'All gear yet to be equipped by the selected player in the future.',
+    'gear_next' => 'Preview on gear needed for the next (yet) locked tier of available characters.',
+    'gear_now' => 'Gear currently needed by all characters of the selected player.',
+    'gear_tier' => 'Minimum gear tier for which this piece is available.',
+    'gear_lvl' => 'Minimum character level needed to equip this piece.',
+    'gear_cost' => 'Additional crafting costs (credits). Only available for salvage. Equipping fully crafted gear is always free of charge.',
+  ),
+  'stats' =>
+  array(
     'equal_damage' => 'If multiple players account for the same amount of damage ranking is set by RNG.',
     'requirements' => 'The character strength needed to complete :name is estimated at <strong>:rarity stars</strong>,
             <strong>level :level</strong> and <strong>gear :gear</strong>.',
@@ -54,13 +69,13 @@ return array (
     'sith_health' => 'Estimated boss health: <strong>:health</strong>.',
     'sith_undefined' => 'There are no specific team proposals for this phase.',
   ),
-  'user' => 
-  array (
+  'user' =>
+  array(
     'no_activities' => 'There is no activity for this user yet.',
     'reply_favorited_by' => ':name favorited a reply.',
   ),
-  'check' => 
-  array (
+  'check' =>
+  array(
     'unit_is_leader' => 'The unit in the leader slot is a leader (:skill).',
     'unit_is_leader_fail' => 'The unit in the leader slot is not a leader. Oops!?',
     'level_is_max' => ' The unit is at max level (:level/:max).',

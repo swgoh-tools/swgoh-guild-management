@@ -24,6 +24,8 @@ return array (
     'click_head' => 'Beim Klick auf den Spaltenkopf einer Tabelle wird diese sortierbar und durchsuchbar.',
     'new_tab' => 'Die Links öffenen standardmäßig im gleichen Fenster. Wer einen neuen Tab öffen möchte, kann die Standardfunktionen des Browsers nutzen.
             Z.B. Klick mit der mittleren Maustaste/Mausrad, Klick mit der linken Maustaste bei gedrückter STRG-Taste, Rechtsklick + in neuem Tab öffnen.',
+    'find_guild' => 'Wo ist meine Gildeseite? <br /> Gildeseiten werden erstellt, sobald sich ein Spieler mit einem zu dieser Gilde gehörenden Allycode auf dieser Website registriert. Dies wird als Hintergrundjob ausgeführt. Gib dem Server daher ein paar Minuten (10 sollten reichen), um das Problem zu beheben. Es gibt keine globale Suche nach bestehenden Gilden (absichtlich). Am besten Lesezeichen für die spätere Verwendung speichern, wenn du einen Link erhalten hast. Das sollte wie folgt aussehen: <code>:url</code>.',
+    'find_player' => 'Wo ist meine Spielerseite? <br /> Wenn jemand (Du oder eine andere Person, es spielt keine Rolle) eine Gilde registriert hat, sind Spielerseiten für alle Gildenmitglieder automatisch verfügbar. Alles was Du brauchst, ist der Allycode, um den Link zu erstellen. Er sollte so aussehen: <code>:url</code>. Wenn du deinen Allycode eingibst, wechselt das System automatisch auch zur Gilde dieses Spielers.',
   ),
   'stats' => 
   array (
@@ -92,4 +94,15 @@ return array (
     'urgent' => 'Sofort prüfen.',
   ),
   'disclaimer' => 'Nicht verbunden mit EA, Capital Games, Disney, Lucasfilm etc.',
+  'legend' => 
+  array (
+    'gear_total' => 'Sämtliche Ausrüstung, die von allen im Spiel verfügbaren Charakteren benötigt wird.',
+    'gear_done' => 'Bereits angelegte Ausrüstung.',
+    'gear_todo' => 'Sämtliche Ausrüstung, die vom aktuellen Spieler in Zukunft noch benötigt wird..',
+    'gear_next' => 'Vorschau der Ausrüstung, die für die nächste (noch) gesperrte Stufe eines Charakters benötigt wird.',
+    'gear_now' => 'Ausrüstung, die derzeit von allen Charakteren des ausgewählten Spielers benötigt wird.',
+    'gear_tier' => 'Die Mindestausrüstungsstufe auf der dieses Teil vorkommt.',
+    'gear_lvl' => 'Minimale Charakterstufe, um dieses Teil anzulegen.',
+    'gear_cost' => 'Zusätzliche Herstellungskosten (Credits). Nur zur Verwertung von Einzelteilen verfügbar. Das Anlegen fertiger Ausrüstung ist immer kostenlos.',
+  ),
 );

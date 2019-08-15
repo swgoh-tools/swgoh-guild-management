@@ -26,11 +26,11 @@ class CheckForLanguage
      */
     public function handle($request, Closure $next)
     {
-        $this->languages = config('app.locales', []);
+        $this->languages = array_flip(config('app.locales', []));
 
         if ($request->has('lang')) {
             $lang = $request->input('lang');
-            if (\in_array($lang, $this->languages)) {
+            if (in_array($lang, $this->languages)) {
                 Session::put('locale', $lang);
             }
             unset($request['lang']);

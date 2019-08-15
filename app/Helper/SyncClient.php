@@ -147,12 +147,68 @@ class SyncClient
         }
     }
 
+    public static function getGgShips()
+    {
+        $filename = 'swgoh.gg/ships/ships.json';
+        if (Storage::disk('sync')->exists($filename)) {
+            return json_decode(Storage::disk('sync')->get($filename), true);
+        }
+    }
+
+    public static function getGgAbilities()
+    {
+        $filename = 'swgoh.gg/abilities/abilities.json';
+        if (Storage::disk('sync')->exists($filename)) {
+            return json_decode(Storage::disk('sync')->get($filename), true);
+        }
+    }
+
+    public static function getGgCharsWithKey()
+    {
+        $chars = SyncClient::getGgChars();
+
+        $chars_with_key = [];
+
+        foreach ($chars as $key => $char) {
+            $chars_with_key[$char['base_id']] = $char;
+        }
+
+        return $chars_with_key;
+    }
+
     public static function getGgGear()
     {
         $filename = 'swgoh.gg/gear/gear.json';
         if (Storage::disk('sync')->exists($filename)) {
             return json_decode(Storage::disk('sync')->get($filename), true);
         }
+    }
+
+    public static function getGgGearWithKey()
+    {
+        $gear = SyncClient::getGgGear();
+        $gear_with_key = [];
+        foreach ($gear as $key => $value) {
+            $gear_with_key[$value['base_id']] = $value;
+        }
+        foreach ($gear as $key => $value) {
+            $gear_with_key[$value['base_id']]['mat_list'] = SyncClient::getGearIngredients($value, $gear_with_key);
+        }
+
+        return $gear_with_key;
+    }
+
+    public static function getGearIngredients($gear_item, &$gear_list, &$mat_list = [], $amount = 1)
+    {
+        if ($gear_item['ingredients'] ?? []) {
+            foreach ($gear_item['ingredients'] as $mat) {
+                SyncClient::getGearIngredients($gear_list[$mat['gear']], $gear_list, $mat_list, $amount * $mat['amount']);
+            }
+        } else {
+            $mat_list[$gear_item['base_id']] = $amount + ($mat_list[$gear_item['base_id']] ?? 0);
+        }
+
+        return $mat_list;
     }
 
     /**
@@ -1217,16 +1273,6 @@ class SyncClient
         return $this->syncData($source, $dir, $file, $ext, $threshold);
     }
 
-    // public function syncGgGuildUnitsLegacy($swgoh_guild_id)
-    // {
-    //     $source = config('swgoh.API.SWGOH_GG.SERVER')."/guilds/$swgoh_guild_id/units/";
-    //     $dir = "swgoh.gg/guilds/$swgoh_guild_id/units/";
-    //     $file = 'units';
-    //     $ext = 'json';
-    //     $threshold = 60 * 60 * 6;
-    //     return $this->syncData($source, $dir, $file, $ext, $threshold);
-    // }
-
     public function syncGgToons()
     {
         $source = config('swgoh.API.SWGOH_GG.SERVER').'/characters/';
@@ -1327,8 +1373,13 @@ class SyncClient
             Storage::disk('sync')->put($filename_retry, ''); // continue but log time of request
 
             try {
-                // $data = file_get_contents($source, false, $context);
-                $data_stream = fopen($source, 'r', false, $context);
+                // $data = file_get_contents($source, false, $context); // use stream instead, performance reasons
+
+                // BUG WARNING: https://bugs.php.net/bug.php?id=74719
+                // $context param throws error for NULL, even as it's optional
+                // $data_stream = fopen($source, 'r', false, $context); //bugged
+                $data_stream = ($context) ? fopen($source, 'r', false, $context) : fopen($source, 'r', false);
+
                 // $stream = $fs->readStream($source);
                 // $fs->writeStream($path, $stream);
                 if (false !== $data_stream) {

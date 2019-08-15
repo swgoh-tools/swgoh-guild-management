@@ -39,6 +39,8 @@
                     <p>{{ __('app.info.tools') }}</p>
                     <p>{{ __('Guilds registered:') }} {{ count($guilds ?? []) }}</p>
                     <p>{{ __('Current Selection') }}: {{ $page_guild_name ?? '-' }}</p>
+                    <p>{!! __('app.howto.find_guild', ['url' => route('guild.home', $page_guild ?? config('swgoh.GUILD_DEFAULT_ID'))]) !!}</p>
+                    <p>{!! __('app.howto.find_player', ['url' => route('player.home', auth()->user()->code ?? config('swgoh.PLAYER_ALLYCODE'))]) !!}</p>
                     @role('admin')
                     <div>@forelse($guilds ?? [] as $guild) <a class="link-item mr-3" href="{{ route('guild.home', $guild) }}">{{ $guild->name }}</a> @empty {{ __('None') }} @endforelse</div>
                     @endrole

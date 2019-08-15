@@ -4,9 +4,9 @@
         <small>{{ config('app.version') ? ' v'.config('app.version') : '' }}</small>
         <small>
             (
-            @foreach(config('app.locales', []) as $langValue)
+            @foreach(config('app.locales', []) as $langKey => $langValue)
             @if(!$loop->first) | @endif
-            <a class="text-lowercase" href="{{ url()->current() }}?lang={{ $langValue }}">{{ ($page_locale ?? config('app.locale')) == $langValue ? " .:$langValue:. " : $langValue }}</a>
+            <a class="text-lowercase" href="{{ url()->current() }}?lang={{ $langKey }}">{{ ($page_locale ?? config('app.locale')) == $langKey ? " .:$langValue:. " : $langValue }}</a>
             @endforeach
             )
             {{ '>> '.$page_guild_name ?? '' }}

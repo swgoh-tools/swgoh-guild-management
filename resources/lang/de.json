@@ -211,5 +211,22 @@
     "swgoh.help": "swgoh.help",
     "user": "Benutzer",
     "Chat": "Chat",
-    "Current Selection": "Aktuelle Auswahl"
+    "Current Selection": "Aktuelle Auswahl",
+    "Big Data!": "Umfangreich!",
+    "Cost": "Kosten",
+    "Example": "Beispiel",
+    "Gear Stats": "Ausrüstungs-Statistik",
+    "Id": "Id",
+    "Ingredients": "Bauteile",
+    "Lvl": "Lvl",
+    "Mark": "Mark",
+    "Member Stats": "Mitglieder-Statistik",
+    "Progress": "Fortschritt",
+    "Salvage Stats": "Bauteile-Statistik",
+    "Tier": "Stufe",
+    "done": "erledigt",
+    "next": "danach",
+    "now": "jetzt",
+    "todo": "offen",
+    "total": "gesamt"
 }

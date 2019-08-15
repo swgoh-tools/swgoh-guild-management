@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
   'description' => 'Sistema di gestione della gilda (GMS) per SWGoH. Regole della gilda, informazioni sui giochi, strumenti e rapporti sui dati per analizzare i progressi di personaggi e squadre.',
   'disclaimer' => 'Non affiliato con EA, Capital Games, Disney, Lucasfilm o simili.',
   'disclaimer_community' => 'Consigli per i giocatori da parte dei giocatori. Nessuna garanzia!',
@@ -12,22 +12,24 @@ return array (
   'last_modified_by' => 'Ultima modifica di :name',
   'report_any_issues' => 'Si prega di segnalare eventuali problemi.',
   'you_registered_on' => 'Ti sei registrato alla pagina :url.',
-  'info' => 
-  array (
+  'info' =>
+  array(
     'guilds' => 'Le pagine della gilda sono pubbliche. La registrazione non è richiesta per i membri della gilda o le parti interessate per informarsi.',
     'guilds-test' => 'Esiste una Gilda di test che consente a dirigenti e ufficiali di familiarizzare con la creazione di contenuti senza incasinare le proprie pagine di gilda ufficiali.',
     'threads' => 'C\'è una sezione del forum globale (non correlata alle pagine di gilda). I post sono pubblici. Permette a qualsiasi utente registrato di chiedere o rispondere a domande.',
     'pages' => 'Gli utenti registrati che hanno ricevuto ulteriori permessi (leader o ufficiale) sono in grado di creare, modificare ed eliminare pagine specifiche della gilda.',
     'tools' => 'Ci sono strumenti per analizzare gli stati dei personaggi e delle squadre dei membri della gilda. Fa uso di grandi interfacce dati di gioco fornite da simili di swgoh.gg o swgoh.help. È WIP. Le sincronizzazioni specifiche della gilda richiedono una corretta configurazione utente/gilda. Chiama l\'amministratore per assistenza.',
   ),
-  'howto' => 
-  array (
+  'howto' =>
+  array(
     'click_head' => 'Fare clic sull\'intestazione della tabella per rendere la tabella ordinabile e ricercabile.',
     'new_tab' => 'I collegamenti si aprono all\'interno della stessa finestra per impostazione predefinita. Per aprire un collegamento in una nuova scheda, fare riferimento alle funzionalità del browser.
             Es. fare clic sul pulsante centrale del mouse/ruota di scorrimento, fare clic con il tasto sinistro del mouse tenendo premuto il tasto Ctrl, fare clic con il pulsante destro del mouse (menu) + aprire in una nuova scheda.',
+    'find_guild' => 'Dov\'è la mia pagina di gilda? <br /> Le pagine di gilda vengono create non appena un giocatore si registra su questo sito Web con un codice alleato appartenente a quella gilda. Questo viene fatto come processo in background, quindi concedi al server alcuni minuti (10 dovrebbero fare) per recuperare. Non esiste una ricerca globale di corporazioni esistenti (intenzionale). È preferibile aggiungerlo ai segnalibri per un utilizzo successivo se qualcuno te lo ha inviato. Dovrebbe apparire come <code>:url</code>.',
+    'find_player' => 'Dov\'è la mia pagina giocatore? <br /> Se qualcuno (tu o qualsiasi altra persona, non importa) ha registrato la tua gilda, le pagine dei giocatori per tutti i membri della gilda sono automaticamente disponibili. Tutto ciò che serve è il tuo codice alleato per creare il link. Dovrebbe apparire come: <code>:url</code>. Se inserisci il tuo codice alleato, il sistema passa automaticamente anche alla gilda di quel giocatore.',
   ),
-  'stats' => 
-  array (
+  'stats' =>
+  array(
     'equal_damage' => 'Se più giocatori hanno la stessa quantità di danno, la classifica viene impostata RNG.',
     'requirements' => 'La forza del personaggio per completare :name è stimata in <strong>:rarity stelle</strong>,
             <strong>livello :level</strong> e <strong>gear :gear</strong>.',
@@ -54,13 +56,13 @@ return array (
     'sith_health' => 'Vita del boss stimata: <strong>:health</strong>.',
     'sith_undefined' => 'Non ci sono team specifici per questa fase.',
   ),
-  'user' => 
-  array (
+  'user' =>
+  array(
     'no_activities' => 'Non ci sono attività per questo utente.',
     'reply_favorited_by' => ':name Inerito tra i favoriti.',
   ),
-  'check' => 
-  array (
+  'check' =>
+  array(
     'unit_is_leader' => 'L\'unità nello slot leader è un leader (:skill).',
     'unit_is_leader_fail' => 'L\'unità nello slot leader non è un leader. Oops!?',
     'level_is_max' => ' L\'unità è al livello massimo (:level/:max).',
@@ -85,10 +87,21 @@ return array (
     'skill_is_max_contract' => 'Contratto di <em>:name</em> è al massimo (:skill).',
     'skill_is_max_hardware' => 'Rinforzo <em>:name</em> + al massimo (:skill).',
     'skill_is_max_hardware_ignore' => 'Abilità <em>:name</em> è una capacità di rinforzo e quindi non rilevante. Tier :skill.',
-    'skill_is_max_leader_ignore' => 'Abilità <em>:name</em> è un\'abilità leader e quindi non rilevante. Livello: abilità.',
+    'skill_is_max_leader_ignore' => 'Abilità <em>:name</em> è un\'abilità leader e quindi non rilevante. Livello :skill.',
     'zeta_ranking' => 'Zeta Rank: :zeta (1:buono da 10:bad, vedi <a href=":route">Zeta Ranking</a> per i dettagli)',
     'zeta_missing' => 'Zeta mancata.',
     'omega_missing' => 'Omega mancante.',
     'urgent' => 'Verifica immediatamente.',
+  ),
+  'legend' =>
+  array(
+    'gear_total' => 'Qualsiasi equipaggiamento richiesto da tutti i personaggi disponibili nel gioco.',
+    'gear_done' => 'Equipaggiamento già equipaggiato.',
+    'gear_todo' => 'Tutti gli equipaggiamenti devono ancora essere equipaggiati dal giocatore selezionato in futuro.',
+    'gear_next' => 'Anteprima degli attrezzi necessari per il prossimo (ancora) livello bloccato di personaggi disponibili.',
+    'gear_now' => 'Equipaggiamento attualmente necessario per tutti i personaggi del giocatore selezionato.',
+    'gear_tier' => 'Livello minimo di ingranaggi per cui questo pezzo è disponibile.',
+    'gear_lvl' => 'Livello minimo del personaggio necessario per equipaggiare questo pezzo.',
+    'gear_cost' => 'Costi di fabbricazione aggiuntivi (crediti). Disponibile solo per il salvataggio. L\'equipaggiamento completo è sempre gratuito.',
   ),
 );

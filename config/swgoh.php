@@ -26,6 +26,8 @@ return [
         'EA_FORUM_NAME' => env('CONTACT_EA_FORUM_NAME', ''),
         'ISSUES_URL' => env('CONTACT_ISSUES_URL', ''),
     ],
+
+    'PLAYER_ALLYCODE' => env('PLAYER_ALLYCODE'),
     'GUILD_DEFAULT_ID' => env('GUILD_DEFAULT_ID', ''),
     'GUILD_TEST_ID' => env('GUILD_TEST_ID', ''),
     'DATA_FILE_EXT' => 'json',
@@ -69,7 +71,8 @@ return [
                 'it' => 'ITA_IT',
                 'jp' => 'JPN_JP',
                 'kr' => 'KOR_KR',
-                'br' => 'POR_BR',
+                'pt' => 'POR_BR',
+                'pt-BR' => 'POR_BR',
                 'ru' => 'RUS_RU',
                 'xm' => 'SPA_XM',
                 'th' => 'THA_TH',
@@ -77,8 +80,4 @@ return [
             ]
         ],
     ],
-
-    'SWGOH_GUILD_ID' => env('SWGOH_GUILD_ID'),
-    'PLAYER_ALLYCODE' => env('PLAYER_ALLYCODE'),
-
 ];

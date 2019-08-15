@@ -13,6 +13,6 @@ return array (
     'password-change' => 'Only fill out if you want to change your password. Leave empty otherwise.',
     'roles' => 'Roles for additional access. Assignment restricted to admins.',
     'permissions' => 'Additional direct permissions. Assignment restricted to admins.',
-    'guild-missing' => 'Guild not found. Check with admins.',
+    'guild-missing' => 'Guild not found. If the guild does not appear after 10 minuts from confirming your mail address, please contact an admin.',
   ),
 );

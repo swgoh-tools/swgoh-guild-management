@@ -12,8 +12,18 @@ declare(strict_types=1);
  * | contains the "web" middleware group. Now create something great!
  * |.
  */
+use App\User;
+use App\Helper\SyncClient;
 use Illuminate\Mail\Markdown;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
+use App\Http\Controllers\Dev\AssetController;
+use App\Http\Controllers\Permissions\PostController;
+use App\Http\Controllers\Permissions\RoleController;
+use App\Http\Controllers\Permissions\UserController;
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index');
@@ -124,9 +134,13 @@ Route::prefix('p')->group(function (): void {
     Route::get('/', 'PagesController@home')->name('player');
     Route::get('{player}', 'PlayerController@home')->name('player.home');
     Route::get('{player}/roster', 'PlayerController@roster')->name('player.roster');
+    Route::get('{player}/toons', 'PlayerController@toons')->name('player.toons');
     Route::get('{player}/gear', 'PlayerController@gear')->name('player.gear');
+    Route::post('{player}/gear', 'PlayerController@gear');
     Route::get('{player}/stats', 'PlayerController@stats')->name('player.stats');
     Route::get('{player}/stats/full', 'PlayerController@statsVerbose')->name('player.stats.full');
+    Route::get('{player}/stats/gear', 'PlayerController@statsGear')->name('player.stats.gear');
+    Route::get('{player}/stats/salvage', 'PlayerController@statsSalvage')->name('player.stats.salvage');
 });
 Route::get('/list/targeting', 'ListController@targeting')->name('targeting');
 Route::get('/list/zetas', 'ListController@zetas')->name('zetas');
@@ -172,17 +186,48 @@ Route::prefix('f')->group(function (): void {
     })->where('filename', '(.*)\\.json')->name('files.sync');
 });
 
+// Route::get('game-asset/{category}/{item}', function (string $category, string $item) {
+//     $filename = "game-asset/$category/$item.png";
+//     $source = "https://swgoh.gg/game-asset/$category/$item";
+//     if (Storage::disk('public')->exists($filename)) {
+//         return Storage::disk('public')->get($filename);
+//         return response()->file(Storage::disk('public')->path($filename));
+//     }
+//     $data_stream = fopen($source, 'r', false);
+//     if (false !== $data_stream) {
+//         // always save original response for debugging api errors
+//         Storage::disk('public')->putStream($filename, $data_stream);
+//         if (is_resource($data_stream)) {
+//             fclose($data_stream);
+//         }
+//     }
+//     if (Storage::disk('public')->exists($filename)) {
+//         return Storage::disk('public')->download($filename);
+//         return response()->file(Storage::disk('public')->path($filename));
+//     }
+//     abort(404);
+//     return redirect($source);
+// });
+
 Route::group(
     [
         'prefix' => 'admin',
         // 'name' => 'permissions.',
-        'namespace' => 'Permissions',
+        // 'namespace' => 'Permissions',
         'middleware' => ['auth'], //fine grained access done via authorizable trait on controllers
     ],
     function (): void {
-        Route::resource('users', 'UserController', ['as' => 'admin']);
-        Route::resource('roles', 'RoleController', ['as' => 'admin']);
-        Route::resource('posts', 'PostController', ['as' => 'admin']);
+        Route::namespace('Permissions')->group(function (): void {
+            Route::resource('users', UserController::class, ['as' => 'admin']);
+            Route::resource('roles', RoleController::class, ['as' => 'admin']);
+            Route::resource('posts', PostController::class, ['as' => 'admin']);
+        });
+        Route::namespace('Dev')->group(function (): void {
+            Route::get('gear', [AssetController::class, 'checkTexturesGear']);
+            Route::get('unit', [AssetController::class, 'checkTexturesUnit']);
+            Route::get('ship', [AssetController::class, 'checkTexturesShip']);
+            Route::get('ability', [AssetController::class, 'checkTexturesAbility']);
+        });
     }
 );
 

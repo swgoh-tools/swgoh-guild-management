@@ -13,6 +13,6 @@ return array (
     'password-change' => 'Das Feld nur ausfüllen, wenn das Passwort geändert werden soll. Sonst leer lassen.',
     'roles' => 'Gruppen für spezielle Zugriffe. Vergabe erfolgt durch Admins.',
     'permissions' => 'Zusätzliche Direktberechtigungen. Vergabe erfolgt durch Admins.',
-    'guild-missing' => 'Gilde nicht gefunden. Admin kontaktieren.',
+    'guild-missing' => 'Gilde nicht gefunden. Admin kontaktieren, falls die Gilde 10 Minuten nach der Bestätigung der E-Mail-Adresse nicht verfügbar ist.',
   ),
 );

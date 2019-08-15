@@ -48,73 +48,253 @@ class PlayerController extends Controller
         ]);
     }
 
+    /**
+     * Display guild home page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function toons($player)
+    {
+        $info = SyncClient::getPlayer($player);
+        $unitStatKeys = SyncClient::getUnitStatKeys();
+        $gear =SyncClient::getGgGearWithKey();
+        $chars = SyncClient::getGgCharsWithKey();
+
+        return view('player.toons', [
+            'info' => $info[0] ?? [],
+            'unitStatKeys' => $unitStatKeys ?? [],
+            'chars' => $chars ?? [],
+            'gear' => $gear ?? [],
+        ]);
+    }
+
     // public function gearPullImages()
     // {
     //     $gear = SyncClient::getGgGear();
     //     // //swgoh.gg/static/img/ui/gear-atlas.png
     // }
 
-    private function getGearIngredients($gear_item, &$gear_list, &$mat_list = [], $amount = 1)
-    {
-        if ($gear_item['ingredients'] ?? []) {
-            foreach ($gear_item['ingredients'] as $mat) {
-                $this->getGearIngredients($gear_list[$mat['gear']], $gear_list, $mat_list, $amount * $mat['amount']);
-            }
-        } else {
-            $mat_list[$gear_item['base_id']] = $amount + ($mat_list[$gear_item['base_id']] ?? 0);
-        }
-
-        return $mat_list;
-    }
-
     public function gear(Request $request, $player)
     {
+        $unitKeys = SyncClient::getUnitKeys();
         $info = SyncClient::getPlayer($player);
         $chars = SyncClient::getGgChars();
-        $gear = SyncClient::getGgGear();
-        $gear_with_key = [];
-        foreach ($gear as $key => $value) {
-            $gear_with_key[$value['base_id']] = $value;
-        }
-        foreach ($gear as $key => $value) {
-            $gear_with_key[$value['base_id']]['mat_list'] = $this->getGearIngredients($value, $gear_with_key);
-        }
+
+        $gear = SyncClient::getGgGearWithKey();
 
         if ($request->input('t')) {
             $char_list = explode(',', $request->input('t'));
         } else {
             $char_list = [
+                $request->input('t0'),
+                $request->input('t1'),
+                $request->input('t2'),
+                $request->input('t3'),
+                $request->input('t4'),
+            ];
+        }
+
+        $sort = 'gp';
+        $result = [];
+
+        foreach ($char_list as $key => $char) {
+            if (empty($char)) {
+                unset($char_list[$key]);
+            }
+        }
+
+        $char_list_sample = [
                 'PAPLOO:11',
                 'LOGRAY:9:4-6',
                 'EWOKELDER:10:3-4-5-6',
                 'CHIEFCHIRPA:8:1-4',
                 'WICKET:9:2-3-4-5',
             ];
-        }
 
-        $char_list_plain = [];
+        $char_list_nested = [];
         foreach ($char_list as $key => $value) {
-            $parts = \explode(':', $value);
-            $char_list_plain[$parts[0]] = [
-                'tier' => $parts[1] ?? 0,
-                'gear' => preg_split('/[^\d]/', $parts[2] ?? '', -1, PREG_SPLIT_NO_EMPTY),
+            $parts = explode(':', $value);
+            $cur_unit = $parts[0];
+            $cur_tier = $parts[1] ?? 0;
+            $cur_gear = $parts[2] ?? '';
+            $char_list_nested[$cur_unit] = [
+                'tier' => $cur_tier,
+                'gear' => preg_split('/[^\d]/', $cur_gear, -1, PREG_SPLIT_NO_EMPTY),
+                'key' => $key,
             ];
 
-            // $char_list_plain[] = \explode(':', $value)[0];
+            // $char_list_nested[] = \explode(':', $value)[0];
         }
 
-            // return \in_array($v['base_id'], $char_list_plain);
-        $result = array_filter($chars, function ($v) use ($char_list_plain) {
-            return isset($char_list_plain[$v['base_id']]);
+        // return \in_array($v['base_id'], $char_list_nested);
+        $roster_selection = array_filter($info[0]['roster'] ?? [], function ($entry) use ($char_list_nested) {
+            return isset($char_list_nested[$entry['defId']]);
         });
 
+        // if no tier information were given by the user / request,
+        // read the current gear stats from the players roster.
+        foreach ($roster_selection as $key => $unit) {
+            if (0 === ($char_list_nested[$unit['defId']]['tier'] ?? null)) {
+                $char_list_nested[$unit['defId']]['tier'] = $unit['gear'];
+                $char_list_nested[$unit['defId']]['gear'] = array_map(function ($entry) {
+                    return $entry + 1;
+                }, array_column($unit['equipped'], 'slot'));
+            }
+        }
+
+        // create new flat char list to reflect the (possibly updated) nested version
+        $char_list_flat = [];
+        foreach ($char_list_nested as $key => $value) {
+            $cur_unit = $key;
+            $cur_tier = ($value['tier'] ?? 0) ? $value['tier'] : null ;
+            $cur_gear = implode("-", $value['gear'] ?? null);
+            $char_list_flat[] = rtrim(implode(":", [$cur_unit, $cur_tier, $cur_gear]), ":");
+        }
+
+        // // return \in_array($v['base_id'], $char_list_nested);
+        // $result = array_filter($chars, function ($v) use ($char_list_nested) {
+        //     return isset($char_list_nested[$v['base_id']]);
+        // });
+
         return view('player.gear', [
+            'unitKeys' =>$unitKeys ?? [],
             'info' => $info[0] ?? [],
-            'char_list' => $char_list_plain,
-            'chars' => $result ?? [],
-            'gear' => $gear_with_key ?? [],
+            'char_list_flat' => $char_list_flat,
+            'char_list_nested' => $char_list_nested,
+            'char_list_sample' => $char_list_sample,
+            'chars' => $chars ?? [],
+            'gear' => $gear ?? [],
+            'player' => $player,
         ]);
     }
+
+    public function statsGear(Request $request, $player)
+    {
+        return $this->gearStats($request, $player, 'gear');
+    }
+
+    public function statsSalvage(Request $request, $player)
+    {
+        return $this->gearStats($request, $player, 'salvage');
+    }
+
+    protected function gearStats(Request $request, $player, $output_type)
+    {
+        $unitKeys = SyncClient::getUnitKeys();
+        $info = SyncClient::getPlayer($player);
+        $chars = SyncClient::getGgChars();
+
+        $gear = SyncClient::getGgGearWithKey();
+
+        $roster_selection = $info[0]['roster'] ?? [];
+
+        $char_list = [];
+        if ($request->input('t')) {
+            $char_list = explode(',', $request->input('t'));
+            $char_list = array_flip($char_list);
+            $roster_selection = array_filter($roster_selection, function ($entry) use ($char_list) {
+                return isset($char_list[$entry['defId']]);
+            });
+        }
+
+
+        $char_list_nested = [];
+        foreach ($roster_selection as $key => $unit) {
+            $char_list_nested[$unit['defId']]['level'] = $unit['gear'];
+            $char_list_nested[$unit['defId']]['slotsIdx1'] = array_map(function ($entry) {
+                return $entry + 1;
+            }, array_column($unit['equipped'], 'slot'));
+        }
+
+        $gear_stats = [];
+        $mat_stats = [];
+        foreach ($chars as $char_key => $char) {
+            // iterate through full char list
+            // but skip if custom chars were requested
+            if ($char_list && ! isset($char_list[$char['base_id']])) {
+                continue;
+            }
+            foreach ($char['gear_levels'] as $gear_level_key => $gear_level) {
+                // check gear on all levels
+                foreach ($gear_level['gear'] as $slot => $mat) {
+                    $this->addGearStat($gear_stats, $mat_stats, $gear[$mat]['mat_list'] ?? [], $mat, $gear_level['tier'], $slot + 1, $char_list_nested[$char['base_id']]['level'] ?? 0, $char_list_nested[$char['base_id']]['slotsIdx1'] ?? []);
+                }
+            }
+        }
+
+        $columns = [
+            'total', 'done', 'todo', 'now', 'next'
+        ];
+
+        return view('player.gear-stats', [
+            'columns' => $columns,
+            'unitKeys' =>$unitKeys ?? [],
+            'info' => $info[0] ?? [],
+            'char_list_nested' => $char_list_nested,
+            'chars' => $chars ?? [],
+            'gear' => $gear ?? [],
+            'gear_stats' => ($output_type == 'salvage') ? $mat_stats : $gear_stats,
+            'player' => $player,
+        ]);
+    }
+
+    protected function addGearStat(&$stats, &$mat_stats, $mat_list, $key, $level, $slot, $level_player, $slots_player)
+    {
+        // save totals
+        $this->addGearStatEntry($stats, 'SUM', $level, 'total'); // overall
+        $this->addGearStatEntry($stats, $key, $level, 'total'); // per gear
+
+        foreach ($mat_list as $mat => $amount) {
+            $this->addGearStatEntry($mat_stats, 'SUM', $level, 'total', $amount); // overall
+            $this->addGearStatEntry($mat_stats, $mat, $level, 'total', $amount); // per gear
+        }
+
+        if (! is_numeric($level_player)) {
+            $level_player = 0;
+        }
+        $level_gap = $level_player - $level;
+
+        $targets = [];
+        if ($level_gap > 0) {
+            // player unit has better gear tier
+            $targets[] = 'done';
+        } elseif ($level_gap == 0 && in_array($slot, $slots_player)) {
+            // player unit has this piece equipped
+            $targets[] = 'done';
+        } else {
+            // player unit needs this gear somewhere in the future
+            $targets[] = 'todo';
+
+            if ($level_gap == 0) {
+                // player unit needs this gear NOW
+                $targets[] = 'now';
+            } elseif (0 < $level_player && $level_gap == -1) {
+                // player unit needs this gear NEXT
+                // skip if no player information (e.g. unit not unlocked)
+                $targets[] = 'next';
+            }
+        }
+
+        foreach ($targets as $target) {
+            $this->addGearStatEntry($stats, 'SUM', $level, $target);
+            $this->addGearStatEntry($stats, $key, $level, $target);
+            foreach ($mat_list as $mat => $amount) {
+                $this->addGearStatEntry($mat_stats, 'SUM', $level, $target, $amount);
+                $this->addGearStatEntry($mat_stats, $mat, $level, $target, $amount);
+            }
+        }
+    }
+
+    protected function addGearStatEntry(&$stats, $key, $level, $type, $amount = 1)
+    {
+        $old = $stats[$key][$type][$level] ?? 0;
+        $old_sub_total = $stats[$key][$type][0] ?? 0;
+
+        $stats[$key][$type][$level] = $amount + $old;
+        $stats[$key][$type][0] = $amount + $old_sub_total;
+    }
+
+
 
     public function statsVerbose($player)
     {
