@@ -142,6 +142,7 @@ class Reply extends Model
      */
     public function getBodyAttribute($body)
     {
-        return \Purify::clean($body);
+        // return \Purify::clean($body); // TODO find a better way, this one breaks trix styles
+        return $body;
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Helper\FieldFormatter;
+use Illuminate\Database\Eloquent\Model;
 
 class Revision extends Model
 {
@@ -17,7 +17,7 @@ class Revision extends Model
     /**
      * @var array
      */
-    protected $revisionFormattedFields = array();
+    protected $revisionFormattedFields = [];
 
     /**
      * Fetch the associated revisionable for the activity.
@@ -91,7 +91,7 @@ class Revision extends Model
         return false;
     }
     /**
-     * Old Value.
+ * Old Value.
      *
      * Grab the old value of the field, if it was a foreign key
      * attempt to get an identifying name for the model.
@@ -153,7 +153,7 @@ class Revision extends Model
                         return $this->format($this->field, $item->getRevisionUnknownString());
                     }
                     // Check if model use RevisionableTrait
-                    if(method_exists($item, 'identifiableName')) {
+                    if (method_exists($item, 'identifiableName')) {
                         // see if there's an available mutator
                         $mutator = 'get' . studly_case($this->field) . 'Attribute';
                         if (method_exists($item, $mutator)) {
@@ -210,7 +210,9 @@ class Revision extends Model
      */
     public function userResponsible()
     {
-        if (empty($this->user_id)) { return false; }
+        if (empty($this->user_id)) {
+            return false;
+        }
         if (class_exists($class = '\Cartalyst\Sentry\Facades\Laravel\Sentry')
             || class_exists($class = '\Cartalyst\Sentinel\Laravel\Facades\Sentinel')
         ) {

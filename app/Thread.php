@@ -2,12 +2,12 @@
 
 namespace App;
 
-use App\Events\ThreadReceivedNewReply;
-use App\Filters\ThreadFilters;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
+use App\Filters\ThreadFilters;
+use App\Events\ThreadReceivedNewReply;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Thread extends Model
 {
@@ -206,7 +206,8 @@ class Thread extends Model
      */
     public function getBodyAttribute($body)
     {
-        return \Purify::clean($body);
+        // return \Purify::clean($body); // TODO find a better way, this one breaks trix styles
+        return $body;
     }
 
     /**

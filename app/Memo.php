@@ -2,14 +2,17 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Scout\Searchable;
+
+// use Laravel\Scout\Searchable;
 
 class Memo extends Model
 {
-    use Favoritable, Lockable, RecordsActivity, Revisionable, Searchable, SoftDeletes;
+    use Favoritable, Lockable, RecordsActivity, Revisionable, SoftDeletes;
+    // Not Searchable. Algolia errors block edits to often (timeout, new terms and conditions, limits, etc)
+    // Possible Alternative: Make Scout actions all go to a dedicated job queue. That way it doesn't interfere with user experience.
 
     // protected $revisionEnabled = true;
     // protected $revisionCleanup = true; //Remove old revisions (works only when used with $historyLimit)
@@ -238,6 +241,6 @@ class Memo extends Model
             }
         }
         return $array + ['path' => $this->path()];
-    // return $this->toArray() + ['path' => $this->path()];
+        // return $this->toArray() + ['path' => $this->path()];
     }
 }

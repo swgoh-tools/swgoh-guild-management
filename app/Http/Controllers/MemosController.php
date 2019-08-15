@@ -58,7 +58,7 @@ class MemosController extends Controller
         // if ($page->locked) {
         //     return response('Page is locked', 422);
         // }
-        
+
         $memo = $page->addMemo([
             'body' => request('body'),
             'title' => request('title'),
@@ -68,7 +68,7 @@ class MemosController extends Controller
         if (request()->wantsJson()) {
             return response($memo, 201);
         }
-    
+
         return back()
             ->with('flash', 'Eintrag gespeichert!');
     }
@@ -97,19 +97,20 @@ class MemosController extends Controller
     {
         // dd(request());
         $this->authorize('edit memos', auth()->user());
-        // $this->authorize('update', $memo);
-        // die('test');
         $memo->update(request()->validate([
                 'body' => 'required|spamfree',
                 'title' => 'required|spamfree',
                 'page_id' => 'exists:pages,id'
             ]));
-        $memo->update(['user_id_current' => auth()->id()]);
-            
+
+        // $memo->update(['user_id_current' => auth()->id()]);
+        $memo->editor()->associate(auth()->user());
+        $memo->save();
+
         if (request()->wantsJson()) {
             return response($memo, 201);
         }
-    
+
         return back()
             ->with('flash', 'Eintrag aktualisiert!');
     }
@@ -141,21 +142,21 @@ class MemosController extends Controller
             return response(['Page and Memo (before) do not match!'], 450);
         }
         if ($memo->page_id <> $new_page->id) {
-			$memo->timestamps = false;
+            $memo->timestamps = false;
             $memo->page()->associate($new_page);
             $memo->save();
         }
         $max_position = $new_page->memos()->max('position');
 
         if (! $other_memo) {
-
-			$memo->timestamps = false;
+            $memo->timestamps = false;
             $memo->update(['position' => (is_int($max_position) ? $max_position + 1 : null)]);
             return response(['Memo relocated to end of ' . $new_page->title], 200);
         }
         if ($other_memo->position >= 1) {
             //exclude current memo
-            $new_neighbors = $new_page->memos()->where([
+            $new_neighbors = $new_page->memos()->where(
+                [
                 ['id', '<>', $memo->id],
                 ['position', '>=', $other_memo->position]]
             )->orderBy('position', 'asc')->get();
@@ -170,7 +171,7 @@ class MemosController extends Controller
         foreach ($new_neighbors as $current_memo) {
             if (! $reloc_done && $current_memo->id == $other_memo->id) {
                 //this is our new position
-				$memo->timestamps = false;
+                $memo->timestamps = false;
                 $memo->update(['position' => $position + 1]);
                 $position += 1;
                 $reloc_done = true;
@@ -182,7 +183,7 @@ class MemosController extends Controller
                 }
                 $position = $current_memo->position;
             } else {
-				$current_memo->timestamps = false;
+                $current_memo->timestamps = false;
                 $current_memo->update(['position' => $position + 1]);
                 $position += 1;
             }
@@ -192,8 +193,7 @@ class MemosController extends Controller
             return response(['Relocation Successfull'], 201);
         }
 
-            return response(['Something went wrong!'], 501);
-    
+        return response(['Something went wrong!'], 501);
     }
 
     /**
@@ -228,7 +228,7 @@ class MemosController extends Controller
         // $this->authorize('edit', $memo);
         $this->authorize('edit memos', auth()->user());
 
-        
+
 
         if ($memo->dolock()) {
             if (request()->expectsJson()) {
@@ -269,6 +269,5 @@ class MemosController extends Controller
         }
         return back()
         ->with('flash', 'Löschen der Sperre fehlgeschlagen!');
-
     }
 }

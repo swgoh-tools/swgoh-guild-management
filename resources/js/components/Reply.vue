@@ -26,7 +26,7 @@
                 </form>
             </div>
 
-            <div v-else v-html="body"></div>
+            <div class="trix-content" v-else v-html="body"></div>
         </div>
 
         <div class="card-footer d-flex justify-content-between" v-if="authorize('owns', reply) || authorize('owns', reply.thread)">

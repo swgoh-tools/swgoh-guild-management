@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <div class="card-body" v-html="body"></div>
+    <div class="card-body trix-content" v-html="body"></div>
 
     <div class="card-footer" v-if="authorize('owns', thread)">
         <button class="btn btn-sm btn-secondary" @click="editing = true">{{ __('Edit') }}</button>

@@ -2,7 +2,11 @@
 
 namespace App;
 
-// use App\Revision;
+use DateTime;
+use App\Revision;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Eloquent\Model;
 
 /*
@@ -20,11 +24,11 @@ trait Revisionable
     /**
      * @var array
      */
-    private $originalData = array();
+    private $originalData = [];
     /**
      * @var array
      */
-    private $updatedData = array();
+    private $updatedData = [];
     /**
      * @var boolean
      */
@@ -32,17 +36,17 @@ trait Revisionable
     /**
      * @var array
      */
-    private $dontKeep = array();
+    private $dontKeep = [];
     /**
      * @var array
      */
-    private $doKeep = array();
+    private $doKeep = [];
     /**
      * Keeps the list of values that have been updated
      *
      * @var array
      */
-    protected $dirtyData = array();
+    protected $dirtyData = [];
 
     /**
      * Create the event listeners for the saving and saved events
@@ -58,7 +62,7 @@ trait Revisionable
         static::saved(function ($model) {
             $model->postSave();
         });
-        static::created(function($model){
+        static::created(function ($model) {
             $model->postCreate();
         });
         static::deleted(function ($model) {
@@ -131,16 +135,16 @@ trait Revisionable
         } else {
             $LimitReached = false;
         }
-        if (isset($this->revisionCleanup)){
+        if (isset($this->revisionCleanup)) {
             $RevisionCleanup=$this->revisionCleanup;
-        }else{
+        } else {
             $RevisionCleanup=false;
         }
         // check if the model already exists
         if (((!isset($this->revisionEnabled) || $this->revisionEnabled) && $this->updating) && (!$LimitReached || $RevisionCleanup)) {
             // if it does, it means we're updating
             $changes_to_record = $this->changedRevisionableFields();
-            $revisions = array();
+            $revisions = [];
             foreach ($changes_to_record as $key => $change) {
                 $revisions[] = array(
                     // 'revisionable_type' => $this->getMorphClass(),
@@ -149,22 +153,22 @@ trait Revisionable
                     'old_value' => array_get($this->originalData, $key),
                     // 'new_value' => $this->updatedData[$key],
                     'user_id' => $this->getSystemUserId(),
-                    // 'created_at' => new \DateTime(),
-                    // 'updated_at' => new \DateTime(),
+                    // 'created_at' => new DateTime(),
+                    // 'updated_at' => new DateTime(),
                 );
             }
 
             if (count($revisions) > 0) {
                 $this->revisions()->createMany($revisions);
-                if($LimitReached && $RevisionCleanup){
-                    $toDelete = $this->revisions()->orderBy('id','asc')->limit(count($revisions))->get();
-                    foreach($toDelete as $delete){
+                if ($LimitReached && $RevisionCleanup) {
+                    $toDelete = $this->revisions()->orderBy('id', 'asc')->limit(count($revisions))->get();
+                    foreach ($toDelete as $delete) {
                         $delete->delete();
                     }
                 }
                 // $revision = new Revision;
-                // \DB::table($revision->getTable())->insert($revisions);
-                \Event::fire('revisionable.saved', array('model' => $this, 'revisions' => $revisions));
+                // DB::table($revision->getTable())->insert($revisions);
+                Event::dispatch('revisionable.saved', array('model' => $this, 'revisions' => $revisions));
             }
         }
     }
@@ -177,8 +181,8 @@ trait Revisionable
         // Set this value to true in your model if you want to
         // if(empty($this->revisionCreationsEnabled))
         // {
-            // We should not store creations.
-            return false;
+        // We should not store creations.
+        return false;
         // }
         // if ((!isset($this->revisionEnabled) || $this->revisionEnabled))
         // {
@@ -189,12 +193,12 @@ trait Revisionable
         //         'old_value' => null,
         //         'new_value' => $this->{self::CREATED_AT},
         //         'user_id' => $this->getSystemUserId(),
-        //         'created_at' => new \DateTime(),
-        //         'updated_at' => new \DateTime(),
+        //         'created_at' => new DateTime(),
+        //         'updated_at' => new DateTime(),
         //     );
         //     $revision = new Revision;
-        //     \DB::table($revision->getTable())->insert($revisions);
-        //     \Event::fire('revisionable.created', array('model' => $this, 'revisions' => $revisions));
+        //     DB::table($revision->getTable())->insert($revisions);
+        //     Event::dispatch('revisionable.created', array('model' => $this, 'revisions' => $revisions));
         // }
     }
     /**
@@ -213,12 +217,12 @@ trait Revisionable
             //     'old_value' => null,
             //     'new_value' => $this->{$this->getDeletedAtColumn()},
             //     'user_id' => $this->getSystemUserId(),
-            //     'created_at' => new \DateTime(),
-            //     'updated_at' => new \DateTime(),
+            //     'created_at' => new DateTime(),
+            //     'updated_at' => new DateTime(),
             // );
             // $revision = new \Venturecraft\Revisionable\Revision;
-            // \DB::table($revision->getTable())->insert($revisions);
-            // \Event::fire('revisionable.deleted', array('model' => $this, 'revisions' => $revisions));
+            // DB::table($revision->getTable())->insert($revisions);
+            // Event::dispatch('revisionable.deleted', array('model' => $this, 'revisions' => $revisions));
         }
     }
     /**
@@ -233,10 +237,10 @@ trait Revisionable
                 || class_exists($class = '\Cartalyst\Sentinel\Laravel\Facades\Sentinel')
             ) {
                 return ($class::check()) ? $class::getUser()->id : null;
-            } elseif (\Auth::check()) {
-                return \Auth::user()->getAuthIdentifier();
+            } elseif (Auth::check()) {
+                return Auth::user()->getAuthIdentifier();
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return null;
         }
         return null;
@@ -249,7 +253,7 @@ trait Revisionable
      */
     private function changedRevisionableFields()
     {
-        $changes_to_record = array();
+        $changes_to_record = [];
         foreach ($this->dirtyData as $key => $value) {
             // check that the field is revisionable, and double check
             // that it's actually new data in case dirty is, well, clean
@@ -371,7 +375,7 @@ trait Revisionable
     public function disableRevisionField($field)
     {
         if (!isset($this->dontKeepRevisionOf)) {
-            $this->dontKeepRevisionOf = array();
+            $this->dontKeepRevisionOf = [];
         }
         if (is_array($field)) {
             foreach ($field as $one_field) {

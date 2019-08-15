@@ -48,7 +48,7 @@ class FieldFormatter
      *
      * @return string
      */
-    public static function isEmpty($value, $options = array())
+    public static function isEmpty($value, $options = [])
     {
         $value_set = isset($value) && $value != '';
         return sprintf(self::boolean($value_set, $options), $value);
@@ -86,7 +86,7 @@ class FieldFormatter
         }
         return sprintf($format, $value);
     }
-    
+
     /**
      * Format the datetime
      *
@@ -98,9 +98,9 @@ class FieldFormatter
     public static function datetime($value, $format = 'Y-m-d H:i:s')
     {
         if (empty($value)) {
-            return null;    
+            return null;
         }
-        
+
         $datetime = new \DateTime($value);
         return $datetime->format($format);
     }
