@@ -1,0 +1,1091 @@
+/*
+	usage: <span class="{-spritename-} sprite"></span>
+	replace {-spritename-} with the sprite you like to use
+	Inline:     <i class="g-yourspritesname"></i>
+	Responsive: <div class="g-yourspritesname"></div>
+
+	Sprite sheet:  / gear--micro.png (102 x 1292)
+	Variant: 5
+	$TexturePacker:SmartUpdate:02f8d342f254cafa428051cc36490e51:92450a72fcc3740e4b90efd7771bab4b:0df2366756378512c92dff3068c4e8b1$
+*/
+
+.sprite-gear--micro.g-001 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-001::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-002 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-002::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-003 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-003::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-004 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-004::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-005 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-005::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-006 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-006::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-007 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-007::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-008 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-008::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-009 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-009::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-010 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-010::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-011 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-011::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-012 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-012::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-013 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-013::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-014 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-014::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-014Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-014Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -137px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-015 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-015::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-015Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-015Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -137px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-016 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-016::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-017 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-017::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-017Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-017Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -137px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-018 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-018::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-019 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-019::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-020 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-020::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-021 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-021::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-021Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-021Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-022 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-022::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-023 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-023::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-024 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-024::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-025 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-025::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-026 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-026::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-027 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-027::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-028 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-028::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-028Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-028Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-029 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-029::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-030 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-030::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-031 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-031::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-031Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-031Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -239px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-032 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-032::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-032Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-032Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -239px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-033 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-033::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-034 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-034::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -239px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-035 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-035::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-036 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-036::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-037 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-037::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-037Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-037Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -137px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-038 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-038::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-039 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-039::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-040 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-040::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-040Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-040Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -273px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-041 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-041::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-042 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-042::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-043 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-043::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-044 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-044::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-044Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-044Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -273px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-045 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-045::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-046 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-046::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-047 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-047::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-048 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-048::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -273px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-049 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-049::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-049Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-049Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -307px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-050 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-050::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-050Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-050Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -307px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-051 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-051::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-051Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-051Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -307px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-052 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-052::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-052Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-052Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -341px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-053 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-053::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-053Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-053Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -341px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-054 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-054::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-054Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-054Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -341px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-055 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-055::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-055Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-055Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -375px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-055PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-055PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -375px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-056 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-056::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-056Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-056Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -273px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-056PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-056PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -375px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-057 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-057::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -409px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-057Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-057Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -409px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-058 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-058::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -409px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-058Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-058Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -443px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-059 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-059::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-060 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-060::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -273px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-061 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-061::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-061Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-061Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -307px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-061PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-061PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -443px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-062 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-062::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-062Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-062Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -307px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-063 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-063::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-063Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-063Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-063PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-063PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -341px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-064 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-064::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-064Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-064Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -137px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-064PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-064PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -443px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-065 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-065::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-065Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-065Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -341px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-066 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-066::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-067 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-067::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-068 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-068::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-068Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-068Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-068PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-068PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -477px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-069 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-069::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -409px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-069Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-069Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -477px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-069PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-069PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -443px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-070 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-070::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-071 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-071::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -477px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-071Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-071Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -511px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-071PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-071PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -511px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-072 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-072::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -273px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-072Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-072Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -511px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-072PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-072PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -545px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-073 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-073::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-073Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-073Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -307px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-073PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-073PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -443px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-074 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-074::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-075 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-075::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-075Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-075Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-075PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-075PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -341px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-076 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-076::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-076Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-076Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -375px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-077 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-077::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-078 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-078::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -239px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-078Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-078Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -545px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-078PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-078PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -545px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-079 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-079::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-080 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-080::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -579px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-080Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-080Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -579px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-080PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-080PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -579px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-081 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-081::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -409px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-082 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-082::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-083 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-083::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -477px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-084 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-084::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -273px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-084Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-084Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -511px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-084PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-084PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -545px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-085 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-085::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-085Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-085Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -137px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-085PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-085PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -307px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-086 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-086::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-086Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-086Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -137px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-086PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-086PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -307px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-087 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-087::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-087Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-087Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -137px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-087PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-087PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -443px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-088 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-088::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-089 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-089::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-090 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-090::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-090Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-090Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -239px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-090PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-090PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -613px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-091 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-091::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-091Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-091Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -613px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-092 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-092::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-092Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-092Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -341px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-093 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-093::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-093Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-093Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-093PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-093PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -477px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-094 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-094::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-094Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-094Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -273px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-094PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-094PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -375px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-095 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-095::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-095Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-095Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -613px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-096 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-096::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-096Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-096Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -647px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-096PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-096PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -647px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-097 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-097::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-097Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-097Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -307px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-097PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-097PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -443px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-098 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-098::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-099 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-099::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-100 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-100::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-100Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-100Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -137px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-100PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-100PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -443px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-101 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-101::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-101Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-101Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -613px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-102 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-102::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -239px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-102Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-102Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -545px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-103 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-103::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -579px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-103Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-103Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -579px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-103PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-103PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -579px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-104 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-104::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-104Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-104Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-104PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-104PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -477px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-105 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-105::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -409px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-106 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-106::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -409px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-106Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-106Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -477px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-106PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-106PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -443px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-107 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-107::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-108 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-108::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -477px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-108Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-108Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -511px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-109 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-109::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-110 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-110::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-111 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-111::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-112 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-112::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-112Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-112Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -647px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-113 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-113::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-113Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-113Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -477px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-114 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-114::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-114Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-114Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -273px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-114PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-114PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -375px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-115 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-115::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -409px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-116 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-116::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -409px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-116Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-116Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -477px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-116PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-116PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -443px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-117 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-117::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-117Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-117Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -681px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-117PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-117PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -613px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-118 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-118::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-119 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-119::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -477px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-119Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-119Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -511px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-119PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-119PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -511px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-120 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-120::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -273px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-120Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-120Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -511px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-120PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-120PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -545px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-121 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-121::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-122 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-122::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-123 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-123::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-123Component {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-123Component::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -681px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-123Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-123Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -137px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-123Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-123Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -307px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-124 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-124::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-125 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-125::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-126 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-126::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-127 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-127::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-128 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-128::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-129 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-129::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-129Component {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-129Component::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -681px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-129Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-129Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -273px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-129Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-129Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -375px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-130 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-130::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -409px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-130Component {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-130Component::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -715px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-130Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-130Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -715px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-130Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-130Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -409px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-131 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-131::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-131Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-131Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -715px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-132 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-132::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -477px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-133 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-133::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-133Component {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-133Component::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -749px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-133Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-133Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -307px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-133Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-133Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -443px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-134 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-134::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-135 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-135::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-135Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-135Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -341px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-136 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-136::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-136Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-136Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -647px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-137 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-137::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-138 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-138::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-138Component {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-138Component::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -749px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-138Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-138Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -375px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-138Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-138Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -375px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-139 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-139::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -239px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-139Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-139Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -545px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-140 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-140::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -579px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-140Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-140Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -579px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-141 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-141::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -409px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-142 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-142::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-143 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-143::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-143Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-143Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -647px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-144 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-144::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -273px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-144Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-144Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -545px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-145 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-145::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-145Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-145Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -443px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-146 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-146::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-146Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-146Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -613px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-147 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-147::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-147Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-147Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -443px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-148 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-148::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-148Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-148Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -613px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-149 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-149::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-149Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-149Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -341px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-150 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-150::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -579px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-150Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-150Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -579px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-151 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-151::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-151Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-151Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -477px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-152 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-152::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -409px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-152Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-152Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -409px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-153 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-153::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-153Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-153Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -375px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-154 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-154::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-154Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-154Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -647px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-155 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-155::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -477px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-155Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-155Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -511px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-156 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-156::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -273px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-156Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-156Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -545px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-157 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-157::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-157Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-157Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -613px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-158 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-158::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -749px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-158Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-158Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -783px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-158PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-158PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -783px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-158Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-158Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -307px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-159 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-159::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -783px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-159Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-159Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -817px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-159PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-159PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -817px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-159Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-159Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -341px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-160 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-160::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -817px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-160Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-160Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -851px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-160PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-160PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -851px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-160Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-160Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -443px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-161 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-161::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -851px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-161Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-161Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -885px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-161PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-161PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -885px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-161Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-161Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -307px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-162 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-162::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -885px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-162Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-162Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -919px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-162PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-162PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -919px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-163 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-163::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -919px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-163Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-163Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -953px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-163PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-163PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -953px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-164 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-164::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -953px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-164Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-164Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -987px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-164PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-164PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -987px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-165 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-165::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -987px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-165Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-165Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1021px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-165PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-165PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1021px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-166 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-166::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -273px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-166Component {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-166Component::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1021px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-166Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-166Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -511px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-166Prototype_V2 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-166Prototype_V2::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -511px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-166PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-166PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -545px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-166PrototypeSalvage_V2 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-166PrototypeSalvage_V2::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -511px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-167 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-167::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -171px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-167Component {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-167Component::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1055px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-167Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-167Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -239px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-167Prototype_V2 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-167Prototype_V2::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -137px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-167PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-167PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -613px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-167PrototypeSalvage_V2 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-167PrototypeSalvage_V2::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -443px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-168 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-168::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-168Component {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-168Component::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1055px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-168Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-168Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -647px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-168Prototype_V2 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-168Prototype_V2::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1055px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-168PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-168PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -647px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-168PrototypeSalvage_V2 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-168PrototypeSalvage_V2::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -647px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-169 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-169::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -69px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-169Component {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-169Component::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -749px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-169Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-169Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -375px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-169Prototype_V2 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-169Prototype_V2::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1089px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-169PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-169PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -375px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-169PrototypeSalvage_V2 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-169PrototypeSalvage_V2::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -715px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-170 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-170::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -35px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-170Component {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-170Component::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1089px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-170Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-170Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-170Prototype_V2 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-170Prototype_V2::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -273px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-170PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-170PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -341px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-170PrototypeSalvage_V2 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-170PrototypeSalvage_V2::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -375px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-171 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-171::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -103px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-171Component {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-171Component::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1089px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-171Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-171Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -681px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-171Prototype_V2 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-171Prototype_V2::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -205px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-171PrototypeSalvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-171PrototypeSalvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -613px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-171PrototypeSalvage_V2 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-171PrototypeSalvage_V2::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -477px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-172 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-172::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1123px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-172Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-172Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1123px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-172Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-172Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1123px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-173 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-173::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1157px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-173Prototype {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-173Prototype::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1157px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-173Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-173Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1157px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-174Ingredient {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-174Ingredient::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1191px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-174Ingredient_Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-174Ingredient_Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1191px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-175Ingredient {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-175Ingredient::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1191px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-175Ingredient_Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-175Ingredient_Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1225px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-176Ingredient {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-176Ingredient::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1225px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-176Ingredient_Salvage {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-176Ingredient_Salvage::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -69px -1225px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-9998 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-9998::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-9999 {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-9999::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -1px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_AAYLASECURA_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_AAYLASECURA_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_ADMINISTRATORLANDO_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_ADMINISTRATORLANDO_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_ADMIRALACKBAR_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_ADMIRALACKBAR_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_AHSOKATANO_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_AHSOKATANO_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_AMILYNHOLDO_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_AMILYNHOLDO_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_ANAKINKNIGHT_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_ANAKINKNIGHT_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_ASAJVENTRESS_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_ASAJVENTRESS_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_AURRASING_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_AURRASING_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_B1BATTLEDROIDV2_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_B1BATTLEDROIDV2_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_B2SUPERBATTLEDROID_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_B2SUPERBATTLEDROID_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_BARRISSOFFEE_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_BARRISSOFFEE_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_BASTILASHAN_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_BASTILASHAN_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_BASTILASHANDARK_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_BASTILASHANDARK_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_BAZEMALBUS_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_BAZEMALBUS_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_BB8_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_BB8_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_BIGGSDARKLIGHTER_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_BIGGSDARKLIGHTER_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_BISTAN_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_BISTAN_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_BOBAFETT_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_BOBAFETT_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_BODHIROOK_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_BODHIROOK_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_BOSSK_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_BOSSK_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_C3POLEGENDARY_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_C3POLEGENDARY_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CADBANE_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CADBANE_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CANDEROUSORDO_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CANDEROUSORDO_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CARTHONASI_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CARTHONASI_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CASSIANANDOR_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CASSIANANDOR_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CC2224_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CC2224_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CHEWBACCALEGENDARY_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CHEWBACCALEGENDARY_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CHIEFCHIRPA_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CHIEFCHIRPA_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CHIEFNEBIT_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CHIEFNEBIT_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CHIRRUTIMWE_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CHIRRUTIMWE_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CHOPPERS3_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CHOPPERS3_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CLONESERGEANTPHASEI_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CLONESERGEANTPHASEI_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CLONEWARSCHEWBACCA_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CLONEWARSCHEWBACCA_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_COLONELSTARCK_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_COLONELSTARCK_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_COMMANDERLUKESKYWALKER_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_COMMANDERLUKESKYWALKER_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CORUSCANTUNDERWORLDPOLICE_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CORUSCANTUNDERWORLDPOLICE_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_COUNTDOOKU_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_COUNTDOOKU_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CT5555_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CT5555_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CT7567_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CT7567_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_CT210408_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_CT210408_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_DAKA_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_DAKA_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_DARTHMALAK_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_DARTHMALAK_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_DARTHNIHILUS_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_DARTHNIHILUS_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_DARTHREVAN_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_DARTHREVAN_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_DARTHSIDIOUS_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_DARTHSIDIOUS_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_DARTHSION_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_DARTHSION_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_DARTHTRAYA_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_DARTHTRAYA_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_DATHCHA_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_DATHCHA_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_DEATHTROOPER_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_DEATHTROOPER_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_DENGAR_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_DENGAR_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_DIRECTORKRENNIC_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_DIRECTORKRENNIC_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_DROIDEKA_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_DROIDEKA_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_DUMMY_LOC_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_DUMMY_LOC_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_DUMMY_LOC_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_DUMMY_LOC_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_DUMMY_LOC_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_DUMMY_LOC_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_EETHKOTH_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_EETHKOTH_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_EMBO_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_EMBO_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_EMPERORPALPATINE_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_EMPERORPALPATINE_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_ENFYSNEST_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_ENFYSNEST_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_EWOKELDER_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_EWOKELDER_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_EWOKSCOUT_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_EWOKSCOUT_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_EZRABRIDGERS3_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_EZRABRIDGERS3_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_FINN_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_FINN_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_FIRSTORDEREXECUTIONER_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_FIRSTORDEREXECUTIONER_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_FIRSTORDEROFFICERMALE_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_FIRSTORDEROFFICERMALE_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_FIRSTORDERSPECIALFORCESPILOT_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_FIRSTORDERSPECIALFORCESPILOT_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_FIRSTORDERTIEPILOT_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_FIRSTORDERTIEPILOT_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_FIRSTORDERTROOPER_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_FIRSTORDERTROOPER_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_FULCRUMAHSOKA_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_FULCRUMAHSOKA_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_GAMORREANGUARD_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_GAMORREANGUARD_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_GARSAXON_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_GARSAXON_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_GENERALKENOBI_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_GENERALKENOBI_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_GEONOSIANBROODALPHA_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_GEONOSIANBROODALPHA_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_GEONOSIANSOLDIER_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_GEONOSIANSOLDIER_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_GEONOSIANSPY_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_GEONOSIANSPY_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_GRANDADMIRALTHRAWN_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_GRANDADMIRALTHRAWN_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_GRANDMASTERYODA_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_GRANDMASTERYODA_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_GRANDMOFFTARKIN_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_GRANDMOFFTARKIN_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_GREEDO_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_GREEDO_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_GRIEVOUS_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_GRIEVOUS_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_HANSOLO_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_HANSOLO_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_HERASYNDULLAS3_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_HERASYNDULLAS3_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_HERMITYODA_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_HERMITYODA_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_HK47_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_HK47_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_HOTHHAN_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_HOTHHAN_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_HOTHLEIA_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_HOTHLEIA_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_HOTHREBELSCOUT_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_HOTHREBELSCOUT_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_HOTHREBELSOLDIER_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_HOTHREBELSOLDIER_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_HUMANTHUG_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_HUMANTHUG_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_IG86SENTINELDROID_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_IG86SENTINELDROID_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_IG88_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_IG88_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_IMAGUNDI_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_IMAGUNDI_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_IMPERIALPROBEDROID_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_IMPERIALPROBEDROID_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_IMPERIALSUPERCOMMANDO_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_IMPERIALSUPERCOMMANDO_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_JANGOFETT_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_JANGOFETT_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_JAWA_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_JAWA_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_JAWAENGINEER_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_JAWAENGINEER_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_JAWASCAVENGER_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_JAWASCAVENGER_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_JEDIKNIGHTCONSULAR_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_JEDIKNIGHTCONSULAR_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_JEDIKNIGHTGUARDIAN_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_JEDIKNIGHTGUARDIAN_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_JEDIKNIGHTREVAN_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_JEDIKNIGHTREVAN_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_JOLEEBINDO_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_JOLEEBINDO_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_JUHANI_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_JUHANI_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_JYNERSO_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_JYNERSO_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_K2SO_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_K2SO_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_KANANJARRUSS3_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_KANANJARRUSS3_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_KITFISTO_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_KITFISTO_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_KYLOREN_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_KYLOREN_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_KYLORENUNMASKED_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_KYLORENUNMASKED_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_L3_37_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_L3_37_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_LOBOT_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_LOBOT_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_LOGRAY_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_LOGRAY_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_LUKESKYWALKER_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_LUKESKYWALKER_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_LUMINARAUNDULI_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_LUMINARAUNDULI_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_MACEWINDU_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_MACEWINDU_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_MAGMATROOPER_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_MAGMATROOPER_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_MAGNAGUARD_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_MAGNAGUARD_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_MAUL_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_MAUL_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_MISSIONVAO_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_MISSIONVAO_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_MOTHERTALZIN_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_MOTHERTALZIN_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_NIGHTSISTERACOLYTE_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_NIGHTSISTERACOLYTE_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_NIGHTSISTERINITIATE_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_NIGHTSISTERINITIATE_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_NIGHTSISTERSPIRIT_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_NIGHTSISTERSPIRIT_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_NIGHTSISTERZOMBIE_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_NIGHTSISTERZOMBIE_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_NUTEGUNRAY_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_NUTEGUNRAY_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_OLDBENKENOBI_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_OLDBENKENOBI_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_PADMEAMIDALA_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_PADMEAMIDALA_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_PAO_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_PAO_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_PAPLOO_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_PAPLOO_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_PHASMA_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_PHASMA_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_PLOKOON_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_PLOKOON_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_POE_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_POE_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_POGGLETHELESSER_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_POGGLETHELESSER_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_PRINCESSLEIA_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_PRINCESSLEIA_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_QIRA_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_QIRA_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_QUIGONJINN_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_QUIGONJINN_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_R2D2_LEGENDARY_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_R2D2_LEGENDARY_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_RANGETROOPER_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_RANGETROOPER_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_RESISTANCEPILOT_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_RESISTANCEPILOT_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_RESISTANCETROOPER_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_RESISTANCETROOPER_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_REY_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_REY_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_REYJEDITRAINING_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_REYJEDITRAINING_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_ROSETICO_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_ROSETICO_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_ROYALGUARD_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_ROYALGUARD_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_SABINEWRENS3_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_SABINEWRENS3_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_SAVAGEOPRESS_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_SAVAGEOPRESS_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_SCARIFREBEL_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_SCARIFREBEL_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_SHAAKTI_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_SHAAKTI_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_SHORETROOPER_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_SHORETROOPER_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_SITHASSASSIN_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_SITHASSASSIN_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_SITHMARAUDER_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_SITHMARAUDER_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_SITHTROOPER_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_SITHTROOPER_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_SMUGGLERCHEWBACCA_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_SMUGGLERCHEWBACCA_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_SMUGGLERHAN_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_SMUGGLERHAN_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_SNOWTROOPER_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_SNOWTROOPER_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_STORMTROOPER_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_STORMTROOPER_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_STORMTROOPERHAN_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_STORMTROOPERHAN_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_SUNFAC_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_SUNFAC_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_T3_M4_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_T3_M4_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_TALIA_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_TALIA_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_TEEBO_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_TEEBO_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_TIEFIGHTERPILOT_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_TIEFIGHTERPILOT_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_TUSKENRAIDER_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_TUSKENRAIDER_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_TUSKENSHAMAN_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_TUSKENSHAMAN_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_UGNAUGHT_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_UGNAUGHT_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_URORRURRR_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_URORRURRR_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_VADER_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_VADER_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_VEERS_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_VEERS_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_VISASMARR_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_VISASMARR_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_WAMPA_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_WAMPA_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_WATTAMBOR_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_WATTAMBOR_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_WEDGEANTILLES_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_WEDGEANTILLES_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_WICKET_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_WICKET_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_YOUNGCHEWBACCA_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_YOUNGCHEWBACCA_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_YOUNGHAN_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_YOUNGHAN_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_YOUNGLANDO_B {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_YOUNGLANDO_B::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_ZAALBAR_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_ZAALBAR_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_ZAMWESELL_C {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_ZAMWESELL_C::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }
+.sprite-gear--micro.g-G12Finisher_ZEBS3_A {max-width:32px; max-height:32px; }
+.sprite-gear--micro.g-G12Finisher_ZEBS3_A::after {content: '\00a0';display: inline-block; overflow:hidden; width:32px; height:32px; background-repeat: no-repeat;background-position: -35px -1259px;background-image: url(gear--micro.png);padding: 0; }

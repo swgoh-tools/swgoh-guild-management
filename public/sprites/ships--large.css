@@ -1,0 +1,99 @@
+/*
+	usage: <span class="{-spritename-} sprite"></span>
+	replace {-spritename-} with the sprite you like to use
+	Inline:     <i class="u-yourspritesname"></i>
+	Responsive: <div class="u-yourspritesname"></div>
+
+	Sprite sheet:  / ships--large.png (510 x 918)
+	Variant: 1
+	$TexturePacker:SmartUpdate:dd15564a13522d33368b0277de2e256a:6e4d52e39d48d51e9264738a178aa66c:0141ecdb3da548768a6548fbda8604cc$
+*/
+
+.sprite-units--large.u-ARC170CLONESERGEANT {max-width:100px; max-height:100px; }
+.sprite-units--large.u-ARC170CLONESERGEANT::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -1px -1px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-ARC170REX {max-width:100px; max-height:100px; }
+.sprite-units--large.u-ARC170REX::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -103px -1px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-BLADEOFDORIN {max-width:100px; max-height:100px; }
+.sprite-units--large.u-BLADEOFDORIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -205px -1px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-CAPITALCHIMAERA {max-width:100px; max-height:100px; }
+.sprite-units--large.u-CAPITALCHIMAERA::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -307px -1px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-CAPITALJEDICRUISER {max-width:100px; max-height:100px; }
+.sprite-units--large.u-CAPITALJEDICRUISER::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -409px -1px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-CAPITALMONCALAMARICRUISER {max-width:100px; max-height:100px; }
+.sprite-units--large.u-CAPITALMONCALAMARICRUISER::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -1px -103px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-CAPITALNEGOTIATOR {max-width:100px; max-height:100px; }
+.sprite-units--large.u-CAPITALNEGOTIATOR::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -103px -103px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-CAPITALSTARDESTROYER {max-width:100px; max-height:100px; }
+.sprite-units--large.u-CAPITALSTARDESTROYER::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -205px -103px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-COMMANDSHUTTLE {max-width:100px; max-height:100px; }
+.sprite-units--large.u-COMMANDSHUTTLE::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -307px -103px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-EBONHAWK {max-width:100px; max-height:100px; }
+.sprite-units--large.u-EBONHAWK::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -409px -103px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-EMPERORSSHUTTLE {max-width:100px; max-height:100px; }
+.sprite-units--large.u-EMPERORSSHUTTLE::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -1px -205px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-GAUNTLETSTARFIGHTER {max-width:100px; max-height:100px; }
+.sprite-units--large.u-GAUNTLETSTARFIGHTER::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -103px -205px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-GEONOSIANSTARFIGHTER1 {max-width:100px; max-height:100px; }
+.sprite-units--large.u-GEONOSIANSTARFIGHTER1::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -205px -205px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-GEONOSIANSTARFIGHTER2 {max-width:100px; max-height:100px; }
+.sprite-units--large.u-GEONOSIANSTARFIGHTER2::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -307px -205px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-GEONOSIANSTARFIGHTER3 {max-width:100px; max-height:100px; }
+.sprite-units--large.u-GEONOSIANSTARFIGHTER3::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -409px -205px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-GHOST {max-width:100px; max-height:100px; }
+.sprite-units--large.u-GHOST::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -1px -307px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-HOUNDSTOOTH {max-width:100px; max-height:100px; }
+.sprite-units--large.u-HOUNDSTOOTH::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -103px -307px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-IG2000 {max-width:100px; max-height:100px; }
+.sprite-units--large.u-IG2000::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -205px -307px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-JEDISTARFIGHTERAHSOKATANO {max-width:100px; max-height:100px; }
+.sprite-units--large.u-JEDISTARFIGHTERAHSOKATANO::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -307px -307px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-JEDISTARFIGHTERANAKIN {max-width:100px; max-height:100px; }
+.sprite-units--large.u-JEDISTARFIGHTERANAKIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -409px -307px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-JEDISTARFIGHTERCONSULAR {max-width:100px; max-height:100px; }
+.sprite-units--large.u-JEDISTARFIGHTERCONSULAR::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -1px -409px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-MILLENNIUMFALCON {max-width:100px; max-height:100px; }
+.sprite-units--large.u-MILLENNIUMFALCON::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -103px -409px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-MILLENNIUMFALCONEP7 {max-width:100px; max-height:100px; }
+.sprite-units--large.u-MILLENNIUMFALCONEP7::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -205px -409px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-MILLENNIUMFALCONPRISTINE {max-width:100px; max-height:100px; }
+.sprite-units--large.u-MILLENNIUMFALCONPRISTINE::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -307px -409px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-PHANTOM2 {max-width:100px; max-height:100px; }
+.sprite-units--large.u-PHANTOM2::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -409px -409px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-SITHBOMBER {max-width:100px; max-height:100px; }
+.sprite-units--large.u-SITHBOMBER::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -1px -511px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-SITHFIGHTER {max-width:100px; max-height:100px; }
+.sprite-units--large.u-SITHFIGHTER::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -103px -511px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-SITHINFILTRATOR {max-width:100px; max-height:100px; }
+.sprite-units--large.u-SITHINFILTRATOR::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -205px -511px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-SLAVE1 {max-width:100px; max-height:100px; }
+.sprite-units--large.u-SLAVE1::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -307px -511px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-TIEADVANCED {max-width:100px; max-height:100px; }
+.sprite-units--large.u-TIEADVANCED::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -409px -511px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-TIEFIGHTERFIRSTORDER {max-width:100px; max-height:100px; }
+.sprite-units--large.u-TIEFIGHTERFIRSTORDER::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -1px -613px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-TIEFIGHTERFOSF {max-width:100px; max-height:100px; }
+.sprite-units--large.u-TIEFIGHTERFOSF::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -103px -613px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-TIEFIGHTERIMPERIAL {max-width:100px; max-height:100px; }
+.sprite-units--large.u-TIEFIGHTERIMPERIAL::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -205px -613px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-TIEREAPER {max-width:100px; max-height:100px; }
+.sprite-units--large.u-TIEREAPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -307px -613px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-TIESILENCER {max-width:100px; max-height:100px; }
+.sprite-units--large.u-TIESILENCER::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -409px -613px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-UMBARANSTARFIGHTER {max-width:100px; max-height:100px; }
+.sprite-units--large.u-UMBARANSTARFIGHTER::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -1px -715px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-UWINGROGUEONE {max-width:100px; max-height:100px; }
+.sprite-units--large.u-UWINGROGUEONE::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -103px -715px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-UWINGSCARIF {max-width:100px; max-height:100px; }
+.sprite-units--large.u-UWINGSCARIF::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -205px -715px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-VULTUREDROID {max-width:100px; max-height:100px; }
+.sprite-units--large.u-VULTUREDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -307px -715px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-XANADUBLOOD {max-width:100px; max-height:100px; }
+.sprite-units--large.u-XANADUBLOOD::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -409px -715px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-XWINGBLACKONE {max-width:100px; max-height:100px; }
+.sprite-units--large.u-XWINGBLACKONE::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -1px -817px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-XWINGRED2 {max-width:100px; max-height:100px; }
+.sprite-units--large.u-XWINGRED2::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -103px -817px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-XWINGRED3 {max-width:100px; max-height:100px; }
+.sprite-units--large.u-XWINGRED3::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -205px -817px;background-image: url(ships--large.png);padding: 0; }
+.sprite-units--large.u-XWINGRESISTANCE {max-width:100px; max-height:100px; }
+.sprite-units--large.u-XWINGRESISTANCE::after {content: '\00a0';display: inline-block; overflow:hidden; width:100px; height:100px; background-repeat: no-repeat;background-position: -307px -817px;background-image: url(ships--large.png);padding: 0; }
