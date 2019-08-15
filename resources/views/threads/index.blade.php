@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@include('layouts.cdn._trix')
+
 @section('content')
     <div class="container">
         @include ('threads._menu')
