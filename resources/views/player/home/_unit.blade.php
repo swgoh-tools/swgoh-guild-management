@@ -1,3 +1,8 @@
+<div class="row justify-content-center">
+    <div class="col">
+        <span class="text-muted">{{ $unit['desc'] ?? '-' }}</span>
+    </div>
+</div>
 <div class="row">
     <div class="card"><div class="card-header">{{ __('Unit Info') }}</div><div class="card-body">
     <table>
@@ -22,7 +27,7 @@
     <div class="card"><div class="card-header">{{ __('fields.skills') }}</div><div class="card-body">
     <table>
     @foreach($unit['skills'] ?? [] as $skills)
-    <tr><th>{{ $skills['nameKey'] ?? '' }}</th><td>{{ $skills['tier'] ?? '' }}</td><td>{{ $skills['isZeta'] ?? false ? 'zeta' : '' }}</td></tr>
+    <tr><th>{{ $skillKeys[$skills['id']] ?? $skills['nameKey'] ?? '' }}</th><td>{{ $skills['tier'] ?? '' }}</td><td>{{ $skills['isZeta'] ?? false ? 'zeta' : '' }}</td><td><span class="small text-muted">@if ( ($skills['nameKey'] ?? false) && ($skillKeys[$skills['id']] ?? '') <> ($skills['nameKey'] ?? '')){{ $skills['nameKey'] }}@endif</span></td></tr>
     @endforeach
     </table>
     </div></div>

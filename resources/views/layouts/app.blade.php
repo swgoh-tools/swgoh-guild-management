@@ -49,7 +49,8 @@
     <link rel="mask-icon" href="{{ asset('svg/icon.svg') }}" color="blue">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.3/css/fork-awesome.min.css" integrity="sha256-ZhApazu+kejqTYhMF+1DzNKjIzP7KXu6AzyXcC1gMus=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.3/css/fork-awesome.min.css"
+        integrity="sha256-ZhApazu+kejqTYhMF+1DzNKjIzP7KXu6AzyXcC1gMus=" crossorigin="anonymous">
 
     @stack('styles')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -65,6 +66,16 @@
 
     <!-- Styles -->
     <style>
+        .anchor {
+            /* fix for anchors / bookmarks to not overlap with fixed header */
+            display: block;
+            height: 4rem;
+            /*same height as header*/
+            margin-top: -4rem;
+            /*same height as header*/
+            visibility: hidden;
+        }
+
         .icon-omega {
             background-image: url("{{ asset('images/assets/tex.skill_pentagon_gold.png') }}");
             /* background-position: center center; */
@@ -74,6 +85,7 @@
             min-height: 16px;
             display: inline-block;
         }
+
         .icon-zeta {
             background-image: url("{{ asset('images/assets/tex.skill_zeta.png') }}");
             /* background-position: center center; */
@@ -84,44 +96,48 @@
             display: inline-block;
         }
 
-        div.vertical
-        {
-        margin-left: -85px;
-        position: absolute;
-        width: 215px;
-        transform: rotate(-90deg);
-        -webkit-transform: rotate(-90deg); /* Safari/Chrome */
-        -moz-transform: rotate(-90deg); /* Firefox */
-        -o-transform: rotate(-90deg); /* Opera */
-        -ms-transform: rotate(-90deg); /* IE 9 */
+        div.vertical {
+            margin-left: -85px;
+            position: absolute;
+            width: 215px;
+            transform: rotate(-90deg);
+            -webkit-transform: rotate(-90deg);
+            /* Safari/Chrome */
+            -moz-transform: rotate(-90deg);
+            /* Firefox */
+            -o-transform: rotate(-90deg);
+            /* Opera */
+            -ms-transform: rotate(-90deg);
+            /* IE 9 */
         }
 
-        th.vertical
-        {
-        height: 220px;
-        line-height: 14px;
-        padding-bottom: 20px;
-        text-align: left;
+        th.vertical {
+            height: 220px;
+            line-height: 14px;
+            padding-bottom: 20px;
+            text-align: left;
         }
 
         th.rotate {
-        /* Something you can count on */
-        height: 100px;
-        white-space: nowrap;
+            /* Something you can count on */
+            height: 100px;
+            white-space: nowrap;
         }
 
-        th.rotate > div {
-        transform:
-            /* Magic Numbers */
-            translate(25px, 51px)
-            /* 45 is really 360 - 45 */
-            rotate(315deg);
-        width: 30px;
+        th.rotate>div {
+            transform:
+                /* Magic Numbers */
+                translate(25px, 51px)
+                /* 45 is really 360 - 45 */
+                rotate(315deg);
+            width: 30px;
         }
-        th.rotate > div > span {
-        border-bottom: 1px solid #ccc;
-        /* padding: 5px 10px; */
+
+        th.rotate>div>span {
+            border-bottom: 1px solid #ccc;
+            /* padding: 5px 10px; */
         }
+
         /* Tooltip container */
         .mytooltip {
             position: relative;
@@ -150,6 +166,7 @@
 
             font-weight: normal;
         }
+
         /* Tooltip text */
         .mytooltip-fixed .mytooltiptext {
             position: fixed;
@@ -157,10 +174,12 @@
             top: 4rem;
             right: 1rem;
         }
+
         .mytooltip-left .mytooltiptext {
             top: -5px;
             right: 105%;
         }
+
         .mytooltip-top .mytooltiptext {
             text-align: center;
             bottom: 100%;
@@ -168,6 +187,7 @@
             margin-left: -60px;
 
         }
+
         /* Tooltip text */
         .mytooltip-no-wrap .mytooltiptext {
             white-space: nowrap;
@@ -178,16 +198,19 @@
             visibility: visible;
             opacity: 1;
         }
+
         .mytooltip-left .mytooltiptext::after {
             content: " ";
             position: absolute;
             top: 50%;
-            left: 100%; /* To the right of the tooltip */
+            left: 100%;
+            /* To the right of the tooltip */
             margin-top: -5px;
             border-width: 5px;
             border-style: solid;
             border-color: transparent transparent transparent black;
         }
+
     </style>
     @yield('head')
 </head>
@@ -202,22 +225,22 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
-                @section('sidebar')
+                    @section('sidebar')
 
-                @show
+                    @show
                 </div>
 
                 <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-3 bd-content" role="main">
-                @section('content')
+                    @section('content')
 
-                @show
+                    @show
                 </main>
             </div>
         </div>
         @else
-                @section('content')
+        @section('content')
 
-                @show
+        @show
         @endif
 
         <footer>

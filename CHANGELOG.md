@@ -1,11 +1,20 @@
 # swgoh-guild-management changes
 
+## 1.4.4-dev (2019-09-xx)
+-   [GUILD] add player stats and charts for mod secondaries
+-   [GUILD] add additional reports for ability material
+-   [GUILD] fix copy link for ship search
+-   [Player] fix random sorting of units in toon page navigation
+-   [LANG] add translation to player toons page
+-   [GUI] add textures for material and credits
+-   [SYS] auto transform all data lists from API calls to associative arrays
+
 ## 1.4.4-dev (2019-08-xx)
 -   [Player] add sortable list of all toons of a player with abilities and mods
 -   [Player] add gear check (breakdown of required components) for toons
 -   [Player] add gear stats
 -   [Player] add salvage stats
--   [SYS] create and use local sprite sheets for pages with heavy use of textures
+-   [GUI] create and use local sprite sheets for pages with heavy use of textures
 
 ## 1.4.3 (2019-07-26)
 -   [SYS] fix regression from v1.4.0 (broken content creation due to laravel-mix v4 changes)

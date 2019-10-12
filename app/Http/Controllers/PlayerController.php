@@ -40,10 +40,24 @@ class PlayerController extends Controller
     public function roster($player)
     {
         $info = SyncClient::getPlayer($player);
+        $skillKeys = SyncClient::getSkillKeys();
+        $unitKeys = SyncClient::getUnitKeys();
         $unitStatKeys = SyncClient::getUnitStatKeys();
+
+        if ($info[0]['roster'] ?? false) {
+            foreach ($info[0]['roster'] as $key => $value) {
+                $info[0]['roster'][$key]['nameKey'] = $unitKeys[$value['defId']]['name'] ?? $info[0]['roster'][$key]['nameKey'] ?? '';
+                $info[0]['roster'][$key]['desc'] = $unitKeys[$value['defId']]['desc'] ?? $info[0]['roster'][$key]['desc'] ?? '';
+            }
+            // Sort the multidimensional array
+            usort($info[0]['roster'], "custom_sort_by_name_key");
+        }
+
 
         return view('player.roster', [
             'info' => $info[0] ?? [],
+            'skillKeys' => $skillKeys ?? [],
+            'unitKeys' => $unitKeys ?? [],
             'unitStatKeys' => $unitStatKeys ?? [],
         ]);
     }
@@ -56,12 +70,24 @@ class PlayerController extends Controller
     public function toons($player)
     {
         $info = SyncClient::getPlayer($player);
+        $skillKeys = SyncClient::getSkillKeys();
+        $unitKeys = SyncClient::getUnitKeys();
         $unitStatKeys = SyncClient::getUnitStatKeys();
         $gear =SyncClient::getGgGearWithKey();
         $chars = SyncClient::getGgCharsWithKey();
 
+        if ($info[0]['roster'] ?? false) {
+            foreach ($info[0]['roster'] as $key => $value) {
+                $info[0]['roster'][$key]['nameKey'] = $unitKeys[$value['defId']]['name'] ?? $info[0]['roster'][$key]['nameKey'] ?? '';
+                $info[0]['roster'][$key]['desc'] = $unitKeys[$value['defId']]['desc'] ?? $info[0]['roster'][$key]['desc'] ?? '';
+            }
+            // Sort the multidimensional array
+            usort($info[0]['roster'], "custom_sort_by_name_key");
+        }
+
         return view('player.toons', [
             'info' => $info[0] ?? [],
+            'skillKeys' => $skillKeys ?? [],
             'unitStatKeys' => $unitStatKeys ?? [],
             'chars' => $chars ?? [],
             'gear' => $gear ?? [],
@@ -81,6 +107,8 @@ class PlayerController extends Controller
         $chars = SyncClient::getGgChars();
 
         $gear = SyncClient::getGgGearWithKey();
+
+        $gear_selected = $request->input('g');
 
         if ($request->input('t')) {
             $char_list = explode(',', $request->input('t'));
@@ -120,21 +148,34 @@ class PlayerController extends Controller
             $char_list_nested[$cur_unit] = [
                 'tier' => $cur_tier,
                 'gear' => preg_split('/[^\d]/', $cur_gear, -1, PREG_SPLIT_NO_EMPTY),
-                'key' => $key,
+                // 'key' => $key,
             ];
 
             // $char_list_nested[] = \explode(':', $value)[0];
         }
 
-        // return \in_array($v['base_id'], $char_list_nested);
-        $roster_selection = array_filter($info[0]['roster'] ?? [], function ($entry) use ($char_list_nested) {
-            return isset($char_list_nested[$entry['defId']]);
-        });
+        // $show_all = false;
+        if ($gear_selected && empty($char_list_nested)) {
+            $roster_selection = $info[0]['roster'] ?? [];
+
+            foreach ($chars as $key => $char) {
+                $char_list_nested[$char['base_id']]['tier'] = 0;
+                $char_list_nested[$char['base_id']]['gear'] = [];
+            }
+            // $show_all = true;
+        } elseif (empty($char_list_nested)) {
+            $roster_selection = [];
+        } else {
+            // return \in_array($v['base_id'], $char_list_nested);
+            $roster_selection = array_filter($info[0]['roster'] ?? [], function ($entry) use ($char_list_nested) {
+                return isset($char_list_nested[$entry['defId']]);
+            });
+        }
 
         // if no tier information were given by the user / request,
         // read the current gear stats from the players roster.
         foreach ($roster_selection as $key => $unit) {
-            if (0 === ($char_list_nested[$unit['defId']]['tier'] ?? null)) {
+            if (0 === ($char_list_nested[$unit['defId']]['tier'] ?? 0)) {
                 $char_list_nested[$unit['defId']]['tier'] = $unit['gear'];
                 $char_list_nested[$unit['defId']]['gear'] = array_map(function ($entry) {
                     return $entry + 1;
@@ -156,15 +197,20 @@ class PlayerController extends Controller
         //     return isset($char_list_nested[$v['base_id']]);
         // });
 
+        // dd($char_list_nested);
+
         return view('player.gear', [
+            'info' =>$info[0] ?? [],
             'unitKeys' =>$unitKeys ?? [],
-            'info' => $info[0] ?? [],
+            // 'roster' => $roster_selection,
             'char_list_flat' => $char_list_flat,
             'char_list_nested' => $char_list_nested,
             'char_list_sample' => $char_list_sample,
             'chars' => $chars ?? [],
             'gear' => $gear ?? [],
+            'gear_selected' => $gear_selected,
             'player' => $player,
+            // 'show_all' => $show_all,
         ]);
     }
 

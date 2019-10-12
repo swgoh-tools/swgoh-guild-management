@@ -52,6 +52,8 @@
                             @role('admin')
                                 <br />{{ isset($sync_status[$key]['error']) ? $sync_status[$key]['error'] : '-' }}
                                 {{ ! isset($sync_status[$key]['time']) ? var_dump($sync_status[$key]) : '' }}
+                                @if(isset($sync_status[$key.'PEEK']) && is_array($sync_status[$key.'PEEK']))<br />@foreach($sync_status[$key.'PEEK'] as $peek_key => $peek_value) {{$peek_key . ': ' . $peek_value . '; ' }} @endforeach @endif
+                                @if(isset($sync_status[$key.'STRUCTURE']) && is_array($sync_status[$key.'STRUCTURE']))<br />@foreach($sync_status[$key.'STRUCTURE'] as $peek_key => $peek_value) {{$peek_key . ': ' . $peek_value . '; ' }} @endforeach @endif
                             @endrole
                             </td>
                         @endif
