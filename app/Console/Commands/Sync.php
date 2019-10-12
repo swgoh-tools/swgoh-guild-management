@@ -46,17 +46,29 @@ class Sync extends Command
             $this->info('sync all data for a specific player and it\'s guild');
             if (is_numeric($this->argument('allycode'))) {
                 $this->line('using code ' .  $this->argument('allycode'));
-                SyncDataPlayer::dispatch((int) $this->argument('allycode'));
+                SyncDataPlayer::dispatch((int) $this->argument('allycode'))->onQueue('default');
             } else {
                 $this->error('kein numerischer code ' .  $this->argument('allycode'));
             }
         } else {
             $this->info('sync all data that is global (player/guild independent)');
-            SyncDataGlobal::dispatch('en');
-            SyncDataKeys::dispatch('en');
-            SyncDataKeys::dispatch('br');
-            SyncDataKeys::dispatch('de');
-            SyncDataKeys::dispatch('it');
+            SyncDataGlobal::dispatch('en')->onQueue('low');
+
+            $this->info('getting localization info from config');
+            // get locales that are actually used by GUI from config
+            $locales = config('app.locales', []);
+            // make sure English data is always synced
+            $locales['en'] = 'en';
+            $this->info('found: ' . implode(', ', $locales));
+
+            foreach ($locales as $locale_key => $locale) {
+                $this->info('adding job for ' . $locale_key . ' (' . $locale . ')');
+                SyncDataKeys::dispatch($locale_key)->onQueue('low');
+            }
+            // SyncDataKeys::dispatch('en');
+            // SyncDataKeys::dispatch('pt-BR');
+            // SyncDataKeys::dispatch('de');
+            // SyncDataKeys::dispatch('it');
         }
     }
 }

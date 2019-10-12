@@ -52,7 +52,7 @@ class SyncUser extends Command
                 $target_code = $target_user->code ?? null;
                 if ($target_code) {
                     $this->line('using code ' .  $target_code);
-                    CheckNewAllyCode::dispatch($target_user, $target_code);
+                    CheckNewAllyCode::dispatch($target_user, $target_code)->onQueue('default');
                 } else {
                     $this->error('user or allycode not found');
                 }

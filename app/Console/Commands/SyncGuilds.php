@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Jobs\SyncAllGuilds;
+use Illuminate\Console\Command;
 
 class SyncGuilds extends Command
 {
@@ -40,7 +40,7 @@ class SyncGuilds extends Command
     {
         // To send output to the console, use the line, info, comment, question and error methods.
 
-            $this->info('sync all data for all guilds');
-            SyncAllGuilds::dispatch();
+        $this->info('sync all data for all guilds');
+        SyncAllGuilds::dispatch()->onQueue('default');
     }
 }
