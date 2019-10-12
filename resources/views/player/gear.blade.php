@@ -36,9 +36,9 @@
 <div class="form-group mt-1 mb-2">
     <!-- <label for="staticSquadLink">{{ __('Direct Link') }}</label> -->
     <input class="form-control" type="text" name="staticSquadLink" id="staticSquadLink" readonly="readonly"
-        value="{{ route('player.gear', $player) }}?t={{ implode(',', array_keys($char_list_nested ?? [])) }}">
+value="{{ route('player.gear', $player) }}?t={{ implode(',', array_keys($char_list_nested ?? [])) }}{{ ($gear_selected) ? '&g='.$gear_selected : '' }}">
         <input class="form-control" type="text" name="staticSquadLinkDetail" id="staticSquadLinkDetail" readonly="readonly"
-        value="{{ route('player.gear', $player) }}?t={{ implode(',', $char_list_flat) }}">
+        value="{{ route('player.gear', $player) }}?t={{ implode(',', $char_list_flat) }}{{ ($gear_selected) ? '&g='.$gear_selected : '' }}">
         <small id="staticSquadLinkHelp" class="form-text text-muted">{{ __('app.howto.direct_link') }} <a
             href="{{ route('player.gear', $player) }}?t={{ implode(',', $char_list_sample) }}">{{ __('Example') }}</a></small>
             <small id="staticSquadLinkDetailHelp" class="form-text text-muted">{{ __('app.howto.direct_link++gear') }} </small>
@@ -94,35 +94,44 @@
                     @foreach($char['gear_levels'] as $gear_level)
                     <td>
                         @if($gear_level['tier'] > $char_list_nested[$char['base_id']]['tier'])
-                        {{-- implode(', ', $gear_level['gear'] ?? []) --}}
+                        {{-- gear level not yet reached --}}
                         @foreach($gear_level['gear'] as $key => $item)
-                        @include('layouts.img._gear-icon-small', ['gi_gear' => $gear[$item]])
-                        @php($stats['tiers'][$gear_level['tier']][$item] = 1 +
-                        ($stats['tiers'][$gear_level['tier']][$item] ?? 0))
-                        @php($stats['chars'][$char['base_id']][$item] = 1 + ($stats['chars'][$char['base_id']][$item] ??
-                        0))
-                        @php($stats['sum'][$item] = 1 + ($stats['sum'][$item] ?? 0))
+                            @if(!$gear_selected || $gear_selected == $item)
+                            @include('layouts.img._gear-icon-small', ['gi_gear' => $gear[$item]])
+                            @php($stats['tiers'][$gear_level['tier']][$item] = 1 +
+                            ($stats['tiers'][$gear_level['tier']][$item] ?? 0))
+                            @php($stats['chars'][$char['base_id']][$item] = 1 + ($stats['chars'][$char['base_id']][$item] ??
+                            0))
+                            @php($stats['sum'][$item] = 1 + ($stats['sum'][$item] ?? 0))
+                            @endif
                         @endforeach
-                        @elseif($gear_level['tier'] == $char_list_nested[$char['base_id']]['tier'])
+                        @elseif($gear_level['tier'] == $char_list_nested[$char['base_id']]['tier'] || $gear_selected)
+                        {{-- either gear needed now OR gear selection screen --}}
                         @foreach($gear_level['gear'] as $key => $item)
-                        @if(!in_array($key + 1, $char_list_nested[$char['base_id']]['gear']))
-                        @include('layouts.img._gear-icon-small', ['gi_gear' => $gear[$item]])
-                        {{-- $item --}}
-                        @php($stats['tiers'][$gear_level['tier']][$item] = 1 +
-                        ($stats['tiers'][$gear_level['tier']][$item] ?? 0))
-                        @php($stats['chars'][$char['base_id']][$item] = 1 + ($stats['chars'][$char['base_id']][$item] ??
-                        0))
-                        @php($stats['sum'][$item] = 1 + ($stats['sum'][$item] ?? 0))
-                        @else
-                        <div style="position:relative;display:inline-block;">
-                            <i class="fa fa-check fg-success"
-                                style="opacity:0.6;position:absolute;bottom:-12px;right:-6px;font-size: xx-large;"></i>
-                            <span style="opacity:0.3;">
-                                @include('layouts.img._gear-icon-small', ['gi_gear' => $gear[$item]])
-                            </span></div>
+                        @if(!$gear_selected || $gear_selected == $item)
+                            @if(!in_array($key + 1, $char_list_nested[$char['base_id']]['gear']) && $gear_level['tier'] == $char_list_nested[$char['base_id']]['tier'])
+                            @include('layouts.img._gear-icon-small', ['gi_gear' => $gear[$item]])
+                            {{-- $item --}}
+                            @php($stats['tiers'][$gear_level['tier']][$item] = 1 +
+                            ($stats['tiers'][$gear_level['tier']][$item] ?? 0))
+                            @php($stats['chars'][$char['base_id']][$item] = 1 + ($stats['chars'][$char['base_id']][$item] ??
+                            0))
+                            @php($stats['sum'][$item] = 1 + ($stats['sum'][$item] ?? 0))
+                            @else
+                            <div style="position:relative;display:inline-block;">
+                                <i class="fa fa-check fg-success"
+                                    style="opacity:0.6;position:absolute;bottom:-12px;right:-6px;font-size: xx-large;"></i>
+                                <span style="opacity:0.3;">
+                                    @include('layouts.img._gear-icon-small', ['gi_gear' => $gear[$item]])
+                                </span></div>
+                                @php($stats['tiers_done'][$gear_level['tier']][$item] = 1 +
+                                ($stats['tiers_done'][$gear_level['tier']][$item] ?? 0))
+                                    @php($stats['sum_done'][$item] = 1 + ($stats['sum_done'][$item] ?? 0))
+                            @endif
                         @endif
                         @endforeach
                         @else
+                        {{-- don't show tier unless it's the gear selection screen --}}
                         OK
                         @endif
                     </td>
@@ -151,6 +160,20 @@
                             @endforeach
                         </div>
                         @endforeach
+                        {{-- gear selection screen special --}}
+                        @if($gear_selected && ($stats['tiers_done'][$key] ?? false))
+                        @foreach($stats['tiers_done'][$key] as $id => $amount)
+                        <div style="clear:both;">
+                            <div style="position:relative;display:inline-block;">
+                                <i class="fa fa-check fg-success"
+                                    style="opacity:0.6;position:absolute;bottom:-12px;right:-6px;font-size: xx-large;"></i>
+                                <span style="opacity:0.4;">
+                            @include('layouts.img._gear-icon-small', ['gi_gear' => $gear[$id], 'gi_amount' => $amount .
+                            'x'])
+                                </span></div>
+                            </div>
+                        @endforeach
+                        @endif
                     </td>
                     @endforeach
                 </tr>
@@ -205,6 +228,23 @@
         @endforeach
     </div>
 </div>
+@if($gear_selected)
+@php($sum = $stats['sum_done'] ?? [])
+@php(arsort($sum))
+<div class="card mb-2">
+    <h5 class="card-header">{{ __('Total') }} - {{ __('Fully Crafted Gear') }} - {{ __('Done') }}</h5>
+    <div class="card-body">
+        @foreach($sum as $id => $amount)
+        <div style="clear:both;">
+            @include('layouts.img._gear-icon-small', ['gi_gear' => $gear[$id], 'gi_amount' => $amount . 'x'])
+            @foreach($gear[$id]['mat_list'] ?? [] as $mat_id => $mat_amount)
+            @include('layouts.img._gear-icon-micro', ['gi_gear' => $gear[$mat_id], 'gi_amount' => $mat_amount . 'x'])
+            @endforeach
+        </div>
+        @endforeach
+    </div>
+</div>
+@endif
 
 </div>
 </div>

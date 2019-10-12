@@ -76,3 +76,37 @@ if (! function_exists('dec2hex')) {
 } else {
     dd('function dec2hex already exists!');
 }
+
+function custom_sort_by_name_key($a, $b)
+{
+    return $a['nameKey']>$b['nameKey'];
+}
+
+function print_icon($type)
+{
+    switch ($type) {
+        case 'gear':
+            return '<i title="'. __('Gear').'" class="fa fa-gear"></i>';
+            break;
+
+            case 'level':
+            return '<i title="'. __('Level').'" class="fa fa-level-up"></i>';
+            break;
+
+            case 'star':
+            return '<i title="'. __('Stars').'" class="fa fa-star"></i>';
+            break;
+
+            case 'relic':
+            return '<i title="'. __('Relic').'" class="fa fa-bolt"></i>';
+            break;
+
+            case 'tier':
+            return '<i title="'. __('Tier').'" class="fa fa-bars"></i>';
+            break;
+
+        default:
+            return '';
+            break;
+    }
+}

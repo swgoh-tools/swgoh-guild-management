@@ -5,7 +5,7 @@
     $si_zeta = $si_skill['isZeta'] ?? false;
     $si_omega = !$si_zeta && (8 == $si_tiers);
     $si_id = $si_skill['id'] ?? '';
-    $si_name = $si_skill['nameKey'] ?? '';
+    $si_name = $si_skillKeys[$si_skill['id']] ?? $si_skill['nameKey'] ?? '';
     $si_maxed = ($si_tier == $si_tiers) && (0 < $si_tiers);
     $si_url = $si_skill['url'] ?? '';
     $si_image = $si_skill['image'] ?? '';

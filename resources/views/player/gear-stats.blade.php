@@ -109,7 +109,9 @@
                 <tr>
                     @if (isset($gear[$stat_key]))
                     <td>@include('layouts.img._gear-icon-small', ['gi_gear' => $gear[$stat_key]])</td>
-                    <td>{{ $gear[$stat_key]['name'] }}</td>
+                    <td>{{ $gear[$stat_key]['name'] }} <a
+                            href="{{ route('player.gear', $player) }}?g={{ $stat_key }}"> <i
+                                class="fa fa-binoculars"></i></a></td>
                     <td>{{ $gear[$stat_key]['mark'] }}</td>
                     <td>{{ $gear[$stat_key]['tier'] }}</td>
                     <td>{{ $gear[$stat_key]['required_level'] }}</td>

@@ -17,8 +17,6 @@
 </script>
 @endpush
 
-
-
 @foreach($info['roster'] ?? [] as $key => $unit)
     @include('layouts._item', ['inc' => 'player.home._unit', 'title' => $unit['nameKey'] ?? $key])
 @endforeach

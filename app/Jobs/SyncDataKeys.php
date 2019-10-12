@@ -53,7 +53,9 @@ class SyncDataKeys implements ShouldQueue
 
         $syncClient->sync('help.data.abilityList');
         $syncClient->sync('help.data.equipmentList');
+        $syncClient->sync('help.data.materialList');
         $syncClient->sync('help.data.playerTitleList');
+        $syncClient->sync('help.data.recipeList');
         $syncClient->sync('help.data.skillList');
         $syncClient->sync('help.data.unitsList');
     }

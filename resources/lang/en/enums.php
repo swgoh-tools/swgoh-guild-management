@@ -32,5 +32,9 @@ return [
     'UNITTYPECOMMANDER' => 'Commander',
     'UNITTYPEDEFAULT' => 'Default',
     'UNITTYPEREINFORCEMENT' => 'Reinforcement',
+    'TOTAL' => 'Total',
+    'SKILLRECIPE' => 'Character Skills',
+    'SHIPSKILLRECIPE' => 'Ship Skills',
+    'FLEETCOMMANDERSKILLRECIPE' => 'Ship Skills (Commander)',
 
 ];

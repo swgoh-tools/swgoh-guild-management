@@ -91,7 +91,7 @@ $char_count++;
 
     <td>
         @foreach($stat as $skills)
-        @include('layouts.img._skill-icon', ['si_skill' => $skills])
+        @include('layouts.img._skill-icon', ['si_skill' => $skills, 'si_skillKeys' => $skillKeys])
         @endforeach
     </td>
     @break

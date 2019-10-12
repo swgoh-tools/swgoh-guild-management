@@ -1,6 +1,19 @@
 <?php
 
 return array(
+  'ability_mats' =>
+  array(
+    'title' => 'Ability Material Costs',
+    'intro' => 'Breakdown of material needed to craft abilities (skills).',
+    'description' => '',
+    'description_tiers' => 'Additional columns showing the quantity of material needed per <strong>ability (skill) tier</strong>.',
+    'description_stars' => 'Additional columns clustering the quantity of material needed according to <strong>star requirement (rarity)</strong> of a unit.',
+    'description_gear' => 'Additional columns clustering the quantity of material needed according to <strong>gear requirement</strong> of a unit.',
+    'description_relics' => 'Additional columns clustering the quantity of material needed according to <strong>relics requirement</strong> of a unit. NOTE: Most likely to become relevant in near future. Looking at you, relic abilities. Nothing to see here right now.',
+    'description_levels' => 'Additional columns clustering the quantity of material needed according to <strong>level requirement</strong> of a unit. NOTE: Because of the high number of levels (85) the tables won\'t look that pretty. Sorry for that!',
+    'description_recipes' => 'The following tables show the \'ingredients\' that have been defined as <strong>upgrade cost to the next level</strong> for each type of ability. NOTE: T1 stands for the costs to upgrade an ability from tier 1 to tier 2. The upgrade cost to tier 8 can be either omega (T7) or zeta (T7zeta). Never both. And never something else.',
+    'legend' => '',
+  ),
   'guild' =>
   array(
     'title' => 'Guild (:name)',
@@ -21,6 +34,20 @@ return array(
     'intro' => 'SWGoH info page of player :name.',
     'description' => 'Game info and data reports to analyse toons and squad progress.',
     'legend' => 'Player and guild pages are public.',
+  ),
+  'tableList' =>
+  array(
+    'title' => 'Table List',
+    'intro' => 'Raw printout of swgoh.help\'s TableList.',
+    'description' => 'This report includes a collection of various game configurations. E.g. role mastery definitions (relics), GAC promotion thresholds, galactic power calculations, etc.',
+    'legend' => '',
+  ),
+  'guild_stats_players' =>
+  array(
+    'title' => 'Player Stats',
+    'intro' => 'Statistics on player progression.',
+    'description' => 'Reports on units (chars and ships mixed as of now) and mod properties.',
+    'legend' => '',
   ),
   'sync' =>
   array(
