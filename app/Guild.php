@@ -97,11 +97,30 @@ class Guild extends Model
      */
     public function setSlugAttribute($value)
     {
-        if (static::whereSlug($slug = str_slug($value))->exists()) {
+        $slug = str_slug($value);
+        if (static::whereSlug($slug)->exists()) {
             $slug = "{$slug}-{$this->id}";
         }
 
         $this->attributes['slug'] = $slug;
+    }
+
+    /**
+     * Retain initial origin entry.
+     *
+     * @param string $value
+     */
+    public function setOriginAttribute($value)
+    {
+        $old_value = $this->getOriginal('origin');
+        if ($old_value) {
+            $old_value =  explode('|', $old_value)[0];
+            $this->attributes['origin'] = implode('|', [$old_value, $value]);
+
+            return;
+        }
+
+        $this->attributes['origin'] = $value;
     }
 
     /**
@@ -113,5 +132,4 @@ class Guild extends Model
     {
         return $this->toArray() + ['path' => $this->path()];
     }
-
 }

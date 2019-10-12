@@ -1,5 +1,8 @@
 # swgoh-guild-management changes
 
+## 1.4.5-dev (2019-10-xx)
+-   [SYS] add crawler for players
+
 ## 1.4.4-dev (2019-09-xx)
 -   [GUILD] add player stats and charts for mod secondaries
 -   [GUILD] add additional reports for ability material
