@@ -26,7 +26,7 @@ class CheckForLanguage
      */
     public function handle($request, Closure $next)
     {
-        $this->languages = array_flip(config('app.locales', []));
+        $this->languages = array_keys(config('app.locales', []));
 
         if ($request->has('lang')) {
             $lang = $request->input('lang');
