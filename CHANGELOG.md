@@ -1,6 +1,8 @@
 # swgoh-guild-management changes
 
 ## 1.4.5-dev (2019-10-xx)
+-   [GLOBAL] add feed reader for official game announcements
+-   [SYS] add line bot to send new feed entries as chat message
 -   [SYS] add crawler for players
 
 ## 1.4.4-dev (2019-09-xx)
@@ -67,6 +69,6 @@
 First public release
 
 -   [LANG] Improved Multilanguage
--   [GUILD] Additional Data Reports (zetas, events)
+-   [GLOBAL] Additional Data Reports (zetas, events)
 -   [SYS] Update swgoh.help api calls to v4
 -   [MISC] Bugfixes

@@ -14,6 +14,14 @@ return [
     |
     */
 
+    'discord' => [
+        'token' => 'DISCORD_API_TOKEN',
+    ],
+    'line' => [
+        'token' => env('LINE_CHANNEL_ACCESS_TOKEN'),
+        'secret' => env('LINE_CHANNEL_SECRET'),
+        'endpoint' => env('LINE_ENDPOINT', 'api.line.me'),
+    ],
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

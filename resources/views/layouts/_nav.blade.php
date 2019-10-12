@@ -45,12 +45,27 @@
                         <a class="nav-link" href="{{ route('pages.create') }}"><i class="fa fa-plus"></i></a>
                     </li>
             @endcan
+            @if($members ?? null)
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropMembers" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    {{ __('Members') }}
+                </a>
+                <div class="dropdown-menu pre-scrollable" aria-labelledby="navbarDropMembers">
+                        @foreach($members as $key => $player)
+                        <a class="dropdown-item" href="{{ route('player.home', $player['allyCode']) }}">{{ $player['name'] }} ({{ $player['allyCode'] }})</a>
+                        @endforeach
+                </div>
+            </li>
+            @endif
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropTeam" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     {{ __('Team Search') }}
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu" aria-labelledby="navbarDropTeam">
+                    <a class="dropdown-item" href="{{ route('guild.stats.players', [$page_guild]) }}">{{ __('Player Stats') }}</a>
                     <a class="dropdown-item" href="{{ route('guild.stats', $page_guild) }}">{{ __('Guild State') }}</a>
                     <a class="dropdown-item" href="{{ route('guild.stats', [$page_guild, 'raid-hstr']) }}">{{ __('HSTR Special') }}</a>
                     <div class="dropdown-divider"></div>
@@ -64,14 +79,26 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropLists" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     {{ __('Game Data') }}
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu" aria-labelledby="navbarDropLists">
                     <a class="dropdown-item" href="{{ route('guild.list.zetas', $page_guild) }}">{{ __('Zeta List') }}</a>
-                    <a class="dropdown-item" href="{{ route('guild.list.events', $page_guild) }}">{{ __('Event List') }}</a>
+                    <a class="dropdown-item" href="{{ route('guild.list.ability_mats', $page_guild) }}">{{ __('Ability Material Stats') }}</a>
                     <a class="dropdown-item" href="{{ route('guild.list.targeting', $page_guild) }}">{{ __('AI Targeting List') }}</a>
+                    <a class="dropdown-item" href="{{ route('guild.list.events', $page_guild) }}">{{ __('Event List') }}</a>
+                    <a class="dropdown-item" href="{{ route('list.table') }}">{{ __('Table List') }} ({{ __('raw data') }})</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropNews" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    {{ __('News') }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropNews">
+                    <a class="dropdown-item" href="{{ route('feeds', 'announcements') }}">{{ __('Official Announcements') }}</a>
+                    <a class="dropdown-item" href="{{ route('feeds', 'updates') }}">{{ __('Official Update Notes') }}</a>
                 </div>
             </li>
             <li class="nav-item dropdown">

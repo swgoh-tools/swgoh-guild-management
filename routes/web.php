@@ -13,31 +13,65 @@ declare(strict_types=1);
  * |.
  */
 use App\User;
+use App\Helper\FeedReader;
 use App\Helper\SyncClient;
 use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ListController;
 use Illuminate\Support\Facades\Response;
+use App\Events\OfficialAnnouncementAdded;
+use App\Http\Controllers\GuildController;
+use App\Http\Controllers\MemosController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\RepliesController;
+use App\Http\Controllers\ThreadsController;
+use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Dev\AssetController;
+use App\Http\Controllers\FavoritesController;
+use App\Http\Controllers\Api\UploadController;
+use App\Http\Controllers\BestRepliesController;
+use App\Http\Controllers\LockedThreadsController;
+use App\Http\Controllers\Api\UserAvatarController;
 use App\Http\Controllers\Permissions\PostController;
 use App\Http\Controllers\Permissions\RoleController;
 use App\Http\Controllers\Permissions\UserController;
+use App\Http\Controllers\UserNotificationsController;
+use App\Http\Controllers\ThreadSubscriptionsController;
+use App\Http\Controllers\Auth\RegisterConfirmationController;
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index']);
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
-// Route::get('/test', function () {
-//     // $my_user = \App\User::find(9);
-//     // $my_user->confirmed = false;
-//     // $my_user->confirmed = true;
-//     $playerInfo = \App\Helper\SyncClient::getPlayer(145521821, false);
-//     dd($playerInfo);
-//     // return view('test')->with(['playerInfo' => $playerInfo]);
-// })->name('test');
+Route::get('/news/{type?}', function (string $type = '') {
+    switch ($type) {
+        case 'updates':
+            $feed_key = 'official-game-updates';
+            break;
+        case 'units':
+            $feed_key = 'official-unit-updates';
+            break;
+
+        case 'announcements':
+        default:
+            $feed_key = 'official-announcements';
+            break;
+    }
+
+    $data = Cache::remember('feed.data.'.$feed_key, now()->addMinutes(120), function () use ($feed_key) {
+        $fr = new FeedReader();
+        return $fr->getFeedData($feed_key);
+    });
+    return View::make('feed', $data);
+})->name('feeds')->where('type', 'announcements|updates|units');
 Route::get('/changes', function () {
     $changes = file_get_contents(base_path(). '/CHANGELOG.md');
     $changes = Markdown::parse($changes);
@@ -45,130 +79,136 @@ Route::get('/changes', function () {
 })->name('changes');
 Auth::routes();
 
-Route::get('threads', 'ThreadsController@index')->name('threads');
-Route::post('threads', 'ThreadsController@store')->middleware('auth'); //->middleware('must-be-confirmed');
-Route::get('threads/create', 'ThreadsController@create')->name('threads.create');
-Route::get('threads/search', 'SearchController@show')->name('threads.search');
-Route::get('threads/{channel}/{thread}', 'ThreadsController@show');
-Route::patch('threads/{channel}/{thread}', 'ThreadsController@update');
-Route::delete('threads/{channel}/{thread}', 'ThreadsController@destroy');
-Route::get('threads/{channel}', 'ThreadsController@index');
+Route::get('threads', [ThreadsController::class, 'index'])->name('threads');
+Route::post('threads', [ThreadsController::class, 'store'])->middleware('auth'); //->middleware('must-be-confirmed');
+Route::get('threads/create', [ThreadsController::class, 'create'])->name('threads.create');
+Route::get('threads/search', [SearchController::class, 'show'])->name('threads.search');
+Route::get('threads/{channel}/{thread}', [ThreadsController::class, 'show']);
+Route::patch('threads/{channel}/{thread}', [ThreadsController::class, 'update']);
+Route::delete('threads/{channel}/{thread}', [ThreadsController::class, 'destroy']);
+Route::get('threads/{channel}', [ThreadsController::class, 'index']);
 
-Route::post('locked-threads/{thread}', 'LockedThreadsController@store')->name('locked-threads.store')->middleware('admin');
-Route::delete('locked-threads/{thread}', 'LockedThreadsController@destroy')->name('locked-threads.destroy')->middleware('admin');
+Route::post('locked-threads/{thread}', [LockedThreadsController::class, 'store'])->name('locked-threads.store')->middleware('admin');
+Route::delete('locked-threads/{thread}', [LockedThreadsController::class, 'destroy'])->name('locked-threads.destroy')->middleware('admin');
 
-Route::get('/threads/{channel}/{thread}/replies', 'RepliesController@index');
-Route::post('/threads/{channel}/{thread}/replies', 'RepliesController@store');
-Route::patch('/replies/{reply}', 'RepliesController@update');
-Route::delete('/replies/{reply}', 'RepliesController@destroy')->name('replies.destroy');
+Route::get('/threads/{channel}/{thread}/replies', [RepliesController::class, 'index']);
+Route::post('/threads/{channel}/{thread}/replies', [RepliesController::class, 'store']);
+Route::patch('/replies/{reply}', [RepliesController::class, 'update']);
+Route::delete('/replies/{reply}', [RepliesController::class, 'destroy'])->name('replies.destroy');
 
-Route::post('/replies/{reply}/best', 'BestRepliesController@store')->name('best-replies.store');
+Route::post('/replies/{reply}/best', [BestRepliesController::class, 'store'])->name('best-replies.store');
 
-Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@store')->middleware('auth');
-Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy')->middleware('auth');
+Route::post('/threads/{channel}/{thread}/subscriptions', [ThreadSubscriptionsController::class, 'store'])->middleware('auth');
+Route::delete('/threads/{channel}/{thread}/subscriptions', [ThreadSubscriptionsController::class, 'destroy'])->middleware('auth');
 
-Route::post('/replies/{reply}/favorites', 'FavoritesController@store');
-Route::delete('/replies/{reply}/favorites', 'FavoritesController@destroy');
+Route::post('/replies/{reply}/favorites', [FavoritesController::class, 'store']);
+Route::delete('/replies/{reply}/favorites', [FavoritesController::class, 'destroy']);
 
-Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
-Route::get('/profiles/{user}/notifications', 'UserNotificationsController@index')->name('notifications');
-Route::delete('/profiles/{user}/notifications/{notification}', 'UserNotificationsController@destroy');
-Route::get('/users/{id}', 'Permissions\UserController@show')->name('user.show');
-Route::get('/users/{id}/edit', 'Permissions\UserController@editRestricted')->name('user.edit');
-Route::put('/users/{id}', 'Permissions\UserController@updateRestricted')->name('user.update');
+Route::get('/profiles/{user}', [ProfilesController::class, 'show'])->name('profile');
+Route::get('/profiles/{user}/notifications', [UserNotificationsController::class, 'index'])->name('notifications');
+Route::delete('/profiles/{user}/notifications/{notification}', [UserNotificationsController::class, 'destroy']);
+Route::get('/users/{id}', [UserController::class, 'show'])->name('user.show');
+Route::get('/users/{id}/edit', [UserController::class, 'editRestricted'])->name('user.edit');
+Route::put('/users/{id}', [UserController::class, 'updateRestricted'])->name('user.update');
 
-Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');
+Route::get('/register/confirm', [RegisterConfirmationController::class, 'index'])->name('register.confirm');
 
-Route::get('api/users', 'Api\UsersController@index');
-Route::post('api/users/{user}/avatar', 'Api\UserAvatarController@store')->middleware('auth')->name('avatar');
+Route::get('api/users', [UsersController::class, 'index']);
+Route::post('api/users/{user}/avatar', [UserAvatarController::class, 'store'])->middleware('auth')->name('avatar');
 
-Route::get('sync', 'HomeController@syncIndex')->name('sync');
-Route::post('sync', 'HomeController@syncStore')->middleware('role:admin|leader|officer|member');
+Route::get('sync', [HomeController::class, 'syncIndex'])->name('sync');
+Route::post('sync', [HomeController::class, 'syncStore'])->middleware('role:admin|leader|officer|member');
 Route::prefix('g')->group(function (): void {
-    Route::get('/', 'PagesController@home')->name('guild');
-    Route::get('{guild}', 'GuildController@home')->name('guild.home');
-    Route::get('{guild}/sync', 'HomeController@syncIndex')->name('sync2');
-    Route::post('{guild}/sync', 'HomeController@syncStore')->middleware('role:admin|leader|officer|member');
-    // Route::get('{guild}/own/roster', 'PagesController@roster')->name('guild.roster');
-    Route::get('{guild}/own/ships/{chunk?}', 'PagesController@rosterShips')->name('guild.ships');
-    Route::get('{guild}/own/toons/{chunk?}', 'PagesController@rosterToons')->name('guild.toons');
-    Route::get('{guild}/list/targeting', 'ListController@targeting')->name('guild.list.targeting');
-    Route::get('{guild}/list/zetas', 'ListController@zetas')->name('guild.list.zetas');
-    Route::get('{guild}/list/events', 'ListController@events')->name('guild.list.events');
-    // Route::get('{guild}/list/battles', 'PagesController@battlesList')->name('guild.list.battles');
-    Route::get('{guild}/list/squads', 'ListController@squads')->name('guild.list.squads');
-    Route::get('{guild}/sanctions/{code}', 'GuildController@indexSanction')->name('sanction');
-    Route::post('{guild}/sanctions/{code}', 'GuildController@storeSanction')->middleware('role:admin|leader|officer');
-    Route::get('{guild}/sanctions/{code}/create', 'GuildController@createSanction')->name('sanction.create');
-    // Route::get('{guild}/sanctions/{code}/{sanction}', 'GuildController@showSanction');
-    Route::put('{guild}/sanctions/{code}/{sanction}', 'GuildController@updateSanction')->name('sanction.update');
-    Route::delete('{guild}/sanctions/{code}/{sanction}', 'GuildController@destroySanction')->name('sanction.destroy');
-    Route::get('{guild}/sanctions/{code}/{sanction}/edit', 'GuildController@editSanction')->name('sanction.edit');
-    Route::get('{guild}/stats/{chunk?}/{code?}', 'GuildController@stats')->name('guild.stats');
-    Route::get('{guild}/team/ships', 'PagesController@squadsShips')->name('guild.team.ships');
-    Route::post('{guild}/team/ships', 'PagesController@squadsShips');
-    Route::get('{guild}/team/toons', 'PagesController@squadsToons')->name('guild.team.toons');
-    Route::post('{guild}/team/toons', 'PagesController@squadsToons');
+    Route::get('/', [PagesController::class, 'home'])->name('guild');
+    Route::get('{guild}', [GuildController::class, 'home'])->name('guild.home');
+    Route::get('{guild}/sync', [HomeController::class, 'syncIndex'])->name('sync2');
+    Route::post('{guild}/sync', [HomeController::class, 'syncStore'])->middleware('role:admin|leader|officer|member');
+    // Route::get('{guild}/own/roster', [PagesController::class, 'roster'])->name('guild.roster');
+    Route::get('{guild}/own/ships/{chunk?}', [PagesController::class, 'rosterShips'])->name('guild.ships');
+    Route::get('{guild}/own/toons/{chunk?}', [PagesController::class, 'rosterToons'])->name('guild.toons');
+    Route::get('{guild}/list/ability_mats/{type?}', [ListController::class, 'ability_mats_guild'])->name('guild.list.ability_mats')->where('type', 'levels|tiers|gear|stars|relics|recipes');
+    Route::get('{guild}/list/targeting', [ListController::class, 'targeting'])->name('guild.list.targeting');
+    Route::get('{guild}/list/zetas', [ListController::class, 'zetas'])->name('guild.list.zetas');
+    Route::get('{guild}/list/events', [ListController::class, 'events'])->name('guild.list.events');
+    // Route::get('{guild}/list/battles', [PagesController::class, 'battlesList'])->name('guild.list.battles');
+    Route::get('{guild}/list/squads', [ListController::class, 'squads'])->name('guild.list.squads');
+    Route::get('{guild}/sanctions/{code}', [GuildController::class, 'indexSanction'])->name('sanction');
+    Route::post('{guild}/sanctions/{code}', [GuildController::class, 'storeSanction'])->middleware('role:admin|leader|officer');
+    Route::get('{guild}/sanctions/{code}/create', [GuildController::class, 'createSanction'])->name('sanction.create');
+    // Route::get('{guild}/sanctions/{code}/{sanction}', [GuildController::class, 'showSanction']);
+    Route::put('{guild}/sanctions/{code}/{sanction}', [GuildController::class, 'updateSanction'])->name('sanction.update');
+    Route::delete('{guild}/sanctions/{code}/{sanction}', [GuildController::class, 'destroySanction'])->name('sanction.destroy');
+    Route::get('{guild}/sanctions/{code}/{sanction}/edit', [GuildController::class, 'editSanction'])->name('sanction.edit');
+    Route::get('{guild}/stats/players/percent', [GuildController::class, 'stats_players_percent'])->name('guild.stats.players.percent');
+    Route::get('{guild}/stats/players/secondary/{limit?}', [GuildController::class, 'stats_players_secondary'])->name('guild.stats.players.secondary')->where('limit', '\d{0,4}');
+    Route::get('{guild}/stats/players', [GuildController::class, 'stats_players'])->name('guild.stats.players');
+    Route::get('{guild}/stats/{chunk?}/{code?}', [GuildController::class, 'stats'])->name('guild.stats');
+    Route::get('{guild}/team/ships', [PagesController::class, 'squadsShips'])->name('guild.team.ships');
+    Route::post('{guild}/team/ships', [PagesController::class, 'squadsShips']);
+    Route::get('{guild}/team/toons', [PagesController::class, 'squadsToons'])->name('guild.team.toons');
+    Route::post('{guild}/team/toons', [PagesController::class, 'squadsToons']);
     // Route::get('{guild}/info', function () {
     //     return view('guild.info');
     // })->name('guild.info');
 
-    Route::get('{guild}/pages', 'PagesController@info')->name('guild.pages');
-    Route::get('{guild}/{page}', 'PagesController@show');
-    Route::get('{guild}/{page}/edit', 'PagesController@showEdit');
-    Route::delete('{guild}/{page}', 'PagesController@destroy')->middleware('auth');
-    Route::post('{guild}/{page}/edit', 'MemosController@store');
-    Route::get('{guild}/{page}/edit/memos', 'MemosController@index');
-    Route::get('{guild}/{page}/edit/pages', 'PagesController@index');
-    Route::post('{guild}/{page}/upload', 'Api\UploadController@storeCkeditor')->middleware('auth'); //->middleware('must-be-confirmed');
+    Route::get('{guild}/pages', [PagesController::class, 'info'])->name('guild.pages');
+    Route::get('{guild}/{page}', [PagesController::class, 'show']);
+    Route::get('{guild}/{page}/edit', [PagesController::class, 'showEdit']);
+    Route::delete('{guild}/{page}', [PagesController::class, 'destroy'])->middleware('auth');
+    Route::post('{guild}/{page}/edit', [MemosController::class, 'store']);
+    Route::get('{guild}/{page}/edit/memos', [MemosController::class, 'index']);
+    Route::get('{guild}/{page}/edit/pages', [PagesController::class, 'index']);
+    Route::post('{guild}/{page}/upload', [UploadController::class, 'storeCkeditor'])->middleware('auth'); //->middleware('must-be-confirmed');
 
-    Route::get('{guild}/{page}/memos', 'MemosController@index');
-    Route::post('{guild}/{page}/memos', 'MemosController@store')->middleware('auth'); //->middleware('must-be-confirmed');
-    Route::put('{guild}/{page}/memos/{memo}', 'MemosController@update')->middleware('auth');
-    Route::delete('{guild}/{page}/memos/{memo}', 'MemosController@destroy')->middleware('auth');
-    Route::put('{guild}/{page}/memos/{memo}/relocate', 'MemosController@relocate')->middleware('auth');
-    Route::post('{guild}/{page}/memos/{memo}/lock', 'MemosController@getLock')->name('memos.lock.store')->middleware('auth');
-    Route::delete('{guild}/{page}/memos/{memo}/lock', 'MemosController@releaseLock')->name('memos.lock.destroy')->middleware('auth');
+    Route::get('{guild}/{page}/memos', [MemosController::class, 'index']);
+    Route::post('{guild}/{page}/memos', [MemosController::class, 'store'])->middleware('auth'); //->middleware('must-be-confirmed');
+    Route::put('{guild}/{page}/memos/{memo}', [MemosController::class, 'update'])->middleware('auth');
+    Route::delete('{guild}/{page}/memos/{memo}', [MemosController::class, 'destroy'])->middleware('auth');
+    Route::put('{guild}/{page}/memos/{memo}/relocate', [MemosController::class, 'relocate'])->middleware('auth');
+    Route::post('{guild}/{page}/memos/{memo}/lock', [MemosController::class, 'getLock'])->name('memos.lock.store')->middleware('auth');
+    Route::delete('{guild}/{page}/memos/{memo}/lock', [MemosController::class, 'releaseLock'])->name('memos.lock.destroy')->middleware('auth');
 });
 Route::prefix('p')->group(function (): void {
-    Route::get('/', 'PagesController@home')->name('player');
-    Route::get('{player}', 'PlayerController@home')->name('player.home');
-    Route::get('{player}/roster', 'PlayerController@roster')->name('player.roster');
-    Route::get('{player}/toons', 'PlayerController@toons')->name('player.toons');
-    Route::get('{player}/gear', 'PlayerController@gear')->name('player.gear');
-    Route::post('{player}/gear', 'PlayerController@gear');
-    Route::get('{player}/stats', 'PlayerController@stats')->name('player.stats');
-    Route::get('{player}/stats/full', 'PlayerController@statsVerbose')->name('player.stats.full');
-    Route::get('{player}/stats/gear', 'PlayerController@statsGear')->name('player.stats.gear');
-    Route::get('{player}/stats/salvage', 'PlayerController@statsSalvage')->name('player.stats.salvage');
+    Route::get('/', [PagesController::class, 'home'])->name('player');
+    Route::get('{player}', [PlayerController::class, 'home'])->name('player.home');
+    Route::get('{player}/roster', [PlayerController::class, 'roster'])->name('player.roster');
+    Route::get('{player}/toons', [PlayerController::class, 'toons'])->name('player.toons');
+    Route::get('{player}/gear', [PlayerController::class, 'gear'])->name('player.gear');
+    Route::post('{player}/gear', [PlayerController::class, 'gear']);
+    Route::get('{player}/stats', [PlayerController::class, 'stats'])->name('player.stats');
+    Route::get('{player}/stats/full', [PlayerController::class, 'statsVerbose'])->name('player.stats.full');
+    Route::get('{player}/stats/gear', [PlayerController::class, 'statsGear'])->name('player.stats.gear');
+    Route::get('{player}/stats/salvage', [PlayerController::class, 'statsSalvage'])->name('player.stats.salvage');
 });
-Route::get('/list/targeting', 'ListController@targeting')->name('targeting');
-Route::get('/list/zetas', 'ListController@zetas')->name('zetas');
-Route::get('/list/events', 'ListController@zetas')->name('events');
+Route::get('/list/ability_mats/{type?}', [ListController::class, 'ability_mats'])->name('ability_mats')->where('type', 'levels|tiers|gear|stars|relics|recipes');
+Route::get('/list/targeting', [ListController::class, 'targeting'])->name('targeting');
+Route::get('/list/zetas', [ListController::class, 'zetas'])->name('zetas');
+Route::get('/list/events', [ListController::class, 'zetas'])->name('events');
+Route::get('/list/table', [ListController::class, 'table_list'])->name('list.table');
 
 Route::prefix('admin')->group(function (): void {
     // Route::get('users', function (): void {
     //     // Matches The "/admin/users" URL
     // });
     Route::resource('guilds', 'GuildController', ['as' => 'admin'])->middleware('admin');
-    Route::post('pages', 'PagesController@store')->name('pages')->middleware(['permission:edit pages']); //->middleware('must-be-confirmed');
-    Route::get('pages/create', 'PagesController@create')->name('pages.create')->middleware(['permission:edit pages']);
-    Route::post('memos', 'MemosController@storeAdmin')->name('memos')->middleware('admin'); //->middleware('must-be-confirmed');
-    Route::get('memos', 'MemosController@index');
-    Route::get('memos/create', 'MemosController@create')->name('memos.create');
-    Route::get('memos/{memo}', 'MemosController@show');
-    Route::put('memos/{memo}', 'MemosController@update');
-    // Route::post('memos/{memo}', 'MemosController@update');
-    // Route::patch('memos/{memo}', 'MemosController@update');
-    Route::delete('memos/{memo}', 'MemosController@destroy')->middleware('auth');
-    Route::post('files', 'Api\UploadController@storeAdmin')->name('files')->middleware('admin'); //->middleware('must-be-confirmed');
-    Route::get('files/upload', 'Api\UploadController@create')->name('files.upload');
-    Route::post('channels', 'PagesController@storeChannel')->name('channels')->middleware('admin'); //->middleware('must-be-confirmed');
-    Route::get('channels/create', 'PagesController@createChannel')->name('channels.create');
+    Route::post('pages', [PagesController::class, 'store'])->name('pages')->middleware(['permission:edit pages']); //->middleware('must-be-confirmed');
+    Route::get('pages/create', [PagesController::class, 'create'])->name('pages.create')->middleware(['permission:edit pages']);
+    Route::post('memos', [MemosController::class, 'storeAdmin'])->name('memos')->middleware('admin'); //->middleware('must-be-confirmed');
+    Route::get('memos', [MemosController::class, 'index']);
+    Route::get('memos/create', [MemosController::class, 'create'])->name('memos.create');
+    Route::get('memos/{memo}', [MemosController::class, 'show']);
+    Route::put('memos/{memo}', [MemosController::class, 'update']);
+    // Route::post('memos/{memo}', [MemosController::class, 'update']);
+    // Route::patch('memos/{memo}', [MemosController::class, 'update']);
+    Route::delete('memos/{memo}', [MemosController::class, 'destroy'])->middleware('auth');
+    Route::post('files', [UploadController::class, 'storeAdmin'])->name('files')->middleware('admin'); //->middleware('must-be-confirmed');
+    Route::get('files/upload', [UploadController::class, 'create'])->name('files.upload');
+    Route::post('channels', [PagesController::class, 'storeChannel'])->name('channels')->middleware('admin'); //->middleware('must-be-confirmed');
+    Route::get('channels/create', [PagesController::class, 'createChannel'])->name('channels.create');
 });
 
-    Route::post('api/upload', 'Api\UploadController@store')->middleware('auth')->name('upload');
-    // Route::get('memos/search', 'SearchController@show')->name('memos.search');
+    Route::post('api/upload', [UploadController::class, 'store'])->middleware('auth')->name('upload');
+    // Route::get('memos/search', [SearchController::class, 'show'])->name('memos.search');
 
 Route::prefix('f')->group(function (): void {
     Route::get('a/{filename}', function (string $filename) {
@@ -231,7 +271,7 @@ Route::group(
     }
 );
 
-Route::post('admin/posts/{post}/upload', 'Api\UploadController@storeCkeditor')->middleware('auth'); //->middleware('must-be-confirmed');
+Route::post('admin/posts/{post}/upload', [UploadController::class, 'storeCkeditor'])->middleware('auth'); //->middleware('must-be-confirmed');
 
 Route::get('testitnow/{param1MayContainSlash}/{param2}/{param3}', function ($param1Slashable, $param2, $param3) {
     $content = 'PATH: '.Request::path().'</br>';
