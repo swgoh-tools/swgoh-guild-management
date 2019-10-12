@@ -8,8 +8,11 @@ use App\Player;
 use App\Sanction;
 use App\Permission;
 use App\Authorizable;
+use App\Charts\HighChart;
 use App\Helper\SyncClient;
+use App\Charts\FrappeChart;
 use Illuminate\Http\Request;
+use App\Charts\GuildStatsPlayers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -362,6 +365,118 @@ class GuildController extends Controller
             'sithSquadsPhasePlayer' => $sithSquadsPhasePlayer ?? [],
             'selection' => $chunk,
             'detail' => $code,
+        ]);
+    }
+
+    public function stats_players_percent(Guild $guild)
+    {
+        return $this->stats_players($guild, 'percent');
+    }
+
+    public function stats_players_secondary(Guild $guild, $top_limit = null)
+    {
+        return $this->stats_players($guild, 'secondaryStats', $top_limit);
+    }
+
+    public function stats_players(Guild $guild, $type = '', $top_limit = null)
+    {
+        $members = SyncClient::getGuildMembers($guild);
+        // $players = array_column($members, 'name', 'allyCode'); // not working on collection
+        $players = $members->mapWithKeys(function ($item) {
+            return [$item['allyCode'] => $item['name']];
+        });
+
+        $fields = ['rarity', 'level', 'gear'];
+        $fields_mods = ['level', 'tier', 'set', 'pips'];
+        $stats = [];
+        $stats_total = [];
+        $stats_mods = [];
+        $stats_mods_ranking = [];
+        foreach ($players->all() as $player_code => $player_name) {
+            $player = SyncClient::getPlayer($player_code, false);
+            if ($player) {
+                foreach ($player['roster'] ?? [] as $unit) {
+                    foreach ($fields as $field) {
+                        if (isset($unit[$field])) {
+                            $stats[$player_code][$field][$unit[$field]] = 1+ ($stats[$player_code][$field][$unit[$field]] ?? 0);
+                            $stats_total[$field][$unit[$field]] = 1+ ($stats_total[$field][$unit[$field]] ?? 0);
+                        }
+                    }
+                    foreach ($unit['mods'] ?? [] as $mod) {
+                        $prefix = 'mods_';
+                        foreach ($fields_mods as $field) {
+                            if (isset($mod[$field])) {
+                                $stats[$player_code][$prefix.$field][$mod[$field]] = 1+ ($stats[$player_code][$prefix.$field][$mod[$field]] ?? 0);
+                                $stats_total[$prefix.$field][$mod[$field]] = 1+ ($stats_total[$prefix.$field][$mod[$field]] ?? 0);
+                            }
+                        }
+                        $primaryStat = $mod['primaryStat']['unitStat'] ?? null;
+                        $field = 'primaryStat';
+                        if ($primaryStat) {
+                            $stats[$player_code][$prefix.$field][$primaryStat] = 1+ ($stats[$player_code][$prefix.$field][$primaryStat] ?? 0);
+                            $stats_total[$prefix.$field][$primaryStat] = 1+ ($stats_total[$prefix.$field][$primaryStat] ?? 0);
+                        }
+                        $field = 'secondaryStat';
+                        foreach ($mod['secondaryStat'] ?? [] as $secondaryStat) {
+                            $stat_name = $secondaryStat['unitStat'] ?? null; // value roll
+                            if ($stat_name) {
+                                $stats[$player_code][$prefix.$field][$stat_name] = 1+ ($stats[$player_code][$prefix.$field][$stat_name] ?? 0);
+                                $stats_total[$prefix.$field][$stat_name] = 1+ ($stats_total[$prefix.$field][$stat_name] ?? 0);
+                                if ('secondaryStats' == $type && ($secondaryStat['value'] ?? null)) {
+                                    $stats_mods[$field][$stat_name][] = (int)round($secondaryStat['value'] ?? ''); // array_count_values(): Can only count STRING and INTEGER values!
+                                    $stats_mods_ranking[$stat_name][$secondaryStat['value']][] = $player_code;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            # code...
+        }
+
+        $charts = [];
+        $stats_special = [];
+        $stats_total_special = [];
+        if ('secondaryStats' !== $type) {
+            foreach ($stats_total as $key => $value) {
+                krsort($value);
+                $chart_high = new HighChart;
+                $chart_high->labels(\array_keys($value));
+                $chart_high->dataset(__('fields.'.$key), 'bar', \array_values($value));
+                $charts[$key] = $chart_high;
+            }
+        }
+
+        if ('secondaryStats' == $type) {
+            foreach ($stats_mods as $field_key => $field_value) {
+                foreach ($field_value as $stat_key => $stat_values) {
+                    $value = array_count_values($stat_values); // array_count_values(): Can only count STRING and INTEGER values!
+                    krsort($value);
+                    $chart_high = new HighChart;
+                    $chart_high->labels(\array_keys($value));
+                    $chart_high->dataset(__('enums.'.$stat_key), 'bar', \array_values($value));
+                    $charts[$stat_key] = $chart_high;
+                    $stats_special['-'][$stat_key] = $value;
+                    $stats_total_special[$stat_key] = [];
+
+                    if ($stats_mods_ranking[$stat_key] ?? null) {
+                        krsort($stats_mods_ranking[$stat_key]);
+                    }
+                }
+            }
+        }
+
+        return view('guild.players', [
+            'charts' => $charts,
+            'data_key' => 'guild_stats_players',
+            'top_limit' => $top_limit ?? null,
+            'lang_prefix' => ('secondaryStats' == $type) ? 'enums.' : 'fields.',
+            'percent' => $type == 'percent',
+            'members' => $members,
+            'players' => $players,
+            'stats' => ('secondaryStats' == $type) ? $stats_special : $stats,
+            'stats_total' => ('secondaryStats' == $type) ? $stats_total_special : $stats_total,
+            'stats_mods_ranking' =>  $stats_mods_ranking,
         ]);
     }
 

@@ -7,6 +7,7 @@
     "require": {
         "php": "^7.1.8",
         "algolia/algoliasearch-client-php": "^2.2",
+        "consoletvs/charts": "^6.5",
         "fideloper/proxy": "^4.0",
         "kitetail/zttp": "^0.3.0",
         "laracasts/flash": "^3.0",
@@ -14,8 +15,10 @@
         "laravel/scout": "^7.1",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.7",
+        "linecorp/line-bot-sdk": "^3.14",
         "spatie/laravel-permission": "^2.21",
-        "stevebauman/purify": "^2.0"
+        "stevebauman/purify": "^2.0",
+        "willvincent/feeds": "^2.0"
     },
     "require-dev": {
         "andrey-helldar/laravel-lang-publisher": "^2.0",

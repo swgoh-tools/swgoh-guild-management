@@ -30,7 +30,7 @@
             <div class="form-group my-1">
             <label for="t{{ $id }}"># {{ $id }}</label>
             <select class="form-control mx-2" id="t{{ $id }}" name="t{{ $id }}">
-                <option value="">{{ __('Select Character') }}</option>
+                <option value="">@if('ship' == $type){{ __('Select Ship') }}@else{{ __('Select Character') }}@endif</option>
                 @foreach ($units as $key => $value)
                 @if ($key == ($char_list[$id-1] ?? 'NA') ){{-- Request::get($id) ?? old($id) does not work since there is no redirect with 'withInput()' --}}
                 <option value="{{ $key }}" selected>{{ $unitKeys[$key]['name'] ?? $key }}</option>
@@ -49,7 +49,7 @@
         <div class="form-group mt-1 mb-2">
             <!-- <label for="staticSquadLink">{{ __('Direct Link') }}</label> -->
             <input class="form-control" type="text" name="staticSquadLink" id="staticSquadLink" readonly="readonly"
-            value="{{ route('guild.team.toons', $page_guild) }}?t={{ implode(',', $char_list) }}">
+            value="{{ route($route, $page_guild) }}?t={{ implode(',', $char_list) }}">
             <small id="staticSquadLinkHelp" class="form-text text-muted">{{ __('pages.squads.direct_link_info') }}</small>
         </div>
 

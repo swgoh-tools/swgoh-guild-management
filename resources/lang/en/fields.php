@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
   'allyCode' => 'Allycode',
   'char' => 'Char',
   'combatType' => 'Combat Type',
@@ -72,4 +72,24 @@ return array (
   'desc' => 'Description',
   'bannerColor' => 'Banner Color',
   'bannerLogo' => 'Banner Logo',
+  'count' => 'Count',
+  'quantity' => 'Quantity',
+  'T1' => 'Tier 1',
+  'T2' => 'Tier 2',
+  'T3' => 'Tier 3',
+  'T4' => 'Tier 4',
+  'T5' => 'Tier 5',
+  'T6' => 'Tier 6',
+  'T7' => 'Tier 7',
+  'stars' => 'Stars',
+  'tiers' => 'Tiers',
+  'levels' => 'Levels',
+  'relics' => 'Relics',
+  'recipes' => 'Recipes',
+  'mods_level' => 'Mods Level',
+  'mods_tier' => 'Mods Tier',
+  'mods_set' => 'Mods Set',
+  'mods_pips' => 'Mods Pips',
+  'mods_primaryStat' => 'Mods Primary Stat',
+  'mods_secondaryStat' => 'Mods Secondary Stats',
 );
