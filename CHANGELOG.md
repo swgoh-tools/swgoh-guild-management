@@ -1,5 +1,11 @@
 # swgoh-guild-management changes
 
+## 1.5.1 (2019-11-09)
+-   [Player] add toon list grouped by categories (species, faction, profession) for players
+-   [Player] add relic and zeta count to unit portraits
+-   [GUI] show pending and failed background jobs on sync page
+-   [GUI] add textures for relics and gear including glowing G13
+
 ## 1.5.0 (2019-10-12)
 -   [GLOBAL] add feed reader for official game announcements
 -   [LANG] fix broken language identification
