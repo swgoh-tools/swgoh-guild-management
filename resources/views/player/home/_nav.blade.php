@@ -14,6 +14,8 @@
         <i class="fa fa-resistance"></i>
         <a href="{{ route('player.toons', $info['allyCode']) }}">{{ __('Toons') }} ({{ __('Big Data!') }})</a>
         |
+        <a href="{{ route('player.toons_by_category', $info['allyCode']) }}">{{ __('Toons') }} ({{ __('Categories') }})</a>
+        |
         <a href="{{ route('player.roster', $info['allyCode']) }}">{{ __('Roster') }}</a>
     </div>
 

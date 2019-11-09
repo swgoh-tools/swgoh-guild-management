@@ -173,6 +173,7 @@ Route::prefix('p')->group(function (): void {
     Route::get('{player}', [PlayerController::class, 'home'])->name('player.home');
     Route::get('{player}/roster', [PlayerController::class, 'roster'])->name('player.roster');
     Route::get('{player}/toons', [PlayerController::class, 'toons'])->name('player.toons');
+    Route::get('{player}/toons/category', [PlayerController::class, 'toons_by_category'])->name('player.toons_by_category');
     Route::get('{player}/gear', [PlayerController::class, 'gear'])->name('player.gear');
     Route::post('{player}/gear', [PlayerController::class, 'gear']);
     Route::get('{player}/stats', [PlayerController::class, 'stats'])->name('player.stats');

@@ -62,6 +62,73 @@ class PlayerController extends Controller
         ]);
     }
 
+    public function toons_by_category($player)
+    {
+        $info = SyncClient::getPlayer($player);
+        $skillKeys = SyncClient::getSkillKeys();
+        $unitKeys = SyncClient::getUnitKeys();
+        $unitStatKeys = SyncClient::getUnitStatKeys();
+        $gear =SyncClient::getGgGearWithKey();
+        $chars = SyncClient::getGgCharsWithKey();
+
+        $roster = [];
+        $known_units = [];
+        if ($info[0]['roster'] ?? false) {
+            foreach ($info[0]['roster'] as $key => $value) {
+                $unit_id = $value['defId'];
+                $info[0]['roster'][$key]['nameKey'] = $unitKeys[$unit_id]['name'] ?? $info[0]['roster'][$key]['nameKey'] ?? '';
+                $info[0]['roster'][$key]['desc'] = $unitKeys[$unit_id]['desc'] ?? $info[0]['roster'][$key]['desc'] ?? '';
+                $info[0]['roster'][$key]['categoryIdList'] = $unitKeys[$unit_id]['categoryIdList'] ?? $info[0]['roster'][$key]['categoryIdList'] ?? '';
+
+                $category = $this->getMainCategory($info[0]['roster'][$key]['categoryIdList'], $unit_id);
+                $roster[$category][$unit_id] = $info[0]['roster'][$key];
+                $known_units[$unit_id] = true;
+            }
+            // Sort the multidimensional array
+            usort($info[0]['roster'], "custom_sort_by_name_key");
+        }
+        // $all_categories = [];
+        // add missing chars (chars not unlocked by player)
+        foreach ($unitKeys as $unit_id => $unit) {
+            if ($known_units[$unit_id] ?? false) {
+                continue;
+            }
+            $dummy_unit = [];
+            $dummy_unit['defId'] = $unit_id;
+            $dummy_unit['nameKey'] = $unitKeys[$unit_id]['name'] ?? '';
+            $dummy_unit['desc'] = $unitKeys[$unit_id]['desc'] ?? '';
+            $dummy_unit['categoryIdList'] = $unitKeys[$unit_id]['categoryIdList'] ?? '';
+            $dummy_unit['combatType'] = $unitKeys[$unit_id]['combatType'] ?? '';
+            // if (is_array($dummy_unit['categoryIdList'])) {
+            //     $all_categories = array_merge($all_categories, $dummy_unit['categoryIdList']);
+            // }
+            $dummy_unit['gp'] = 0;
+
+            $category = $this->getMainCategory($dummy_unit['categoryIdList'], $unit_id);
+            $roster[$category][$unit_id] = $dummy_unit;
+        }
+
+        // dd($roster['']);
+        // dd($unitKeys);
+
+        // $all_categories = array_combine($all_categories, $all_categories);
+        // ksort($all_categories);
+        // dd($all_categories);
+        foreach ($roster as $category => $values) {
+            // Sort the multidimensional array
+            usort($roster[$category], "custom_sort_by_gp");
+        }
+
+        return view('player.toons_by_category', [
+            'info' => $info[0] ?? [],
+            'roster' => $roster,
+            'skillKeys' => $skillKeys ?? [],
+            'unitStatKeys' => $unitStatKeys ?? [],
+            'chars' => $chars ?? [],
+            'gear' => $gear ?? [],
+        ]);
+    }
+
     /**
      * Display guild home page.
      *
@@ -534,6 +601,68 @@ class PlayerController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    private function getMainCategory($categoryIdList, $char)
+    {
+        if (!is_array($categoryIdList)) {
+            return 'no_categories_found';
+        }
+
+        $customToonList = [
+            'BARRISSOFFEE' => 'affiliation_republic',
+            'SHAAKTI' => 'profession_clonetrooper',
+            'GRANDMASTERYODA' => 'profession_jedi',
+            'PLOKOON' => 'profession_jedi',
+            'AHSOKATANO' => 'profession_clonetrooper',
+            'ANAKINKNIGHT' => 'affiliation_republic',
+            'GENERALKENOBI' => 'affiliation_republic',
+        ];
+
+        if (isset($customToonList[$char])) {
+            return $customToonList[$char];
+        }
+
+        $customOrderList = [
+            'affiliation_imperialtrooper',
+            'species_ewok',
+            'species_geonosian',
+            'profession_bountyhunter',
+            'affiliation_phoenix',
+            'affiliation_rogue_one',
+            'profession_clonetrooper',
+            'affiliation_501st',
+            'profession_jedi',
+            // 'platoon_legendary_light',
+        ];
+
+        foreach ($customOrderList as $category) {
+            if (in_array($category, $categoryIdList, true)) {
+                return $category;
+            }
+        }
+
+        // "affiliation_rebels
+        // "profession_scoundrel"
+        // "species_human"
+
+        $affiliation = null;
+        $profession = null;
+        $species = null;
+
+        foreach ($categoryIdList as $category) {
+            if (!$affiliation && false !== strpos($category, 'affiliation_')) {
+                $affiliation = $category;
+            }
+            if (!$profession && false !== strpos($category, 'profession_')) {
+                $profession = $category;
+            }
+            if (!$species && false !== strpos($category, 'species_')) {
+                $species = $category;
+            }
+        }
+
+        return $affiliation ?? $profession ?? $species;
     }
 
     /**
