@@ -67,11 +67,26 @@ return [
             'visibility' => 'public',
         ],
 
+        'sync2' => [
+            'driver' => 'local',
+            'root' => 'S:\\sync',
+        ],
+
+        'sync2-archive' => [
+            'driver' => 'local',
+            'root' => 'S:\\sync-archive',
+        ],
+
         'sync' => [
             'driver' => 'local',
             'root' => storage_path('app/sync'),
             'url' => env('APP_URL').'/f/d',
             'visibility' => 'public',
+        ],
+
+        'sync-archive' => [
+            'driver' => 'local',
+            'root' => storage_path('app/sync-archive'),
         ],
 
         'pages' => [

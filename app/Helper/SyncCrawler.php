@@ -4,6 +4,7 @@ namespace App\Helper;
 
 use App\Guild;
 use App\Player;
+use App\Helper\Log;
 use App\Helper\SyncClient;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
@@ -24,6 +25,7 @@ class SyncCrawler
      * @var string
      */
     protected $cmd = null;
+    protected $logger = null;
 
     /**
      * Notes for processed codes that will be written back to code files.
@@ -47,6 +49,7 @@ class SyncCrawler
     public function __construct(Command $cmd = null)
     {
         $this->cmd = $cmd;
+        $this->logger = new Log($cmd);
     }
 
     public function __destruct()
@@ -69,9 +72,9 @@ class SyncCrawler
                      */
                     $data = array_replace($data, $logfile_flags);
                     Storage::disk($this->data_disk)->put($file, \json_encode($data));
-                    $this->log('comment', 'Written code flags (' . \json_encode($logfile_flags) . ") to file ($file)!");
+                    $this->logger->log('comment', 'Written code flags (' . \json_encode($logfile_flags) . ") to file ($file)!");
                 } else {
-                    $this->log('error', 'Could not write code flags (' . \json_encode($logfile_flags) . ") back to file ($file)!");
+                    $this->logger->log('error', 'Could not write code flags (' . \json_encode($logfile_flags) . ") back to file ($file)!");
                 }
             }
             $this->flags = [];
@@ -87,6 +90,36 @@ class SyncCrawler
         return Storage::disk($this->data_disk)->put($file, '');
     }
 
+    public function syncErrorFiles()
+    {
+        $file = "swgoh.help/players/players.CRAWLER.ERROR.log";
+        if (!Storage::disk('sync')->exists($file)) {
+            return false;
+        }
+        $handle = Storage::disk('sync')->readStream($file);
+        // $data = json_decode($data, true);
+        // $handle = @fopen("/tmp/inputfile.txt", "r");
+        if ($handle) {
+            while (($buffer = fgets($handle)) !== false) {
+                $buffer = str_replace(',', '', $buffer);
+                $entries = explode(' ', $buffer);
+                echo date('c', $entries[0]) ?? '-' ;
+                unset($entries[0]);
+                foreach ($entries as $entry) {
+                    $code = SyncClient::validateAllyCode(trim($entry));
+                    if ($code) {
+                        $this->flags[$code] = 'ERROR';
+                    }
+                }
+            }
+            if (!feof($handle)) {
+                echo "Error: unexpected fgets() fail\n";
+            }
+            // fclose($handle);
+        }
+        return true;
+    }
+
     public function checkCodeFiles()
     {
         $stats = [];
@@ -98,20 +131,243 @@ class SyncCrawler
                     $data = json_decode($data, true);
                     $count_all = count($data);
                     $stats['ALL'] = ($stats['ALL'] ?? 0)+ $count_all;
-                    $pool = array_filter($data, function ($v) {
-                        return $v <> '';
-                    });
-                    $count_notes = count($pool);
-                    $count_empty = $count_all - $count_notes;
-                    $stats['EMPTY'] = ($stats['EMPTY'] ?? 0)+ $count_empty;
-                    $unique = array_count_values($pool);
+                    // $pool = array_filter($data, function ($v) {
+                    //     return $v <> '';
+                    // });
+                    // $count_notes = count($pool);
+                    // $count_empty = $count_all - $count_notes;
+                    // $stats['EMPTY'] = ($stats['EMPTY'] ?? 0)+ $count_empty;
+                    // $unique = array_count_values($pool);
+                    $unique = array_count_values($data);
                     foreach ($unique as $field => $amount) {
+                        if (!$field) {
+                            $field = 'EMPTY';
+                        }
                         $stats[$field] = ($stats[$field] ?? 0)+ $amount;
                     }
                 }
             }
         }
-        $this->log('line', json_encode($stats));
+        $this->logger->log('line', json_encode($stats));
+    }
+
+    public function rereadPlayerJsons($earliest_time = 0)
+    {
+        $files = Storage::disk('sync')->files('swgoh.help/players');
+        if ($files) {
+            foreach ($files as $file) {
+                if (!preg_match('/players\.CRAWLER\.(\d{10})\.json/', $file, $matches)) {
+                    $this->logger->log('info', "skip file: " . $file);
+                    continue;
+                }
+                if ($matches[1] < $earliest_time) {
+                    continue;
+                }
+                if (Storage::disk('sync')->exists($file)) {
+                    $this->logger->log('info', "read file: " . $file);
+                    $data = Storage::disk('sync')->get($file);
+                    $data = json_decode($data, true);
+                    foreach ($data as $player) {
+                        $player_allyCode = $player['allyCode'] ?? null;
+                        $player_name = $player['name'] ?? null;
+                        $player_refId = $player['id'] ?? null;
+                        $player_level = $player['level'] ?? null;
+                        $player_lastActivity = $player['lastActivity'] ?? null;
+                        $player_updated = $player['updated'] ?? null;
+                        $player_gp = null;
+
+                        $guild_id = $player['guildRefId'] ?? '';
+                        $guild_name = $player['guildName'] ?? '';
+
+                        // Save player data to database
+                        if ($player_allyCode && $player_name) {
+                            $player_codes_processed[] = $player_allyCode;
+                            if (isset($player['stats']) && is_array($player['stats'])) {
+                                foreach ($player['stats'] as $stat) {
+                                    /**
+                                     * Carefull with this one
+                                     * Unfortunately, stats are returned without static keys
+                                     * We have to iterate through them and find the one we are looking for
+                                     * Way 1a (used): Check 'nameKey' for "STAT_GALACTIC_POWER_ACQUIRED_NAME", needs lang to be null
+                                     * Way 1b: Check 'nameKey' for "Galactic Power:", needs lang to be en_us
+                                     * Way 2: Use 'index' and hope GP stays index 1
+                                     * Way 3: Take the first array element and hope it will always be GP
+                                     */
+                                    if (($stat['nameKey'] ?? '') == 'STAT_GALACTIC_POWER_ACQUIRED_NAME' || ($stat['nameKey'] ?? '') == 'Galactic Power:') {
+                                        $player_gp = $stat['value'] ?? null;
+                                    }
+                                }
+                            }
+
+                            $db_player = Player::where('code', $player_allyCode)->first();
+                            if (!$db_player) {
+                                $this->logger->log('line', "missing player found. add to database: " . $player_allyCode);
+                                Player::create(
+                                    [
+                                        'code' => $player_allyCode,
+                                        'name' => $player_name,
+                                        'refId' => $player_refId,
+                                        'guildRefId' => $guild_id,
+                                        'level' => $player_level,
+                                        'gp' => $player_gp,
+                                        'origin' => 'crawler',
+                                        'lastActivity' => $player_lastActivity,
+                                        'updated' => $player_updated,
+                                        ]
+                                );
+                            } else {
+                                $db_player->name = $db_player->name ?? $player_name;
+                                $db_player->refId = $db_player->refId ?? $player_refId;
+                                $db_player->guildRefId = $db_player->guildRefId ??  $guild_id;
+                                $db_player->gp = $db_player->gp ??  $player_gp;
+                                $db_player->level = $db_player->level ??  $player_level;
+                                $db_player->lastActivity = $db_player->lastActivity ??  $player_lastActivity;
+                                $db_player->updated = $db_player->updated ??  $player_updated;
+                                if ($db_player->isDirty()) {
+                                    $this->logger->log('line', "saving " . count($db_player->getDirty()) .  " changes for player: $player_allyCode " . \json_encode($db_player->getDirty()));
+                                    // $db_player->origin = 'crawler';
+                                }
+                                $db_player->save();
+                            }
+
+                            if ($guild_id && $guild_name) {
+                                $existing_guild = Guild::where('refId', $guild_id)->first();
+
+                                if (!$existing_guild) {
+                                    $this->logger->log('line', "missing guild found. add code to pending list: " . $player_allyCode);
+                                    $new_guild = Guild::create([
+                                        // 'user_id' => null,
+                                        'code' => null,
+                                        'name' => $guild_name,
+                                        'refId' => $guild_id,
+                                        'origin' => 'crawler',
+                                    ]);
+                                    $crawler_pending_guild = "swgoh.help/players/players.CRAWLER.PENDING.json";
+                                    $pending_codes = [];
+                                    if (Storage::disk('sync')->exists($crawler_pending_guild)) {
+                                        $data = Storage::disk('sync')->get($crawler_pending_guild);
+                                        $pending_codes = json_decode($data, true);
+                                    }
+                                    // add playercode back because it belongs to a guild member
+                                    $pending_codes[] = $player_allyCode;
+                                    // save $pending_codes back for next run
+                                    Storage::disk('sync')->put($crawler_pending_guild, json_encode($pending_codes));
+                                }
+                            } else {
+                                // Storage::disk('sync')->append($crawler_done_single_log, time() . ' ' . $player_allyCode);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // $this->logger->log('line', json_encode($stats));
+    }
+
+    public function rereadGuildJsons($smallest_guild_ref = 0)
+    {
+        $directories = Storage::disk('sync')->directories('swgoh.help/guild');
+        if ($directories) {
+            foreach ($directories as $directory) {
+                if (!preg_match('~^swgoh.help/guild/G(\d*)$~', $directory, $matches)) {
+                    $this->logger->log('info', "skip directory: " . $directory);
+                    continue;
+                }
+                if ($matches[1] < $smallest_guild_ref) {
+                    continue;
+                }
+                $file = $directory . '/guild.json';
+                if (Storage::disk('sync')->exists($file)) {
+                    // $this->logger->log('info', "read file: " . $file);
+                    $data = Storage::disk('sync')->get($file);
+                    $data = json_decode($data, true);
+
+                    $guild_id = $data[0]['id'] ?? '';
+                    $guild_name = $data[0]['name'] ?? '';
+                    $guild_gp = $data[0]['gp'] ?? '';
+
+                    $guild_leader = null;
+                    $guild_roster = $data[0]['roster'] ?? [];
+
+                    foreach ($guild_roster as $player) {
+                        $player_allyCode = $player['allyCode'] ?? null;
+                        $player_name = $player['name'] ?? null;
+                        $player_refId = $player['id'] ?? null;
+                        $player_level = $player['level'] ?? null;
+                        $player_lastActivity = $player['lastActivity'] ?? null; // does not exist in roster response
+                        $player_updated = $player['updated'] ?? null;
+                        $player_gp = $player['gp'] ?? null;
+                        $player_guildMemberLevel = $player['guildMemberLevel'] ?? null;
+
+                        if ('GUILDLEADER' == $player_guildMemberLevel) {
+                            $guild_leader = $player_allyCode;
+                        }
+
+                        // Save player data to database
+                        if ($player_allyCode && $player_name) {
+                            $db_player = Player::where('code', $player_allyCode)->first();
+                            if (!$db_player) {
+                                $this->logger->log('line', "missing player found. add to database: " . $player_allyCode);
+                                Player::create(
+                                    [
+                                        'code' => $player_allyCode,
+                                        'name' => $player_name,
+                                        'refId' => $player_refId,
+                                        'guildRefId' => $guild_id,
+                                        'level' => $player_level,
+                                        'gp' => $player_gp,
+                                        'origin' => 'crawler2',
+                                        'lastActivity' => $player_lastActivity,
+                                        'updated' => $player_updated,
+                                        ]
+                                );
+                            } else {
+                                $db_player->name = $db_player->name ?? $player_name;
+                                $db_player->refId = $db_player->refId ?? $player_refId;
+                                $db_player->guildRefId = $db_player->guildRefId ??  $guild_id;
+                                $db_player->gp = $db_player->gp ??  $player_gp;
+                                $db_player->level = $db_player->level ??  $player_level;
+                                $db_player->lastActivity = $db_player->lastActivity ??  $player_lastActivity;
+                                if ($db_player->isDirty()) {
+                                    $db_player->updated = $db_player->updated ??  $player_updated;
+                                    // $db_player->origin = 'crawler';
+                                    $this->logger->log('line', "saving " . count($db_player->getDirty()) .  " changes for player: $player_allyCode " . \json_encode($db_player->getDirty()));
+                                }
+                                $db_player->save();
+                            }
+                        }
+                    }
+
+                    if ($guild_id && $guild_name) {
+                        $existing_guild = Guild::where('refId', $guild_id)->first();
+
+                        if (!$existing_guild) {
+                            $this->logger->log('line', "missing guild found. Adding it to DB: " . $guild_id);
+                            $new_guild = Guild::create([
+                                // 'user_id' => null,
+                                'code' => $guild_leader,
+                                'name' => $guild_name,
+                                'refId' => $guild_id,
+                                'origin' => 'crawler2',
+                            ]);
+                        } else {
+                            $existing_guild->name = $existing_guild->name ?? $guild_name;
+                            $existing_guild->refId = $existing_guild->refId ?? $guild_id;
+                            $existing_guild->code = $existing_guild->codes ?? $guild_leader;
+                            $existing_guild->gp = $existing_guild->gp ??  $guild_gp;
+                            if ($existing_guild->isDirty()) {
+                                $this->logger->log('line', "saving " . count($existing_guild->getDirty()) .  " changes for guild: $guild_id " . \json_encode($existing_guild->getDirty()));
+                                // $existing_guild->origin = 'crawler';
+                            }
+                            $existing_guild->save();
+                        }
+                    } else {
+                        $this->logger->log('line', "invalid guild file: " . $file);
+                    }
+                }
+            }
+        }
+        // $this->logger->log('line', json_encode($stats));
     }
 
     public function crawlCodes($codes)
@@ -121,7 +377,7 @@ class SyncCrawler
             return;
         }
 
-        $this->log('line', 'crawl codes ' . implode(', ', $codes));
+        $this->logger->log('line', 'crawl codes ' . implode(', ', $codes));
 
         // sync the guild
         $syncClient = new SyncClient;
@@ -142,7 +398,7 @@ class SyncCrawler
             $result = null;
             $error = $th->getMessage();
         }
-        $this->log('line', 'RESULT: ' . \json_encode($result));
+        $this->logger->log('line', 'RESULT: ' . \json_encode($result));
 
         foreach ($codes as $rand_key) {
             // now the player should be in the database
@@ -162,7 +418,7 @@ class SyncCrawler
                 . ($player->gp ?? '-')
                 . '| LastSeen: '
                 . ($player->lastActivity ?? '-');
-                $this->log('info', $message);
+                $this->logger->log('info', $message);
                 $this->flags[$rand_key] = 'CRAWLED';
             // later we might set the CRAWLED flag for all guild members
             // for now this is handled by the existence check above
@@ -172,12 +428,12 @@ class SyncCrawler
                 } else {
                     $this->flags[$rand_key] = 'FAILED';
                 }
-                $this->log('comment', '>> NOT FOUND: ' . $rand_key . ' ' . $this->flags[$rand_key]);
+                $this->logger->log('comment', '>> NOT FOUND: ' . $rand_key . ' ' . $this->flags[$rand_key]);
             }
         }
 
         if ($error) {
-            $this->log('error', 'ERROR: '. $error);
+            $this->logger->log('error', 'ERROR: '. $error);
         }
     }
 
@@ -189,7 +445,7 @@ class SyncCrawler
                 for ($k=1; $k < 10; $k++) {
                     // part 1
                     for ($l=1; $l < 10; $l++) {
-                        // $this->log('line', 'using code ' . $i.$j.$k.$l);
+                        // $this->logger->log('line', 'using code ' . $i.$j.$k.$l);
                         for ($m=1; $m < 10; $m++) {
                             for ($n=1; $n < 10; $n++) {
                                 //part 2
@@ -208,10 +464,10 @@ class SyncCrawler
                     $file = sprintf($file, $i.$j.$k);
                     if (Storage::disk($this->data_disk)->exists($file)) {
                         //skip
-                        $this->log('line', 'skip ' . $file);
+                        $this->logger->log('line', 'skip ' . $file);
                         $vault = [];
                     } else {
-                        $this->log('line', 'save ' . $file);
+                        $this->logger->log('line', 'save ' . $file);
                         // $data = Storage::disk('sync')->get($source);
                         // $roster = json_decode($data, true);
 
@@ -224,46 +480,21 @@ class SyncCrawler
         return true;
     }
 
-    private function log(string $type, string $message)
-    {
-        if ($this->cmd) {
-            switch ($type) {
-                case 'comment':
-                $this->cmd->comment($message);
-                    break;
-                    case 'info':
-                    $this->cmd->info($message);
-                        break;
-
-                    case 'error':
-                    $this->cmd->error($message);
-                        break;
-                        case 'success':
-                        $this->cmd->success($message);
-                            break;
-
-                    default:
-                $this->cmd->line($message);
-                    break;
-            }
-        }
-    }
-
     public function getRandomCodes($repeat, $manual_code = '')
     {
         $file = null;
         $manual_file = null;
         if ($manual_code) {
-            $this->log('info', 'use manual code.' . $manual_code);
+            $this->logger->log('info', 'use manual code.' . $manual_code);
             $manual_file = $this->data_dir . $this->folder_auto  . substr($manual_code . 'make-this-a-string', 0, 3) . '.json';
             if (Storage::disk($this->data_disk)->exists($manual_file)) {
                 $file = $manual_file;
             } else {
-                $this->log('error', 'manual code found but no auto files matched! ' . $manual_file);
+                $this->logger->log('error', 'manual code found but no auto files matched! ' . $manual_file);
             }
         }
         if (!$file) {
-            $this->log('comment', 'find random code file.');
+            $this->logger->log('comment', 'find random code file.');
             $files = Storage::disk($this->data_disk)->files($this->data_dir.$this->folder_auto);
             if ($files) {
                 $rand_key = array_rand($files);
@@ -277,7 +508,7 @@ class SyncCrawler
         }
 
         if ($file && Storage::disk($this->data_disk)->exists($file)) {
-            $this->log('comment', 'selected input file ' . $file);
+            $this->logger->log('comment', 'selected input file ' . $file);
             $data = Storage::disk($this->data_disk)->get($file);
             $data = json_decode($data, true);
             $pool = array_filter($data, function ($v) {
@@ -289,7 +520,7 @@ class SyncCrawler
                 $rand_keys = [$rand_keys];
             }
             if ($manual_file == $file) {
-                $this->log('comment', 'added manual code to key list.');
+                $this->logger->log('comment', 'added manual code to key list.');
                 $rand_keys = \array_merge([$manual_code], $rand_keys);
             }
             /**
@@ -302,7 +533,7 @@ class SyncCrawler
                 // // try new code if this one is already done
                 // // should never happen because already filtered out from random pool
                 // if ($this->flags[$rand_key]) {
-                //     $this->log('line', 'SKIP: Code already processed: ' . $rand_key . ' - ' . $this->flags[$rand_key]);
+                //     $this->logger->log('line', 'SKIP: Code already processed: ' . $rand_key . ' - ' . $this->flags[$rand_key]);
                 //     if (1 === $repeat) {
                 //         return $this->handle();
                 //     } else {
@@ -314,7 +545,7 @@ class SyncCrawler
                 // update crawl file and try new code
                 $player = Player::where('code', $rand_key)->first();
                 if ($player) {
-                    $this->log('line', 'SKIP: Player already exists: ' . $rand_key . ' - ' .  $player->name);
+                    $this->logger->log('line', 'SKIP: Player already exists: ' . $rand_key . ' - ' .  $player->name);
                     $this->flags[$rand_key] = 'EXISTS';
                     if (1 === $repeat) {
                         return $this->getRandomCodes($repeat);

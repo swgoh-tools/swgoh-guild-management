@@ -82,6 +82,11 @@ function custom_sort_by_name_key($a, $b)
     return $a['nameKey']>$b['nameKey'];
 }
 
+function custom_sort_by_gp($a, $b)
+{
+    return $a['gp']<$b['gp'];
+}
+
 function print_icon($type)
 {
     switch ($type) {

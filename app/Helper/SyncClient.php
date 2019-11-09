@@ -490,6 +490,8 @@ class SyncClient
                 $result[$value['baseId'] ?? 'error']['name'] = $value['nameKey'] ?? '';
                 $result[$value['baseId'] ?? 'error']['desc'] = $value['descKey'] ?? '';
                 $result[$value['baseId'] ?? 'error']['side'] = $value['forceAlignment'] ?? '';
+                $result[$value['baseId'] ?? 'error']['categoryIdList'] = $value['categoryIdList'] ?? '';
+                $result[$value['baseId'] ?? 'error']['combatType'] = $value['combatType'] ?? '';
             }
         }
 
@@ -838,6 +840,7 @@ class SyncClient
                                 'name' => $player['name'],
                                 'refId' => $player['id'] ?? null,
                                 'guildRefId' => $player['guildRefId'] ?? null,
+                                'level' => $player['level'] ?? null,
                                 'gp' => $player_gp,
                                 'origin' => $this->origin,
                                 'lastActivity' => $player['lastActivity'] ?? null,
@@ -932,6 +935,7 @@ class SyncClient
                                 'name' => $player_name,
                                 'refId' => $player['id'] ?? null,
                                 'guildRefId' => $guild_info['id'] ?? null,
+                                'level' => $player['level'] ?? null,
                                 'gp' => $player['gp'] ?? null,
                                 'origin' => $this->origin,
                                 ]
@@ -986,6 +990,7 @@ class SyncClient
                                 'name' => $player['name'],
                                 'refId' => $player['id'] ?? null,
                                 'guildRefId' => $player['guildRefId'] ?? null,
+                                'level' => $player['level'] ?? null,
                                 'gp' => $player['gp'] ?? null,
                                 'origin' => 'prepHelpGP',
                                 ]

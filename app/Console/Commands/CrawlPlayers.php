@@ -27,6 +27,7 @@ class CrawlPlayers extends Command
         'swgoh:crawl'.
         ' {allycode? : Player AllyCode. Leave blank to random unknown code.}'.
         ' {--repeat=1 : How many codes should be crawled.}'.
+        ' {--sync-error-files : Read Codes from sync error files and add update their flag in crawler files.}'.
         ' {--check-codes : Calculate crawl status.}'.
         ' {--generate-codes : Fills Player table with possible codes. 1 Million!}';
 
@@ -122,6 +123,15 @@ class CrawlPlayers extends Command
              * it would work but code generation takes a long time
              * therefore the user really shouldn't run additional tasks with it
              */
+            return ($result) ? 0 : 1;
+        }
+        if ($this->option('sync-error-files')) {
+            $result = false;
+            $this->info('command deactivated. Use with care.');
+            // $result = $crawler->syncErrorFiles();
+            // $result = $crawler->rereadPlayerJsons(1571312594);
+            // $result = $crawler->rereadGuildJsons();
+
             return ($result) ? 0 : 1;
         }
         if ($this->argument('allycode')) {
