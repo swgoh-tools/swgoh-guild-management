@@ -60,32 +60,35 @@
        PSR2 standard exists inside the PHP_CodeSniffer install
        directory.
     -->
-    <rule ref="PSR2"/>
-    <!-- <rule ref="PSR1"/> -->
-    <!-- <rule ref="squiz"/> -->
-
     <!-- Include the whole Generic standard -->
-    <rule ref="Generic">
+    <!-- <rule ref="Generic"> -->
         <!-- conflicting with PSR2 -->
-        <exclude name="Generic.Formatting.SpaceAfterNot" />
-        <exclude name="Generic.Arrays.ArrayIndent" />
+        <!-- <exclude name="Generic.Formatting.SpaceAfterNot" /> -->
+        <!-- <exclude name="Generic.Arrays.ArrayIndent" /> -->
         <!-- errors -->
-        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent" />
-        <exclude name="Generic.Classes.OpeningBraceSameLine" />
-        <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
-        <exclude name="Generic.PHP.ClosingPHPTag" />
-        <exclude name="Generic.PHP.UpperCaseConstant" />
-        <exclude name="Generic.Files.EndFileNoNewline" />
-        <exclude name="Generic.Arrays.DisallowShortArraySyntax" />
-        <exclude name="Generic.Files.LineEndings" />
-        <exclude name="Generic.Files.LowercasedFilename" />
-        <exclude name="Generic.Commenting.DocComment" />
+        <!-- <exclude name="Generic.WhiteSpace.DisallowSpaceIndent" /> -->
+        <!-- <exclude name="Generic.Classes.OpeningBraceSameLine" /> -->
+        <!-- <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie" /> -->
+        <!-- <exclude name="Generic.PHP.ClosingPHPTag" /> -->
+        <!-- <exclude name="Generic.PHP.UpperCaseConstant" /> -->
+        <!-- <exclude name="Generic.Files.EndFileNoNewline" /> -->
+        <!-- <exclude name="Generic.Arrays.DisallowShortArraySyntax" /> -->
+        <!-- <exclude name="Generic.Files.LineEndings" /> -->
+        <!-- <exclude name="Generic.Files.LowercasedFilename" /> -->
+        <!-- <exclude name="Generic.Commenting.DocComment" /> -->
         <!-- warings -->
-        <exclude name="Generic.Formatting.MultipleStatementAlignment" />
+        <!-- <exclude name="Generic.Formatting.MultipleStatementAlignment" /> -->
         <!-- alternative in PSR2 exists -->
-        <exclude name="Generic.Files.EndFileNewline" />
+        <!-- <exclude name="Generic.Files.EndFileNewline" /> -->
+        <!-- <exclude name="Generic.Files.LineLength" /> -->
+    <!-- </rule> -->
+
+    <rule ref="PSR12">
         <exclude name="Generic.Files.LineLength" />
     </rule>
+    <!-- <rule ref="PSR2"/> -->
+    <!-- <rule ref="PSR1"/> -->
+    <!-- <rule ref="squiz"/> -->
 
     <!-- Use black list (see above) instead of white list for generics
     <rule ref="Generic.PHP.DeprecatedFunctions"/>
