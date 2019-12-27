@@ -12,7 +12,7 @@ class CreateThreadsTest extends TestCase
 {
     use DatabaseMigrations, MockeryPHPUnitIntegration;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

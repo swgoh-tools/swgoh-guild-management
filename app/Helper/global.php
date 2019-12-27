@@ -79,16 +79,21 @@ if (!function_exists('dec2hex')) {
     }
 }
 
+if (!function_exists('custom_sort_by_name_key')) {
 function custom_sort_by_name_key($a, $b)
 {
     return $a['nameKey'] > $b['nameKey'];
 }
+}
 
+if (!function_exists('custom_sort_by_gp')) {
 function custom_sort_by_gp($a, $b)
 {
     return $a['gp'] < $b['gp'];
 }
+}
 
+if (!function_exists('custom_sort_categories')) {
 function custom_sort_categories($a, $b)
 {
     $categories = [
@@ -130,7 +135,9 @@ function custom_sort_categories($a, $b)
 
     return $aa > $bb;
 }
+}
 
+if (!function_exists('print_icon')) {
 function print_icon($type)
 {
     switch ($type) {
@@ -158,4 +165,5 @@ function print_icon($type)
             return '';
             break;
     }
+}
 }
