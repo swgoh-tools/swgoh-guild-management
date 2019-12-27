@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Permissions;
 
+use App\Role;
 use App\User;
 use App\Guild;
-use App\Role;
 use App\Permission;
 use App\Authorizable;
+use App\Helper\SyncHelper;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Helper\SyncClient;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -44,8 +44,6 @@ class UserController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -101,7 +99,7 @@ class UserController extends Controller
         // $test = new \App\Jobs\CheckForNewGuild($user, $user->code);
         // $test->handle();
 
-        $player = SyncClient::getPlayer($user->code ?? null, false);
+        $player = SyncHelper::getPlayer($user->code ?? null, false);
 
         $my_guild = null;
         if ($player['guildRefId'] ?? null) {
@@ -131,8 +129,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -141,8 +138,8 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'bail|required|min:2',
             'password' => 'nullable|string|min:6|confirmed',
-            'code' => 'nullable|regex:/^\d{3}-?\d{3}-?\d{3}$/i|unique:users,code,'.$id,
-            'email' => 'required|email|unique:users,email,'.$id,
+            'code' => 'nullable|regex:/^\d{3}-?\d{3}-?\d{3}$/i|unique:users,code,' . $id,
+            'email' => 'required|email|unique:users,email,' . $id,
             // 'roles' => 'required|min:1',
         ]);
 
@@ -173,8 +170,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -182,7 +178,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'bail|required|min:2',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|email|unique:users,email,' . $id,
             'roles' => 'required|min:1',
         ]);
 
@@ -236,7 +232,6 @@ class UserController extends Controller
     /**
      * Sync roles and permissions.
      *
-     * @param Request $request
      * @param $user
      *
      * @return string

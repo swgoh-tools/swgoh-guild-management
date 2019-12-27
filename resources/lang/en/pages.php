@@ -21,6 +21,13 @@ return array(
     'description' => 'Guild rules, game info and data reports to analyse toons and squad progress.',
     'legend' => 'Guild pages are public. Registration is not required for guild members or interested parties to get yourself informed.',
   ),
+  'news' =>
+  array(
+    'title' => 'News Feed',
+    'intro' => 'News are collected from the official forums.',
+    'description' => 'There are several Discord bots out there that will notify you if you don\'t like watching webpages for changes yourself. I could not find a Line.me bot to do that so I created one for my guild. Unfortunately Line.me bots are extremely limited for developers from the US and EU therefore I cannot share the bot on this page. If you are interested, contact me.',
+    'legend' => '',
+  ),
   'events' =>
   array(
     'title' => 'Events',
@@ -87,6 +94,13 @@ return array(
     'intro' => 'List of rules defined for AI targeting.',
     'description' => 'This list contains all abilities (characters and ships) that have targeting rules for the AI associated with them.',
     'legend' => 'Ability types: L = Leader, B = Basic, U = Unique, S = Special, RI = Reinforcement',
+  ),
+  'p_toons_category' =>
+  array(
+    'title' => 'Toons (Categories)',
+    'intro' => 'List of toons grouped by most relevant categories (oppinionated).',
+    'description' => 'This list groups every unit into one - and only one - category. This is an oppinionated approach since most characters belong to multiple categories (like factions, species, profession, etc.). If you disagree feel free to get in touch via Discord or forums. Reworks or new units easily shake up old/existing synergies. There are a few instances where units have been added to categories without having the appropriate tag. E.g. Shaak Ti is a Jedi leader but only makes sense with clones. Same for Lobot and droids and so on.',
+    'legend' => 'Abilities are shown below a unit only if that specific ability has been unlocked. Zeta count and Relic tier are shown as overlay on a units picture. Units with a coloured background have been put in a category for which they have no matching faction tag but fit better due to their synergies.',
   ),
   'zetas' =>
   array(

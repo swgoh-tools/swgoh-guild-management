@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace App\Jobs;
 
+use App\User;
+use App\Guild;
+use App\Helper\SyncHelper;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Helper\SyncClient;
-use App\User;
-use App\Guild;
 
 class CheckForNewGuild implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     protected $allyCode;
     protected $user;
@@ -48,7 +51,7 @@ class CheckForNewGuild implements ShouldQueue
      */
     public function handle(): void
     {
-        $playerInfo = SyncClient::getPlayer($this->allyCode, false);
+        $playerInfo = SyncHelper::getPlayer($this->allyCode, false);
 
         if (($playerInfo['guildName'] ?? null) && ($playerInfo['guildRefId'] ?? null)) {
             $existing_guild = Guild::where('refId', $playerInfo['guildRefId'])->first();
@@ -61,6 +64,5 @@ class CheckForNewGuild implements ShouldQueue
                 ]);
             }
         }
-
     }
 }

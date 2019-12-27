@@ -1,20 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
-use App\Guild;
-use App\Player;
 use Carbon\Carbon;
-use App\Helper\SyncClient;
-use App\Jobs\SyncDataKeys;
 use App\Helper\SyncCrawler;
-use App\Jobs\SyncDataGlobal;
-use App\Jobs\SyncDataPlayer;
-use App\Jobs\CheckForNewGuild;
-use App\Jobs\CheckNewAllyCode;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CrawlPlayers extends Command
 {
@@ -24,11 +16,11 @@ class CrawlPlayers extends Command
      * @var string
      */
     protected $signature =
-        'swgoh:crawl'.
-        ' {allycode? : Player AllyCode. Leave blank to random unknown code.}'.
-        ' {--repeat=1 : How many codes should be crawled.}'.
-        ' {--sync-error-files : Read Codes from sync error files and add update their flag in crawler files.}'.
-        ' {--check-codes : Calculate crawl status.}'.
+        'swgoh:crawl' .
+        ' {allycode? : Player AllyCode. Leave blank to random unknown code.}' .
+        ' {--repeat=1 : How many codes should be crawled.}' .
+        ' {--sync-error-files : Read Codes from sync error files and add update their flag in crawler files.}' .
+        ' {--check-codes : Calculate crawl status.}' .
         ' {--generate-codes : Fills Player table with possible codes. 1 Million!}';
 
     /**
@@ -72,14 +64,14 @@ class CrawlPlayers extends Command
      * the multicode directory (see SyncClient) instead of creating a
      * permanent sync folder in case of single code syncs.
      *
-     * @var integer
+     * @var int
      */
     protected $repeat_min = 2;
 
     /**
      * Maximum allowed codes per run.
      *
-     * @var integer
+     * @var int
      */
     protected $repeat_max = 50;
 
@@ -106,7 +98,7 @@ class CrawlPlayers extends Command
         if ($this->option('generate-codes')) {
             $result = $crawler->generateCodeFiles();
 
-            /**
+            /*
              * make sure we don't do anything else
              *
              * it would work but code generation takes a long time
@@ -117,7 +109,7 @@ class CrawlPlayers extends Command
         if ($this->option('check-codes')) {
             $result = $crawler->checkCodeFiles();
 
-            /**
+            /*
              * make sure we don't do anything else
              *
              * it would work but code generation takes a long time
@@ -137,11 +129,11 @@ class CrawlPlayers extends Command
         if ($this->argument('allycode')) {
             $this->info('add a specific allycode to the crawler queue.');
             if (is_numeric($this->argument('allycode'))) {
-                $this->line('using code ' .  $this->argument('allycode'));
+                $this->line('using code ' . $this->argument('allycode'));
                 $crawler->addManualCode($this->argument('allycode'));
             } else {
-                $this->error('kein numerischer code ' .  $this->argument('allycode'));
-                /**
+                $this->error('kein numerischer code ' . $this->argument('allycode'));
+                /*
                  * wrong input, back to the command line then
                  */
                 return 1;

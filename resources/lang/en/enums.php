@@ -36,6 +36,7 @@ return [
     'SKILLRECIPE' => 'Character Skills',
     'SHIPSKILLRECIPE' => 'Ship Skills',
     'FLEETCOMMANDERSKILLRECIPE' => 'Ship Skills (Commander)',
+    'affiliation_501st' => '501st (Affiliation)',
     'affiliation_empire' => 'Empire (Affiliation)',
     'affiliation_firstorder' => 'First Order (Affiliation)',
     'affiliation_imperialtrooper' => 'Imperial Trooper (Affiliation)',

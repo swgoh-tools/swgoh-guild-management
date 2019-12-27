@@ -6,7 +6,7 @@
 
 	Sprite sheet:  / chars--micro.png (222 x 1110)
 	Variant: 4
-	$TexturePacker:SmartUpdate:54eb7bafdc1096882aab46b689a44407:403fa82bc922e606add1184b3d8501fc:1f1b304e7d7c6b5728d4ebfe18ea5bbb$
+	$TexturePacker:SmartUpdate:e4f9141f4423502c48f8c033e41c8534:ab2f97f023f626bd8f732b31cb558eff:1f1b304e7d7c6b5728d4ebfe18ea5bbb$
 */
 
 .sprite-units--micro.u-AAYLASECURA {max-width:35px; max-height:35px; }
@@ -147,217 +147,219 @@
 .sprite-units--micro.u-GARSAXON::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -408px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-GENERALKENOBI {max-width:35px; max-height:35px; }
 .sprite-units--micro.u-GENERALKENOBI::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -408px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-GENERALSKYWALKER {max-width:35px; max-height:35px; }
+.sprite-units--micro.u-GENERALSKYWALKER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -408px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-GEONOSIANBROODALPHA {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-GEONOSIANBROODALPHA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -408px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-GEONOSIANBROODALPHA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -408px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-GEONOSIANSOLDIER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-GEONOSIANSOLDIER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -408px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-GEONOSIANSOLDIER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -408px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-GEONOSIANSPY {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-GEONOSIANSPY::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -408px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-GEONOSIANSPY::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -445px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-GRANDADMIRALTHRAWN {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-GRANDADMIRALTHRAWN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -445px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-GRANDADMIRALTHRAWN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -445px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-GRANDMASTERYODA {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-GRANDMASTERYODA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -445px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-GRANDMASTERYODA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -445px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-GRANDMOFFTARKIN {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-GRANDMOFFTARKIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -445px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-GRANDMOFFTARKIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -445px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-GREEDO {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-GREEDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -445px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-GREEDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -445px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-GRIEVOUS {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-GRIEVOUS::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -445px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-GRIEVOUS::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -445px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-HANSOLO {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-HANSOLO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -445px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-HANSOLO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -482px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-HERASYNDULLAS3 {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-HERASYNDULLAS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -482px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-HERASYNDULLAS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -482px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-HERMITYODA {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-HERMITYODA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -482px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-HERMITYODA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -482px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-HK47 {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-HK47::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -482px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-HK47::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -482px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-HOTHHAN {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-HOTHHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -482px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-HOTHHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -482px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-HOTHLEIA {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-HOTHLEIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -482px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-HOTHLEIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -482px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-HOTHREBELSCOUT {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-HOTHREBELSCOUT::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -482px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-HOTHREBELSCOUT::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -519px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-HOTHREBELSOLDIER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-HOTHREBELSOLDIER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -519px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-HOTHREBELSOLDIER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -519px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-HUMANTHUG {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-HUMANTHUG::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -519px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-HUMANTHUG::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -519px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-IG86SENTINELDROID {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-IG86SENTINELDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -519px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-IG86SENTINELDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -519px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-IG88 {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-IG88::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -519px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-IG88::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -519px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-IMAGUNDI {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-IMAGUNDI::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -519px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-IMAGUNDI::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -519px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-IMPERIALPROBEDROID {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-IMPERIALPROBEDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -519px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-IMPERIALPROBEDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -556px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-IMPERIALSUPERCOMMANDO {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-IMPERIALSUPERCOMMANDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -556px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-IMPERIALSUPERCOMMANDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -556px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-JANGOFETT {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-JANGOFETT::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -556px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-JANGOFETT::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -556px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-JAWA {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-JAWA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -556px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-JAWA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -556px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-JAWAENGINEER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-JAWAENGINEER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -556px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-JAWAENGINEER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -556px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-JAWASCAVENGER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-JAWASCAVENGER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -556px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-JAWASCAVENGER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -556px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-JEDIKNIGHTCONSULAR {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-JEDIKNIGHTCONSULAR::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -556px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-JEDIKNIGHTCONSULAR::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -593px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-JEDIKNIGHTGUARDIAN {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-JEDIKNIGHTGUARDIAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -593px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-JEDIKNIGHTGUARDIAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -593px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-JEDIKNIGHTREVAN {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-JEDIKNIGHTREVAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -593px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-JEDIKNIGHTREVAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -593px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-JOLEEBINDO {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-JOLEEBINDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -593px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-JOLEEBINDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -593px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-JUHANI {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-JUHANI::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -593px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-JUHANI::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -593px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-JYNERSO {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-JYNERSO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -593px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-JYNERSO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -593px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-K2SO {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-K2SO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -593px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-K2SO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -630px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-KANANJARRUSS3 {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-KANANJARRUSS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -630px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-KANANJARRUSS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -630px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-KITFISTO {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-KITFISTO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -630px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-KITFISTO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -630px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-KYLOREN {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-KYLOREN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -630px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-KYLOREN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -630px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-KYLORENUNMASKED {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-KYLORENUNMASKED::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -630px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-KYLORENUNMASKED::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -630px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-L3_37 {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-L3_37::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -630px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-L3_37::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -630px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-LOBOT {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-LOBOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -630px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-LOBOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -667px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-LOGRAY {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-LOGRAY::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -667px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-LOGRAY::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -667px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-LUKESKYWALKER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-LUKESKYWALKER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -667px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-LUKESKYWALKER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -667px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-LUMINARAUNDULI {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-LUMINARAUNDULI::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -667px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-LUMINARAUNDULI::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -667px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-MACEWINDU {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-MACEWINDU::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -667px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-MACEWINDU::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -667px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-MAGMATROOPER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-MAGMATROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -667px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-MAGMATROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -667px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-MAGNAGUARD {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-MAGNAGUARD::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -667px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-MAGNAGUARD::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -704px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-MAUL {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-MAUL::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -704px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-MAUL::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -704px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-MISSIONVAO {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-MISSIONVAO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -704px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-MISSIONVAO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -704px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-MOTHERTALZIN {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-MOTHERTALZIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -704px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-MOTHERTALZIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -704px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-NIGHTSISTERACOLYTE {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-NIGHTSISTERACOLYTE::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -704px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-NIGHTSISTERACOLYTE::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -704px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-NIGHTSISTERINITIATE {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-NIGHTSISTERINITIATE::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -704px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-NIGHTSISTERINITIATE::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -704px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-NIGHTSISTERSPIRIT {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-NIGHTSISTERSPIRIT::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -704px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-NIGHTSISTERSPIRIT::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -741px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-NIGHTSISTERZOMBIE {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-NIGHTSISTERZOMBIE::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -741px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-NIGHTSISTERZOMBIE::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -741px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-NUTEGUNRAY {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-NUTEGUNRAY::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -741px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-NUTEGUNRAY::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -741px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-OLDBENKENOBI {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-OLDBENKENOBI::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -741px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-OLDBENKENOBI::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -741px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-PADMEAMIDALA {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-PADMEAMIDALA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -741px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-PADMEAMIDALA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -741px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-PAO {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-PAO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -741px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-PAO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -741px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-PAPLOO {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-PAPLOO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -741px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-PAPLOO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -778px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-PHASMA {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-PHASMA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -778px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-PHASMA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -778px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-PLOKOON {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-PLOKOON::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -778px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-PLOKOON::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -778px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-POE {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-POE::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -778px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-POE::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -778px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-POGGLETHELESSER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-POGGLETHELESSER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -778px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-POGGLETHELESSER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -778px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-PRINCESSLEIA {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-PRINCESSLEIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -778px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-PRINCESSLEIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -778px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-QIRA {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-QIRA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -778px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-QIRA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -815px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-QUIGONJINN {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-QUIGONJINN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -815px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-QUIGONJINN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -815px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-R2D2_LEGENDARY {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-R2D2_LEGENDARY::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -815px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-R2D2_LEGENDARY::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -815px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-RANGETROOPER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-RANGETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -815px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-RANGETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -815px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-RESISTANCEPILOT {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-RESISTANCEPILOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -815px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-RESISTANCEPILOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -815px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-RESISTANCETROOPER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-RESISTANCETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -815px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-RESISTANCETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -815px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-REY {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-REY::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -815px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-REY::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -852px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-REYJEDITRAINING {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-REYJEDITRAINING::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -852px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-REYJEDITRAINING::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -852px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-ROSETICO {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-ROSETICO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -852px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-ROSETICO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -852px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-ROYALGUARD {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-ROYALGUARD::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -852px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-ROYALGUARD::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -852px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-SABINEWRENS3 {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-SABINEWRENS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -852px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-SABINEWRENS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -852px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-SAVAGEOPRESS {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-SAVAGEOPRESS::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -852px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-SAVAGEOPRESS::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -852px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-SCARIFREBEL {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-SCARIFREBEL::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -852px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-SCARIFREBEL::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -889px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-SHAAKTI {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-SHAAKTI::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -889px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-SHAAKTI::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -889px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-SHORETROOPER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-SHORETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -889px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-SHORETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -889px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-SITHASSASSIN {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-SITHASSASSIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -889px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-SITHASSASSIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -889px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-SITHMARAUDER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-SITHMARAUDER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -889px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-SITHMARAUDER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -889px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-SITHTROOPER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-SITHTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -889px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-SITHTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -889px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-SMUGGLERCHEWBACCA {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-SMUGGLERCHEWBACCA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -889px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-SMUGGLERCHEWBACCA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -926px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-SMUGGLERHAN {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-SMUGGLERHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -926px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-SMUGGLERHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -926px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-SNOWTROOPER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-SNOWTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -926px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-SNOWTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -926px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-STORMTROOPER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-STORMTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -926px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-STORMTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -926px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-STORMTROOPERHAN {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-STORMTROOPERHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -926px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-STORMTROOPERHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -926px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-SUNFAC {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-SUNFAC::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -926px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-SUNFAC::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -926px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-T3_M4 {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-T3_M4::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -926px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-T3_M4::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -963px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-TALIA {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-TALIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -963px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-TALIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -963px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-TEEBO {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-TEEBO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -963px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-TEEBO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -963px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-TIEFIGHTERPILOT {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-TIEFIGHTERPILOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -963px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-TIEFIGHTERPILOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -963px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-TUSKENRAIDER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-TUSKENRAIDER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -963px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-TUSKENRAIDER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -963px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-TUSKENSHAMAN {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-TUSKENSHAMAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -963px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-TUSKENSHAMAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -963px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-UGNAUGHT {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-UGNAUGHT::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -963px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-UGNAUGHT::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -1000px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-URORRURRR {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-URORRURRR::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -1000px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-URORRURRR::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -1000px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-VADER {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-VADER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -1000px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-VADER::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -1000px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-VEERS {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-VEERS::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -1000px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-VEERS::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -1000px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-VISASMARR {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-VISASMARR::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -1000px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-VISASMARR::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -1000px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-WAMPA {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-WAMPA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -1000px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-WAMPA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -1000px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-WATTAMBOR {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-WATTAMBOR::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -1000px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-WATTAMBOR::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -1037px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-WEDGEANTILLES {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-WEDGEANTILLES::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -1037px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-WEDGEANTILLES::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -1037px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-WICKET {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-WICKET::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -1037px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-WICKET::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -1037px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-YOUNGCHEWBACCA {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-YOUNGCHEWBACCA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -1037px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-YOUNGCHEWBACCA::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -1037px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-YOUNGHAN {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-YOUNGHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -112px -1037px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-YOUNGHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -1037px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-YOUNGLANDO {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-YOUNGLANDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -149px -1037px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-YOUNGLANDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -1037px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-ZAALBAR {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-ZAALBAR::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -186px -1037px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-ZAALBAR::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -1074px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-ZAMWESELL {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-ZAMWESELL::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -1px -1074px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-ZAMWESELL::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -1074px;background-image: url(chars--micro.png);border-radius:inherit; }
 .sprite-units--micro.u-ZEBS3 {max-width:35px; max-height:35px; }
-.sprite-units--micro.u-ZEBS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -38px -1074px;background-image: url(chars--micro.png);border-radius:inherit; }
+.sprite-units--micro.u-ZEBS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:35px; height:35px; background-repeat:no-repeat;background-position: -75px -1074px;background-image: url(chars--micro.png);border-radius:inherit; }

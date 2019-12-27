@@ -4,20 +4,19 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Helper\SyncClient;
-use Illuminate\Http\Request;
+use App\Helper\SyncHelper;
 use Illuminate\Support\Facades\Cache;
 
 class ListController extends Controller
 {
-    public function ability_mats_guild($guild, $type ="")
+    public function ability_mats_guild($guild, $type = '')
     {
         return $this->ability_mats($type);
     }
 
     public function table_list()
     {
-        $data_list = SyncClient::getData('tableList');
+        $data_list = SyncHelper::getData('tableList');
         ksort($data_list);
 
         return view('guild.list.table', [
@@ -26,14 +25,14 @@ class ListController extends Controller
             ]);
     }
 
-    public function ability_mats($type ="")
+    public function ability_mats($type = '')
     {
         // validation for $type is done in web.php
         // only specific words are allowed on the route
 
         // Cache::forget('ability_mats.stats.'.$type); //TODO DEV ONLY
-        $calculation = Cache::remember('ability_mats.stats.'.$type, 60 * 60 * 72, function () use ($type) {
-            $recipes = SyncClient::getData('recipeList');
+        $calculation = Cache::remember('ability_mats.stats.' . $type, 60 * 60 * 72, function () use ($type) {
+            $recipes = SyncHelper::getData('recipeList');
             // recipes have a ingredientsList with array containing id [which is id of a material]
             // and may have a craftRequirement containing an array of requirementItemList
             // id	"ability_mat_A"
@@ -44,7 +43,7 @@ class ListController extends Controller
             // rarity	8
             // statMod	null
             // previewPriority	0
-            $materials = SyncClient::getData('materialList');
+            $materials = SyncHelper::getData('materialList');
             // materials contain descriptin, texture, locations, etc
             // and might contain backreferences
             $stats_materials = [];
@@ -67,18 +66,17 @@ class ListController extends Controller
                     $recipe_ability_level = $recipe_parts[2] ?? '';
                     $recipe_ability_special = $recipe_parts[3] ?? '';
 
-                    if (!in_array($recipe_type, ['SKILLRECIPE', 'SHIPSKILLRECIPE', 'FLEETCOMMANDERSKILLRECIPE'])) {
+                    if (!\in_array($recipe_type, ['SKILLRECIPE', 'SHIPSKILLRECIPE', 'FLEETCOMMANDERSKILLRECIPE'])) {
                         continue;
                     }
 
                     $drilldown = $recipe_ability_level;
                     $icon = print_icon('tier');
 
-
                     foreach ($recipe['ingredientsList'] as $material_key => $material) {
                         $material_id = $material['id'];
 
-                        $stats_materials[$recipe_type][$recipe_ability_type][$material_id]['count'] = 1+ ($stats_materials[$recipe_type][$recipe_ability_type][$material_id]['count'] ?? 0);
+                        $stats_materials[$recipe_type][$recipe_ability_type][$material_id]['count'] = 1 + ($stats_materials[$recipe_type][$recipe_ability_type][$material_id]['count'] ?? 0);
                         $stats_materials[$recipe_type][$recipe_ability_type][$material_id]['quantity'] = $material['minQuantity'] + ($stats_materials[$recipe_type][$recipe_ability_type][$material_id]['quantity'] ?? 0);
                         if ($drilldown) {
                             $stats_materials[$recipe_type][$recipe_ability_type][$material_id][$drilldown] = $material['minQuantity'] + ($stats_materials[$recipe_type][$recipe_ability_type][$material_id][$drilldown] ?? 0);
@@ -87,9 +85,9 @@ class ListController extends Controller
                     }
                 }
             } else {
-                $units = SyncClient::getData('unitsList');
+                $units = SyncHelper::getData('unitsList');
                 // units have a skillReferenceList with array containing skillId
-                $skills = SyncClient::getData('skillList');
+                $skills = SyncHelper::getData('skillList');
                 // skills have a tierList with array containing recipeId (and requiredUnitLevel, requiredUnitRarity, requiredUnitTier)
                 foreach ($units as $unit_key => $unit) {
                     foreach ($unit['skillReferenceList'] as $skill_key => $skill) {
@@ -97,7 +95,6 @@ class ListController extends Controller
                         $requiredTier = $skill['requiredTier'] ?? '-'; //works
                     $requiredRarity = $skill['requiredRarity'] ?? '-'; //always 8
                     $requiredRelicTier = $skill['requiredRelicTier'] ?? '-'; //always 1
-
 
                     $skill_parts = explode('_', $skill_id);
 
@@ -122,7 +119,6 @@ class ListController extends Controller
                             // $stats_materials_columns['TOTAL']['TOTAL']['quantity'] = 1;
                             // $stats_materials_columns[$recipe_type][$recipe_ability_type]['count'] = 1;
                             // $stats_materials_columns[$recipe_type][$recipe_ability_type]['quantity'] = 1;
-
 
                             $drilldown = '';
                             $icon = '';
@@ -160,30 +156,31 @@ class ListController extends Controller
                             foreach ($recipes[$recipe['recipeId']]['ingredientsList'] as $material_key => $material) {
                                 $material_id = $material['id'];
 
-                                $stats_materials['TOTAL']['TOTAL'][$material_id]['count'] = 1+ ($stats_materials['TOTAL']['TOTAL'][$material_id]['count'] ?? 0);
+                                $stats_materials['TOTAL']['TOTAL'][$material_id]['count'] = 1 + ($stats_materials['TOTAL']['TOTAL'][$material_id]['count'] ?? 0);
                                 $stats_materials['TOTAL']['TOTAL'][$material_id]['quantity'] = $material['minQuantity'] + ($stats_materials['TOTAL']['TOTAL'][$material_id]['quantity'] ?? 0);
                                 if ($drilldown) {
                                     $stats_materials['TOTAL']['TOTAL'][$material_id][$drilldown] = $material['minQuantity'] + ($stats_materials['TOTAL']['TOTAL'][$material_id][$drilldown] ?? 0);
                                     $stats_materials_columns['TOTAL']['TOTAL'][$drilldown] = 1;
                                 }
 
-                                $stats_materials[$recipe_type][$recipe_ability_type][$material_id]['count'] = 1+ ($stats_materials[$recipe_type][$recipe_ability_type][$material_id]['count'] ?? 0);
+                                $stats_materials[$recipe_type][$recipe_ability_type][$material_id]['count'] = 1 + ($stats_materials[$recipe_type][$recipe_ability_type][$material_id]['count'] ?? 0);
                                 $stats_materials[$recipe_type][$recipe_ability_type][$material_id]['quantity'] = $material['minQuantity'] + ($stats_materials[$recipe_type][$recipe_ability_type][$material_id]['quantity'] ?? 0);
                                 if ($drilldown) {
                                     $stats_materials[$recipe_type][$recipe_ability_type][$material_id][$drilldown] = $material['minQuantity'] + ($stats_materials[$recipe_type][$recipe_ability_type][$material_id][$drilldown] ?? 0);
                                     $stats_materials_columns[$recipe_type][$recipe_ability_type][$drilldown] = 1;
                                 }
 
-                                $stats_skills[$skill_id][$material_id]['count'] = 1+ ($stats_skills[$skill_id][$material_id]['count'] ?? 0);
+                                $stats_skills[$skill_id][$material_id]['count'] = 1 + ($stats_skills[$skill_id][$material_id]['count'] ?? 0);
                                 $stats_skills[$skill_id][$material_id]['quantity'] = $material['minQuantity'] + ($stats_skills[$skill_id][$material_id]['quantity'] ?? 0);
 
-                                $stats_recipes[$recipe_id][$material_id]['count'] = 1+ ($stats_recipes[$recipe_id][$material_id]['count'] ?? 0);
+                                $stats_recipes[$recipe_id][$material_id]['count'] = 1 + ($stats_recipes[$recipe_id][$material_id]['count'] ?? 0);
                                 $stats_recipes[$recipe_id][$material_id]['quantity'] = $material['minQuantity'] + ($stats_recipes[$recipe_id][$material_id]['quantity'] ?? 0);
                             }
                         }
                     }
                 }
             }
+
             return [
             'stats_materials' => $stats_materials,
             'stats_materials_columns' => $stats_materials_columns,
@@ -193,8 +190,6 @@ class ListController extends Controller
             'icon' => $icon,
         ];
         });
-
-
 
         return view('guild.list.ability_mats', [
             'request_type' => $type,
@@ -209,20 +204,20 @@ class ListController extends Controller
 
     public function squads()
     {
-        $list = SyncClient::getSquadList();
-        $unitKeys = SyncClient::getUnitKeys();
-        $skillKeys = SyncClient::getSkillKeys();
+        $list = SyncHelper::getSquadList();
+        $unitKeys = SyncHelper::getUnitKeys();
+        $skillKeys = SyncHelper::getSkillKeys();
 
         return view('guild.list.squads', [
-            'unitKeys' =>$unitKeys ?? [],
-            'skillKeys' =>$skillKeys ?? [],
+            'unitKeys' => $unitKeys ?? [],
+            'skillKeys' => $skillKeys ?? [],
             'list' => $list ?? [],
             ]);
     }
 
     public function events()
     {
-        $list = SyncClient::getEventList();
+        $list = SyncHelper::getEventList();
 
         return view('guild.list.events', [
             'list' => $list ?: [],
@@ -231,8 +226,8 @@ class ListController extends Controller
 
     public function targeting()
     {
-        $unitKeys = SyncClient::getUnitKeys(true);
-        $skillKeys = SyncClient::getSkillKeys(true);
+        $unitKeys = SyncHelper::getUnitKeys(true);
+        $skillKeys = SyncHelper::getSkillKeys(true);
         // dd($unitKeys->get(221));
         // dd($skillKeys);
         $filter = [
@@ -253,8 +248,8 @@ class ListController extends Controller
         ];
 
         return view('guild.list.targeting', [
-            'unitKeys' =>$unitKeys,
-            'skillKeys' =>$skillKeys,
+            'unitKeys' => $unitKeys,
+            'skillKeys' => $skillKeys,
             'filter' => $filter,
             'pattern' => $pattern,
             'replacement' => $replacement,
@@ -263,7 +258,7 @@ class ListController extends Controller
 
     public function zetas()
     {
-        $list = SyncClient::getZetaList();
+        $list = SyncHelper::getZetaList();
 
         return view('guild.list.zetas', [
             'list' => $list ?: [],

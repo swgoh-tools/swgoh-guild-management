@@ -26,12 +26,12 @@
                     title="{{ $si_name }}"></span></div>
         @if ($si_zeta)
         <div class="pc-skill__material"><img class="pc-skill__material-img"
-                src="//swgoh.gg/static/img/assets/tex.skill_zeta.png" data-toggle="tooltip" data-placement="top"
-                title="" data-original-title="Zeta"></div>
+            src="{{ asset('images/assets/tex.skill_zeta.png') }}" data-toggle="tooltip" data-placement="top"
+            title="" data-original-title="Zeta"></div>
         @elseif($si_omega)
         <div class="pc-skill__material"><img class="pc-skill__material-img"
-                src="//swgoh.gg/static/img/assets/tex.skill_pentagon_gold.png" data-toggle="tooltip"
-                data-placement="top" title="" data-original-title="Omega"></div>
+            src="{{ asset('images/assets/tex.skill_pentagon_gold.png') }}" data-toggle="tooltip"
+            data-placement="top" title="" data-original-title="Omega"></div>
         @endif
     </a></div>
 @endif

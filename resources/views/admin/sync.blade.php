@@ -21,20 +21,82 @@
             <p>{{ __('app.report_any_issues') }}</p>
         </div>
         <div class="col-md-5 page-action text-right">
+
+            {{-- <table class="table table-sm table-dark">
+                        <thead>
+                          <tr>
+                            <th scope="col">{{ __('Queue') }}</th>
+            <th scope="col">{{ __('Pending') }}</th>
+            <th scope="col">{{ __('Failed') }}</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">{{ __('Email') }}</th>
+                    <td>{{ $pending_jobs->where('queue', 'email')->get('amount') }}</td>
+                    <td>Otto</td>
+                </tr>
+                <tr>
+                    <th scope="row">{{ __('Guild') }}</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                </tr>
+                <tr>
+                    <th scope="row">{{ __('Data') }}</th>
+                    <td>Larry the Bird</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td scope="row">{{ __('Total') }}</td>
+                    <td scope="col">{{ $pending_jobs->sum('amount') }}</td>
+                    <td scope="col">{{ $failed_jobs->sum('amount') }}</td>
+                </tr>
+            </tfoot>
+            </table> --}}
             <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center">{{ __('Pending Email') }}
-                    <span class="badge badge-primary badge-pill">{{ Queue::size('email') }}</span></li>
+                <li class="list-group-item d-flex justify-content-between align-items-center font-weight-bold">
+                    {{ __('Queue') }}
+                    <span class="">{{ __('Pending') }} / {{ __('Failed') }}</span></li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">{{ __('Email') }}
+                    <div>
+                        <span
+                            class="badge badge-primary badge-pill">{{ $pending_jobs->where('queue', 'email')->sum('amount') }}</span>
+                        <span
+                            class="badge badge-danger badge-pill">{{ $failed_jobs->where('queue', 'email')->sum('amount') }}</span>
+                    </div>
+                </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    {{ __('Pending Guild Sync') }}
-                    <span class="badge badge-primary badge-pill">{{ Queue::size('default') }}</span></li>
+                    {{ __('Guild Sync') }}
+                    <div>
+                        <span
+                            class="badge badge-primary badge-pill">{{ $pending_jobs->where('queue', 'default')->sum('amount') }}</span>
+                        <span
+                            class="badge badge-danger badge-pill">{{ $failed_jobs->where('queue', 'default')->sum('amount') }}</span>
+                    </div>
+                </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    {{ __('Pending Data Sync') }}
-                    <span class="badge badge-primary badge-pill">{{ Queue::size('low') }}</span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">{{ __('Total') }}
-                    <span class="badge badge-secondary badge-pill">{{ Queue::size() }}</span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">{{ __('Failed') }}
-                    <span class="badge badge-danger badge-pill">{{ DB::table('failed_jobs')->count() }}</span></li>
-            </ul>
+                    {{ __('Data Sync') }}
+                    <div>
+                        <span
+                            class="badge badge-primary badge-pill">{{ $pending_jobs->where('queue', 'low')->sum('amount') }}</span>
+                        <span
+                            class="badge badge-danger badge-pill">{{ $failed_jobs->where('queue', 'low')->sum('amount') }}</span>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center font-weight-bold">{{ __('Total') }}
+                    <div>
+                        <span class="badge badge-secondary badge-pill">{{ $pending_jobs->sum('amount') }}</span>
+                        <span class="badge badge-danger badge-pill">{{ $failed_jobs->sum('amount') }}</span>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center text-muted font-italic">{{ __('User Validity') }}
+                        <div>
+                            <span class="badge badge-success badge-pill">{{ DB::table('users')->where('confirmed', true)->count() }}</span>
+                            <span class="badge badge-danger badge-pill">{{ DB::table('users')->where('confirmed', false)->count() }}</span>
+                        </div>
+                    </li>
+                </ul>
         </div>
     </div>
 

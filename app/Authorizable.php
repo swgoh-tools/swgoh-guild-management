@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
+
 /*
  * A trait to handle authorization based on users permissions for given controller
  */
@@ -8,7 +11,7 @@ namespace App;
 trait Authorizable
 {
     /**
-     * Abilities
+     * Abilities.
      *
      * @var array
      */
@@ -19,19 +22,20 @@ trait Authorizable
         'update' => 'edit',
         'create' => 'add',
         'store' => 'add',
-        'destroy' => 'delete'
+        'destroy' => 'delete',
     ];
 
     /**
-     * Override of callAction to perform the authorization before it calls the action
+     * Override of callAction to perform the authorization before it calls the action.
      *
      * @param $method
      * @param $parameters
+     *
      * @return mixed
      */
     public function callAction($method, $parameters)
     {
-        if( $ability = $this->getAbility($method) ) {
+        if ($ability = $this->getAbility($method)) {
             $this->authorize($ability);
         }
 
@@ -39,17 +43,18 @@ trait Authorizable
     }
 
     /**
-     * Get ability
+     * Get ability.
      *
      * @param $method
-     * @return null|string
+     *
+     * @return string|null
      */
     public function getAbility($method)
     {
         $routeName = explode('.', \Request::route()->getName());
         $action = array_get($this->getAbilities(), $method);
 
-        return $action ? $action . '_' . $routeName[count($routeName)-2] : null;
+        return $action ? $action . '_' . $routeName[\count($routeName) - 2] : null;
     }
 
     /**
@@ -63,7 +68,7 @@ trait Authorizable
     /**
      * @param array $abilities
      */
-    public function setAbilities($abilities)
+    public function setAbilities($abilities): void
     {
         $this->abilities = $abilities;
     }

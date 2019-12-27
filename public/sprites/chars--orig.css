@@ -6,7 +6,7 @@
 
 	Sprite sheet:  / chars--orig.png (1950 x 1560)
 	Variant: 0
-	$TexturePacker:SmartUpdate:54eb7bafdc1096882aab46b689a44407:403fa82bc922e606add1184b3d8501fc:1f1b304e7d7c6b5728d4ebfe18ea5bbb$
+	$TexturePacker:SmartUpdate:e4f9141f4423502c48f8c033e41c8534:ab2f97f023f626bd8f732b31cb558eff:1f1b304e7d7c6b5728d4ebfe18ea5bbb$
 */
 
 .sprite-units--orig.u-AAYLASECURA {max-width:128px; max-height:128px; }
@@ -147,217 +147,219 @@
 .sprite-units--orig.u-GARSAXON::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -521px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-GENERALKENOBI {max-width:128px; max-height:128px; }
 .sprite-units--orig.u-GENERALKENOBI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -521px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-GENERALSKYWALKER {max-width:128px; max-height:128px; }
+.sprite-units--orig.u-GENERALSKYWALKER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -521px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-GEONOSIANBROODALPHA {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-GEONOSIANBROODALPHA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -521px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-GEONOSIANBROODALPHA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -521px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-GEONOSIANSOLDIER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-GEONOSIANSOLDIER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -521px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-GEONOSIANSOLDIER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -521px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-GEONOSIANSPY {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-GEONOSIANSPY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -521px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-GEONOSIANSPY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -521px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-GRANDADMIRALTHRAWN {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-GRANDADMIRALTHRAWN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -521px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-GRANDADMIRALTHRAWN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -521px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-GRANDMASTERYODA {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-GRANDMASTERYODA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -521px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-GRANDMASTERYODA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -521px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-GRANDMOFFTARKIN {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-GRANDMOFFTARKIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -521px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-GRANDMOFFTARKIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-GREEDO {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-GREEDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-GREEDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-GRIEVOUS {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-GRIEVOUS::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-GRIEVOUS::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-HANSOLO {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-HANSOLO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-HANSOLO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-HERASYNDULLAS3 {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-HERASYNDULLAS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-HERASYNDULLAS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-HERMITYODA {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-HERMITYODA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-HERMITYODA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-HK47 {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-HK47::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-HK47::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-HOTHHAN {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-HOTHHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-HOTHHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-HOTHLEIA {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-HOTHLEIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-HOTHLEIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-HOTHREBELSCOUT {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-HOTHREBELSCOUT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-HOTHREBELSCOUT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-HOTHREBELSOLDIER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-HOTHREBELSOLDIER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-HOTHREBELSOLDIER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-HUMANTHUG {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-HUMANTHUG::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-HUMANTHUG::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-IG86SENTINELDROID {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-IG86SENTINELDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-IG86SENTINELDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-IG88 {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-IG88::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-IG88::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-IMAGUNDI {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-IMAGUNDI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-IMAGUNDI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-IMPERIALPROBEDROID {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-IMPERIALPROBEDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -651px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-IMPERIALPROBEDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-IMPERIALSUPERCOMMANDO {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-IMPERIALSUPERCOMMANDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-IMPERIALSUPERCOMMANDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-JANGOFETT {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-JANGOFETT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-JANGOFETT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-JAWA {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-JAWA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-JAWA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-JAWAENGINEER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-JAWAENGINEER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-JAWAENGINEER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-JAWASCAVENGER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-JAWASCAVENGER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-JAWASCAVENGER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-JEDIKNIGHTCONSULAR {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-JEDIKNIGHTCONSULAR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-JEDIKNIGHTCONSULAR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-JEDIKNIGHTGUARDIAN {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-JEDIKNIGHTGUARDIAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-JEDIKNIGHTGUARDIAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-JEDIKNIGHTREVAN {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-JEDIKNIGHTREVAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-JEDIKNIGHTREVAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-JOLEEBINDO {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-JOLEEBINDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-JOLEEBINDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-JUHANI {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-JUHANI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-JUHANI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-JYNERSO {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-JYNERSO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-JYNERSO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-K2SO {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-K2SO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-K2SO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-KANANJARRUSS3 {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-KANANJARRUSS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-KANANJARRUSS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-KITFISTO {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-KITFISTO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-KITFISTO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-KYLOREN {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-KYLOREN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -781px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-KYLOREN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-KYLORENUNMASKED {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-KYLORENUNMASKED::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-KYLORENUNMASKED::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-L3_37 {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-L3_37::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-L3_37::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-LOBOT {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-LOBOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-LOBOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-LOGRAY {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-LOGRAY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-LOGRAY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-LUKESKYWALKER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-LUKESKYWALKER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-LUKESKYWALKER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-LUMINARAUNDULI {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-LUMINARAUNDULI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-LUMINARAUNDULI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-MACEWINDU {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-MACEWINDU::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-MACEWINDU::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-MAGMATROOPER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-MAGMATROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-MAGMATROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-MAGNAGUARD {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-MAGNAGUARD::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-MAGNAGUARD::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-MAUL {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-MAUL::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-MAUL::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-MISSIONVAO {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-MISSIONVAO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-MISSIONVAO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-MOTHERTALZIN {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-MOTHERTALZIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-MOTHERTALZIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-NIGHTSISTERACOLYTE {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-NIGHTSISTERACOLYTE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-NIGHTSISTERACOLYTE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-NIGHTSISTERINITIATE {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-NIGHTSISTERINITIATE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-NIGHTSISTERINITIATE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-NIGHTSISTERSPIRIT {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-NIGHTSISTERSPIRIT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -911px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-NIGHTSISTERSPIRIT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-NIGHTSISTERZOMBIE {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-NIGHTSISTERZOMBIE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-NIGHTSISTERZOMBIE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-NUTEGUNRAY {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-NUTEGUNRAY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-NUTEGUNRAY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-OLDBENKENOBI {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-OLDBENKENOBI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-OLDBENKENOBI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-PADMEAMIDALA {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-PADMEAMIDALA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-PADMEAMIDALA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-PAO {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-PAO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-PAO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-PAPLOO {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-PAPLOO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-PAPLOO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-PHASMA {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-PHASMA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-PHASMA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-PLOKOON {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-PLOKOON::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-PLOKOON::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-POE {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-POE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-POE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-POGGLETHELESSER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-POGGLETHELESSER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-POGGLETHELESSER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-PRINCESSLEIA {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-PRINCESSLEIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-PRINCESSLEIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-QIRA {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-QIRA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-QIRA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-QUIGONJINN {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-QUIGONJINN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-QUIGONJINN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-R2D2_LEGENDARY {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-R2D2_LEGENDARY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-R2D2_LEGENDARY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-RANGETROOPER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-RANGETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1041px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-RANGETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-RESISTANCEPILOT {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-RESISTANCEPILOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-RESISTANCEPILOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-RESISTANCETROOPER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-RESISTANCETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-RESISTANCETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-REY {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-REY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-REY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-REYJEDITRAINING {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-REYJEDITRAINING::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-REYJEDITRAINING::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-ROSETICO {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-ROSETICO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-ROSETICO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-ROYALGUARD {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-ROYALGUARD::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-ROYALGUARD::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-SABINEWRENS3 {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-SABINEWRENS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-SABINEWRENS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-SAVAGEOPRESS {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-SAVAGEOPRESS::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-SAVAGEOPRESS::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-SCARIFREBEL {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-SCARIFREBEL::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-SCARIFREBEL::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-SHAAKTI {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-SHAAKTI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-SHAAKTI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-SHORETROOPER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-SHORETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-SHORETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-SITHASSASSIN {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-SITHASSASSIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-SITHASSASSIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-SITHMARAUDER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-SITHMARAUDER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-SITHMARAUDER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-SITHTROOPER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-SITHTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-SITHTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-SMUGGLERCHEWBACCA {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-SMUGGLERCHEWBACCA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1171px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-SMUGGLERCHEWBACCA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-SMUGGLERHAN {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-SMUGGLERHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-SMUGGLERHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-SNOWTROOPER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-SNOWTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-SNOWTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-STORMTROOPER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-STORMTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-STORMTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-STORMTROOPERHAN {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-STORMTROOPERHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-STORMTROOPERHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-SUNFAC {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-SUNFAC::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-SUNFAC::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-T3_M4 {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-T3_M4::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-T3_M4::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-TALIA {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-TALIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-TALIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-TEEBO {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-TEEBO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-TEEBO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-TIEFIGHTERPILOT {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-TIEFIGHTERPILOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-TIEFIGHTERPILOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-TUSKENRAIDER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-TUSKENRAIDER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-TUSKENRAIDER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-TUSKENSHAMAN {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-TUSKENSHAMAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-TUSKENSHAMAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-UGNAUGHT {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-UGNAUGHT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-UGNAUGHT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-URORRURRR {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-URORRURRR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-URORRURRR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-VADER {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-VADER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-VADER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-VEERS {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-VEERS::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1301px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-VEERS::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-VISASMARR {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-VISASMARR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-VISASMARR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-WAMPA {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-WAMPA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-WAMPA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-WATTAMBOR {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-WATTAMBOR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-WATTAMBOR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-WEDGEANTILLES {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-WEDGEANTILLES::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-WEDGEANTILLES::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-WICKET {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-WICKET::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-WICKET::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-YOUNGCHEWBACCA {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-YOUNGCHEWBACCA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-YOUNGCHEWBACCA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-YOUNGHAN {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-YOUNGHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-YOUNGHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-YOUNGLANDO {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-YOUNGLANDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-YOUNGLANDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-ZAALBAR {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-ZAALBAR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-ZAALBAR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-ZAMWESELL {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-ZAMWESELL::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-ZAMWESELL::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
 .sprite-units--orig.u-ZEBS3 {max-width:128px; max-height:128px; }
-.sprite-units--orig.u-ZEBS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }
+.sprite-units--orig.u-ZEBS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1431px;background-image: url(chars--orig.png);border-radius:inherit; }

@@ -8,7 +8,7 @@ use App\User;
 use App\Guild;
 use App\Permission;
 use App\Authorizable;
-use App\Helper\SyncClient;
+use App\Helper\SyncHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,8 +23,8 @@ class PlayerController extends Controller
      */
     public function home($player)
     {
-        $info = SyncClient::getPlayer($player);
-        $playerTitleKeys = SyncClient::getDataMap('playerTitleList');
+        $info = SyncHelper::getPlayer($player);
+        $playerTitleKeys = SyncHelper::getDataMap('playerTitleList');
 
         return view('player.home', [
             'info' => $info[0] ?? [],
@@ -39,10 +39,10 @@ class PlayerController extends Controller
      */
     public function roster($player)
     {
-        $info = SyncClient::getPlayer($player);
-        $skillKeys = SyncClient::getSkillKeys();
-        $unitKeys = SyncClient::getUnitKeys();
-        $unitStatKeys = SyncClient::getUnitStatKeys();
+        $info = SyncHelper::getPlayer($player);
+        $skillKeys = SyncHelper::getSkillKeys();
+        $unitKeys = SyncHelper::getUnitKeys();
+        $unitStatKeys = SyncHelper::getUnitStatKeys();
 
         if ($info[0]['roster'] ?? false) {
             foreach ($info[0]['roster'] as $key => $value) {
@@ -50,9 +50,8 @@ class PlayerController extends Controller
                 $info[0]['roster'][$key]['desc'] = $unitKeys[$value['defId']]['desc'] ?? $info[0]['roster'][$key]['desc'] ?? '';
             }
             // Sort the multidimensional array
-            usort($info[0]['roster'], "custom_sort_by_name_key");
+            usort($info[0]['roster'], 'custom_sort_by_name_key');
         }
-
 
         return view('player.roster', [
             'info' => $info[0] ?? [],
@@ -64,12 +63,12 @@ class PlayerController extends Controller
 
     public function toons_by_category($player)
     {
-        $info = SyncClient::getPlayer($player);
-        $skillKeys = SyncClient::getSkillKeys();
-        $unitKeys = SyncClient::getUnitKeys();
-        $unitStatKeys = SyncClient::getUnitStatKeys();
-        $gear =SyncClient::getGgGearWithKey();
-        $chars = SyncClient::getGgCharsWithKey();
+        $info = SyncHelper::getPlayer($player);
+        $skillKeys = SyncHelper::getSkillKeys();
+        $unitKeys = SyncHelper::getUnitKeys();
+        $unitStatKeys = SyncHelper::getUnitStatKeys();
+        $gear = SyncHelper::getGgGearWithKey();
+        $chars = SyncHelper::getGgCharsWithKey();
 
         $roster = [];
         $known_units = [];
@@ -85,7 +84,7 @@ class PlayerController extends Controller
                 $known_units[$unit_id] = true;
             }
             // Sort the multidimensional array
-            usort($info[0]['roster'], "custom_sort_by_name_key");
+            usort($info[0]['roster'], 'custom_sort_by_name_key');
         }
         // $all_categories = [];
         // add missing chars (chars not unlocked by player)
@@ -112,11 +111,12 @@ class PlayerController extends Controller
         // dd($unitKeys);
 
         // $all_categories = array_combine($all_categories, $all_categories);
-        // ksort($all_categories);
+        // ksort($roster);
+        uksort($roster, 'custom_sort_categories');
         // dd($all_categories);
         foreach ($roster as $category => $values) {
             // Sort the multidimensional array
-            usort($roster[$category], "custom_sort_by_gp");
+            usort($roster[$category], 'custom_sort_by_gp');
         }
 
         return view('player.toons_by_category', [
@@ -136,12 +136,12 @@ class PlayerController extends Controller
      */
     public function toons($player)
     {
-        $info = SyncClient::getPlayer($player);
-        $skillKeys = SyncClient::getSkillKeys();
-        $unitKeys = SyncClient::getUnitKeys();
-        $unitStatKeys = SyncClient::getUnitStatKeys();
-        $gear =SyncClient::getGgGearWithKey();
-        $chars = SyncClient::getGgCharsWithKey();
+        $info = SyncHelper::getPlayer($player);
+        $skillKeys = SyncHelper::getSkillKeys();
+        $unitKeys = SyncHelper::getUnitKeys();
+        $unitStatKeys = SyncHelper::getUnitStatKeys();
+        $gear = SyncHelper::getGgGearWithKey();
+        $chars = SyncHelper::getGgCharsWithKey();
 
         if ($info[0]['roster'] ?? false) {
             foreach ($info[0]['roster'] as $key => $value) {
@@ -149,7 +149,7 @@ class PlayerController extends Controller
                 $info[0]['roster'][$key]['desc'] = $unitKeys[$value['defId']]['desc'] ?? $info[0]['roster'][$key]['desc'] ?? '';
             }
             // Sort the multidimensional array
-            usort($info[0]['roster'], "custom_sort_by_name_key");
+            usort($info[0]['roster'], 'custom_sort_by_name_key');
         }
 
         return view('player.toons', [
@@ -163,17 +163,17 @@ class PlayerController extends Controller
 
     // public function gearPullImages()
     // {
-    //     $gear = SyncClient::getGgGear();
+    //     $gear = SyncHelper::getGgGear();
     //     // //swgoh.gg/static/img/ui/gear-atlas.png
     // }
 
     public function gear(Request $request, $player)
     {
-        $unitKeys = SyncClient::getUnitKeys();
-        $info = SyncClient::getPlayer($player);
-        $chars = SyncClient::getGgChars();
+        $unitKeys = SyncHelper::getUnitKeys();
+        $info = SyncHelper::getPlayer($player);
+        $chars = SyncHelper::getGgChars();
 
-        $gear = SyncClient::getGgGearWithKey();
+        $gear = SyncHelper::getGgGearWithKey();
 
         $gear_selected = $request->input('g');
 
@@ -254,9 +254,9 @@ class PlayerController extends Controller
         $char_list_flat = [];
         foreach ($char_list_nested as $key => $value) {
             $cur_unit = $key;
-            $cur_tier = ($value['tier'] ?? 0) ? $value['tier'] : null ;
-            $cur_gear = implode("-", $value['gear'] ?? null);
-            $char_list_flat[] = rtrim(implode(":", [$cur_unit, $cur_tier, $cur_gear]), ":");
+            $cur_tier = ($value['tier'] ?? 0) ? $value['tier'] : null;
+            $cur_gear = implode('-', $value['gear'] ?? null);
+            $char_list_flat[] = rtrim(implode(':', [$cur_unit, $cur_tier, $cur_gear]), ':');
         }
 
         // // return \in_array($v['base_id'], $char_list_nested);
@@ -267,8 +267,8 @@ class PlayerController extends Controller
         // dd($char_list_nested);
 
         return view('player.gear', [
-            'info' =>$info[0] ?? [],
-            'unitKeys' =>$unitKeys ?? [],
+            'info' => $info[0] ?? [],
+            'unitKeys' => $unitKeys ?? [],
             // 'roster' => $roster_selection,
             'char_list_flat' => $char_list_flat,
             'char_list_nested' => $char_list_nested,
@@ -293,11 +293,11 @@ class PlayerController extends Controller
 
     protected function gearStats(Request $request, $player, $output_type)
     {
-        $unitKeys = SyncClient::getUnitKeys();
-        $info = SyncClient::getPlayer($player);
-        $chars = SyncClient::getGgChars();
+        $unitKeys = SyncHelper::getUnitKeys();
+        $info = SyncHelper::getPlayer($player);
+        $chars = SyncHelper::getGgChars();
 
-        $gear = SyncClient::getGgGearWithKey();
+        $gear = SyncHelper::getGgGearWithKey();
 
         $roster_selection = $info[0]['roster'] ?? [];
 
@@ -309,7 +309,6 @@ class PlayerController extends Controller
                 return isset($char_list[$entry['defId']]);
             });
         }
-
 
         $char_list_nested = [];
         foreach ($roster_selection as $key => $unit) {
@@ -324,7 +323,7 @@ class PlayerController extends Controller
         foreach ($chars as $char_key => $char) {
             // iterate through full char list
             // but skip if custom chars were requested
-            if ($char_list && ! isset($char_list[$char['base_id']])) {
+            if ($char_list && !isset($char_list[$char['base_id']])) {
                 continue;
             }
             foreach ($char['gear_levels'] as $gear_level_key => $gear_level) {
@@ -336,22 +335,22 @@ class PlayerController extends Controller
         }
 
         $columns = [
-            'total', 'done', 'todo', 'now', 'next'
+            'total', 'done', 'todo', 'now', 'next',
         ];
 
         return view('player.gear-stats', [
             'columns' => $columns,
-            'unitKeys' =>$unitKeys ?? [],
+            'unitKeys' => $unitKeys ?? [],
             'info' => $info[0] ?? [],
             'char_list_nested' => $char_list_nested,
             'chars' => $chars ?? [],
             'gear' => $gear ?? [],
-            'gear_stats' => ($output_type == 'salvage') ? $mat_stats : $gear_stats,
+            'gear_stats' => ('salvage' == $output_type) ? $mat_stats : $gear_stats,
             'player' => $player,
         ]);
     }
 
-    protected function addGearStat(&$stats, &$mat_stats, $mat_list, $key, $level, $slot, $level_player, $slots_player)
+    protected function addGearStat(&$stats, &$mat_stats, $mat_list, $key, $level, $slot, $level_player, $slots_player): void
     {
         // save totals
         $this->addGearStatEntry($stats, 'SUM', $level, 'total'); // overall
@@ -362,7 +361,7 @@ class PlayerController extends Controller
             $this->addGearStatEntry($mat_stats, $mat, $level, 'total', $amount); // per gear
         }
 
-        if (! is_numeric($level_player)) {
+        if (!is_numeric($level_player)) {
             $level_player = 0;
         }
         $level_gap = $level_player - $level;
@@ -371,17 +370,17 @@ class PlayerController extends Controller
         if ($level_gap > 0) {
             // player unit has better gear tier
             $targets[] = 'done';
-        } elseif ($level_gap == 0 && in_array($slot, $slots_player)) {
+        } elseif (0 == $level_gap && \in_array($slot, $slots_player)) {
             // player unit has this piece equipped
             $targets[] = 'done';
         } else {
             // player unit needs this gear somewhere in the future
             $targets[] = 'todo';
 
-            if ($level_gap == 0) {
+            if (0 == $level_gap) {
                 // player unit needs this gear NOW
                 $targets[] = 'now';
-            } elseif (0 < $level_player && $level_gap == -1) {
+            } elseif (0 < $level_player && -1 == $level_gap) {
                 // player unit needs this gear NEXT
                 // skip if no player information (e.g. unit not unlocked)
                 $targets[] = 'next';
@@ -398,7 +397,7 @@ class PlayerController extends Controller
         }
     }
 
-    protected function addGearStatEntry(&$stats, $key, $level, $type, $amount = 1)
+    protected function addGearStatEntry(&$stats, $key, $level, $type, $amount = 1): void
     {
         $old = $stats[$key][$type][$level] ?? 0;
         $old_sub_total = $stats[$key][$type][0] ?? 0;
@@ -406,8 +405,6 @@ class PlayerController extends Controller
         $stats[$key][$type][$level] = $amount + $old;
         $stats[$key][$type][0] = $amount + $old_sub_total;
     }
-
-
 
     public function statsVerbose($player)
     {
@@ -421,14 +418,14 @@ class PlayerController extends Controller
      */
     public function stats($player, $verbose = false)
     {
-        $info = SyncClient::getPlayer($player);
-        // $members = SyncClient::getGuildMembers($player ?? null);
-        $teams = SyncClient::getSquadList();
-        $zetas = SyncClient::getZetaList();
-        $unitKeys = SyncClient::getUnitKeys();
-        $skillKeys = SyncClient::getSkillKeys();
-        $skillData = SyncClient::getSkillData();
-        // $roster = SyncClient::getRoster($player ?? null, 1);
+        $info = SyncHelper::getPlayer($player);
+        // $members = SyncHelper::getGuildMembers($player ?? null);
+        $teams = SyncHelper::getSquadList();
+        $zetas = SyncHelper::getZetaList();
+        $unitKeys = SyncHelper::getUnitKeys();
+        $skillKeys = SyncHelper::getSkillKeys();
+        $skillData = SyncHelper::getSkillData();
+        // $roster = SyncHelper::getRoster($player ?? null, 1);
         // $rosterWithAllyCodeKeys = [];
         // foreach ($roster[0] as $key => $char) {
         //     foreach ($char as $player) {
@@ -474,8 +471,6 @@ class PlayerController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -543,8 +538,7 @@ class PlayerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -552,7 +546,7 @@ class PlayerController extends Controller
     {
         $this->validate($request, [
             'name' => 'bail|required|min:2',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|email|unique:users,email,' . $id,
             'roles' => 'required|min:1',
         ]);
 
@@ -605,18 +599,19 @@ class PlayerController extends Controller
 
     private function getMainCategory($categoryIdList, $char)
     {
-        if (!is_array($categoryIdList)) {
+        if (!\is_array($categoryIdList)) {
             return 'no_categories_found';
         }
 
         $customToonList = [
-            'BARRISSOFFEE' => 'affiliation_republic',
-            'SHAAKTI' => 'profession_clonetrooper',
-            'GRANDMASTERYODA' => 'profession_jedi',
-            'PLOKOON' => 'profession_jedi',
-            'AHSOKATANO' => 'profession_clonetrooper',
+            // 'AHSOKATANO' => 'profession_clonetrooper',
             'ANAKINKNIGHT' => 'affiliation_republic',
+            'BARRISSOFFEE' => 'affiliation_republic',
             'GENERALKENOBI' => 'affiliation_republic',
+            'GRANDMASTERYODA' => 'profession_jedi',
+            'LOBOT' => 'species_droid',
+            'PLOKOON' => 'profession_jedi',
+            'SHAAKTI' => 'profession_clonetrooper',
         ];
 
         if (isset($customToonList[$char])) {
@@ -630,14 +625,14 @@ class PlayerController extends Controller
             'profession_bountyhunter',
             'affiliation_phoenix',
             'affiliation_rogue_one',
-            'profession_clonetrooper',
             'affiliation_501st',
+            'affiliation_oldrepublic',
+            'profession_clonetrooper',
             'profession_jedi',
-            // 'platoon_legendary_light',
         ];
 
         foreach ($customOrderList as $category) {
-            if (in_array($category, $categoryIdList, true)) {
+            if (\in_array($category, $categoryIdList, true)) {
                 return $category;
             }
         }
@@ -668,7 +663,6 @@ class PlayerController extends Controller
     /**
      * Sync roles and permissions.
      *
-     * @param Request $request
      * @param $user
      *
      * @return string

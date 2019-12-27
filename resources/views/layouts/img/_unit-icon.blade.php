@@ -35,11 +35,11 @@ $ui_zeta_count++;
 }
 }
 @endphp
-<div style="display:inline-block; vertical-align: top;">
-    <div class="{{ implode(' ', $ui_div_class) }} mt-2">
+<div style="display:inline-block; vertical-align: top;  @if($ui_highlight ?? false)background: #44959570; @endif">
+    <div class="{{ implode(' ', $ui_div_class) }}">
         @if(($ui_stats['rarity'] ?? 0) < 1)<div style="opacity:0.4;"> @endif
             <a href="{{ $ui_unit['url'] ?? '' }}" class="char-portrait-full-link" rel="nofollow"
-                title="{{ $ui_stats['nameKey'] ?? $ui_unit['name'] }} - {{ $ui_unit['description'] ?? '' }}">
+                title="{{ $ui_stats['nameKey'] ?? $ui_unit['name'] }} - {{ $ui_unit['description'] ?? '' }} [{{ implode(', ', $ui_stats['categoryIdList'] ?? []) }}]">
                 {{-- <img class="char-portrait-full-img loading" src="/game-asset/u/ENFYSNEST/" alt="{{ $ui_stats['nameKey'] ?? $ui_unit['name'] }}"
                 width="80" height="80"> --}}
                 {{-- <img class="char-portrait-full-img loading" src="{{ $ui_unit['image'] ?? '' }}"

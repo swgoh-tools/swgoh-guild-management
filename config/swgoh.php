@@ -22,6 +22,8 @@ return [
         'DISCORD' => env('CONTACT_DISCORD', ''),
         'DISCORD_WIDGET_URL' => env('CONTACT_DISCORD_WIDGET_URL', ''),
         'LINE' => env('CONTACT_LINE', ''),
+        'LINE_BOT_QR' => env('LINE_BOT_QR', ''),
+        'LINE_BOT_LINK' => env('LINE_BOT_LINK', ''),
         'EA_FORUM_URL' => env('CONTACT_EA_FORUM_URL', ''),
         'EA_FORUM_NAME' => env('CONTACT_EA_FORUM_NAME', ''),
         'ISSUES_URL' => env('CONTACT_ISSUES_URL', ''),

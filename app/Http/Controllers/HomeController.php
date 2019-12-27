@@ -6,7 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Guild;
 use App\Helper\SyncClient;
+use App\Helper\SyncHelper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -26,6 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         $guilds = Guild::all();
+
         return view('home', compact('guilds'));
     }
 
@@ -36,12 +39,21 @@ class HomeController extends Controller
      */
     public function syncIndex()
     {
-        $targets = SyncClient::getTargets();
+        $targets = SyncHelper::getTargets();
         $client = new SyncClient();
         $time = $client->isRunning();
-        $targets['clear'] = $time ? 'Sync Lock seit '.date('d.m. H:m:s', $time) : 'Kein Lock File gefunden.';
+        $targets['clear'] = $time ? 'Sync Lock seit ' . date('d.m. H:m:s', $time) : 'Kein Lock File gefunden.';
 
-        return view('admin.sync', compact('targets'));
+        $pending_jobs = DB::table('jobs')
+            ->select(DB::raw('count(*) as amount, queue'))
+            ->groupBy('queue')
+            ->get();
+        $failed_jobs = DB::table('failed_jobs')
+            ->select(DB::raw('count(*) as amount, queue'))
+            ->groupBy('queue')
+            ->get();
+
+        return view('admin.sync', compact('targets', 'pending_jobs', 'failed_jobs'));
     }
 
     /**

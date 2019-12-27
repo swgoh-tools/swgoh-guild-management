@@ -1,13 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Helper;
 
-use App\Guild;
-use App\Player;
-use App\Helper\SyncClient;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Storage;
 
 class Log
 {
@@ -23,8 +20,7 @@ class Log
         $this->cmd = $cmd;
     }
 
-
-    public function log(string $type, string $message)
+    public function log(string $type, string $message): void
     {
         if ($this->cmd) {
             switch ($type) {

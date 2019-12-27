@@ -4,6 +4,17 @@
 <div class="container">
     <div class="row">
         <div class="col">
+            <p>{{ __('pages.news.intro') }}</p>
+            <p>{{ __('pages.news.description') }}</p>
+            {{-- <img src="{{ config('swgoh.CONTACT.LINE_BOT_QR') }}" alt="Line Bot QR"> --}}
+        {{-- <a href="{{ config('swgoh.CONTACT.LINE_BOT_LINK') }}"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/en.png" alt="Add friend" height="36" border="0"></a> --}}
+        {{-- Free Message Limit: 500 per month --}}
+        {{-- https://www.linebiz.com/jp-en/service/line-account-connect/entry/ --}}
+        {{-- *Light plan and Standard plan are not available in USA, Singapore, EU --}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
         <h1><a href="{{ $permalink }}">{{ $title }}</a></h1>
         </div>
     </div>

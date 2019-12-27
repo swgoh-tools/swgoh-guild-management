@@ -19,5 +19,5 @@
 // }
 // $chart_high->dataset('rarity', 'item', $test)->options(['dataLabels' => ['enabled' => true, 'format' => '{point.label}'], 'keys' => ['name', 'y', 'color', 'label']]);
 // dd($stats);
-// $chars = SyncClient::getRoster($guild, 1);
-// $ships = SyncClient::getRoster($guild, 2); --}}
+// $chars = SyncHelper::getRoster($guild, 1);
+// $ships = SyncHelper::getRoster($guild, 2); --}}

@@ -4,9 +4,9 @@
 	Inline:     <i class="a-yourspritesname"></i>
 	Responsive: <div class="a-yourspritesname"></div>
 
-	Sprite sheet:  / abilities-0.png (1950 x 1950)
+	Sprite sheet:  / abilities-0.png (1950 x 2016)
 	Variant: 0
-	$TexturePacker:SmartUpdate:1b9d3fe8795b0fa6d415fa7d9409ee85:29d9715d1d06888f9527fb34572e9544:727f4b80e7c4172f449382064e252d02$
+	$TexturePacker:SmartUpdate:2141c5c7423e0f9d10ef4da8de83ea61:06e2c879cb64fe063bcec5f2995993e3:727f4b80e7c4172f449382064e252d02$
 */
 
 .sprite-abilities.a-basicskill_AAYLASECURA {max-width:128px; max-height:128px; }
@@ -24,13 +24,13 @@
 .sprite-abilities.a-basicskill_ARC170CLONESERGEANT {max-width:128px; max-height:128px; }
 .sprite-abilities.a-basicskill_ARC170CLONESERGEANT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_arc170rex {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_arc170rex::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_arc170rex::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_ASAJVENTRESS {max-width:128px; max-height:128px; }
 .sprite-abilities.a-basicskill_ASAJVENTRESS::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_AURRA_SING {max-width:128px; max-height:128px; }
 .sprite-abilities.a-basicskill_AURRA_SING::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_b1battledroidv2 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_b1battledroidv2::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_b1battledroidv2::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_B2SUPERBATTLEDROID {max-width:128px; max-height:128px; }
 .sprite-abilities.a-basicskill_B2SUPERBATTLEDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_BARRISSOFFEE {max-width:128px; max-height:128px; }
@@ -72,7 +72,7 @@
 .sprite-abilities.a-basicskill_CAPITALSTARDESTROYER {max-width:128px; max-height:128px; }
 .sprite-abilities.a-basicskill_CAPITALSTARDESTROYER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -131px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_carthonasi {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_carthonasi::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_carthonasi::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_CASSIANANDOR {max-width:128px; max-height:128px; }
 .sprite-abilities.a-basicskill_CASSIANANDOR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -261px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_CC2224 {max-width:128px; max-height:128px; }
@@ -96,7 +96,7 @@
 .sprite-abilities.a-basicskill_COMMANDERLUKESKYWALKER {max-width:128px; max-height:128px; }
 .sprite-abilities.a-basicskill_COMMANDERLUKESKYWALKER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_commandshuttle {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_commandshuttle::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_commandshuttle::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_CORUSCANTUNDERWORLDPOLICE {max-width:128px; max-height:128px; }
 .sprite-abilities.a-basicskill_CORUSCANTUNDERWORLDPOLICE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -131px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_COUNTDOOKU {max-width:128px; max-height:128px; }
@@ -138,7 +138,7 @@
 .sprite-abilities.a-basicskill_EMPERORPALPATINE {max-width:128px; max-height:128px; }
 .sprite-abilities.a-basicskill_EMPERORPALPATINE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_emperorsshuttle {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_emperorsshuttle::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_emperorsshuttle::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_ENFYSNEST {max-width:128px; max-height:128px; }
 .sprite-abilities.a-basicskill_ENFYSNEST::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -261px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_EWOKELDER {max-width:128px; max-height:128px; }
@@ -169,312 +169,314 @@
 .sprite-abilities.a-basicskill_GAUNTLETSTARFIGHTER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -261px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_GENERALKENOBI {max-width:128px; max-height:128px; }
 .sprite-abilities.a-basicskill_GENERALKENOBI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -261px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_GENERALSKYWALKER {max-width:128px; max-height:128px; }
+.sprite-abilities.a-basicskill_GENERALSKYWALKER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -261px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_GEONOSIANBROODALPHA {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_GEONOSIANBROODALPHA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -261px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_GEONOSIANBROODALPHA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -261px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_GEONOSIANSOLDIER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_GEONOSIANSOLDIER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -261px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_GEONOSIANSOLDIER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -261px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_GEONOSIANSPY {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_GEONOSIANSPY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -261px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_GEONOSIANSPY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -261px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_GEONOSIANSTARFIGHTER1 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_GEONOSIANSTARFIGHTER1::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -261px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_GEONOSIANSTARFIGHTER1::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -261px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_GEONOSIANSTARFIGHTER2 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_GEONOSIANSTARFIGHTER2::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -261px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_GEONOSIANSTARFIGHTER2::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_GEONOSIANSTARFIGHTER3 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_GEONOSIANSTARFIGHTER3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_GEONOSIANSTARFIGHTER3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_GHOST {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_GHOST::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_GHOST::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_GRANDADMIRALTHRAWN {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_GRANDADMIRALTHRAWN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_GRANDADMIRALTHRAWN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_GRANDMASTERYODA {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_GRANDMASTERYODA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_GRANDMASTERYODA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_GRANDMOFFTARKIN {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_GRANDMOFFTARKIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_GRANDMOFFTARKIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_GREEDO {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_GREEDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_GREEDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_GRIEVOUS {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_GRIEVOUS::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_GRIEVOUS::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_HANSOLO {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_HANSOLO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_HANSOLO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_HERASYNDULLAS3 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_HERASYNDULLAS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_HERASYNDULLAS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_HERMITYODA {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_HERMITYODA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_HERMITYODA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_HK47 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_HK47::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_HK47::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_HOTHHAN {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_HOTHHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -391px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_HOTHHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_HOTHLEIA {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_HOTHLEIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_HOTHLEIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_HOTHREBELSCOUT {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_HOTHREBELSCOUT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_HOTHREBELSCOUT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_HOTHREBELSOLDIER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_HOTHREBELSOLDIER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_HOTHREBELSOLDIER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_HOUNDSTOOTH {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_HOUNDSTOOTH::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_HOUNDSTOOTH::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_HUMANTHUG {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_HUMANTHUG::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_HUMANTHUG::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_HYENABOMBER {max-width:128px; max-height:128px; }
+.sprite-abilities.a-basicskill_HYENABOMBER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_IG86SENTINELDROID {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_IG86SENTINELDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_IG86SENTINELDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_IG88 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_IG88::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_IG88::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_IG2000 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_IG2000::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_IG2000::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_IMAGUNDI {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_IMAGUNDI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_IMAGUNDI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_IMPERIALPROBEDROID {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_IMPERIALPROBEDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_IMPERIALPROBEDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_IMPERIALSUPERCOMMANDO {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_IMPERIALSUPERCOMMANDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -391px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_IMPERIALSUPERCOMMANDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_JANGOFETT {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_JANGOFETT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_JANGOFETT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_JAWA {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_JAWA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_JAWA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_JAWAENGINEER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_JAWAENGINEER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_JAWAENGINEER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_JAWASCAVENGER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_JAWASCAVENGER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_JAWASCAVENGER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_JEDIKNIGHTCONSULAR {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_JEDIKNIGHTCONSULAR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_JEDIKNIGHTCONSULAR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_JEDIKNIGHTGUARDIAN {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_JEDIKNIGHTGUARDIAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_JEDIKNIGHTGUARDIAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_JEDIKNIGHTREVAN {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_JEDIKNIGHTREVAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_JEDIKNIGHTREVAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_JEDISTARFIGHTERAHSOKATANO {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_JEDISTARFIGHTERAHSOKATANO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_JEDISTARFIGHTERAHSOKATANO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_JEDISTARFIGHTERANAKIN {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_JEDISTARFIGHTERANAKIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_JEDISTARFIGHTERANAKIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_JEDISTARFIGHTERCONSULAR {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_JEDISTARFIGHTERCONSULAR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_JEDISTARFIGHTERCONSULAR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_JOLEEBINDO {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_JOLEEBINDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -521px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_JOLEEBINDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_juhani {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_juhani::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_juhani::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_JYNERSO {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_JYNERSO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_JYNERSO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_K2SO {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_K2SO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_K2SO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_KANANJARRUSS3 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_KANANJARRUSS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_KANANJARRUSS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_KITFISTO {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_KITFISTO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_KITFISTO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_KYLOREN {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_KYLOREN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_KYLOREN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_KYLORENUNMASKED {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_KYLORENUNMASKED::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_KYLORENUNMASKED::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_l3_37 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_l3_37::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_l3_37::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_LOBOT {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_LOBOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_LOBOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_LOGRAY {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_LOGRAY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_LOGRAY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_LUKESKYWALKER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_LUKESKYWALKER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_LUKESKYWALKER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_LUMINARAUNDULI {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_LUMINARAUNDULI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -521px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_LUMINARAUNDULI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_MACEWINDU {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_MACEWINDU::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_MACEWINDU::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_MAGMATROOPER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_MAGMATROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_MAGMATROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_MAGNAGUARD {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_MAGNAGUARD::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_MAGNAGUARD::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_MAUL {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_MAUL::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_MAUL::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_MILLENNIUMFALCON {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_MILLENNIUMFALCON::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_MILLENNIUMFALCON::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_MILLENNIUMFALCONEP7 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_MILLENNIUMFALCONEP7::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_MILLENNIUMFALCONEP7::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_MILLENNIUMFALCONPRISTINE {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_MILLENNIUMFALCONPRISTINE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_MILLENNIUMFALCONPRISTINE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_MISSIONVAO {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_MISSIONVAO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_MISSIONVAO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_MOTHERTALZIN {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_MOTHERTALZIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_MOTHERTALZIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_NIGHTSISTERACOLYTE {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_NIGHTSISTERACOLYTE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -651px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_NIGHTSISTERACOLYTE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_NIGHTSISTERINITIATE {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_NIGHTSISTERINITIATE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_NIGHTSISTERINITIATE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_NIGHTSISTERSPIRIT {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_NIGHTSISTERSPIRIT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_NIGHTSISTERSPIRIT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_NIGHTSISTERZOMBIE {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_NIGHTSISTERZOMBIE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_NIGHTSISTERZOMBIE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_NUTEGUNRAY {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_NUTEGUNRAY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_NUTEGUNRAY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_OLDBENKENOBI {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_OLDBENKENOBI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_OLDBENKENOBI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_PADMEAMIDALA {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_PADMEAMIDALA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_PADMEAMIDALA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_PAO {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_PAO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_PAO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_PAPLOO {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_PAPLOO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_PAPLOO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_PHANTOM2 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_PHANTOM2::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -651px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_PHANTOM2::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_PHASMA {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_PHASMA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_PHASMA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_PLOKOON {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_PLOKOON::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_PLOKOON::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_POE {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_POE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_POE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_POGGLETHELESSER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_POGGLETHELESSER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_POGGLETHELESSER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_PRINCESSLEIA {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_PRINCESSLEIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_PRINCESSLEIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_QIRA {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_QIRA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_QIRA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_QUIGONJINN {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_QUIGONJINN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_QUIGONJINN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_R2D2_LEGENDARY {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_R2D2_LEGENDARY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_R2D2_LEGENDARY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_RANGETROOPER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_RANGETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -781px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_RANGETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_RESISTANCEPILOT {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_RESISTANCEPILOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_RESISTANCEPILOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_RESISTANCETROOPER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_RESISTANCETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_RESISTANCETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_REX {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_REX::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_REX::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_REY {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_REY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_REY::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_REYJEDITRAINING {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_REYJEDITRAINING::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_REYJEDITRAINING::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_ROSETICO {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_ROSETICO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_ROSETICO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_ROYALGUARD {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_ROYALGUARD::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_ROYALGUARD::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_SABINEWRENS3 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_SABINEWRENS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -781px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_SABINEWRENS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_SAVAGEOPRESS {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_SAVAGEOPRESS::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_SAVAGEOPRESS::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_SCARIFREBEL {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_SCARIFREBEL::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_SCARIFREBEL::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_SHAAKTI {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_SHAAKTI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_SHAAKTI::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_SHORETROOPER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_SHORETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_SHORETROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_SITHASSASSIN {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_SITHASSASSIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_SITHASSASSIN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_sithbomber {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_sithbomber::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_sithbomber::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_SITHFIGHTER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_SITHFIGHTER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_SITHFIGHTER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_SITHINFILTRATOR {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_SITHINFILTRATOR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_SITHINFILTRATOR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_SITHMARAUDER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_SITHMARAUDER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -911px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_SITHMARAUDER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_SITHTROOPER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_SITHTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_SITHTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_slave1 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_slave1::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_slave1::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_SMUGGLERCHEWBACCA {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_SMUGGLERCHEWBACCA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_SMUGGLERCHEWBACCA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_SMUGGLERHAN {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_SMUGGLERHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_SMUGGLERHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_SNOWTROOPER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_SNOWTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_SNOWTROOPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_STORMTROOPER01 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_STORMTROOPER01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_STORMTROOPER01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_STORMTROOPERHAN {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_STORMTROOPERHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_STORMTROOPERHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_SUNFAC {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_SUNFAC::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -911px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_SUNFAC::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_t3_m4 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_t3_m4::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_t3_m4::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_TALIA {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_TALIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_TALIA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_TEEBO {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_TEEBO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_TEEBO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_TIEADVANCED {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_TIEADVANCED::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_TIEADVANCED::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_TIEFIGHTERFIRSTORDER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_TIEFIGHTERFIRSTORDER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_TIEFIGHTERFIRSTORDER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_TIEFIGHTERFOSF {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_TIEFIGHTERFOSF::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_TIEFIGHTERFOSF::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_TIEFIGHTERIMPERIAL {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_TIEFIGHTERIMPERIAL::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_TIEFIGHTERIMPERIAL::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_TIEFIGHTERPILOT {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_TIEFIGHTERPILOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1041px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_TIEFIGHTERPILOT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_TIEREAPER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_TIEREAPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_TIEREAPER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_TIESILENCER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_TIESILENCER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_TIESILENCER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_TUSKENRAIDER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_TUSKENRAIDER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_TUSKENRAIDER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_TUSKENSHAMAN {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_TUSKENSHAMAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_TUSKENSHAMAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_UGNAUGHT {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_UGNAUGHT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_UGNAUGHT::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_UMBARANSTARFIGHTER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_UMBARANSTARFIGHTER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1041px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_UMBARANSTARFIGHTER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_URORRURRR {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_URORRURRR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_URORRURRR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_uwingrogueone {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_uwingrogueone::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_uwingrogueone::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_UWINGSCARIF {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_UWINGSCARIF::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_UWINGSCARIF::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_VADER {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_VADER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_VADER::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_VEERS {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_VEERS::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_VEERS::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_VISASMARR {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_VISASMARR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_VISASMARR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_VULTUREDROID {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_VULTUREDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1171px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_VULTUREDROID::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_WAMPA {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_WAMPA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_WAMPA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_WATTAMBOR {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_WATTAMBOR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_WATTAMBOR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_WEDGEANTILLES {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_WEDGEANTILLES::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_WEDGEANTILLES::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_WICKET {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_WICKET::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_WICKET::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_XANADUBLOOD {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_XANADUBLOOD::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1171px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_XANADUBLOOD::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_XWINGBLACKONE {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_XWINGBLACKONE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_XWINGBLACKONE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_XWINGRED2 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_XWINGRED2::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_XWINGRED2::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_XWINGRED3 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_XWINGRED3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_XWINGRED3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_XWINGRESISTANCE {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_XWINGRESISTANCE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_XWINGRESISTANCE::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_YOUNGCHEWBACCA {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_YOUNGCHEWBACCA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1301px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_YOUNGCHEWBACCA::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_YOUNGHAN {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_YOUNGHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_YOUNGHAN::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_YOUNGLANDO {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_YOUNGLANDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1561px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_YOUNGLANDO::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_YWINGCLONEWARS {max-width:128px; max-height:128px; }
+.sprite-abilities.a-basicskill_YWINGCLONEWARS::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_ZAALBAR {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_ZAALBAR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_ZAALBAR::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1561px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_ZAMWESELL {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_ZAMWESELL::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1301px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_ZAMWESELL::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-basicskill_ZEBS3 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-basicskill_ZEBS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1431px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-basicskill_ZEBS3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1431px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-contractskill_AURRA_SING01 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-contractskill_AURRA_SING01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-contractskill_AURRA_SING01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-contractskill_BOBAFETT01 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-contractskill_BOBAFETT01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-contractskill_BOBAFETT01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-contractskill_BOSSK01 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-contractskill_BOSSK01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-contractskill_BOSSK01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-contractskill_CADBANE01 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-contractskill_CADBANE01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-contractskill_CADBANE01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-contractskill_DENGAR01 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-contractskill_DENGAR01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-contractskill_DENGAR01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-contractskill_EMBO01 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-contractskill_EMBO01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-contractskill_EMBO01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-contractskill_GREEDO01 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-contractskill_GREEDO01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-contractskill_GREEDO01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-contractskill_IG8801 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-contractskill_IG8801::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-contractskill_IG8801::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-contractskill_JANGOFETT01 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-contractskill_JANGOFETT01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-contractskill_JANGOFETT01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-contractskill_ZAMWESELL01 {max-width:128px; max-height:128px; }
-.sprite-abilities.a-contractskill_ZAMWESELL01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
-.sprite-abilities.a-grantability_jediknightrevan_strategic_advantage {max-width:128px; max-height:128px; }
-.sprite-abilities.a-grantability_jediknightrevan_strategic_advantage::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1691px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
-.sprite-abilities.a-grantedability_embo {max-width:128px; max-height:128px; }
-.sprite-abilities.a-grantedability_embo::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1691px;background-image: url(abilities-0.png);border-radius:inherit; }
-.sprite-abilities.a-grantedability_grandadmiralthrawn_maneuver {max-width:128px; max-height:128px; }
-.sprite-abilities.a-grantedability_grandadmiralthrawn_maneuver::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-contractskill_ZAMWESELL01::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1821px -1821px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-grantedability_generalskywalker {max-width:64px; max-height:64px; }
+.sprite-abilities.a-grantedability_generalskywalker::after {content: '\00a0';display: inline-block; overflow:hidden; width:64px; height:64px; background-repeat:no-repeat;background-position: -1px -1951px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-L3_grantability_enhance_grant_ability_MK1_no_MK2 {max-width:128px; max-height:128px; }
 .sprite-abilities.a-L3_grantability_enhance_grant_ability_MK1_no_MK2::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -1px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-L3_grantability_enhance_grant_ability_MK1_upgrade_to_MK2 {max-width:128px; max-height:128px; }
@@ -487,3 +489,5 @@
 .sprite-abilities.a-L3_grantability_enhance_grant_ability_MK2_upgrade_to_MK3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -1px;background-image: url(abilities-0.png);border-radius:inherit; }
 .sprite-abilities.a-L3_grantability_enhance_grant_ability_MK3 {max-width:128px; max-height:128px; }
 .sprite-abilities.a-L3_grantability_enhance_grant_ability_MK3::after {content: '\00a0';display: inline-block; overflow:hidden; width:128px; height:128px; background-repeat:no-repeat;background-position: -1px -1px;background-image: url(abilities-0.png);border-radius:inherit; }
+.sprite-abilities.a-specialskill_BOSSK02 {max-width:64px; max-height:64px; }
+.sprite-abilities.a-specialskill_BOSSK02::after {content: '\00a0';display: inline-block; overflow:hidden; width:64px; height:64px; background-repeat:no-repeat;background-position: -1px -1951px;background-image: url(abilities-0.png);border-radius:inherit; }

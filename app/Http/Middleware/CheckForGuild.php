@@ -6,7 +6,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Guild;
-use App\Helper\SyncClient;
+use App\Helper\SyncHelper;
 use Illuminate\Support\Facades\View;
 
 class CheckForGuild
@@ -22,7 +22,6 @@ class CheckForGuild
      * Handle an incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
      *
      * @return mixed
      */
@@ -43,7 +42,7 @@ class CheckForGuild
 
         // if it is not a guild page, we might get the guild from a player page instead
         if (!$guild && $player) {
-            $info = SyncClient::getPlayer($player);
+            $info = SyncHelper::getPlayer($player);
             $guild_ref = $info[0]['guildRefId'] ?? null;
             $logo = $info[0]['guildBannerLogo'] ?? null;
             $name = $info[0]['name'] ?? null;
@@ -66,19 +65,19 @@ class CheckForGuild
                 View::share('page_title', __('pages.player.title', ['name' => $name]));
                 View::share('page_description', implode(' ', [
                     __('pages.player.intro', ['name' => $name]),
-                    __('pages.player.description', ['name' => $name])
+                    __('pages.player.description', ['name' => $name]),
                 ]));
             } else {
                 $name = $guild->name ?? '';
                 View::share('page_title', __('pages.guild.title', ['name' => $name]));
                 View::share('page_description', implode(' ', [
                     __('pages.guild.intro', ['name' => $name]),
-                    __('pages.guild.description', ['name' => $name])
+                    __('pages.guild.description', ['name' => $name]),
                 ]));
             }
 
             if (!$logo) {
-                $info = SyncClient::getGuildInfo($guild);
+                $info = SyncHelper::getGuildInfo($guild);
                 $logo = $info[0]['bannerLogo'] ?? 'default';
             }
 

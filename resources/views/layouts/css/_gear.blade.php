@@ -4985,18 +4985,6 @@
  vertical-align:middle!important;
  white-space:nowrap
 }
-table td .char-portrait-full-micro {
- display:inline-block;
- margin:3px 9px 3px 0
-}
-table td .char-portrait-full-small {
- display:inline-block;
- margin:3px 18px 3px 0
-}
-table td .char-portrait-full {
- display:inline-block;
- margin:3px 27px 3px 0
-}
 .dataTable tbody td .statmod-small {
  display:inline-block;
  cursor:pointer;
@@ -5028,7 +5016,7 @@ table td .char-portrait-full {
 	text-align: center;
 }
 .pc-skill {
- width:66px;
+ width:75px;
  display:inline-block;
  vertical-align: top;
 }
@@ -5055,6 +5043,19 @@ table td .char-portrait-full {
 }
 
 /* custom */
+
+.char-portrait-full-micro {
+ display:inline-block;
+ margin:3px 9px 3px 0
+}
+.char-portrait-full-small {
+ display:inline-block;
+ margin:13px 8px 0 8px
+}
+.char-portrait-full {
+ display:inline-block;
+ margin:3px 27px 3px 0
+}
 
 .char-portrait-full-small .char-portrait-full-zeta, .char-portrait-full-small .char-portrait-full-relic {
 	line-height: 22px;

@@ -1,22 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Guild;
-use App\Player;
-use App\Sanction;
-use App\Permission;
 use App\Authorizable;
 use App\Charts\HighChart;
-use App\Helper\SyncClient;
-use App\Charts\FrappeChart;
+use App\Guild;
+use App\Helper\SyncHelper;
+use App\Permission;
+use App\Player;
+use App\Role;
+use App\Sanction;
+use App\User;
 use Illuminate\Http\Request;
-use App\Charts\GuildStatsPlayers;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 
 class GuildController extends Controller
 {
@@ -32,7 +32,7 @@ class GuildController extends Controller
 
         // $guild = Session::get('guild');
         // if ($guild) {
-        //     $info = SyncClient::getGuildInfo($guild);
+        //     $info = SyncHelper::getGuildInfo($guild);
         //     $logo = $info['bannerLogo'] ?? 'default';
         //     $name = $guild->name;
         // }
@@ -51,9 +51,9 @@ class GuildController extends Controller
      */
     public function home(Guild $guild)
     {
-        $info = SyncClient::getGuildInfo($guild);
-        $members = SyncClient::getGuildMembers($guild);
-        $playerTitleKeys = SyncClient::getDataMap('playerTitleList');
+        $info = SyncHelper::getGuildInfo($guild);
+        $members = SyncHelper::getGuildMembers($guild);
+        $playerTitleKeys = SyncHelper::getDataMap('playerTitleList');
         $sanctions = $guild->sanctions()->with('player')->get() ?? null;
         // dd($sanctions);
         $filter = [
@@ -78,9 +78,9 @@ class GuildController extends Controller
         return view('guild.home', [
             'info' => $info[0] ?? [],
             'members' => $members ?? [],
-            'filter' =>$filter,
-            'sanctions' =>$sanctions,
-            'playerTitleKeys' =>$playerTitleKeys ?? [],
+            'filter' => $filter,
+            'sanctions' => $sanctions,
+            'playerTitleKeys' => $playerTitleKeys ?? [],
         ]);
     }
 
@@ -111,7 +111,6 @@ class GuildController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -145,25 +144,25 @@ class GuildController extends Controller
             }
         }
 
-
         return redirect()->route('admin.guild.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -178,8 +177,8 @@ class GuildController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -187,7 +186,7 @@ class GuildController extends Controller
         $this->validate($request, [
             'name' => 'bail|required|min:2',
             'email' => 'required|email|unique:users,email,' . $id,
-            'roles' => 'required|min:1'
+            'roles' => 'required|min:1',
         ]);
 
         // Get the user
@@ -214,14 +213,17 @@ class GuildController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
+     *
      * @internal param Request $request
      */
     public function destroy($id)
     {
         if (Auth::user()->id == $id) {
             flash()->warning('Deletion of currently logged in user is not allowed :(')->important();
+
             return redirect()->back();
         }
 
@@ -241,17 +243,17 @@ class GuildController extends Controller
      */
     public function stats(Guild $guild, $chunk = '', $code = '')
     {
-        $info = SyncClient::getPlayer($guild);
-        $members = SyncClient::getGuildMembers($guild);
-        $teams = SyncClient::getSquadList();
-        $anchors = SyncClient::getSquadAnchors();
-        $unitKeys = SyncClient::getUnitKeys();
-        $skillKeys = SyncClient::getSkillKeys();
+        $info = SyncHelper::getPlayer($guild);
+        $members = SyncHelper::getGuildMembers($guild);
+        $teams = SyncHelper::getSquadList();
+        $anchors = SyncHelper::getSquadAnchors();
+        $unitKeys = SyncHelper::getUnitKeys();
+        $skillKeys = SyncHelper::getSkillKeys();
         if (isset($teams['updated'])) {
             unset($teams['updated']);
         }
-        $chars = SyncClient::getRoster($guild, 1);
-        $ships = SyncClient::getRoster($guild, 2);
+        $chars = SyncHelper::getRoster($guild, 1);
+        $ships = SyncHelper::getRoster($guild, 2);
         $rosterWithAllyCodeKeys = [];
         foreach ($chars as $key => $char) {
             foreach ($char['players'] as $player) {
@@ -265,7 +267,7 @@ class GuildController extends Controller
             }
         }
 
-        if (!$chunk || $chunk == 'raid-hstr') {
+        if (!$chunk || 'raid-hstr' == $chunk) {
             // calculat raid readiness
             $eventStats = [];
             $eventStatsMax = [];
@@ -380,7 +382,7 @@ class GuildController extends Controller
 
     public function stats_players(Guild $guild, $type = '', $top_limit = null)
     {
-        $members = SyncClient::getGuildMembers($guild);
+        $members = SyncHelper::getGuildMembers($guild);
         // $players = array_column($members, 'name', 'allyCode'); // not working on collection
         $players = $members->mapWithKeys(function ($item) {
             return [$item['allyCode'] => $item['name']];
@@ -393,37 +395,37 @@ class GuildController extends Controller
         $stats_mods = [];
         $stats_mods_ranking = [];
         foreach ($players->all() as $player_code => $player_name) {
-            $player = SyncClient::getPlayer($player_code, false);
+            $player = SyncHelper::getPlayer($player_code, false);
             if ($player) {
                 foreach ($player['roster'] ?? [] as $unit) {
                     foreach ($fields as $field) {
                         if (isset($unit[$field])) {
-                            $stats[$player_code][$field][$unit[$field]] = 1+ ($stats[$player_code][$field][$unit[$field]] ?? 0);
-                            $stats_total[$field][$unit[$field]] = 1+ ($stats_total[$field][$unit[$field]] ?? 0);
+                            $stats[$player_code][$field][$unit[$field]] = 1 + ($stats[$player_code][$field][$unit[$field]] ?? 0);
+                            $stats_total[$field][$unit[$field]] = 1 + ($stats_total[$field][$unit[$field]] ?? 0);
                         }
                     }
                     foreach ($unit['mods'] ?? [] as $mod) {
                         $prefix = 'mods_';
                         foreach ($fields_mods as $field) {
                             if (isset($mod[$field])) {
-                                $stats[$player_code][$prefix.$field][$mod[$field]] = 1+ ($stats[$player_code][$prefix.$field][$mod[$field]] ?? 0);
-                                $stats_total[$prefix.$field][$mod[$field]] = 1+ ($stats_total[$prefix.$field][$mod[$field]] ?? 0);
+                                $stats[$player_code][$prefix . $field][$mod[$field]] = 1 + ($stats[$player_code][$prefix . $field][$mod[$field]] ?? 0);
+                                $stats_total[$prefix . $field][$mod[$field]] = 1 + ($stats_total[$prefix . $field][$mod[$field]] ?? 0);
                             }
                         }
                         $primaryStat = $mod['primaryStat']['unitStat'] ?? null;
                         $field = 'primaryStat';
                         if ($primaryStat) {
-                            $stats[$player_code][$prefix.$field][$primaryStat] = 1+ ($stats[$player_code][$prefix.$field][$primaryStat] ?? 0);
-                            $stats_total[$prefix.$field][$primaryStat] = 1+ ($stats_total[$prefix.$field][$primaryStat] ?? 0);
+                            $stats[$player_code][$prefix . $field][$primaryStat] = 1 + ($stats[$player_code][$prefix . $field][$primaryStat] ?? 0);
+                            $stats_total[$prefix . $field][$primaryStat] = 1 + ($stats_total[$prefix . $field][$primaryStat] ?? 0);
                         }
                         $field = 'secondaryStat';
                         foreach ($mod['secondaryStat'] ?? [] as $secondaryStat) {
                             $stat_name = $secondaryStat['unitStat'] ?? null; // value roll
                             if ($stat_name) {
-                                $stats[$player_code][$prefix.$field][$stat_name] = 1+ ($stats[$player_code][$prefix.$field][$stat_name] ?? 0);
-                                $stats_total[$prefix.$field][$stat_name] = 1+ ($stats_total[$prefix.$field][$stat_name] ?? 0);
+                                $stats[$player_code][$prefix . $field][$stat_name] = 1 + ($stats[$player_code][$prefix . $field][$stat_name] ?? 0);
+                                $stats_total[$prefix . $field][$stat_name] = 1 + ($stats_total[$prefix . $field][$stat_name] ?? 0);
                                 if ('secondaryStats' == $type && ($secondaryStat['value'] ?? null)) {
-                                    $stats_mods[$field][$stat_name][] = (int)round($secondaryStat['value'] ?? ''); // array_count_values(): Can only count STRING and INTEGER values!
+                                    $stats_mods[$field][$stat_name][] = (int) round($secondaryStat['value'] ?? ''); // array_count_values(): Can only count STRING and INTEGER values!
                                     $stats_mods_ranking[$stat_name][$secondaryStat['value']][] = $player_code;
                                 }
                             }
@@ -431,7 +433,7 @@ class GuildController extends Controller
                     }
                 }
             }
-            # code...
+            // code...
         }
 
         $charts = [];
@@ -440,9 +442,9 @@ class GuildController extends Controller
         if ('secondaryStats' !== $type) {
             foreach ($stats_total as $key => $value) {
                 krsort($value);
-                $chart_high = new HighChart;
-                $chart_high->labels(\array_keys($value));
-                $chart_high->dataset(__('fields.'.$key), 'bar', \array_values($value));
+                $chart_high = new HighChart();
+                $chart_high->labels(array_keys($value));
+                $chart_high->dataset(__('fields.' . $key), 'bar', array_values($value));
                 $charts[$key] = $chart_high;
             }
         }
@@ -452,9 +454,9 @@ class GuildController extends Controller
                 foreach ($field_value as $stat_key => $stat_values) {
                     $value = array_count_values($stat_values); // array_count_values(): Can only count STRING and INTEGER values!
                     krsort($value);
-                    $chart_high = new HighChart;
-                    $chart_high->labels(\array_keys($value));
-                    $chart_high->dataset(__('enums.'.$stat_key), 'bar', \array_values($value));
+                    $chart_high = new HighChart();
+                    $chart_high->labels(array_keys($value));
+                    $chart_high->dataset(__('enums.' . $stat_key), 'bar', array_values($value));
                     $charts[$stat_key] = $chart_high;
                     $stats_special['-'][$stat_key] = $value;
                     $stats_total_special[$stat_key] = [];
@@ -471,12 +473,12 @@ class GuildController extends Controller
             'data_key' => 'guild_stats_players',
             'top_limit' => $top_limit ?? null,
             'lang_prefix' => ('secondaryStats' == $type) ? 'enums.' : 'fields.',
-            'percent' => $type == 'percent',
+            'percent' => 'percent' == $type,
             'members' => $members,
             'players' => $players,
             'stats' => ('secondaryStats' == $type) ? $stats_special : $stats,
             'stats_total' => ('secondaryStats' == $type) ? $stats_total_special : $stats_total,
-            'stats_mods_ranking' =>  $stats_mods_ranking,
+            'stats_mods_ranking' => $stats_mods_ranking,
         ]);
     }
 
@@ -632,18 +634,18 @@ class GuildController extends Controller
      */
     public function storeSanction(Request $request, Guild $guild, $code)
     {
-        $player = Player::firstOrCreate(['code' => $code], ['name' => SyncClient::getPlayer($code)[0]['name'] ?? '']);
+        $player = Player::firstOrCreate(['code' => $code], ['name' => SyncHelper::getPlayer($code)[0]['name'] ?? '']);
         $sanction = Sanction::create(
             [
-                'user_id' =>auth()->user()->id,
-                'guild_id' =>$guild->id,
-                'player_id' =>$player->id,
-                'origin' =>request('origin'),
-                'reason' =>request('reason'),
-                'severity' =>request('severity'),
-                'note' =>request('note'),
-                'date' =>request('date'),
-                'action' =>request('action'),
+                'user_id' => auth()->user()->id,
+                'guild_id' => $guild->id,
+                'player_id' => $player->id,
+                'origin' => request('origin'),
+                'reason' => request('reason'),
+                'severity' => request('severity'),
+                'note' => request('note'),
+                'date' => request('date'),
+                'action' => request('action'),
             ]
         );
 
@@ -671,8 +673,10 @@ class GuildController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
+     *
      * @internal param Request $request
      */
     public function destroySanction(Guild $guild, $code, $id)
@@ -691,10 +695,10 @@ class GuildController extends Controller
     }
 
     /**
-     * Sync roles and permissions
+     * Sync roles and permissions.
      *
-     * @param Request $request
      * @param $user
+     *
      * @return string
      */
     private function syncPermissions(Request $request, $user)
@@ -707,7 +711,7 @@ class GuildController extends Controller
         $roles = Role::find($roles);
 
         // check for current role changes
-        if (! $user->hasAllRoles($roles)) {
+        if (!$user->hasAllRoles($roles)) {
             // reset all direct permissions for user
             $user->permissions()->sync([]);
         } else {
@@ -720,7 +724,7 @@ class GuildController extends Controller
         return $user;
     }
 
-    private function prepareEventStats(&$eventStats, $index)
+    private function prepareEventStats(&$eventStats, $index): void
     {
         if (!isset($eventStats[$index])) {
             return;
@@ -728,7 +732,7 @@ class GuildController extends Controller
 
         if (isset($eventStats[$index][0])) {
             asort($eventStats[$index][0]);
-        };
+        }
         if (isset($eventStats[$index][1])) {
             foreach ($eventStats[$index][0] ?? [] as $key => $value) {
                 if (isset($eventStats[$index][1][$key])) {
@@ -736,7 +740,7 @@ class GuildController extends Controller
                 }
             }
             asort($eventStats[$index][1]);
-        };
+        }
     }
 
     private function checkTeamStatus($event, $team, $memberId, &$roster, &$unitKeys)
@@ -750,43 +754,44 @@ class GuildController extends Controller
             'zetas' => 0,
             'valid' => 0,
         ];
-        $teamSize = min(count($team ?? []), 5);
+        $teamSize = min(\count($team ?? []), 5);
 
         foreach ($team ?? [] as $teamchar) {
             $teamchar = preg_split('/:/', $teamchar);
             $teamcharname = $teamchar[0];
             $tmp = [
                 'gp' => $roster[$teamcharname][$memberId]['gp'] ?? 0,
-                'gear' => $roster[$teamcharname][$memberId]['gear'] ?? 0 + (count($roster[$teamcharname][$memberId]['equipped'] ?? []) / 10),
+                'gear' => $roster[$teamcharname][$memberId]['gear'] ?? 0 + (\count($roster[$teamcharname][$memberId]['equipped'] ?? []) / 10),
                 'level' => $roster[$teamcharname][$memberId]['level'] ?? 0,
                 'rarity' => $roster[$teamcharname][$memberId]['rarity'] ?? 0,
                 'zetas' => [],
             ];
             $currentStats['gp'] += $tmp['gp'];
             $isValid = true;
-            ($tmp['gear'] >= ($team['gear'] ?? $event['gear'] ?? 0) || ($roster[$teamcharname]['isShip'] ?? false)) ? $currentStats['gear'] += 1 : $isValid = false; // irrelevant für Schiffe
-            ($tmp['level'] >= ($team['level'] ?? $event['level'] ?? 0)) ? $currentStats['level'] += 1 : $isValid = false;
-            ($tmp['rarity'] >= ($team['rarity'] ?? $event['rarity'] ?? 0)) ? $currentStats['rarity'] += 1 : $isValid = false;
+            ($tmp['gear'] >= ($team['gear'] ?? $event['gear'] ?? 0) || ($roster[$teamcharname]['isShip'] ?? false)) ? ++$currentStats['gear'] : $isValid = false; // irrelevant für Schiffe
+            ($tmp['level'] >= ($team['level'] ?? $event['level'] ?? 0)) ? ++$currentStats['level'] : $isValid = false;
+            ($tmp['rarity'] >= ($team['rarity'] ?? $event['rarity'] ?? 0)) ? ++$currentStats['rarity'] : $isValid = false;
             $zetacount = 0;
             foreach ($teamchar as $zetaindex => $zetaskill) {
-                if ($zetaindex <> 0) {
+                if (0 != $zetaindex) {
                     foreach ($roster[$teamcharname][$memberId]['skills'] ?? [] as $rosterindex => $rosterskill) {
                         if ($zetaskill == $rosterskill['id'] ?? 'dummy') {
                             $tmp['zetas'][$zetaskill] = $rosterskill['tier'] ?? 0;
                             if (8 == $rosterskill['tier'] ?? 0) {
-                                $zetacount++;
+                                ++$zetacount;
                             }
                             break;
                         }
                     }
                 }
             }
-            ($zetacount >= count($teamchar) - 1) ? $currentStats['zetas'] += 1 : $isValid = false;
-            ($isValid) ? $currentStats['valid'] += 1 : null;
+            ($zetacount >= \count($teamchar) - 1) ? ++$currentStats['zetas'] : $isValid = false;
+            ($isValid) ? ++$currentStats['valid'] : null;
             // $currentTeam[$teamcharname] =  $roster[$teamcharname][$memberId]['nameKey'] ?? $teamcharname . ': ' . implode(', ', $tmp);
-            $currentTeam[$teamcharname] =  $tmp;
-            $currentTeam[$teamcharname]['name'] =  $unitKeys[$teamcharname]['name'] ?? $teamcharname;
+            $currentTeam[$teamcharname] = $tmp;
+            $currentTeam[$teamcharname]['name'] = $unitKeys[$teamcharname]['name'] ?? $teamcharname;
         }
+
         return [
             'team' => $currentTeam,
             'stats' => $currentStats,

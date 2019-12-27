@@ -1,18 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Jobs;
 
+use App\User;
+use App\Helper\SyncClient;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Helper\SyncClient;
-use App\User;
 
 class CheckNewAllyCode implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     protected $allyCode;
     protected $user;
@@ -49,8 +54,8 @@ class CheckNewAllyCode implements ShouldQueue
      */
     public function handle(SyncClient $syncClient)
     {
-        // $player = Player::firstOrCreate(['code' => $code], ['name' => SyncClient::getPlayer($code)[0]['name'] ?? '']);
-        // $playerInfo = SyncClient::getPlayer($this->allyCode, false);
+        // $player = Player::firstOrCreate(['code' => $code], ['name' => SyncHelper::getPlayer($code)[0]['name'] ?? '']);
+        // $playerInfo = SyncHelper::getPlayer($this->allyCode, false);
 
         // if (!$playerInfo) {
         //     $syncClient->setPlayerCode($this->allyCode);

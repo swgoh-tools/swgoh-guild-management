@@ -99,6 +99,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropNews">
                     <a class="dropdown-item" href="{{ route('feeds', 'announcements') }}">{{ __('Official Announcements') }}</a>
                     <a class="dropdown-item" href="{{ route('feeds', 'updates') }}">{{ __('Official Update Notes') }}</a>
+                    <a class="dropdown-item" href="{{ route('feeds', 'units') }}">{{ __('Official Kit Releases') }}</a>
                 </div>
             </li>
             <li class="nav-item dropdown">

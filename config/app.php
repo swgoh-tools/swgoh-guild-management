@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'SWGoH GMS'),
-    'version' => '1.5.1',
+    'version' => '1.5.2-dev',
     'locales' => ['en' => 'en', 'pt-BR' => 'br', 'de' => 'de', 'it' => 'it'],
 
     /*

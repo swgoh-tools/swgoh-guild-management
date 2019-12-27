@@ -8,7 +8,6 @@ use Session;
 use App\Page;
 use App\Guild;
 use App\Channel;
-use App\Helper\SyncClient;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -23,18 +22,18 @@ class AppServiceProvider extends ServiceProvider
         //compatibility with mysql < 10.2 / < 5.7
         Schema::defaultStringLength(191);
 
-        require app_path('Helper'.DIRECTORY_SEPARATOR.'global.php');
+        require app_path('Helper' . \DIRECTORY_SEPARATOR . 'global.php');
 
         \View::composer(['guild.squads', 'guild.roster', 'admin.sync'], function ($view): void {
             $sync_status = \Cache::get('sync_status', []);
             // $sync_status = \Cache::rememberForever('sync_status', function () {
-            //     return SyncClient::getStatus();
+            //     return SyncHelper::getStatus();
             // });
 
             $view->with('sync_status', $sync_status);
         });
 
-        /**
+        /*
          * Careful with wildcard view composer callbacks. Those are called on EVERY included view.
          * That means: If a partial template is included 1000 times on a page (like for rendering buttons, forms or table fields)
          * the wildcard callback is executed 1000 times!
@@ -91,7 +90,6 @@ class AppServiceProvider extends ServiceProvider
 
         //     $view->with(compact(['page_guild_name', 'page_locale', 'page_title', 'guild', 'pages']));
         // });
-
 
         // \View::composer('*', function ($view) {
         //     $guild = Guild::find(1);

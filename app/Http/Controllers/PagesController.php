@@ -8,7 +8,7 @@ use App\Page;
 use App\User;
 use App\Guild;
 use App\Channel;
-use App\Helper\SyncClient;
+use App\Helper\SyncHelper;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -37,9 +37,6 @@ class PagesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Page  $page
-     * @param \App\Guild $guild
-     *
      * @return \Illuminate\Http\Response
      */
     public function show(Guild $guild, Page $page) //, Guild $guild)
@@ -58,9 +55,6 @@ class PagesController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param \App\Page  $page
-     * @param \App\Guild $guild
      *
      * @return \Illuminate\Http\Response
      */
@@ -85,7 +79,7 @@ class PagesController extends Controller
     public function create()
     {
         $this->authorize('create', Page::class);
-        $guilds = Guild::with(['permUsers' => function ($query) {
+        $guilds = Guild::with(['permUsers' => function ($query): void {
             $query->where('user_id', auth()->id());
         }])
         // ->where('user_id', auth()->id())
@@ -219,8 +213,8 @@ class PagesController extends Controller
 
     protected function roster(Guild $guild, $list, $filter, $updated, $chunk, $title, $route_name)
     {
-        $skillKeys = SyncClient::getSkillKeys();
-        $unitKeys = SyncClient::getUnitKeys();
+        $skillKeys = SyncHelper::getSkillKeys();
+        $unitKeys = SyncHelper::getUnitKeys();
 
         $units = array_chunk($list->all(), 42, true);
 
@@ -232,23 +226,22 @@ class PagesController extends Controller
             $pagination[$chunk_key]['first'] = current($chunk_array)['name'] ?? key($chunk_array); //since php 7.3.0: array_key_first()
         }
 
-
         return view('guild.roster', [
             'title' => $title,
-            'route_name' => 'guild.'.$route_name,
+            'route_name' => 'guild.' . $route_name,
             'units' => $units[$chunk] ?? $units[0] ?? [],
             'updated' => $updated,
-            'filter' =>$filter,
-            'pagination' =>$pagination,
-            'skillKeys' =>$skillKeys ?? [],
-            'unitKeys' =>$unitKeys ?? [],
+            'filter' => $filter,
+            'pagination' => $pagination,
+            'skillKeys' => $skillKeys ?? [],
+            'unitKeys' => $unitKeys ?? [],
             ]);
     }
 
     public function rosterShips(Guild $guild, $chunk = 0)
     {
-        $list = SyncClient::getRoster($guild, 2);
-        $updated = SyncClient::getRoster($guild, 2, true);
+        $list = SyncHelper::getRoster($guild, 2);
+        $updated = SyncHelper::getRoster($guild, 2, true);
 
         $filter = [
             // 'pid',
@@ -276,8 +269,8 @@ class PagesController extends Controller
     {
         ini_set('zlib.output_compression', 'On');
 
-        $list = SyncClient::getRoster($guild, 1);
-        $updated = SyncClient::getRoster($guild, 1, true);
+        $list = SyncHelper::getRoster($guild, 1);
+        $updated = SyncHelper::getRoster($guild, 1, true);
 
         $filter = [
             // 'pid',
@@ -298,7 +291,7 @@ class PagesController extends Controller
             'gp',
                  ];
 
-                 return $this->roster($guild, $list, $filter, $updated, $chunk, 'Toons', 'toons');
+        return $this->roster($guild, $list, $filter, $updated, $chunk, 'Toons', 'toons');
     }
 
     public function squadspost()
@@ -318,9 +311,9 @@ class PagesController extends Controller
 
     protected function squads(Request $request, Guild $guild, $combat_type, $route)
     {
-        $unitKeys = SyncClient::getUnitKeys();
-        $units = SyncClient::getRoster($guild, $combat_type);
-        $updated = SyncClient::getRoster($guild, $combat_type, true);
+        $unitKeys = SyncHelper::getUnitKeys();
+        $units = SyncHelper::getRoster($guild, $combat_type);
+        $updated = SyncHelper::getRoster($guild, $combat_type, true);
 
         if ($units) {
             try {
@@ -341,7 +334,7 @@ class PagesController extends Controller
             $player_data = [];
         }
 
-        if($request->input('t')) {
+        if ($request->input('t')) {
             $char_list = explode(',', $request->input('t'));
         } else {
             $char_list = [
@@ -353,7 +346,7 @@ class PagesController extends Controller
             ];
         }
 
-        if ($combat_type == 2) {
+        if (2 == $combat_type) {
             $type = 'ship';
         } else {
             $type = 'toon';
@@ -375,7 +368,7 @@ class PagesController extends Controller
                 $sort_sum = 0;
                 foreach ($char_list as $char) {
                     $result[$player_id]['units'][$char] = '';
-                    if (array_key_exists($char, $player_units)) {
+                    if (\array_key_exists($char, $player_units)) {
                         $result[$player_id]['units'][$char] = $player_units[$char];
                         ++$squad_count;
                         $sort_sum += $player_units[$char][$sort];
@@ -389,7 +382,7 @@ class PagesController extends Controller
         }
 
         return view('guild.squads', [
-            'unitKeys' =>$unitKeys ?? [],
+            'unitKeys' => $unitKeys ?? [],
             'route' => $route,
             'units' => $units,
             'updated' => $updated,
